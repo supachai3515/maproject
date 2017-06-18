@@ -22,22 +22,22 @@ $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER
 
 
 //Config by user
-$config['short_sitename'] = "WISADEV";
-$config['sitename'] = "WISADEV System";
-$config['tagline'] = "WISADEV System slution";
-$config['author'] = "WISADEV";
-$config['url_img'] = "http://www.wisadev.com/";
-$config['no_url_img'] = "http://www.wisadev.com/uploads/no_image.jpg";
+$config['short_sitename'] = "TOS";
+$config['sitename'] = "TOS MA Project";
+$config['tagline'] = "TOS MA Project";
+$config['author'] = "TOS";
+$config['url_img'] = "http://demo.wisadev.com/";
+$config['no_url_img'] = "http://demo.wisadev.com/uploads/no_image.jpg";
 
 $config['email_owner'] = "supachai@wisadev.com";
 $config['email_name'] = "supachai";
 $config['email_noreply'] = "system@wisadev.com";
 $config['pass_mail_noreply'] = "system";
-$config['weburl'] = "http://www.cyberbatt.com/";
+$config['weburl'] = "http://demo.wisadev.com/";
 $config['line_id'] = "@cyberbatt";
 
 //information
-$config['pre_page'] = "5";
+$config['pre_page'] = "10";
 
 /*
 |--------------------------------------------------------------------------

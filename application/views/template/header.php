@@ -47,9 +47,9 @@
       <!-- Logo -->
       <a href="<?php echo base_url(); ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>WD</b></span>
+        <span class="logo-mini"><b><?php echo $this->config->item('short_sitename'); ?></b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>WISADEV</b></span>
+        <span class="logo-lg"><b><?php echo $this->config->item('short_sitename'); ?></b></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top" role="navigation">
