@@ -13,6 +13,13 @@
   </section>
   <!-- Main content -->
   <section class="content">
+    <div class="row">
+        <div class="col-xs-12 text-right">
+            <div class="form-group">
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>product_brand/add"><i class="fa fa-plus"></i> Add New</a>
+            </div>
+        </div>
+    </div>
       <div class="row">
           <div class="col-xs-12">
             <div class="box">

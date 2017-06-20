@@ -53,7 +53,7 @@ class product_brand extends BaseController {
     {
         $data['content'] = 'product_brand/product_brand_add_view';
         //if script file
-        $data['script_file'] = 'js/product_brand_js';
+        //$data['script_file'] = 'js/product_brand_js';
   		  $data['header'] = array('title' => 'Add Product Brand | '.$this->config->item('sitename'),
               								'description' =>  'Add Product Brand | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
