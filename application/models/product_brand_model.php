@@ -36,7 +36,7 @@ class Product_brand_model extends CI_Model {
 
 	function get_product_brand_all()
   {
-		$sql ="SELECT m.* , u1.name create_by_name , u2.name  modified_by_name FROM  product_brand r
+		$sql ="SELECT m.* , u1.name create_by_name , u2.name  modified_by_name FROM  product_brand m
 						LEFT JOIN tbl_users u1 ON u1.userId = m.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = m.modified_by WHERE 1=1 ";
       $query = $this->db->query($sql);

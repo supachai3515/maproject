@@ -196,7 +196,7 @@ class product_brand extends BaseController {
 
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'Add Product Brand Update successfully');
+                  $this->session->set_flashdata('success', 'Edit Product Brand Update successfully');
               }
               else
               {
