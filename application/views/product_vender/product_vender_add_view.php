@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Edit Product TOS
-      <small>แก้ไขสินค้า TOS</small>
+      Add Product venders
+      <small>เพิ่มสินค้า Vender</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('product_owner'); ?>"> Product TOS</a></li>
-      <li class="active">Edit Product TOS</li>
+      <li><a href="<?php echo base_url('product_vender'); ?>"> Product vender</a></li>
+      <li class="active">Add Product vender</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -21,23 +21,23 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit Product TOS : (<?php echo $product_owner_data['product_owner_id']; ?>)</h3>
+                    <h3 class="box-title">Add Product vender</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
-                <form role="form" id="addUser" action="<?php echo base_url() ?>product_owner/edit_save" method="post" role="form">
+                <form role="form" id="addUser" action="<?php echo base_url() ?>product_vender/add_save" method="post" role="form">
                     <div class="box-body">
                       <div class="row">
                           <div class="col-md-6">
                               <div class="form-group">
                                   <label for="name">Part number</label>
-                                  <input type="text" class="form-control required" id="part_number" name="part_number" value="<?php echo $product_owner_data['part_number']; ?>" maxlength="64" required="true">
+                                  <input type="text" class="form-control required" id="part_number" name="part_number" maxlength="64" required="true">
                               </div>
                           </div>
                           <div class="col-md-6">
                               <div class="form-group">
                                   <label for="description">Model</label>
-                                  <input type="text" class="form-control" id="model"  name="model" value="<?php echo $product_owner_data['model']; ?>"  maxlength="64"  required="true">
+                                  <input type="text" class="form-control" id="model"  name="model" maxlength="64"  required="true">
                               </div>
                           </div>
                       </div>
@@ -45,14 +45,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control required" id="name" name="name" value="<?php echo $product_owner_data['name']; ?>" maxlength="128">
-                                    <input type="hidden" value="<?php echo $product_owner_data['product_owner_id']; ?>" name="product_owner_id" id="product_owner_id" />
+                                    <input type="text" class="form-control required" id="name" name="name" maxlength="120" required="true">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <input type="text" class="form-control" id="description"  name="description" value="<?php echo $product_owner_data['description']; ?>" maxlength="1204">
+                                    <input type="text" class="form-control" id="description"  name="description" maxlength="1204">
                                 </div>
                             </div>
                         </div>
@@ -68,7 +67,7 @@
                                           foreach ($list_product_brand as $row)
                                           {
                                               ?>
-                                              <option value="<?php echo $row['product_brand_id'] ?>" <?php if($row['product_brand_id'] == $product_owner_data['product_brand_id']) {echo "selected=selected";} ?>><?php echo $row['name'] ?></option>>
+                                              <option value="<?php echo $row['product_brand_id'] ?>"><?php echo $row['name'] ?></option>
                                               <?php
                                           }
                                       }
@@ -78,8 +77,8 @@
                           </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Full Price</label>
-                                    <input type="number" class="form-control required" id="full_price" name="full_price" value="<?php echo $product_owner_data['full_price']; ?>"maxlength="10">
+                                    <label for="name">Dealer price</label>
+                                    <input type="number" class="form-control required" id="dealer_price" name="dealer_price" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -88,11 +87,7 @@
                               <div class="form-group">
                                 <div class="checkbox">
                                   <label>
-                                    <?php if ($product_owner_data['is_active'] == 1): ?>
-                                      <input type="checkbox"  id="is_active"  name="is_active" value="1" checked> ใช้งาน
-                                    <?php else: ?>
-                                      <input type="checkbox"  id="is_active"  name="is_active" value="1"> ใช้งาน
-                                    <?php endif; ?>
+                                    <input type="checkbox"  id="is_active"  name="is_active" value="1" checked> ใช้งาน
                                   </label>
                                 </div>
                               </div>

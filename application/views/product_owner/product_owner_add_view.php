@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Add Product brands
-      <small>เพิ่มกลุ่มเมนูผู้ใช้</small>
+      Add Product TOS
+      <small>เพิ่มสินค้า TOS</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('product_owner'); ?>"> Product brand</a></li>
-      <li class="active">Add Product brand</li>
+      <li><a href="<?php echo base_url('product_owner'); ?>"> Product TOS</a></li>
+      <li class="active">Add Product TOS</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -21,7 +21,7 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Add Product brand</h3>
+                    <h3 class="box-title">Add Product owner</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
@@ -56,6 +56,25 @@
                             </div>
                         </div>
                         <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="product_brand_id">Brand</label>
+                                  <select class="form-control required" id="product_brand_id" name="product_brand_id" required="true">
+                                      <option value="0">Select Brand</option>
+                                      <?php
+                                      if(!empty($list_product_brand))
+                                      {
+                                          foreach ($list_product_brand as $row)
+                                          {
+                                              ?>
+                                              <option value="<?php echo $row['product_brand_id'] ?>"><?php echo $row['name'] ?></option>
+                                              <?php
+                                          }
+                                      }
+                                      ?>
+                                  </select>
+                              </div>
+                          </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Full Price</label>

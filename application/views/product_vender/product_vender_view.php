@@ -3,12 +3,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Product TOS
-      <small>สินค้า TOS</small>
+      Product Vender
+      <small>สินค้า Vender</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Product TOS</li>
+      <li class="active">Product Vender</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-xs-12 text-right">
             <div class="form-group">
-                <a class="btn btn-primary" href="<?php echo base_url(); ?>product_owner/add"><i class="fa fa-plus"></i> Add New</a>
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>product_vender/add"><i class="fa fa-plus"></i> Add New</a>
             </div>
         </div>
     </div>
@@ -24,9 +24,9 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                  <h3 class="box-title">Product TOS List</h3>
+                  <h3 class="box-title">Product Vender List</h3>
                   <div class="box-tools">
-                      <form action="<?php echo base_url() ?>product_owner" method="POST" id="searchList">
+                      <form action="<?php echo base_url() ?>product_vender" method="POST" id="searchList">
                           <div class="input-group">
                             <input type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                             <div class="input-group-btn">
@@ -44,20 +44,20 @@
                       <th>ชื่อ</th>
                       <th>รายละเอียด</th>
                       <th>Brand</th>
-                      <th>Full price</th>
+                      <th>Dealer price</th>
                       <th>วันที่สร้าง</th>
                       <th>วันที่แก้ไข</th>
                       <th>สถานะ</th>
                       <th class="text-center">Actions</th>
                     </tr>
-                    <?php foreach ($product_owner_list as $record): ?>
+                    <?php foreach ($product_vender_list as $record): ?>
                     <tr>
-                      <td><?php echo $record->product_owner_id ?></td>
+                      <td><?php echo $record->product_vender_id ?></td>
                       <td><?php echo $record->part_number ?></td>
                       <td><?php echo $record->name ?></td>
                       <td><?php echo $record->description ?></td>
                       <td><?php echo $record->product_brand_name ?></td>
-                      <td><?php echo $record->full_price ?></td>
+                      <td><?php echo $record->dealer_price ?></td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span></td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>
                       <td>
@@ -68,8 +68,8 @@
                           <?php endif ?>
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'product_owner/edit/'.$record->product_owner_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'product_owner/view/'.$record->product_owner_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'product_vender/edit/'.$record->product_vender_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'product_vender/view/'.$record->product_vender_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       </td>
                     </tr>
                     <?php endforeach; ?>

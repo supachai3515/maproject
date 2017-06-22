@@ -12,7 +12,7 @@ class Menugroup_model extends CI_Model {
 
 		$sql =" SELECT COUNT(r.menu_group_id) as connt_id FROM  menu_group r WHERE 1=1 ";
 		if(!empty($searchText)) {
-				$sql = $sql." AND (r.menu_group_id  LIKE '%".$searchText."%' OR  r.name  LIKE '%".$searchText."%' OR OR  r.description  LIKE '%".$searchText."%')";
+				$sql = $sql." AND (r.menu_group_id  LIKE '%".$searchText."%' OR  r.name  LIKE '%".$searchText."%' OR  r.description  LIKE '%".$searchText."%')";
 		}
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
@@ -26,7 +26,7 @@ class Menugroup_model extends CI_Model {
 						LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by WHERE 1=1 ";
 		if(!empty($searchText)) {
-				$sql = $sql." AND (r.menu_group_id  LIKE '%".$searchText."%' OR  r.name  LIKE '%".$searchText."%' OR OR  r.description  LIKE '%".$searchText."%')";
+				$sql = $sql." AND (r.menu_group_id  LIKE '%".$searchText."%' OR  r.name  LIKE '%".$searchText."%' OR  r.description  LIKE '%".$searchText."%')";
 		}
 			$sql = $sql." LIMIT ".$page.",".$segment." ";
       $query = $this->db->query($sql);

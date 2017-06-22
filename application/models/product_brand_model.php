@@ -12,7 +12,7 @@ class Product_brand_model extends CI_Model {
 
 		$sql =" SELECT COUNT(m.product_brand_id) as connt_id FROM  product_brand m WHERE 1=1 ";
 		if(!empty($searchText)) {
-				$sql = $sql." AND (m.product_brand_id  LIKE '%".$searchText."%' OR  m.name  LIKE '%".$searchText."%' OR OR  m.description  LIKE '%".$searchText."%')";
+				$sql = $sql." AND (m.product_brand_id  LIKE '%".$searchText."%' OR  m.name  LIKE '%".$searchText."%' OR  m.description  LIKE '%".$searchText."%')";
 		}
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
@@ -26,7 +26,7 @@ class Product_brand_model extends CI_Model {
 						LEFT JOIN tbl_users u1 ON u1.userId = m.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = m.modified_by WHERE 1=1 ";
 		if(!empty($searchText)) {
-				$sql = $sql." AND (m.product_brand_id  LIKE '%".$searchText."%' OR  m.name  LIKE '%".$searchText."%' OR OR  m.description  LIKE '%".$searchText."%')";
+				$sql = $sql." AND (m.product_brand_id  LIKE '%".$searchText."%' OR  m.name  LIKE '%".$searchText."%' OR  m.description  LIKE '%".$searchText."%')";
 		}
 			$sql = $sql." LIMIT ".$page.",".$segment." ";
       $query = $this->db->query($sql);
