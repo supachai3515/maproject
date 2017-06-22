@@ -62,8 +62,8 @@
                           <?php endif ?>
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'product_owner/edit/'.$record->part_number; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'product_owner/view/'.$record->part_number; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'product_owner/edit/'.$record->product_owner_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'product_owner/view/'.$record->product_owner_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       </td>
                     </tr>
                     <?php endforeach; ?>

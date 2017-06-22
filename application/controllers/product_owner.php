@@ -43,29 +43,6 @@ class Product_owner extends BaseController {
     }
   }
 
-  function add()
-  {
-    $data['global'] = $this->global;
-    $data['menu_id'] ='13';
-		$data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
-    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
-    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
-    {
-        $data['content'] = 'product_owner/product_owner_add_view';
-        //if script file
-        //$data['script_file'] = 'js/product_owner_js';
-  		  $data['header'] = array('title' => 'Add Product Brand | '.$this->config->item('sitename'),
-              								'description' =>  'Add Product Brand | '.$this->config->item('tagline'),
-              								'author' => $this->config->item('author'),
-              								'keyword' => 'Product Brand');
-  		  $this->load->view('template/layout_main', $data);
-    }
-    else {
-      // access denied
-       $this->loadThis();
-    }
-  }
-
   function view($id=NULL)
   {
     $data['global'] = $this->global;
@@ -100,6 +77,28 @@ class Product_owner extends BaseController {
     }
   }
 
+  function add()
+  {
+    $data['global'] = $this->global;
+    $data['menu_id'] ='13';
+		$data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
+    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
+    {
+        $data['content'] = 'product_owner/product_owner_add_view';
+        //if script file
+        //$data['script_file'] = 'js/product_owner_js';
+  		  $data['header'] = array('title' => 'Add Product Brand | '.$this->config->item('sitename'),
+              								'description' =>  'Add Product Brand | '.$this->config->item('tagline'),
+              								'author' => $this->config->item('author'),
+              								'keyword' => 'Product Brand');
+  		  $this->load->view('template/layout_main', $data);
+    }
+    else {
+      // access denied
+       $this->loadThis();
+    }
+  }
 
   function add_save()
   {
@@ -110,8 +109,11 @@ class Product_owner extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
     {
           $this->load->library('form_validation');
+          $this->form_validation->set_rules('part_number','Part number','trim|required|max_length[64]|xss_clean');
+          $this->form_validation->set_rules('model','Model','trim|required|xss_clean|max_length[64]');
           $this->form_validation->set_rules('name','Name','trim|required|max_length[128]|xss_clean');
-          $this->form_validation->set_rules('description','description','trim|xss_clean|max_length[128]');
+          $this->form_validation->set_rules('description','Description','trim|xss_clean|max_length[250]');
+          $this->form_validation->set_rules('full_price','Full price','trim|required|xss_clean|max_length[11]');
           $this->form_validation->set_rules('is_active','ใช้งาน','');
 
           if($this->form_validation->run() == FALSE)
@@ -120,22 +122,31 @@ class Product_owner extends BaseController {
           }
           else
           {
+              $part_number = $this->input->post('part_number');
+              $model = $this->input->post('model');
               $name = $this->input->post('name');
               $description = $this->input->post('description');
+              $full_price = $this->input->post('full_price');
               $is_active = $this->input->post('is_active');
 
-              $product_owner_info = array('name'=>$name, 'description'=>$description, 'is_active'=>$is_active,
-                                      'create_by'=>$this->vendorId, 'create_date'=>date('Y-m-d H:i:s'),
-                                      'modified_by'=>$this->vendorId, 'modified_date'=>date('Y-m-d H:i:s'));
+
+              $product_owner_info = array('part_number' => $part_number ,'model' => $model,
+                                          'name'=>$name, 'description'=>$description,
+                                          'full_price'=>$full_price,  'is_active'=>$is_active,
+                                          'create_by'=>$this->vendorId, 'create_date'=>date('Y-m-d H:i:s'),
+                                          'modified_by'=>$this->vendorId, 'modified_date'=>date('Y-m-d H:i:s'));
 
               $result = $this->product_owner_model->save_product_owner($product_owner_info);
 
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'Add Product Brand created successfully');
+                  $this->session->set_flashdata('success', 'Create Product TOS successfully');
               }
-              else
+              else if($result==0)
               {
+                  $this->session->set_flashdata('error', 'Part number duplicate');
+              }
+              else{
                   $this->session->set_flashdata('error', 'User creation failed');
               }
               redirect('product_owner/add');
@@ -189,8 +200,11 @@ class Product_owner extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
     {
           $this->load->library('form_validation');
+          $this->form_validation->set_rules('part_number','Part number','trim|required|max_length[64]|xss_clean');
+          $this->form_validation->set_rules('model','Model','trim|required|xss_clean|max_length[64]');
           $this->form_validation->set_rules('name','Name','trim|required|max_length[128]|xss_clean');
-          $this->form_validation->set_rules('description','description','trim|xss_clean|max_length[128]');
+          $this->form_validation->set_rules('description','Description','trim|xss_clean|max_length[250]');
+          $this->form_validation->set_rules('full_price','Full price','trim|required|xss_clean|max_length[11]');
           $this->form_validation->set_rules('is_active','ใช้งาน','');
 
           if($this->form_validation->run() == FALSE)
@@ -199,27 +213,32 @@ class Product_owner extends BaseController {
           }
           else
           {
-              $name = $this->input->post('name');
-              $description = $this->input->post('description');
-              $is_active = $this->input->post('is_active');
-              $product_owner_id = $this->input->post('product_owner_id');
+            $part_number = $this->input->post('part_number');
+            $model = $this->input->post('model');
+            $name = $this->input->post('name');
+            $description = $this->input->post('description');
+            $full_price = $this->input->post('full_price');
+            $is_active = $this->input->post('is_active');
+            $product_owner_id = $this->input->post('product_owner_id');
 
-              $product_owner_info = array('name'=>$name, 'description'=>$description, 'is_active'=>$is_active,
-                                      'product_owner_id'=>$product_owner_id,
-                                      'modified_by'=>$this->vendorId,
-                                      'modified_date'=>date('Y-m-d H:i:s'));
+              $product_owner_info = array('product_owner_id' => $product_owner_id,'part_number' => $part_number ,'model' => $model,
+                                      'name'=>$name, 'description'=>$description, 'is_active'=>$is_active,
+                                      'description'=>$description,'full_price'=>$full_price,
+                                      'modified_by'=>$this->vendorId, 'modified_date'=>date('Y-m-d H:i:s'));
 
               $result = $this->product_owner_model->update_product_owner($product_owner_info,$product_owner_id);
-
               if($result > 0)
               {
                   $this->session->set_flashdata('success', 'Edit Product Brand Update successfully');
               }
-              else
+              else if($result==0)
               {
+                  $this->session->set_flashdata('error', 'Part number duplicate');
+              }
+              else{
                   $this->session->set_flashdata('error', 'User creation failed');
               }
-              redirect('product_owner/edit/'.$product_owner_id);
+              redirect('product_owner/edit/'.$part_number);
           }
       }
       else {

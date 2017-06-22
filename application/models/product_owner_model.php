@@ -57,20 +57,50 @@ class product_owner_model extends CI_Model {
 
 	function save_product_owner($product_owner_info)
 	{
+
+		$sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_owner m WHERE part_number ='".$product_owner_info["part_number"]."' ";
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+
+		if($row['connt_id'] == 0){
 			$this->db->trans_start();
 			$this->db->insert('product_owner', $product_owner_info);
 			$insert_id = $this->db->insert_id();
 			$this->db->trans_complete();
 			return $insert_id;
+		}
+		else{
+			return 0;
+		}
 	}
 
 	function update_product_owner($product_owner_info,$id)
 	{
-			$this->db->where('part_number', $id);
+		$sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_owner m WHERE part_number ='".$product_owner_info["part_number"]."' ";
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+		if($row['connt_id'] == 0){
+
+			$this->db->where('product_owner_id', $id);
 			$this->db->update('product_owner', $product_owner_info);
-			return TRUE;
+			return 2;
+		}
+		else{
+			return 0;
+		}
 	}
 
+
+	public function get_product_owner_id($id)
+	{
+		$sql ="SELECT m.* , u1.name create_by_name , u2.name  modified_by_name FROM  product_owner m
+						LEFT JOIN tbl_users u1 ON u1.userId = m.create_by
+						LEFT JOIN tbl_users u2 ON u2.userId = m.modified_by
+						 WHERE m.product_owner_id = '".$id."'";
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+		return $row;
+	}
 }
 
 /* End of file product_owner_model.php */
