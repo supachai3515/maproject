@@ -13,6 +13,7 @@ class product_owner_model extends CI_Model {
 		$sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_owner m WHERE 1=1 ";
 		if(!empty($searchText)) {
 			$sql = $sql." AND (m.part_number  LIKE '%".$searchText."%'
+												OR  m.model  LIKE '%".$searchText."%'
 												OR  m.name  LIKE '%".$searchText."%'
 												OR  m.description  LIKE '%".$searchText."%'
 												OR  b.name  LIKE '%".$searchText."%')";
@@ -32,6 +33,7 @@ class product_owner_model extends CI_Model {
 						WHERE 1=1 ";
 		if(!empty($searchText)) {
 				$sql = $sql." AND (m.part_number  LIKE '%".$searchText."%'
+													OR  m.model  LIKE '%".$searchText."%'
 													OR  m.name  LIKE '%".$searchText."%'
 													OR  m.description  LIKE '%".$searchText."%'
 													OR  b.name  LIKE '%".$searchText."%')";

@@ -30,31 +30,17 @@
                       <div class="row">
                           <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="name">Part number</label>
-                                  <input type="text" class="form-control required" id="part_number" name="part_number" maxlength="64" required="true">
-                              </div>
-                          </div>
-                          <div class="col-md-6">
-                              <div class="form-group">
                                   <label for="description">Model</label>
                                   <input type="text" class="form-control" id="model"  name="model" maxlength="64"  required="true">
                               </div>
                           </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control required" id="name" name="name" maxlength="120" required="true">
+                              </div>
+                          </div>
                       </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control required" id="name" name="name" maxlength="120" required="true">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <input type="text" class="form-control" id="description"  name="description" maxlength="1204">
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                           <div class="col-md-6">
                               <div class="form-group">
@@ -75,6 +61,16 @@
                                   </select>
                               </div>
                           </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input type="text" class="form-control" id="description"  name="description" maxlength="1204">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Dealer price</label>

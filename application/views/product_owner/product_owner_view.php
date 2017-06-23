@@ -41,6 +41,7 @@
                     <tr>
                       <th>รหัส</th>
                       <th>Part number</th>
+                      <th>Model</th>
                       <th>ชื่อ</th>
                       <th>รายละเอียด</th>
                       <th>Brand</th>
@@ -54,6 +55,7 @@
                     <tr>
                       <td><?php echo $record->product_owner_id ?></td>
                       <td><?php echo $record->part_number ?></td>
+                      <td><?php echo $record->model ?></td>
                       <td><?php echo $record->name ?></td>
                       <td><?php echo $record->description ?></td>
                       <td><?php echo $record->product_brand_name ?></td>

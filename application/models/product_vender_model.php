@@ -10,10 +10,11 @@ class Product_vender_model extends CI_Model {
 	function get_product_vender_count($searchText = '')
 	{
 
-		$sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_vender m WHERE 1=1 ";
+		$sql =" SELECT COUNT(m.product_vender_id) as connt_id FROM  product_vender m WHERE 1=1 ";
 		if(!empty($searchText)) {
-			$sql = $sql." AND (m.part_number  LIKE '%".$searchText."%'
+			$sql = $sql." AND (m.product_vender_id  LIKE '%".$searchText."%'
 												OR  m.name  LIKE '%".$searchText."%'
+												OR  m.model  LIKE '%".$searchText."%'
 												OR  m.description  LIKE '%".$searchText."%'
 												OR  b.name  LIKE '%".$searchText."%')";
 		}
@@ -31,8 +32,9 @@ class Product_vender_model extends CI_Model {
 						LEFT JOIN product_brand b ON m.product_brand_id = b.product_brand_id
 						WHERE 1=1 ";
 		if(!empty($searchText)) {
-				$sql = $sql." AND (m.part_number  LIKE '%".$searchText."%'
+				$sql = $sql." AND (m.product_vender_id  LIKE '%".$searchText."%'
 													OR  m.name  LIKE '%".$searchText."%'
+													OR  m.model  LIKE '%".$searchText."%'
 													OR  m.description  LIKE '%".$searchText."%'
 													OR  b.name  LIKE '%".$searchText."%')";
 		}
@@ -65,38 +67,19 @@ class Product_vender_model extends CI_Model {
 
 	function save_product_vender($product_vender_info)
 	{
-
-		$sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_vender m WHERE part_number ='".$product_vender_info["part_number"]."' ";
-		$query = $this->db->query($sql);
-		$row = $query->row_array();
-
-		if($row['connt_id'] == 0){
 			$this->db->trans_start();
 			$this->db->insert('product_vender', $product_vender_info);
 			$insert_id = $this->db->insert_id();
 			$this->db->trans_complete();
 			return $insert_id;
-		}
-		else{
-			return 0;
-		}
 	}
 
 	function update_product_vender($product_vender_info,$id)
 	{
-		$sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_vender m
-		WHERE part_number ='".$product_vender_info["part_number"]."' AND product_vender_id != '".$product_vender_info['product_vender_id']."' ";
-		$query = $this->db->query($sql);
-		$row = $query->row_array();
-		if($row['connt_id'] == 0){
 
 			$this->db->where('product_vender_id', $id);
 			$this->db->update('product_vender', $product_vender_info);
-			return 2;
-		}
-		else{
-			return 0;
-		}
+			return true;
 	}
 
 

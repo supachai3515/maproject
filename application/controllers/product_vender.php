@@ -110,7 +110,6 @@ class Product_vender extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
     {
           $this->load->library('form_validation');
-          $this->form_validation->set_rules('part_number','Part number','trim|required|max_length[64]|xss_clean');
           $this->form_validation->set_rules('model','Model','trim|required|xss_clean|max_length[64]');
           $this->form_validation->set_rules('name','Name','trim|required|max_length[128]|xss_clean');
           $this->form_validation->set_rules('description','Description','trim|xss_clean|max_length[250]');
@@ -124,7 +123,6 @@ class Product_vender extends BaseController {
           }
           else
           {
-              $part_number = $this->input->post('part_number');
               $model = $this->input->post('model');
               $name = $this->input->post('name');
               $description = $this->input->post('description');
@@ -133,7 +131,7 @@ class Product_vender extends BaseController {
               $is_active = $this->input->post('is_active');
 
 
-              $product_vender_info = array('part_number' => $part_number ,'model' => $model,
+              $product_vender_info = array('model' => $model,
                                           'name'=>$name, 'description'=>$description,
                                           'product_brand_id'=>$product_brand_id,'dealer_price'=>$dealer_price,
                                           'is_active'=>$is_active,
@@ -205,7 +203,6 @@ class Product_vender extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
     {
           $this->load->library('form_validation');
-          $this->form_validation->set_rules('part_number','Part number','trim|required|max_length[64]|xss_clean');
           $this->form_validation->set_rules('model','Model','trim|required|xss_clean|max_length[64]');
           $this->form_validation->set_rules('name','Name','trim|required|max_length[128]|xss_clean');
           $this->form_validation->set_rules('description','Description','trim|xss_clean|max_length[250]');
@@ -220,7 +217,6 @@ class Product_vender extends BaseController {
           else
           {
             $product_vender_id = $this->input->post('product_vender_id');
-            $part_number = $this->input->post('part_number');
             $model = $this->input->post('model');
             $name = $this->input->post('name');
             $description = $this->input->post('description');
@@ -228,7 +224,7 @@ class Product_vender extends BaseController {
             $dealer_price = $this->input->post('dealer_price');
             $is_active = $this->input->post('is_active');
 
-              $product_vender_info = array('product_vender_id' => $product_vender_id,'part_number' => $part_number ,'model' => $model,
+              $product_vender_info = array('model' => $model,
                                       'name'=>$name, 'description'=>$description, 'is_active'=>$is_active,
                                       'product_brand_id'=>$product_brand_id,
                                       'description'=>$description,'dealer_price'=>$dealer_price,
@@ -238,10 +234,6 @@ class Product_vender extends BaseController {
               if($result > 0)
               {
                   $this->session->set_flashdata('success', 'Edit Product Vender Update successfully');
-              }
-              else if($result==0)
-              {
-                  $this->session->set_flashdata('error', 'Part number duplicate');
               }
               else{
                   $this->session->set_flashdata('error', 'User creation failed');
