@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-06-24 23:19:33
+Date: 2017-06-24 23:28:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -236,6 +236,7 @@ CREATE TABLE `order` (
   `pm_year` int(11) DEFAULT NULL,
   `discount_sla_type_id` int(11) DEFAULT NULL,
   `discount_sla_type_values` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
   `total` decimal(11,0) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `create_date` datetime NOT NULL,
