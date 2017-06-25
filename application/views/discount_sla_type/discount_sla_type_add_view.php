@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Edit SLA
-      <small>แก้ไข SLA</small>
+      Add SLA
+      <small>เพิ่ม SLA</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('discount_sla_type'); ?>"> Edit SLA</a></li>
-      <li class="active">Edit SLA</li>
+      <li><a href="<?php echo base_url('discount_sla_type'); ?>"> SLA</a></li>
+      <li class="active">Add SLA</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -21,24 +21,23 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit SLA : (<?php echo $discount_sla_type_data['discount_sla_type_id']; ?>)</h3>
+                    <h3 class="box-title">Add SLA</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
-                <form role="form" id="editSla" action="<?php echo base_url() ?>discount_sla_type/edit_save" method="post" role="form">
+                <form role="form" id="addUser" action="<?php echo base_url() ?>discount_sla_type/add_save" method="post" role="form">
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $discount_sla_type_data['name']; ?>" maxlength="128"> 
-                                    <input type="hidden" value="<?php echo $discount_sla_type_data['discount_sla_type_id']; ?>" name="discount_sla_type_id" id="discount_sla_type_id" />
+                                    <input type="text" class="form-control" id="name" name="name" maxlength="128">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="sla_desc">Description</label>
-                                    <input type="text" class="form-control" id="sla_desc"  name="sla_desc" value="<?php echo $discount_sla_type_data['description']; ?>" maxlength="255">
+                                    <input type="text" class="form-control" id="sla_desc"  name="sla_desc" maxlength="255">
                                 </div>
                             </div>
                         </div>
@@ -46,14 +45,14 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="sla_min">Min</label>
-                                    <input type="text" class="form-control" id="sla_min" name="sla_min" value="<?php echo $discount_sla_type_data['min']; ?>" maxlength="10">
+                                    <input type="text" class="form-control" id="sla_min" name="sla_min" maxlength="10">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="sla_max">Max</label>
                                     <div>
-                                        <input type="text" class="form-control" id="sla_max"  name="sla_max" value="<?php echo $discount_sla_type_data['max']; ?>" maxlength="10">
+                                        <input type="text" class="form-control" id="sla_max"  name="sla_max" maxlength="10">
                                     </div>
                                 </div>
                             </div>
@@ -62,10 +61,10 @@
                                     <label for="sla_max">Owner</label>
                                     <div style="display: block;">
                                         <label class="checkbox-inline">
-                                          <input type="radio" name="is_owner" id="is_owner" value="1" <?php if ($discount_sla_type_data['is_owner'] == 1): ?>checked='checked'<?php endif; ?> /> TOS
+                                          <input type="radio" name="is_owner" id="is_owner" value="1"> TOS
                                         </label>
                                         <label class="checkbox-inline">
-                                          <input type="radio" name="is_owner" id="is_owner" value="0" <?php if ($discount_sla_type_data['is_owner'] == 0): ?>checked='checked'<?php endif; ?> /> Vender
+                                          <input type="radio" name="is_owner" id="is_owner" value="0"> Vender
                                         </label>
                                     </div>
                                 </div>
@@ -76,11 +75,7 @@
                               <div class="form-group">
                                 <div class="checkbox">
                                   <label>
-                                    <?php if ($discount_sla_type_data['is_active'] == 1): ?>
-                                      <input type="checkbox"  id="is_active"  name="is_active" value="1" checked> ใช้งาน
-                                    <?php else: ?>
-                                      <input type="checkbox"  id="is_active"  name="is_active" value="1"> ใช้งาน
-                                    <?php endif; ?>
+                                    <input type="checkbox"  id="is_active"  name="is_active" value="1" checked> ใช้งาน
                                   </label>
                                 </div>
                               </div>

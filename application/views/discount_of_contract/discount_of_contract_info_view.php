@@ -4,6 +4,7 @@
 	<section class="content-header">
 		<h1>
 			View Contract Info
+			<small>รายละเอียด Contract</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -48,7 +49,7 @@
 				                            <div class="col-md-3">
 				                                <div class="form-group">
 				                                    <label for="create_by">Create By</label>
-				                                    <input type="text" class="form-control" id="create_by" name="createBy" value="<?php echo $discount_of_contract_data['create_by']; ?>" readonly>
+				                                    <input type="text" class="form-control" id="create_by" name="createBy" value="<?php echo $discount_of_contract_data['create_by_name']; ?>" readonly>
 				                                </div>
 				                            </div>
 				                            <div class="col-md-3">
@@ -60,7 +61,7 @@
 				                            <div class="col-md-3">
 				                                <div class="form-group">
 				                                    <label for="modified_by">Modified By</label>
-				                                    <input type="text" class="form-control" id="modified_by" name="modifiedBy" value="<?php echo $discount_of_contract_data['modified_by']; ?>" readonly>
+				                                    <input type="text" class="form-control" id="modified_by" name="modifiedBy" value="<?php echo $discount_of_contract_data['modified_by_name']; ?>" readonly>
 				                                </div>
 				                            </div>
 				                            <div class="col-md-3">

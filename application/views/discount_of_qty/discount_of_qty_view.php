@@ -13,6 +13,13 @@
   <!-- Main content -->
   <section class="content">
       <div class="row">
+        <div class="col-xs-12 text-right">
+            <div class="form-group">
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>discount_of_qty/add"><i class="fa fa-plus"></i> Add New</a>
+            </div>
+        </div>
+    </div>
+      <div class="row">
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
@@ -31,6 +38,7 @@
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
+                      <th>รหัส</th>
                       <th>จำนวน Device(เริ่มต้น)</th>
                       <th>จำนวน Device(สูงสุด)</th>
                       <th>ส่วนลด</th>
@@ -42,6 +50,7 @@
                     </tr>
                     <?php foreach ($discount_of_qty_list as $record): ?>
                     <tr>
+                      <td><?php echo $record->discount_of_qty_id ?></td>
                       <td><?php echo $record->from_number ?></td>
                       <td><?php echo $record->to_number ?></td>
                       <td><?php echo $record->discount ?>%</td>

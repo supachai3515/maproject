@@ -56,6 +56,9 @@ class Discount_sla_type extends BaseController {
     {
 
         $data['discount_sla_type_data'] = $this->discount_sla_type_model->get_discount_sla_type_id($id);
+        if(count($data['discount_sla_type_data'])==0){
+            redirect('error');
+        }
         //$data['discount_sla_type_detail'] = $this->discount_sla_type_model->get_discount_sla_type_detail($id);
         $data['content'] = 'discount_sla_type/discount_sla_type_info_view';
         //if script file
@@ -72,6 +75,81 @@ class Discount_sla_type extends BaseController {
     }
   }
 
+  function add()
+  {
+    $data['global'] = $this->global;
+    $data['menu_id'] ='7';
+    $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
+    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
+    {
+        $data['content'] = 'discount_sla_type/discount_sla_type_add_view';
+        //if script file
+        //$data['script_file'] = 'js/discount_sla_type_js';
+        $data['header'] = array('title' => 'Add Product Brand | '.$this->config->item('sitename'),
+                              'description' =>  'Add Product Brand | '.$this->config->item('tagline'),
+                              'author' => $this->config->item('author'),
+                              'keyword' => 'Product Brand');
+        $this->load->view('template/layout_main', $data);
+    }
+    else {
+      // access denied
+       $this->loadThis();
+    }
+  }
+
+  function add_save()
+  {
+    $data['global'] = $this->global;
+    $data['menu_id'] ='7';
+    $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
+    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
+    {
+          $this->load->library('form_validation');
+          $this->form_validation->set_rules('name','name','trim|required|max_length[128]|xss_clean');
+          $this->form_validation->set_rules('sla_desc','Description','trim|required|max_length[255]|xss_clean');
+          $this->form_validation->set_rules('sla_min','Min','trim|required|max_length[10]|xss_clean');
+          $this->form_validation->set_rules('sla_max','Max','trim|required|max_length[10]|xss_clean');
+          $this->form_validation->set_rules('is_owner','Owner','trim|required|xss_clean');
+          $this->form_validation->set_rules('is_active','ใช้งาน','');
+
+          if($this->form_validation->run() == FALSE)
+          {
+              $this->add();
+          }
+          else
+          {
+              $name = $this->input->post('name');
+              $sla_desc = $this->input->post('sla_desc');
+              $sla_min = $this->input->post('sla_min');
+              $sla_max = $this->input->post('sla_max');
+              $is_owner = $this->input->post('is_owner');
+              $is_active = $this->input->post('is_active');
+
+              $discount_sla_type_info = array('name'=>$name, 'description'=>$sla_desc, 'is_owner'=>$is_owner,
+                                      'min'=>$sla_min, 'max'=>$sla_max, 'is_active'=>$is_active,
+                                      'create_by'=>$this->vendorId, 'create_date'=>date('Y-m-d H:i:s'),
+                                      'modified_by'=>$this->vendorId, 'modified_date'=>date('Y-m-d H:i:s'));
+
+              $result = $this->discount_sla_type_model->save_discount_sla_type($discount_sla_type_info);
+
+              if($result > 0)
+              {
+                  $this->session->set_flashdata('success', 'Add SLA successfully');
+              }
+              else
+              {
+                  $this->session->set_flashdata('error', 'SLA creation failed');
+              }
+              redirect('discount_sla_type/add');
+          }
+      }
+      else {
+           $this->loadThis();
+      }
+  }
+
   function edit($id=NULL)
   {
     $data['global'] = $this->global;
@@ -82,6 +160,9 @@ class Discount_sla_type extends BaseController {
     {
 
         $data['discount_sla_type_data'] = $this->discount_sla_type_model->get_discount_sla_type_id($id);
+        if(count($data['discount_sla_type_data'])==0){
+            redirect('error');
+        }
         $data['content'] = 'discount_sla_type/discount_sla_type_edit_view';
         //if script file
         //$data['script_file'] = 'js/discount_sla_type_js';
@@ -110,6 +191,7 @@ class Discount_sla_type extends BaseController {
           $this->form_validation->set_rules('sla_desc','Description','trim|required|max_length[255]|xss_clean');
           $this->form_validation->set_rules('sla_min','Min','trim|required|max_length[10]|xss_clean');
           $this->form_validation->set_rules('sla_max','Max','trim|required|max_length[10]|xss_clean');
+          $this->form_validation->set_rules('is_owner','Owner','trim|required|xss_clean');
           $this->form_validation->set_rules('is_active','ใช้งาน','');
 
           if($this->form_validation->run() == FALSE)
@@ -122,10 +204,11 @@ class Discount_sla_type extends BaseController {
               $sla_desc = $this->input->post('sla_desc');
               $sla_min = $this->input->post('sla_min');
               $sla_max = $this->input->post('sla_max');
+              $is_owner = $this->input->post('is_owner');
               $is_active = $this->input->post('is_active');
               $discount_sla_type_id = $this->input->post('discount_sla_type_id');
 
-              $discount_sla_type_info = array('name'=>$name, 'description'=>$sla_desc,
+              $discount_sla_type_info = array('name'=>$name, 'description'=>$sla_desc, 'is_owner'=>$is_owner,
                                       'min'=>$sla_min, 'max'=>$sla_max, 'is_active'=>$is_active,
                                       'discount_sla_type_id'=>$discount_sla_type_id,
                                       'modified_by'=>$this->vendorId,

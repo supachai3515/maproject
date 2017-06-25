@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Edit Province
-      <small>แก้ไขข้อมูลจังหวัด</small>
+      Add Contract
+      <small>เพิ่ม Contract</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('province'); ?>"> Province</a></li>
-      <li class="active">Edit Province</li>
+      <li><a href="<?php echo base_url('discount_of_contract'); ?>"> Contract</a></li>
+      <li class="active">Add Contract</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -21,30 +21,29 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit Province : (<?php echo $province_data['province_id']; ?>)</h3>
+                    <h3 class="box-title">Add Contract</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
-                <form role="form" id="edit_province" action="<?php echo base_url() ?>province/edit_save" method="post" role="form">
+                <form role="form" id="add_contract" action="<?php echo base_url() ?>discount_of_contract/add_save" method="post" role="form">
                     <div class="box-body">
                         <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="num_contract">Contract</label>
+                                    <input type="text" class="form-control required" id="num_contract" name="num_contract">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="discount">Discount</label>
+                                    <input type="text" class="form-control required" id="discount"  name="discount">
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $province_data['province_name']; ?>" readonly>
-                                    <input type="hidden" value="<?php echo $province_data['province_id']; ?>" name="province_id" id="province_id" />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="costLB">Cost LB</label>
-                                    <input type="text" class="form-control" id="costLB"  name="costLB" value="<?php echo $province_data['lb_year']; ?>" maxlength="11">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="costPM">Cost PM</label>
-                                    <input type="text" class="form-control" id="costPM"  name="costPM" value="<?php echo $province_data['pm_time']; ?>" maxlength="11">
+                                    <label for="description">Description</label>
+                                    <input type="text" class="form-control required" id="description"  name="description">
                                 </div>
                             </div>
                         </div>
@@ -53,11 +52,7 @@
                               <div class="form-group">
                                 <div class="checkbox">
                                   <label>
-                                    <?php if ($province_data['is_active'] == 1): ?>
-                                      <input type="checkbox"  id="is_active"  name="is_active" value="1" checked> ใช้งาน
-                                    <?php else: ?>
-                                      <input type="checkbox"  id="is_active"  name="is_active" value="1"> ใช้งาน
-                                    <?php endif; ?>
+                                    <input type="checkbox"  id="is_active"  name="is_active" value="1" checked> ใช้งาน
                                   </label>
                                 </div>
                               </div>

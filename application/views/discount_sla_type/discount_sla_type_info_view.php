@@ -4,6 +4,7 @@
 	<section class="content-header">
 		<h1>
 			View SLA Info
+			<small>รายละเอียด SLA</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -56,7 +57,7 @@
 					                                <?php if ($discount_sla_type_data['is_owner']==1): ?>
 							                            <input type="text" class="form-control" id="sla_type"  name="sla_type" value="TOS" readonly>
 							                        <?php else: ?>
-							                            <input type="text" class="form-control" id="sla_type"  name="sla_type" value="vendor" readonly>
+							                            <input type="text" class="form-control" id="sla_type"  name="sla_type" value="Vender" readonly>
 							                        <?php endif ?>
 				                                </div>
 				                            </div>
@@ -65,7 +66,7 @@
 				                            <div class="col-md-3">
 				                                <div class="form-group">
 				                                    <label for="create_by">Create By</label>
-				                                    <input type="text" class="form-control" id="create_by" name="create_by" value="<?php echo $discount_sla_type_data['create_by']; ?>" readonly>
+				                                    <input type="text" class="form-control" id="create_by" name="create_by" value="<?php echo $discount_sla_type_data['create_by_name']; ?>" readonly>
 				                                </div>
 				                            </div>
 				                            <div class="col-md-3">
@@ -77,7 +78,7 @@
 				                            <div class="col-md-3">
 				                                <div class="form-group">
 				                                    <label for="modified_by">Modified By</label>
-				                                    <input type="text" class="form-control" id="modified_by" name="modified_by" value="<?php echo $discount_sla_type_data['modified_by']; ?>" readonly>
+				                                    <input type="text" class="form-control" id="modified_by" name="modified_by" value="<?php echo $discount_sla_type_data['modified_by_name']; ?>" readonly>
 				                                </div>
 				                            </div>
 				                            <div class="col-md-3">
