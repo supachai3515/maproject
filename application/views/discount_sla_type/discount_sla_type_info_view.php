@@ -56,7 +56,7 @@
 					                                <?php if ($discount_sla_type_data['is_owner']==1): ?>
 							                            <input type="text" class="form-control" id="sla_type"  name="sla_type" value="TOS" readonly>
 							                        <?php else: ?>
-							                            <input type="text" class="form-control" id="sla_type"  name="sla_type" value="Vender" readonly>
+							                            <input type="text" class="form-control" id="sla_type"  name="sla_type" value="vendor" readonly>
 							                        <?php endif ?>
 				                                </div>
 				                            </div>

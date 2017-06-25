@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Add Product venders
-      <small>เพิ่มสินค้า Vender</small>
+      Add Product vendors
+      <small>เพิ่มสินค้า vendor</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('product_vender'); ?>"> Product vender</a></li>
-      <li class="active">Add Product vender</li>
+      <li><a href="<?php echo base_url('product_vendor'); ?>"> Product vendor</a></li>
+      <li class="active">Add Product vendor</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -21,11 +21,11 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Add Product vender</h3>
+                    <h3 class="box-title">Add Product vendor</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
-                <form role="form" id="addUser" action="<?php echo base_url() ?>product_vender/add_save" method="post" role="form">
+                <form role="form" id="addUser" action="<?php echo base_url() ?>product_vendor/add_save" method="post" role="form">
                     <div class="box-body">
                       <div class="row">
                           <div class="col-md-6">

@@ -3,12 +3,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Product Vender
-      <small>สินค้า Vender</small>
+      Product vendor
+      <small>สินค้า vendor</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Product Vender</li>
+      <li class="active">Product vendor</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-xs-12 text-right">
             <div class="form-group">
-                <a class="btn btn-primary" href="<?php echo base_url(); ?>product_vender/add"><i class="fa fa-plus"></i> Add New</a>
+                <a class="btn btn-primary" href="<?php echo base_url(); ?>product_vendor/add"><i class="fa fa-plus"></i> Add New</a>
             </div>
         </div>
     </div>
@@ -24,9 +24,9 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                  <h3 class="box-title">Product Vender List</h3>
+                  <h3 class="box-title">Product vendor List</h3>
                   <div class="box-tools">
-                      <form action="<?php echo base_url() ?>product_vender" method="POST" id="searchList">
+                      <form action="<?php echo base_url() ?>product_vendor" method="POST" id="searchList">
                           <div class="input-group">
                             <input type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                             <div class="input-group-btn">
@@ -48,9 +48,9 @@
                       <th>สถานะ</th>
                       <th class="text-center">Actions</th>
                     </tr>
-                    <?php foreach ($product_vender_list as $record): ?>
+                    <?php foreach ($product_vendor_list as $record): ?>
                     <tr>
-                      <td><?php echo $record->product_vender_id ?></td>
+                      <td><?php echo $record->product_vendor_id ?></td>
                       <td><?php echo $record->model ?></td>
                       <td><?php echo $record->name ?></td>
                       <td><?php echo $record->product_brand_name ?></td>
@@ -64,8 +64,8 @@
                           <?php endif ?>
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'product_vender/edit/'.$record->product_vender_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'product_vender/view/'.$record->product_vender_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'product_vendor/edit/'.$record->product_vendor_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'product_vendor/view/'.$record->product_vendor_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       </td>
                     </tr>
                     <?php endforeach; ?>

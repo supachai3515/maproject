@@ -51,7 +51,7 @@
                           <?php if ($record->is_owner=="1"): ?>
                               <span>TOS</span>
                           <?php else: ?>
-                              <span>Vender</span>
+                              <span>vendor</span>
                           <?php endif ?>
                       </td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span></td>

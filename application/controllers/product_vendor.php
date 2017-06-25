@@ -2,13 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/BaseController.php';
 
-class Product_vender extends BaseController {
+class Product_vendor extends BaseController {
 
   public function __construct()
   {
     parent::__construct();
     $this->load->model('initdata_model');
-		$this->load->model('product_vender_model');
+		$this->load->model('product_vendor_model');
     $this->isLoggedIn();
   }
 
@@ -23,18 +23,18 @@ class Product_vender extends BaseController {
 
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
-      $count = $this->product_vender_model->get_product_vender_count($searchText);
-      $data['links_pagination'] = $this->pagination_compress( "product_vender/index", $count, $this->config->item('pre_page') );
-  	  $data['product_vender_list'] = $this->product_vender_model->get_product_vender($searchText, $page, $this->config->item('pre_page'));
+      $count = $this->product_vendor_model->get_product_vendor_count($searchText);
+      $data['links_pagination'] = $this->pagination_compress( "product_vendor/index", $count, $this->config->item('pre_page') );
+  	  $data['product_vendor_list'] = $this->product_vendor_model->get_product_vendor($searchText, $page, $this->config->item('pre_page'));
 
 
-      $data['content'] = 'product_vender/product_vender_view';
+      $data['content'] = 'product_vendor/product_vendor_view';
       //if script file
-      //$data['script_file'] = 'js/product_vender_js';
-  		$data['header'] = array('title' => 'Product Vender | '.$this->config->item('sitename'),
-              								'description' =>  'Product Vender | '.$this->config->item('tagline'),
+      //$data['script_file'] = 'js/product_vendor_js';
+  		$data['header'] = array('title' => 'Product vendor | '.$this->config->item('sitename'),
+              								'description' =>  'Product vendor | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
-              								'keyword' => 'Product Vender');
+              								'keyword' => 'Product vendor');
   		$this->load->view('template/layout_main', $data);
     }
     else {
@@ -53,22 +53,22 @@ class Product_vender extends BaseController {
     {
         if($id == null)
         {
-            redirect('product_vender');
+            redirect('product_vendor');
         }
 
-        $data['product_vender_data'] = $this->product_vender_model->get_product_vender_id($id);
+        $data['product_vendor_data'] = $this->product_vendor_model->get_product_vendor_id($id);
 
-        if(count($data['product_vender_data'])==0){
+        if(count($data['product_vendor_data'])==0){
             redirect('error');
         }
         $data['list_product_brand'] = $this->initdata_model->get_product_brand();
-        $data['content'] = 'product_vender/product_vender_info_view';
+        $data['content'] = 'product_vendor/product_vendor_info_view';
         //if script file
-        //$data['script_file'] = 'js/product_vender_js';
-        $data['header'] = array('title' => 'View Product Vender | '.$this->config->item('sitename'),
-                              'description' =>  'View Product Vender | '.$this->config->item('tagline'),
+        //$data['script_file'] = 'js/product_vendor_js';
+        $data['header'] = array('title' => 'View Product vendor | '.$this->config->item('sitename'),
+                              'description' =>  'View Product vendor | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
-                              'keyword' => 'Product Vender');
+                              'keyword' => 'Product vendor');
         $this->load->view('template/layout_main', $data);
     }
     else {
@@ -86,13 +86,13 @@ class Product_vender extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
     {
         $data['list_product_brand'] = $this->initdata_model->get_product_brand();
-        $data['content'] = 'product_vender/product_vender_add_view';
+        $data['content'] = 'product_vendor/product_vendor_add_view';
         //if script file
-        //$data['script_file'] = 'js/product_vender_js';
-  		  $data['header'] = array('title' => 'Add Product Vender | '.$this->config->item('sitename'),
-              								'description' =>  'Add Product Vender | '.$this->config->item('tagline'),
+        //$data['script_file'] = 'js/product_vendor_js';
+  		  $data['header'] = array('title' => 'Add Product vendor | '.$this->config->item('sitename'),
+              								'description' =>  'Add Product vendor | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
-              								'keyword' => 'Product Vender');
+              								'keyword' => 'Product vendor');
   		  $this->load->view('template/layout_main', $data);
     }
     else {
@@ -131,18 +131,18 @@ class Product_vender extends BaseController {
               $is_active = $this->input->post('is_active');
 
 
-              $product_vender_info = array('model' => $model,
+              $product_vendor_info = array('model' => $model,
                                           'name'=>$name, 'description'=>$description,
                                           'product_brand_id'=>$product_brand_id,'dealer_price'=>$dealer_price,
                                           'is_active'=>$is_active,
                                           'create_by'=>$this->vendorId, 'create_date'=>date('Y-m-d H:i:s'),
                                           'modified_by'=>$this->vendorId, 'modified_date'=>date('Y-m-d H:i:s'));
 
-              $result = $this->product_vender_model->save_product_vender($product_vender_info);
+              $result = $this->product_vendor_model->save_product_vendor($product_vendor_info);
 
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'Create Product Vender successfully');
+                  $this->session->set_flashdata('success', 'Create Product vendor successfully');
               }
               else if($result==0)
               {
@@ -151,7 +151,7 @@ class Product_vender extends BaseController {
               else{
                   $this->session->set_flashdata('error', 'User creation failed');
               }
-              redirect('product_vender/add');
+              redirect('product_vendor/add');
           }
       }
       else {
@@ -169,22 +169,22 @@ class Product_vender extends BaseController {
     {
         if($id == null)
         {
-            redirect('product_vender');
+            redirect('product_vendor');
         }
 
-        $data['product_vender_data'] = $this->product_vender_model->get_product_vender_id($id);
-        if(count($data['product_vender_data'])==0){
+        $data['product_vendor_data'] = $this->product_vendor_model->get_product_vendor_id($id);
+        if(count($data['product_vendor_data'])==0){
             redirect('error');
         }
 
         $data['list_product_brand'] = $this->initdata_model->get_product_brand();
-        $data['content'] = 'product_vender/product_vender_edit_view';
+        $data['content'] = 'product_vendor/product_vendor_edit_view';
         //if script file
-        //$data['script_file'] = 'js/product_vender_js';
-  		  $data['header'] = array('title' => 'Edit Product Vender | '.$this->config->item('sitename'),
-              								'description' =>  'Edit Product Vender | '.$this->config->item('tagline'),
+        //$data['script_file'] = 'js/product_vendor_js';
+  		  $data['header'] = array('title' => 'Edit Product vendor | '.$this->config->item('sitename'),
+              								'description' =>  'Edit Product vendor | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
-              								'keyword' => 'Product Vender');
+              								'keyword' => 'Product vendor');
   		  $this->load->view('template/layout_main', $data);
     }
     else {
@@ -216,7 +216,7 @@ class Product_vender extends BaseController {
           }
           else
           {
-            $product_vender_id = $this->input->post('product_vender_id');
+            $product_vendor_id = $this->input->post('product_vendor_id');
             $model = $this->input->post('model');
             $name = $this->input->post('name');
             $description = $this->input->post('description');
@@ -224,21 +224,21 @@ class Product_vender extends BaseController {
             $dealer_price = $this->input->post('dealer_price');
             $is_active = $this->input->post('is_active');
 
-              $product_vender_info = array('model' => $model,
+              $product_vendor_info = array('model' => $model,
                                       'name'=>$name, 'description'=>$description, 'is_active'=>$is_active,
                                       'product_brand_id'=>$product_brand_id,
                                       'description'=>$description,'dealer_price'=>$dealer_price,
                                       'modified_by'=>$this->vendorId, 'modified_date'=>date('Y-m-d H:i:s'));
 
-              $result = $this->product_vender_model->update_product_vender($product_vender_info,$product_vender_id);
+              $result = $this->product_vendor_model->update_product_vendor($product_vendor_info,$product_vendor_id);
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'Edit Product Vender Update successfully');
+                  $this->session->set_flashdata('success', 'Edit Product vendor Update successfully');
               }
               else{
                   $this->session->set_flashdata('error', 'User creation failed');
               }
-              redirect('product_vender/edit/'.$product_vender_id);
+              redirect('product_vendor/edit/'.$product_vendor_id);
           }
       }
       else {
