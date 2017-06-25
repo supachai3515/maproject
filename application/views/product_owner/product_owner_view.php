@@ -56,7 +56,7 @@
                       <td><?php echo $record->model ?></td>
                       <td><?php echo $record->name ?></td>
                       <td><?php echo $record->product_brand_name ?></td>
-                      <td><?php echo $record->full_price ?></td>
+                      <td><?php echo number_format($record->full_price,2); ?></td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>
                       <td>
                           <?php if ($record->is_active=="1"): ?>
