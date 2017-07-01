@@ -1,0 +1,35 @@
+@media (min-width: 992px){
+    .flex-70{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    }
+    .flex-40{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 40%;
+        flex: 0 0 40%;
+    }
+    .flex-100{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+    }
+
+}
+.flex-warp{
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.flex{ width: 100%; }
+.flex,.table-wrap{
+	padding: 15px;
+}
+.box-inner{
+	padding: 10px;
+	background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
