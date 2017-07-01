@@ -108,7 +108,7 @@
             <form class="form-horizontal text-center" id="search_product" action="<?php echo base_url() ?>home/search_product" method="post" role="form">
                 <div class="form-group">
                     <div class="form-inline">
-                      <input type="text" class="form-control" id="search">
+                      <input type="text" class="form-control" id="search" name="searchProduct" value="value="<?php echo $searchText; ?>"">
                       <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- jQuery UI 1.11.2 -->
     <!-- <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
