@@ -16,10 +16,9 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/flat/blue.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/morris/morris.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/ui-select/select.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
   <style>
     .error {
@@ -41,7 +40,7 @@
     <![endif]-->
 </head>
 
-<body style="background-color: #f5f8fa;">
+<body style="background-color: #f5f8fa;" ng-app="mainApp" ng-controller="home_ctrl">
     <div class="container">
       <h2 class="text-center">Order</h2>
       <div class="flex-warp">
@@ -105,13 +104,24 @@
         <div class="flex flex-40">
           <div class="box-inner">
             <h4 class="text-center">Search and Add Products</h4>
-            <form class="form-horizontal text-center" id="search_product" action="<?php echo base_url() ?>home/search_product" method="post" role="form">
-                <div class="form-group">
-                    <div class="form-inline">
-                      <input type="text" class="form-control" id="search" name="searchProduct" value="value="<?php echo $searchText; ?>"">
-                      <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </div>
-                </div>
+            <form class="form-horizontal text-center" id="search_product" action="<?php echo base_url() ?>home" method="post" role="form">
+              <div class="input-group">
+
+          <ui-select allow-clear ng-model="products.selected" theme="bootstrap">
+            <ui-select-match placeholder="Select or search a products in the list...">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="pd in products | filter: $select.search">
+              <span ng-bind-html="pd.name | highlight: $select.search"></span>
+              <small ng-bind-html="pd.email | highlight: $select.search"></small>
+            </ui-select-choices>
+          </ui-select>
+
+          <span class="input-group-btn">
+            <button type="button" ng-click="ctrl.person.selected = undefined" class="btn btn-default">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+
+        </div>
             </form>
           </div>
         </div>
@@ -158,19 +168,14 @@
     <!-- jQuery 2.2.3 -->
   <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/fastclick/fastclick.js"></script>
-  <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/validation.js"></script>
   <script src="<?php echo base_url(); ?>assets/dist/js/sweetalert2.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/angular.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/angular-sanitize.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/ui-bootstrap-tpls-1.2.1.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/datepicker/js/bootstrap-datepicker.js"></script>
-  <script src="<?php echo base_url(); ?>assets/datepicker/locales/bootstrap-datepicker.th.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/datepicker/js/bootstrap-timepicker.js"></script>
+  <script src="<?php echo base_url(); ?>assets/ui-select/select.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- page script -->
   <?php $this->load->view("js/main_app"); ?>

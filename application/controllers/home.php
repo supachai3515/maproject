@@ -13,7 +13,7 @@ class Home extends BaseController {
 	public function index()
 	{
       //if script file
-      //$data['script_file'] = 'js/home_js';
+      $data['script_file'] = 'js/home_js';
   		$data['header'] = array('title' => 'Home | '.$this->config->item('sitename'),
               								'description' =>  'Home | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
@@ -24,8 +24,5 @@ class Home extends BaseController {
 
   		$this->load->view('home/home_view', $data);
 	}
-  function search_product()
-  {
-    
-  }
+
 }
