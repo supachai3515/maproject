@@ -3,6 +3,16 @@
 
 app.controller("home_ctrl", function($scope, $http, $uibModal, $log) {
 
+  $http({
+            method: 'GET',
+            url: '<?php echo base_url('home/get_products');?>',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {
+          var products = data;
+            console.log('------------',products);
+          });
+
+
   $scope.product_credit_note = [];
    $scope.items = { return_id : '',
            order_id : '',
@@ -80,12 +90,11 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log) {
     $http({
               method: 'POST',
               url: '<?php echo base_url('credit_note/get_search_order');?>',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded'
-           }, data: { search : $scope.search_order }
-
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+              data: { search : $scope.search_order }
           }).success(function(data) {
-               var order_data = data;
-      $scope.order_data = order_data;
+              var order_data = data;
+              $scope.order_data = order_data;
     });
 
    }

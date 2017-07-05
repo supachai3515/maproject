@@ -27,6 +27,13 @@ class Home_model extends CI_Model {
       $result = $query->result();
       return $result;
   	}
+		function get_products()
+  	{
+  		$sql ="SELECT name, model FROM product_owner UNION SELECT name,model FROM product_vendor ORDER BY name";
+      $query = $this->db->query($sql);
+      $result = $query->result();
+      return $result;
+  	}
 }
 
 /* End of file discount_of_contract_model.php */

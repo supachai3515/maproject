@@ -24,5 +24,11 @@ class Home extends BaseController {
 
   		$this->load->view('home/home_view', $data);
 	}
+	public function get_products()
+	{
+      $data = $this->home_model->get_products();
+			$products = json_encode($data);
+			print $products;
+	}
 
 }
