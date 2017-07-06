@@ -9,7 +9,7 @@ class Product_vendor_model extends CI_Model {
 
 	function get_product_vendor_count($searchText = '')
 	{
-
+		$searchText = $this->db->escape_like_str($searchText);
 		$sql =" SELECT COUNT(m.product_vendor_id) as connt_id FROM  product_vendor m WHERE 1=1 ";
 		if(!empty($searchText)) {
 			$sql = $sql." AND (m.product_vendor_id  LIKE '%".$searchText."%'
@@ -26,6 +26,11 @@ class Product_vendor_model extends CI_Model {
 
   function get_product_vendor($searchText = '', $page, $segment)
   {
+
+		$searchText = $this->db->escape_like_str($searchText);
+		$page = $this->db->escape_str($page);
+		$segment = $this->db->escape_str($segment);
+
 		$sql ="SELECT m.* , u1.name create_by_name , u2.name  modified_by_name ,b.name product_brand_name FROM  product_vendor m
 						LEFT JOIN tbl_users u1 ON u1.userId = m.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = m.modified_by
@@ -56,6 +61,7 @@ class Product_vendor_model extends CI_Model {
 
 	public function get_part_number($id)
 	{
+		$id = $this->db->escape_str($id);
 		$sql ="SELECT m.* , u1.name create_by_name , u2.name  modified_by_name FROM  product_vendor m
 						LEFT JOIN tbl_users u1 ON u1.userId = m.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = m.modified_by
@@ -85,6 +91,7 @@ class Product_vendor_model extends CI_Model {
 
 	public function get_product_vendor_id($id)
 	{
+		$id = $this->db->escape_str($id);
 		$sql ="SELECT m.* , u1.name create_by_name , u2.name  modified_by_name FROM  product_vendor m
 						LEFT JOIN tbl_users u1 ON u1.userId = m.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = m.modified_by

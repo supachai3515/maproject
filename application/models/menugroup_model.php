@@ -9,7 +9,7 @@ class Menugroup_model extends CI_Model {
 
 	function get_menugroup_count($searchText = '')
 	{
-
+		$searchText = $this->db->escape_like_str($searchText);
 		$sql =" SELECT COUNT(r.menu_group_id) as connt_id FROM  menu_group r WHERE 1=1 ";
 		if(!empty($searchText)) {
 				$sql = $sql." AND (r.menu_group_id  LIKE '%".$searchText."%' OR  r.name  LIKE '%".$searchText."%' OR  r.description  LIKE '%".$searchText."%')";
@@ -22,6 +22,11 @@ class Menugroup_model extends CI_Model {
 
   function get_menugroup($searchText = '', $page, $segment)
   {
+
+		$searchText = $this->db->escape_like_str($searchText);
+		$page = $this->db->escape_str($page);
+		$segment = $this->db->escape_str($segment);
+
 		$sql ="SELECT r.* , u1.name create_by_name , u2.name  modified_by_name FROM  menu_group r
 						LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by WHERE 1=1 ";
@@ -46,6 +51,7 @@ class Menugroup_model extends CI_Model {
 
 	public function get_menugroup_id($id)
 	{
+		$id = $this->db->escape_str($id);
 		$sql ="SELECT r.* , u1.name create_by_name , u2.name  modified_by_name FROM  menu_group r
 						LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by
@@ -73,6 +79,7 @@ class Menugroup_model extends CI_Model {
 
 	public function get_menu_group_detail($id)
 	{
+		  $id = $this->db->escape_str($id);
 			$sql ="SELECT m.menu_id,m.`name`, md.is_add ,md.is_edit, md.is_view, md.is_active
 				FROM menu m
 				LEFT JOIN menu_group_detail md ON m.menu_id = md.menu_id
@@ -84,6 +91,7 @@ class Menugroup_model extends CI_Model {
 
 	public function get_menu($id)
 	{
+		  $id = $this->db->escape_str($id);
 			$sql ="SELECT m.* FROM menu m
 				WHERE is_active = 1  AND  m.menu_id NOT IN (SELECT menu_id FROM  menu_group_detail WHERE menu_group_id = ".$id." ) ";
 			$re = $this->db->query($sql);

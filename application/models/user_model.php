@@ -9,6 +9,7 @@ class User_model extends CI_Model
      */
     function userListingCount($searchText = '')
     {
+        $searchText = $this->db->escape_like_str($searchText);
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role, BaseTbl.menu_group_id , mg.name menu_group_name');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
@@ -35,6 +36,10 @@ class User_model extends CI_Model
      */
     function userListing($searchText = '', $page, $segment)
     {
+        $searchText = $this->db->escape_like_str($searchText);
+    		$page = $this->db->escape_str($page);
+    		$segment = $this->db->escape_str($segment);
+
         $this->db->select('BaseTbl.userId, BaseTbl.email, BaseTbl.name, BaseTbl.mobile, Role.role, BaseTbl.menu_group_id, mg.name menu_group_name');
         $this->db->from('tbl_users as BaseTbl');
         $this->db->join('tbl_roles as Role', 'Role.roleId = BaseTbl.roleId','left');
