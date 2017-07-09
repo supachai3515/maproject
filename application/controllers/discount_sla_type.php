@@ -22,6 +22,13 @@ class Discount_sla_type extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
 
+      if($page != 0)
+      {
+        if (!ctype_digit($page)) {
+          redirect('error');
+        }
+      }
+
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
 
@@ -54,6 +61,16 @@ class Discount_sla_type extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
+
+      if($id == null)
+      {
+          redirect('discount_sla_type');
+      }
+      else {
+        if (!ctype_digit($id)) {
+          redirect('error');
+        }
+      }
 
         $data['discount_sla_type_data'] = $this->discount_sla_type_model->get_discount_sla_type_id($id);
         if(count($data['discount_sla_type_data'])==0){
@@ -158,6 +175,15 @@ class Discount_sla_type extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
     {
+        if($id == null)
+        {
+            redirect('discount_sla_type');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
 
         $data['discount_sla_type_data'] = $this->discount_sla_type_model->get_discount_sla_type_id($id);
         if(count($data['discount_sla_type_data'])==0){

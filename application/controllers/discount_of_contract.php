@@ -22,6 +22,14 @@ class Discount_of_contract extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
 
+      if($page != 0)
+      {
+        if (!ctype_digit($page)) {
+          redirect('error');
+        }
+      }
+
+
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
 
@@ -54,6 +62,15 @@ class Discount_of_contract extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
+        if($id == null)
+        {
+            redirect('discount_of_contract');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
 
         $data['discount_of_contract_data'] = $this->discount_of_contract_model->get_discount_of_contract_id($id);
 
@@ -156,6 +173,16 @@ class Discount_of_contract extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
     {
+
+        if($id == null)
+        {
+            redirect('discount_of_contract');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
 
         $data['discount_of_contract_data'] = $this->discount_of_contract_model->get_discount_of_contract_id($id);
         if(count($data['discount_of_contract_data'])==0){

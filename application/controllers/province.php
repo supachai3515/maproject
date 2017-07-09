@@ -22,6 +22,13 @@ class Province extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
 
+      if($page != 0)
+      {
+        if (!ctype_digit($page)) {
+          redirect('error');
+        }
+      }
+
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
 
@@ -55,7 +62,20 @@ class Province extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
 
+        if($id == NULL)
+        {
+            redirect('Province');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
+
         $data['province_data'] = $this->province_model->get_province_id($id);
+        if(count($data['province_data'])==0){
+            redirect('error');
+        }
         //$data['province_detail'] = $this->province_model->get_province_detail($id);
         $data['content'] = 'province/province_info_view';
         //if script file
@@ -81,7 +101,21 @@ class Province extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
     {
 
+      if($id == NULL)
+      {
+          redirect('Province');
+      }
+      else {
+        if (!ctype_digit($id)) {
+          redirect('error');
+        }
+      }
+
         $data['province_data'] = $this->province_model->get_province_id($id);
+
+        if(count($data['province_data'])==0){
+            redirect('error');
+        }
         $data['content'] = 'province/province_edit_view';
         //if script file
         //$data['script_file'] = 'js/province_js';

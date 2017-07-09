@@ -21,6 +21,13 @@ class Product_vendor extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
 
+      if($page != 0)
+      {
+        if (!ctype_digit($page)) {
+          redirect('error');
+        }
+      }
+
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
       $count = $this->product_vendor_model->get_product_vendor_count($searchText);
@@ -54,6 +61,11 @@ class Product_vendor extends BaseController {
         if($id == null)
         {
             redirect('product_vendor');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
         }
 
         $data['product_vendor_data'] = $this->product_vendor_model->get_product_vendor_id($id);
@@ -167,10 +179,15 @@ class Product_vendor extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
     {
-        if($id == null)
-        {
-            redirect('product_vendor');
+      if($id == null)
+      {
+          redirect('product_vendor');
+      }
+      else {
+        if (!ctype_digit($id)) {
+          redirect('error');
         }
+      }
 
         $data['product_vendor_data'] = $this->product_vendor_model->get_product_vendor_id($id);
         if(count($data['product_vendor_data'])==0){
