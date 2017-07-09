@@ -13,13 +13,6 @@ class Home_model extends CI_Model {
       $result = $query->result();
       return $result;
   	}
-  	function get_tos()
-  	{
-  		$sql ="SELECT * FROM  discount_of_qty";
-      $query = $this->db->query($sql);
-      $result = $query->result();
-      return $result;
-  	}
   	function get_contract()
   	{
   		$sql ="SELECT * FROM  discount_of_contract";
@@ -29,7 +22,7 @@ class Home_model extends CI_Model {
   	}
 		function get_products()
   	{
-  		$sql ="SELECT name, model FROM product_owner UNION SELECT name,model FROM product_vendor ORDER BY name";
+  		$sql ="SELECT product_owner_id, part_number, name, model FROM product_owner ORDER BY product_owner_id  LIMIT 10";
       $query = $this->db->query($sql);
       $result = $query->result();
       return $result;

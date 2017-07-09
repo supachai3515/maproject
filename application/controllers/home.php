@@ -19,14 +19,14 @@ class Home extends BaseController {
               								'author' => $this->config->item('author'),
               								'keyword' =>  'Home');
       $data['province_list'] = $this->home_model->get_province();
-      $data['tos_list'] = $this->home_model->get_tos();
       $data['contract_list'] = $this->home_model->get_contract();
 
   		$this->load->view('home/home_view', $data);
 	}
 	public function get_products()
 	{
-      $data = $this->home_model->get_products();
+			$search_val = json_decode(file_get_contents("php://input"));
+      $data = $this->home_model->get_products($search_val);
 			$products = json_encode($data);
 			print $products;
 	}

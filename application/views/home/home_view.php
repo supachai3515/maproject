@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/ui-select/select.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/ui-select/select.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
   <style>
     .error {
@@ -41,8 +41,12 @@
 </head>
 
 <body style="background-color: #f5f8fa;" ng-app="mainApp" ng-controller="home_ctrl">
+    <header class="header">
+      <a href="/"><h1>TOS</h1></a>
+      <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
+    </header>
     <div class="container">
-      <h2 class="text-center">Order</h2>
+      <h2 class="page-header">Order</h2>
       <div class="flex-warp">
         <div class="flex flex-70">
           <div class="box-inner">
@@ -68,7 +72,7 @@
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Province</label>
                 <div class="col-md-8">
-                  <select class="form-control">
+                  <select class="form-control" ng-model="order.province">
                     <option value="">Select</option>
                     <?php foreach ($province_list as $record): ?>
                       <option value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
@@ -77,20 +81,18 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">TOS</label>
+                <label for="tel" class="col-md-4 control-label">PM</label>
                 <div class="col-md-8">
-                  <select class="form-control">
+                  <select class="form-control" ng-model="order.pm">
                     <option value="">Select</option>
-                    <?php foreach ($tos_list as $record): ?>
-                      <option value="<?php echo $record->discount_of_qty_id ?>"><?php echo $record->from_number ?></option>
-                    <?php endforeach; ?>
+                    <option value="{{pm}}" ng-repeat="pm in pm_list">{{pm}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Contract</label>
                 <div class="col-md-8">
-                  <select class="form-control">
+                  <select class="form-control" ng-model="order.contract">
                     <option value="">Select</option>
                     <?php foreach ($contract_list as $record): ?>
                       <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
@@ -103,20 +105,19 @@
         </div>
         <div class="flex flex-40">
           <div class="box-inner">
-            <h4 class="text-center">Search and Add Products</h4>
+            <h4 class="text-center">ค้นหาและเพิ่มสินค้า</h4>
             <form class="form-horizontal text-center" id="search_product" action="<?php echo base_url() ?>home" method="post" role="form">
               <div class="input-group">
 
-          <ui-select allow-clear ng-model="products.selected" theme="bootstrap">
+          <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product($item)">
             <ui-select-match placeholder="Select or search a products in the list...">{{$select.selected.name}}</ui-select-match>
-            <ui-select-choices repeat="pd in products | filter: $select.search">
-              <span ng-bind-html="pd.name | highlight: $select.search"></span>
-              <small ng-bind-html="pd.email | highlight: $select.search"></small>
+            <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
+              <span ng-bind-html="pd.name"></span>
             </ui-select-choices>
           </ui-select>
 
           <span class="input-group-btn">
-            <button type="button" ng-click="ctrl.person.selected = undefined" class="btn btn-default">
+            <button type="button" ng-click="search_product()" class="btn btn-default">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </span>
@@ -131,36 +132,61 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Part number</th>
-                <th>Name</th>
-                <th>Medel</th>
-                <th>Description</th>
-                <th>QTY</th>
-                <th>Full price</th>
+                <th class="col-md-2">Part number</th>
+                <th class="col-md-2">Name</th>
+                <th class="col-md-2">Medel</th>
+                <th class="col-md-1">QTY</th>
+                <th class="col-md-2">Province</th>
+                <th class="col-md-1">PM</th>
+                <th class="col-md-1">Contract</th>
+                <th class="col-md-1">Delete</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>test1</td>
-                <td>test1</td>
-                <td>test1</td>
-                <td>test1</td>
-                <td>test1</td>
-                <td>test1</td>
+              <tr ng-repeat="(idx, p) in selected_products track by idx">
+                <td class="text-center">{{p.part_number || '-'}}</td>
+                <td>{{p.name || '-'}}</td>
+                <td class="text-center">{{p.model || '-'}}</td>
+                <td>
+                  <input class="form-control text-center" type="number" name="selected_model_{{idx}}" value="{{p.qty}}" min="1">
+                </td>
+                <td>
+                  <select class="form-control" name="selected_province_{{idx}}">
+                    <?php foreach ($province_list as $record): ?>
+                      <option ng-selected="p.province == <?php echo $record->province_code ?>" value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control" name="selected_pm_{{idx}}">
+                    <option value="p.pm" ng-repeat="pm in pm_list" ng-selected="p.pm == pm">{{pm}}</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control" name="selected_contract_{{idx}}">
+                    <?php foreach ($contract_list as $record): ?>
+                      <option ng-selected="p.contract == <?php echo $record->discount_of_contract_id ?>" value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                    <?php endforeach; ?>
+                  </select>
+                </td>
+                <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product(idx)"></i></td>
               </tr>
-              <tr>
-                <td>test2</td>
-                <td>test2</td>
-                <td>test2</td>
-                <td>test2</td>
-                <td>test2</td>
-                <td>test2</td>
+              <tr ng-if="!selected_products.length">
+                <td colspan="8" class="text-center">-</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p class="submit-btn text-center"><button type="button" class="btn btn-primary btn-lg">Submit</button></p>
       </div>
     </div>
+
+    <footer class="main-footer text-center">
+        <div class="pull-right hidden-xs">
+          <b>WISADEV</b> | Version 1.0
+        </div>
+        <strong>Copyright &copy; 2017-2018 <a href="<?php echo base_url(); ?>"><?php echo $this->config->item('sitename'); ?></a>.</strong> All rights reserved.
+    </footer>
 
     <!-- jQuery UI 1.11.2 -->
     <!-- <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
@@ -175,7 +201,7 @@
   <script src="<?php echo base_url(); ?>assets/js/angular-sanitize.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/ui-bootstrap-tpls-1.2.1.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/ui-select/select.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/ui-select/select.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- page script -->
   <?php $this->load->view("js/main_app"); ?>
