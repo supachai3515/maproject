@@ -1,20 +1,9 @@
 @media (min-width: 992px){
     .flex-70{
     -webkit-box-flex: 0;
-    -ms-flex: 0 0 60%;
-    flex: 0 0 60%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
     }
-    .flex-40{
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 40%;
-        flex: 0 0 40%;
-    }
-    .flex-100{
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-    }
-
 }
 .header{
   position: relative;
@@ -49,18 +38,21 @@
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
-.flex{ width: 100%; }
+.flex{
+  width: 100%;
+}
 .flex,.table-wrap{
 	padding: 15px;
 }
 .box-inner{
-	padding: 10px;
+	padding: 40px 20px;
 	background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
-
 .table th { text-align: center;}
 .del-icon{
   cursor: pointer;
@@ -68,3 +60,9 @@
 }
 .swal2-modal .swal2-buttonswrapper { margin-top: 40px;}
 .swal2-buttonswrapper button{ margin: 0 10px;}
+.checkbox input[type=checkbox]{ cursor: pointer;}
+.input-group .form-control:first-child{
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.input-group .form-control:last-child{}

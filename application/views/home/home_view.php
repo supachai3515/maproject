@@ -53,25 +53,25 @@
             <form class="form-horizontal">
               <div class="form-group">
                 <label for="email" class="col-md-4 control-label">Email</label>
-                <div class="col-md-8 ">
+                <div class="col-md-5">
                   <input type="email" name="email" class="form-control" id="email">
                 </div>
               </div>
               <div class="form-group">
                 <label for="name" class="col-md-4 control-label">Name/Company Name</label>
-                <div class="col-md-8">
+                <div class="col-md-5">
                   <input type="text" name="name" class="form-control" id="name">
                 </div>
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Tel.</label>
-                <div class="col-md-8">
+                <div class="col-md-5">
                   <input type="tel" name="tel" class="form-control" id="tel">
                 </div>
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Province</label>
-                <div class="col-md-8">
+                <div class="col-md-5">
                   <select class="form-control" ng-model="order.province">
                     <option value="">Select</option>
                     <?php foreach ($province_list as $record): ?>
@@ -82,7 +82,7 @@
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">PM</label>
-                <div class="col-md-8">
+                <div class="col-md-5">
                   <select class="form-control" ng-model="order.pm">
                     <option value="">Select</option>
                     <option value="{{pm}}" ng-repeat="pm in pm_list">{{pm}}</option>
@@ -91,7 +91,7 @@
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Contract</label>
-                <div class="col-md-8">
+                <div class="col-md-5">
                   <select class="form-control" ng-model="order.contract">
                     <option value="">Select</option>
                     <?php foreach ($contract_list as $record): ?>
@@ -100,35 +100,31 @@
                   </select>
                 </div>
               </div>
-            </form>
-          </div>
-        </div>
-        <div class="flex flex-40">
-          <div class="box-inner">
-            <h4 class="text-center">ค้นหาและเพิ่มสินค้า</h4>
-            <form class="form-horizontal text-center" id="search_product" action="<?php echo base_url() ?>home" method="post" role="form">
-              <div class="input-group">
-
-          <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product($item)">
-            <ui-select-match placeholder="Select or search a products in the list...">{{$select.selected.name}}</ui-select-match>
-            <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
-              <span ng-bind-html="pd.name"></span>
-            </ui-select-choices>
-          </ui-select>
-
-          <span class="input-group-btn">
-            <button type="button" ng-click="search_product()" class="btn btn-default">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-
-        </div>
+              <div class="form-group">
+                <label for="tel" class="col-md-4 control-label">Search Product</label>
+                <div class="col-md-5">
+                  <div class="input-group">
+                    <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)">
+                      <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
+                      <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
+                        <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
+                      </ui-select-choices>
+                    </ui-select>
+                    <span class="input-group-btn">
+                      <button type="button" ng-click="search_product()" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
       </div>
       <div class="table-wrap">
         <div class="box-inner">
+          <p class="text-right"><button type="button" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -169,7 +165,7 @@
                     <?php endforeach; ?>
                   </select>
                 </td>
-                <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product(idx)"></i></td>
+                <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list(idx)"></i></td>
               </tr>
               <tr ng-if="!selected_products.length">
                 <td colspan="8" class="text-center">-</td>

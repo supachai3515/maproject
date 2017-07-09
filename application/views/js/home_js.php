@@ -7,10 +7,11 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
   $scope.order = {};
   $scope.products = [];
   $scope.selected_products = [];
+  $scope.result_products_list = [];
 
-  $scope.input_Select = function(val){
+  $scope.input_Select = function(val) {
     char_search = val;
-    if(val && val.length >= 3){
+    if(val && val.length >= 3) {
       $scope.products = [];
       $http({
               method: 'POST',
@@ -23,30 +24,55 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
 
     }
   }
-    $scope.add_product = function(val){
+    $scope.add_product_list = function(val) {
       $scope.products = [];
-      console.log($scope.order);
       var item = $.extend({}, {'part_number': ''}, val, {'qty': 1}, $scope.order);
       $scope.selected_products.push(item);
     }
-    $scope.remove_product = function(idx){
+    $scope.remove_product_list = function(idx) {
       $scope.selected_products.splice(idx,1);
     }
 
     $scope.search_product = function() {
-      if(char_search){
-        console.log('---search---');
-      } else {
-        console.log('---add---');
-      }
+      if(!char_search)
+        return;
+      $http({
+              method: 'POST',
+              url: '<?php echo base_url('home/get_products');?>',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+              data: {search: char_search}
+          }).success(function(data) {
+            $uibModal.open({
+                templateUrl: 'result_search_product_modal.html',
+                controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
+                  $sc.result_products = data;
+                  $sc.selected = [];
 
+                  $sc.add_select_product = function(val) {
+                      $.each(val,function(idx, v) {
+                        if(v) {
+                          var product = $sc.result_products[idx];
+                          var item = $.extend({}, product, {'qty': 1}, $scope.order);
+                          $scope.selected_products.push(item)
+                        }
+                      });
+                      $scope.products = [];
+                      $uib.close();
+                  }
+                  $sc.cancel = function () {
+                      $uib.dismiss('cancel');
+                  }
+                }]
+            });
+          });
+    }
+    $scope.add_product = function() {
       $uibModal.open({
           templateUrl: 'add_product_modal.html',
           controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
             $sc.add_new_product = function (model) {
                 var p_model = $.extend({}, {'part_number': ''}, model);
                 $scope.selected_products.push(p_model);
-                console.log('---add---',$scope.selected_products);
                 $uib.close();
             }
             $sc.cancel = function () {
@@ -99,7 +125,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
         <div class="form-group">
           <label for="email" class="col-md-3 control-label">Name</label>
           <div class="col-md-9">
-            <input type="text" name="p_name" ng-model="add_product.name" class="form-control" id="p_name">
+            <input type="text" name="p_name" ng-model="add_product.name" class="form-control" id="p_name" autofocus>
           </div>
         </div>
         <div class="form-group">
@@ -121,3 +147,34 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
       <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
   </script>
+
+  <script type="text/ng-template" id="result_search_product_modal.html">
+      <div class="modal-header text-center"><h4>เลือกสินค้า</h4></div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="col-md-3">Part number</th>
+              <th class="col-md-4">Name</th>
+              <th class="col-md-4">Medel</th>
+              <th class="col-md-1">select</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="(idx, p) in result_products track by idx">
+              <td class="text-center">{{p.part_number || '-'}}</td>
+              <td>{{p.name || '-'}}</td>
+              <td class="text-center">{{p.model || '-'}}</td>
+              <td>
+                <div class="checkbox text-center">
+                  <label for="is_select_{{idx}}"><input type="checkbox"  id="is_select_{{idx}}" ng-model="selected[idx]"  name="is_select_{{idx}}" value="1"></label>
+                </div>
+              </td>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="add_select_product(selected)">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </script>
