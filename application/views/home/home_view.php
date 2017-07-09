@@ -50,29 +50,29 @@
       <div class="flex-warp">
         <div class="flex flex-70">
           <div class="box-inner">
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
-                <label for="email" class="col-md-4 control-label">Email</label>
-                <div class="col-md-5">
-                  <input type="email" name="email" class="form-control" id="email">
+                <label for="email" class="col-md-4 control-label">Email<sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.email.$invalid)}">
+                  <input type="email" name="email" class="form-control" id="email" ng-model="info.email" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Name/Company Name</label>
-                <div class="col-md-5">
-                  <input type="text" name="name" class="form-control" id="name">
+                <label for="name" class="col-md-4 control-label">Name/Company Name <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.name.$invalid)}">
+                  <input type="text" name="name" class="form-control" id="name" ng-model="info.name" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Tel.</label>
-                <div class="col-md-5">
-                  <input type="tel" name="tel" class="form-control" id="tel">
+                <label for="tel" class="col-md-4 control-label">Tel. <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.tel.$invalid)}">
+                  <input type="tel" name="tel" class="form-control" id="tel" ng-model="info.tel" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Province</label>
-                <div class="col-md-5">
-                  <select class="form-control" ng-model="order.province">
+                <label for="tel" class="col-md-4 control-label">Province <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.province.$invalid)}">
+                  <select class="form-control" name="province" ng-model="order.province" required>
                     <option value="">Select</option>
                     <?php foreach ($province_list as $record): ?>
                       <option value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
@@ -81,18 +81,18 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">PM</label>
-                <div class="col-md-5">
-                  <select class="form-control" ng-model="order.pm">
+                <label for="tel" class="col-md-4 control-label">PM <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.pm.$invalid)}">
+                  <select class="form-control" name="pm" ng-model="order.pm" required>
                     <option value="">Select</option>
                     <option value="{{pm}}" ng-repeat="pm in pm_list">{{pm}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Contract</label>
-                <div class="col-md-5">
-                  <select class="form-control" ng-model="order.contract">
+                <label for="tel" class="col-md-4 control-label">Contract <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.contract.$invalid)}">
+                  <select class="form-control" name="contract" ng-model="order.contract" required>
                     <option value="">Select</option>
                     <?php foreach ($contract_list as $record): ?>
                       <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
@@ -173,7 +173,7 @@
             </tbody>
           </table>
         </div>
-        <p class="submit-btn text-center"><button type="button" class="btn btn-primary btn-lg">Submit</button></p>
+        <p class="submit-btn text-right"><button type="button" class="btn btn-primary btn-lg" ng-click="submit_products(info_form, info)">Next</button></p>
       </div>
     </div>
 

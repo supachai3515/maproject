@@ -19,6 +19,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: {search: val}
           }).success(function(data) {
+            console.log(data);
             $scope.products = data;
           });
 
@@ -27,6 +28,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
     $scope.add_product_list = function(val) {
       $scope.products = [];
       var item = $.extend({}, {'part_number': ''}, val, {'qty': 1}, $scope.order);
+      console.log(item);
       $scope.selected_products.push(item);
     }
     $scope.remove_product_list = function(idx) {
@@ -80,6 +82,25 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
             }
           }]
       });
+    }
+
+    $scope.submit_products = function(info_form, info_model) {
+      info_form.submited = true;
+
+      if(info_form.$invalid) {
+        swal(
+          '',
+          'กรุณากรอกข้อมูลให้ครบ',
+          'warning'
+        )
+      }
+      if(!$scope.selected_products.length) {
+        swal(
+          '',
+          'กรุณาเพิ่มสินค้า',
+          'warning'
+        )
+      }
     }
  });
 
