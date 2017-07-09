@@ -20,7 +20,9 @@
   <script src="<?php echo base_url(); ?>assets/js/validation.js" type="text/javascript"></script>
   <script src="<?php echo base_url(); ?>assets/dist/js/sweetalert2.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/angular.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/angular-sanitize.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/ui-bootstrap-tpls-1.2.1.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/ui-select/select.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/datepicker/js/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url(); ?>assets/datepicker/locales/bootstrap-datepicker.th.min.js"></script>

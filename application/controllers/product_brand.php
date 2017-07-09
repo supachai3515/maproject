@@ -20,6 +20,12 @@ class Product_brand extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
+      if($page != 0)
+      {
+        if (!ctype_digit($page)) {
+          redirect('error');
+        }
+      }
 
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
@@ -74,10 +80,15 @@ class Product_brand extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
-        if($id == null)
-        {
-            redirect('product_brand');
+      if($id == null)
+      {
+          redirect('product_brand');
+      }
+      else {
+        if (!ctype_digit($id)) {
+          redirect('error');
         }
+      }
 
         $data['product_brand_data'] = $this->product_brand_model->get_product_brand_id($id);
 
@@ -158,6 +169,12 @@ class Product_brand extends BaseController {
         {
             redirect('product_brand');
         }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
+
 
         $data['product_brand_data'] = $this->product_brand_model->get_product_brand_id($id);
         if(count($data['product_brand_data'])==0){

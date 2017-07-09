@@ -21,6 +21,13 @@ class Menugroup extends BaseController {
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
 
+      if($page != 0)
+      {
+        if (!ctype_digit($page)) {
+          redirect('error');
+        }
+      }
+
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
       $count = $this->menugroup_model->get_menugroup_count($searchText);
@@ -51,6 +58,17 @@ class Menugroup extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
     {
+
+        if($id == null)
+        {
+            redirect('menu_group');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
+
         $data['menugroup_data'] = $this->menugroup_model->get_menugroup_id($id);
         $data['menu_group_detail'] = $this->menugroup_model->get_menu_group_detail($id);
         $data['menu'] = $this->menugroup_model->get_menu($id);
@@ -100,6 +118,16 @@ class Menugroup extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_view'])
     {
+
+        if($id == null)
+        {
+            redirect('menu_group');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
 
         $data['menugroup_data'] = $this->menugroup_model->get_menugroup_id($id);
         $data['menu_group_detail'] = $this->menugroup_model->get_menu_group_detail($id);
@@ -172,6 +200,16 @@ class Menugroup extends BaseController {
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
     {
+
+        if($id == null)
+        {
+            redirect('menu_group');
+        }
+        else {
+          if (!ctype_digit($id)) {
+            redirect('error');
+          }
+        }
 
         $data['menugroup_data'] = $this->menugroup_model->get_menugroup_id($id);
         $data['content'] = 'menugroup/menugroup_edit_view';
