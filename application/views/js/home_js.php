@@ -13,10 +13,10 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
     if(val && val.length >= 3){
       $scope.products = [];
       $http({
-              method: 'GET',
+              method: 'POST',
               url: '<?php echo base_url('home/get_products');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-              data: {'search':val}
+              data: {search:val}
           }).success(function(data) {
             $scope.products = data;
           });
