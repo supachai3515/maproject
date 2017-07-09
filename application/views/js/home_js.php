@@ -16,7 +16,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
               method: 'GET',
               url: '<?php echo base_url('home/get_products');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-              data: val
+              data: {'search':val}
           }).success(function(data) {
             $scope.products = data;
           });
