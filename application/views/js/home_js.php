@@ -93,6 +93,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
           'กรุณากรอกข้อมูลให้ครบ',
           'warning'
         )
+        return;
       }
       if(!$scope.selected_products.length) {
         swal(
@@ -100,6 +101,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
           'กรุณาเพิ่มสินค้า',
           'warning'
         )
+        return;
       }
     }
  });
