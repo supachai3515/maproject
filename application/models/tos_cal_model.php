@@ -172,4 +172,88 @@ class Tos_cal_model extends CI_Model {
     //list owner cal
 
   }
+
+	public function save_order($data_info , $product_list)
+	{
+		$order_id = 0;
+		$total_cal = 0;
+		$total_qty = 0;
+		$ref_order_id = md5("wisadev".date("YmdHis")."tos");
+
+		foreach ($product_list as $row) {
+			$total_cal  = $total_cal  + $row->total;
+			$total_qty  = $total_qty  + $row->qty;
+		}
+		// transection
+		$this->db->trans_begin();
+		date_default_timezone_set("Asia/Bangkok");
+			$data = array(
+				'ref_id'=>$ref_order_id,
+				'order_date' => date("Y-m-d H:i:s"),
+				'company' =>$data_info['name'],
+				'address' =>'',
+				'tel' => $data_info['tel'],
+				'email' =>$data_info['email'],
+				'order_status_id' => '1',
+				'qty' => $total_qty ,
+				'total' => $total_cal,
+				'is_active' => '1',
+				'create_date' =>date("Y-m-d H:i:s"),
+				'create_by' => '1',
+				'modified_date' => date("Y-m-d H:i:s"),
+				'modified_by' =>'1'
+			);
+
+		$this->db->insert('order', $data);
+		$order_id = $this->db->insert_id();
+		$line_number =1;
+
+		foreach ($product_list as $row) {
+			$data_detail = array(
+						'order_id' => $order_id ,
+						'line_number' => $line_number,
+						'is_product_owner' => $row->is_product_owner,
+						'is_have_product' => $row->is_have_product,
+						'comment' => $row->comment,
+						'product_owner_id' => $row->product_owner_id,
+						'product_vendor_id' => $row->product_vendor_id,
+						'type_name' => $row->type_name,
+						'type_description' => $row->type_description,
+						'full_price' => $row->full_price,
+						'dealer_price' => $row->dealer_price,
+						'discount_sla_type_id' => $row->discount_sla_type_id,
+						'discount_sla_type_value' => $row->discount_sla_type_value,
+						'discount_of_contract_value' => $row->discount_of_contract_value,
+						'discount_of_qty_value' => $row->discount_of_qty_value,
+						'province_id' => $row->province_id,
+						'province_name' => $row->province_name,
+						'pm_time_value' => $row->pm_time_value,
+						'lb_year_value' => $row->lb_year_value,
+						'pm_time_qty' => $row->pm_time_qty,
+						'lb_year_qty' => $row->lb_year_qty,
+						'qty' => $row->qty,
+						'total' => $row->total,
+					);
+
+			$this->db->insert('order_detail', $data_detail);
+			$line_number++;
+		}
+
+		if ($this->db->trans_status() === FALSE)
+		{
+				$this->db->trans_rollback();
+				return $order_id;
+		}
+		else
+		{
+				$this->db->trans_commit();
+				//destroy  session
+				$this->session->unset_userdata('info_email');
+				$this->session->unset_userdata('info_name');
+				$this->session->unset_userdata('info_tel');
+				$this->session->unset_userdata('product_list');
+				return $order_id;
+		}
+
+	}
 }
