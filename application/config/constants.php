@@ -50,7 +50,7 @@ date_default_timezone_set("Asia/Bangkok");
 
 define('EMAIL_FROM',                            'system@wisadev.com');		// e.g. email@example.com
 define('EMAIL_BCC',                            	'');		// e.g. email@example.com
-define('FROM_NAME',                             'Admin System)');	// Your system name
+define('FROM_NAME',                             'Admin System');	// Your system name
 define('EMAIL_PASS',                            'system');	// Your email password
 define('PROTOCOL',                             	'smtp');				// mail, sendmail, smtp
 define('SMTP_HOST',                             'wisadev.com');		// your smtp host e.g. smtp.gmail.com

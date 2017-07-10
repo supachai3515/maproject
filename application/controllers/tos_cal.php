@@ -13,7 +13,7 @@ class Tos_cal extends BaseController {
 	public function index()
 	{
     $myObj = '{
-              	"email": "abc@gmail.com",
+              	"email": "supachai.wisa@gmail.com",
               	"name": "Tony Stark",
               	"tel": "123456789",
               	"product_list": [
@@ -82,9 +82,11 @@ class Tos_cal extends BaseController {
 
 	public function get_cal_product()
 	{
-		$product_list = $this->session->userdata('product_list');
-		$data = $this->tos_cal_model->get_cal_product($product_list);
-		echo json_encode($data);
+		if($this->session->userdata('product_list') != null ){
+			$product_list = $this->session->userdata('product_list');
+			$data = $this->tos_cal_model->get_cal_product($product_list);
+			echo json_encode($data);
+		}
 	}
 
 	public function save_order()
@@ -152,8 +154,27 @@ class Tos_cal extends BaseController {
 				$result = array('status' => 'error', 'order_id'=> '');
 				echo json_encode($result);
 			}else {
+
 				$result = array('status' => 'success' ,'order_id'=> $order_id);
 				echo json_encode($result);
+
+				//sendmail
+	      $data['email'] = $email;
+				$data['template'] = "email/send_order";
+				$data['subject'] = "Tos Order";
+				$data['bcc_mail'] = "supachai.wi@gmail.com";
+				$data['name'] = $name;
+				$data['tel'] = $tel;
+				//sendmail
+				$sendStatus = send_emali_template($data);
+				if($sendStatus){
+						$status = "send";
+						setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
+				} else {
+						$status = "notsend";
+						setFlashData($status, "Email has been failed, try again.");
+				}
+
 			}
 
 		}
