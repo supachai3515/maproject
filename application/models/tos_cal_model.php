@@ -292,7 +292,7 @@ class Tos_cal_model extends CI_Model {
 				LEFT JOIN product_vendor pv ON pv.product_vendor_id = od.product_vendor_id
 				WHERE od.order_id  =  '".$order_id."'";
 		$query = $this->db->query($sql);
-		$row = $query->result_array();
-		return $row;
+		$result = $query->result_array();
+		return $result;
 	}
 }

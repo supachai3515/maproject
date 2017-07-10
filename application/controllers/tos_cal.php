@@ -165,6 +165,8 @@ class Tos_cal extends BaseController {
 				$data['bcc_mail'] = "supachai.wi@gmail.com";
 				$data['name'] = $name;
 				$data['tel'] = $tel;
+				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
 				//sendmail
 				$sendStatus = send_emali_template($data);
 				if($sendStatus){
