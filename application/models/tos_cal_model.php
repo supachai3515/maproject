@@ -14,8 +14,10 @@ class Tos_cal_model extends CI_Model {
       if (ctype_digit($product->product_owner_id)) {
 
 						$sql =  $sql." SELECT 1 is_product_owner,
-						       v.product_owner_id,
-						       '0' product_vendor_id,
+											 1 is_have_product,
+											 '' comment,
+						       		 v.product_owner_id,
+					       			 '0' product_vendor_id,
 						           v.type_name type_name,
 						           v.type_des type_description,
 						           v.full_price,
@@ -80,6 +82,8 @@ class Tos_cal_model extends CI_Model {
 						UNION
 
 						SELECT 0 is_product_owner,
+									 1 is_have_product,
+									 '' comment,
 						       q.product_owner_id,
 						       q.product_vendor_id,
 						       q.type_name,
@@ -117,10 +121,48 @@ class Tos_cal_model extends CI_Model {
 
       }
       $i++;
-      if($i < count($product_list)){
+      if($i < count($product_list) && $sql != ""){
         $sql =  $sql." UNION ";
       }
     }
+
+		foreach ($product_list as $product) {
+				if(isset($product->is_have_product) && $product->is_have_product == "0"){
+					if($sql != ""){
+						$sql =  $sql." UNION ";
+					}
+
+						$sql =  $sql."  SELECT 0 is_product_owner,
+														0 is_have_product,
+														CONCAT('Name: $product->name',' , Model: $product->model') comment,
+														0	product_owner_id,
+														0 product_vendor_id,
+														'' type_name,
+														'' type_description,
+														0 full_price,
+														0 dealer_price,
+														0 discount_sla_type_id,
+														0 discount_sla_type_value,
+														0 discount_of_contract_value,
+														0 discount_of_qty_value,
+														v.province_id,
+														v.province_name,
+														'' pm_time_value,
+														''  lb_year_value,
+														$product->pm pm_time_qty,
+														$product->pm lb_year_qty,
+														$product->contract  qty ,
+														0 AS total
+														FROM province v
+														WHERE v.province_id = $product->province ";
+			}
+
+			$i++;
+      if($i < count($product_list) && $sql != ""){
+        $sql =  $sql." UNION ";
+      }
+		}
+
     $query = $this->db->query($sql);
     $result = $query->result();
     return $result;

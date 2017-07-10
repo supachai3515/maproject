@@ -18,6 +18,7 @@ class Tos_cal extends BaseController {
               	"tel": "123456789",
               	"product_list": [
               		{
+										"is_have_product" : "1",
               			"brand_name": "Cissco",
               			"model": "SV3200",
               			"name": "1 MSA 1040 2Prt FC DC SFF Strg",
@@ -29,17 +30,7 @@ class Tos_cal extends BaseController {
               			"qty": 1
               		},
               		{
-              			"brand_name": "Cissco",
-              			"model": "MSA2042",
-              			"name": "1 MSA 1040 2Prt 1G iSCSI DC LFF Strg",
-              			"part_number": "E7W01A",
-              			"product_owner_id": "3",
-              			"province": "10",
-              			"contract": "2",
-              			"pm": "2",
-              			"qty": 1
-              		},
-              		{
+										"is_have_product" : "0",
               			"brand_name": "Cissco",
               			"model": "WS-C2960C",
               			"name": "1 MSA 1040 2Prt 1G iSCSI DC SFF Strg",
@@ -56,8 +47,8 @@ class Tos_cal extends BaseController {
 
       try {
 
-          //$data_info = json_decode($myObj);
-          $data_info = json_decode(file_get_contents("php://input"));
+          $data_info = json_decode($myObj);
+          //$data_info = json_decode(file_get_contents("php://input"));
 
           $session_info = array('info_email'=>$data_info->email,
             'info_name'=>$data_info->name,
