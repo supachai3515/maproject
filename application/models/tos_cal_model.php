@@ -204,7 +204,7 @@ class Tos_cal_model extends CI_Model {
 				'modified_by' =>'1'
 			);
 
-		$this->db->insert('order', $data);
+		$this->db->insert('orders', $data);
 		$order_id = $this->db->insert_id();
 		$line_number =1;
 
@@ -255,5 +255,10 @@ class Tos_cal_model extends CI_Model {
 				return $order_id;
 		}
 
+	}
+
+	public function get_order($order_id)
+	{
+		# code...
 	}
 }
