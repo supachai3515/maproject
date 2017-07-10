@@ -151,13 +151,13 @@ class Tos_cal extends BaseController {
 
 			$order_id = $this->tos_cal_model->save_order($data_info ,$product_list);
 			if($order_id == "0"){
-				$result = array('status' => 'error', 'order_id'=> '');
+				$result = array('status' => 'error', 'data'=> '');
 				echo json_encode($result);
 			}else {
-
-				$result = array('status' => 'success' ,'order_id'=> $order_id);
+				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+				$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
 				echo json_encode($result);
-
 				//sendmail
 	      $data['email'] = $email;
 				$data['template'] = "email/send_order";
@@ -165,8 +165,7 @@ class Tos_cal extends BaseController {
 				$data['bcc_mail'] = "supachai.wi@gmail.com";
 				$data['name'] = $name;
 				$data['tel'] = $tel;
-				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
-				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+
 				//sendmail
 				$sendStatus = send_emali_template($data);
 				if($sendStatus){
@@ -181,7 +180,7 @@ class Tos_cal extends BaseController {
 
 		}
 		else{
-			$result = array('status' => 'error', 'order_id'=> '');
+			$result = array('status' => 'error', 'data'=> '');
 			echo json_encode($result);
 		}
 
