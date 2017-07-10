@@ -196,11 +196,11 @@ class Tos_cal extends BaseController {
 				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
 				$status = "success";
 				setFlashData($status, "ทางเราได้รับคำขอจากท่านเรียบร้อยแล้ว กรุณารอทางเราติดต่อครับ");
-				$this->load->view('order_public/special_price', $data);
-
 		} else {
 				$status = "error";
 				setFlashData($status, "ข้อผิดผลาด");
 		}
+
+		$this->load->view('order_public/special_price', $data);
 	}
 }
