@@ -96,14 +96,14 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
         )
         return;
       }
-      var model = $.extend({}, info_model, {'products_list': $scope.selected_products});
+      var model = $.extend({}, info_model, {'product_list': $scope.selected_products});
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: model
           }).success(function(data) {
-            console.log('----->', data);
+            console.log('response----->', data);
           });
     }
  });

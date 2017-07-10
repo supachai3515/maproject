@@ -56,8 +56,8 @@ class Tos_cal extends BaseController {
 
       try {
 
-          $data_info = json_decode($myObj);
-          //$data_info = json_decode(file_get_contents("php://input"));
+          //$data_info = json_decode($myObj);
+          $data_info = json_decode(file_get_contents("php://input"));
 
           $session_info = array('info_email'=>$data_info->email,
             'info_name'=>$data_info->name,
