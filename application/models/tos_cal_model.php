@@ -257,8 +257,42 @@ class Tos_cal_model extends CI_Model {
 
 	}
 
+
+
+	public function get_order_id_by_ref($ref_id)
+	{
+		$ref_id = $this->db->escape($ref_id);
+		$sql =" SELECT * FROM  orders r WHERE ref_id = $ref_id ";
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+		if($row != null){
+			return  $row['order_id'];
+		}
+	}
+
 	public function get_order($order_id)
 	{
-		# code...
+		$order_id = $this->db->escape_str($order_id);
+		$sql =" SELECT r.* , u1.name create_by_name , u2.name  modified_by_name ,os.`name` status_name
+						FROM  orders  r
+						LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
+						LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by
+						LEFT JOIN order_status  os ON os.order_status_id = r.order_status_id
+						WHERE r.order_id  =  '".$order_id."'";
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+		return $row;
+	}
+
+	public function get_order_detail($order_id)
+	{
+		$order_id = $this->db->escape_str($order_id);
+		$sql =" SELECT pw.part_number,pw.`name` product_name, pw.description product_description, od.* FROM order_detail od
+				LEFT JOIN product_owner pw ON pw.product_owner_id = od.product_owner_id
+				LEFT JOIN product_vendor pv ON pv.product_vendor_id = od.product_vendor_id
+				WHERE od.order_id  =  '".$order_id."'";
+		$query = $this->db->query($sql);
+		$row = $query->result_array();
+		return $row;
 	}
 }
