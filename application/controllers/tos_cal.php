@@ -58,7 +58,7 @@ class Tos_cal extends BaseController {
 
           $data_info = json_decode($myObj);
           //$data_info = json_decode(file_get_contents("php://input"));
-          
+
           $session_info = array('info_email'=>$data_info->email,
             'info_name'=>$data_info->name,
             'info_tel'=>$data_info->tel,
@@ -72,8 +72,9 @@ class Tos_cal extends BaseController {
           //echo "<pre>";
       		//print_r ($data);
       		//echo "</pre>";
+        //throw new Exception('Division by zero.');
       } catch (Exception $e) {
-
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
       }
 
 	}
