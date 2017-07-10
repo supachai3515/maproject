@@ -19,6 +19,24 @@
        <body>
         <h1 class="text-center">special_price</h1>
         <div class="container">
+          <?php
+          $success = $this->session->flashdata('success');
+          $error = $this->session->flashdata('error');
+          ?>
+          <?php if ($success): ?>
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <?php echo $success; ?>
+        </div>
+
+            <?php endif; ?>
+           <?php if ($error): ?>
+               <div class="alert alert-danger alert-dismissable">
+                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                   <?php echo $error; ?>
+               </div>
+            <?php endif; ?>
+
           <?php pre($order_data); ?>
           <br>
           <?php pre($order_detail_data); ?>
