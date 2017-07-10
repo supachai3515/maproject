@@ -48,20 +48,18 @@
       });
 
       if(is_selected !== true) {
-        console.log('please select product least one');
+        console.log('Please select product least one');
         return false;
       }
-      console.log('---->',selected_products);
+      console.log('save---->',selected_products);
       $http({
-              method: 'GET',
+              method: 'POST',
               url: '<?php echo base_url('tos_cal/save_order');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: selected_products
           }).success(function(data) {
-
+              console.log('response---->', data);
           });
-
-
     }
 
   });
