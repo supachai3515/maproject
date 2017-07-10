@@ -79,6 +79,14 @@ class Tos_cal extends BaseController {
       echo json_encode($info);
   }
 
+
+	public function get_cal_product()
+	{
+		$product_list = $this->session->userdata('product_list');
+		$data = $this->tos_cal_model->get_cal_product($product_list);
+		echo json_encode($data);
+	}
+
 	public function save_order()
 	{
 		$myObj = '[
