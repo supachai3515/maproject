@@ -146,8 +146,8 @@ class Tos_cal extends BaseController {
 			$tel = $this->session->userdata('info_tel');
 			$email = $this->session->userdata('info_email');
 			$data_info = array('name' => $name,'tel' => $tel,'email' => $email );
-			$product_list = json_decode($myObj);
-			//$product_list = json_decode(file_get_contents("php://input"));
+			//$product_list = json_decode($myObj);
+			$product_list = json_decode(file_get_contents("php://input"));
 
 			$order_id = $this->tos_cal_model->save_order($data_info ,$product_list);
 			if($order_id == "0"){

@@ -3,7 +3,6 @@
 
 app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $location) {
   var char_search = '';
-  $scope.order_step = 1;
   $scope.pm_list = ["1","2","3","4","5"];
   $scope.info_form = {};
   $scope.info = {};
@@ -11,7 +10,6 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
   $scope.products = [];
   $scope.selected_products = [];
   $scope.result_products_list = [];
-  $scope.result_cal_product = [];
 
   $scope.input_Select = function(val) {
     char_search = val;
@@ -30,7 +28,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
   }
     $scope.add_product_list = function(val) {
       $scope.products = [];
-      var item = $.extend({}, {'part_number': ''}, val, {'qty': 1}, $scope.order);
+      var item = $.extend({}, {'is_have_product': '0'}, val, {'qty': 1}, $scope.order);
       $scope.selected_products.push(item);
     }
     $scope.remove_product_list = function(idx) {
@@ -75,7 +73,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
           templateUrl: 'add_product_modal.html',
           controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
             $sc.add_new_product = function (model) {
-                var p_model = $.extend({}, {'part_number': ''}, model);
+                var p_model = $.extend({}, {'is_have_product': '1'}, {'part_number': ''}, model);
                 $scope.selected_products.push(p_model);
                 $uib.close();
             }
@@ -93,6 +91,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
               	"product_list": [
               		{
               			"brand_name": "Cissco",
+                    "is_have_product": "0",
               			"model": "SV3200",
               			"name": "1 MSA 1040 2Prt FC DC SFF Strg",
               			"part_number": "E7W00A",
@@ -104,6 +103,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
               		},
               		{
               			"brand_name": "Cissco",
+                    "is_have_product": "0",
               			"model": "MSA2042",
               			"name": "1 MSA 1040 2Prt 1G iSCSI DC LFF Strg",
               			"part_number": "E7W01A",
@@ -115,6 +115,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
               		},
               		{
               			"brand_name": "Cissco",
+                    "is_have_product": "0",
               			"model": "WS-C2960C",
               			"name": "1 MSA 1040 2Prt 1G iSCSI DC SFF Strg",
               			"part_number": "E7W02A",
@@ -148,9 +149,8 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
               url: '<?php echo base_url('tos_cal');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: model
-          }).success(function(data) {
-            $scope.order_step = 2;
-            $scope.result_cal_product = data;
+          }).success(function() {
+            window.location = '<?php echo base_url('/select_product');?>';
           });
     }
  });

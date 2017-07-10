@@ -47,172 +47,139 @@
     </header>
     <div class="container">
       <h2 class="page-header">Order</h2>
-      <div ng-if="order_step == 1">
-        <div class="flex-warp">
-          <div class="flex flex-100">
-            <div class="box-inner">
-              <form class="form-horizontal" name="info_form" role="form" action="" method="post">
-                <div class="form-group">
-                  <label for="email" class="col-md-4 control-label">Email<sup class="text-danger">*</sup></label>
-                  <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.email.$invalid)}">
-                    <input type="email" name="email" class="form-control" id="email" ng-model="info.email" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="name" class="col-md-4 control-label">Name/Company Name <sup class="text-danger">*</sup></label>
-                  <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.name.$invalid)}">
-                    <input type="text" name="name" class="form-control" id="name" ng-model="info.name" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="tel" class="col-md-4 control-label">Tel. <sup class="text-danger">*</sup></label>
-                  <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.tel.$invalid)}">
-                    <input type="tel" name="tel" class="form-control" id="tel" ng-model="info.tel" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="tel" class="col-md-4 control-label">Province <sup class="text-danger">*</sup></label>
-                  <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.province.$invalid)}">
-                    <select class="form-control" name="province" ng-model="order.province" required>
-                      <option value="">Select</option>
-                      <?php foreach ($province_list as $record): ?>
-                        <option value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
-                      <?php endforeach; ?>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="tel" class="col-md-4 control-label">PM <sup class="text-danger">*</sup></label>
-                  <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.pm.$invalid)}">
-                    <select class="form-control" name="pm" ng-model="order.pm" required>
-                      <option value="">Select</option>
-                      <option value="{{pm}}" ng-repeat="pm in pm_list">{{pm}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="tel" class="col-md-4 control-label">Contract <sup class="text-danger">*</sup></label>
-                  <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.contract.$invalid)}">
-                    <select class="form-control" name="contract" ng-model="order.contract" required>
-                      <option value="">Select</option>
-                      <?php foreach ($contract_list as $record): ?>
-                        <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
-                      <?php endforeach; ?>
-                    </select>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+      <div class="flex-warp">
         <div class="flex flex-100">
           <div class="box-inner">
-            <form class="form-horizontal" nrole="form" action="" method="">
+            <form class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Search Product</label>
-                <div class="col-md-5">
-                  <div class="input-group">
-                    <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)">
-                      <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
-                      <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
-                        <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select>
-                    <span class="input-group-btn">
-                      <button type="button" ng-click="search_product()" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search"></span>
-                      </button>
-                    </span>
-                  </div>
+                <label for="email" class="col-md-4 control-label">Email<sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.email.$invalid)}">
+                  <input type="email" name="email" class="form-control" id="email" ng-model="info.email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="col-md-4 control-label">Name/Company Name <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.name.$invalid)}">
+                  <input type="text" name="name" class="form-control" id="name" ng-model="info.name" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="tel" class="col-md-4 control-label">Tel. <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.tel.$invalid)}">
+                  <input type="tel" name="tel" class="form-control" id="tel" ng-model="info.tel" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="tel" class="col-md-4 control-label">Province <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.province.$invalid)}">
+                  <select class="form-control" name="province" ng-model="order.province" required>
+                    <option value="">Select</option>
+                    <?php foreach ($province_list as $record): ?>
+                      <option value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="tel" class="col-md-4 control-label">PM <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.pm.$invalid)}">
+                  <select class="form-control" name="pm" ng-model="order.pm" required>
+                    <option value="">Select</option>
+                    <option value="{{pm}}" ng-repeat="pm in pm_list">{{pm}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="tel" class="col-md-4 control-label">Contract <sup class="text-danger">*</sup></label>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.contract.$invalid)}">
+                  <select class="form-control" name="contract" ng-model="order.contract" required>
+                    <option value="">Select</option>
+                    <?php foreach ($contract_list as $record): ?>
+                      <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                    <?php endforeach; ?>
+                  </select>
                 </div>
               </div>
             </form>
           </div>
         </div>
-        <div class="table-wrap">
-          <div class="box-inner">
-            <p class="text-right"><button type="button" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th class="col-md-2">Part number</th>
-                  <th class="col-md-2">Name</th>
-                  <th class="col-md-2">Medel</th>
-                  <th class="col-md-1">QTY</th>
-                  <th class="col-md-2">Province</th>
-                  <th class="col-md-1">PM</th>
-                  <th class="col-md-1">Contract</th>
-                  <th class="col-md-1">Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="(idx, p) in selected_products track by idx">
-                  <td class="text-center">{{p.part_number || '-'}}</td>
-                  <td>{{p.name || '-'}}</td>
-                  <td class="text-center">{{p.model || '-'}}</td>
-                  <td>
-                    <input class="form-control text-center" type="number" name="selected_model_{{idx}}" value="{{p.qty}}" min="1">
-                  </td>
-                  <td>
-                    <select class="form-control" name="selected_province_{{idx}}">
-                      <?php foreach ($province_list as $record): ?>
-                        <option ng-selected="p.province == <?php echo $record->province_code ?>" value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
-                      <?php endforeach; ?>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control" name="selected_pm_{{idx}}">
-                      <option value="p.pm" ng-repeat="pm in pm_list" ng-selected="p.pm == pm">{{pm}}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control" name="selected_contract_{{idx}}">
-                      <?php foreach ($contract_list as $record): ?>
-                        <option ng-selected="p.contract == <?php echo $record->discount_of_contract_id ?>" value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
-                      <?php endforeach; ?>
-                    </select>
-                  </td>
-                  <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list(idx)"></i></td>
-                </tr>
-                <tr ng-if="!selected_products.length">
-                  <td colspan="8" class="text-center">-</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="submit-btn text-right"><button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button></p>
-        </div>
       </div>
-      <div ng-if="order_step == 2">
-        <div class="flex-warp">
-          <div class="flex flex-100">
-            <div class="box-inner">
-              <div class="form-horizontal" name="info_form" role="form" action="" method="post">
-                <div class="form-group">
-                  <label for="email" class="col-md-4 control-label">Email</label>
-                  <div class="col-md-5">-</div>
-                </div>
-                <div class="form-group">
-                  <label for="name" class="col-md-4 control-label">Name/Company Name</label>
-                  <div class="col-md-5">-</div>
-                </div>
-                <div class="form-group">
-                  <label for="tel" class="col-md-4 control-label">Tel.</label>
-                  <div class="col-md-5">-</div>
-                </div>
-              </div>
-              <div style="margin-bottom: 30px;" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
-                product id: {{key}}
-                <div style="margin-left: 30px;" ng-repeat="(idx, val) in value | groupBy: 'is_product_owner'">
-                  product type : {{idx == 0 ? 'vendor':'owner'}}
-                    <div style="margin-left: 50px;" ng-repeat="p in val">
-                      <p>{{p.type_name}}</p>
-                    </div>
+      <div class="flex flex-100">
+        <div class="box-inner">
+          <form class="form-horizontal" nrole="form" action="" method="">
+            <div class="form-group">
+              <label for="tel" class="col-md-4 control-label">Search Product</label>
+              <div class="col-md-5">
+                <div class="input-group">
+                  <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)">
+                    <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
+                      <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                  </ui-select>
+                  <span class="input-group-btn">
+                    <button type="button" ng-click="search_product()" class="btn btn-default">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
+      </div>
+      <div class="table-wrap">
+        <div class="box-inner">
+          <p class="text-right"><button type="button" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="col-md-2">Part number</th>
+                <th class="col-md-2">Name</th>
+                <th class="col-md-2">Medel</th>
+                <th class="col-md-1">QTY</th>
+                <th class="col-md-2">Province</th>
+                <th class="col-md-1">PM</th>
+                <th class="col-md-1">Contract</th>
+                <th class="col-md-1">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="(idx, p) in selected_products track by idx">
+                <td class="text-center">{{p.part_number || '-'}}</td>
+                <td>{{p.name || '-'}}</td>
+                <td class="text-center">{{p.model || '-'}}</td>
+                <td>
+                  <input class="form-control text-center" type="number" name="selected_model_{{idx}}" value="{{p.qty}}" min="1">
+                </td>
+                <td>
+                  <select class="form-control" name="selected_province_{{idx}}">
+                    <?php foreach ($province_list as $record): ?>
+                      <option ng-selected="p.province == <?php echo $record->province_code ?>" value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control" name="selected_pm_{{idx}}">
+                    <option value="p.pm" ng-repeat="pm in pm_list" ng-selected="p.pm == pm">{{pm}}</option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-control" name="selected_contract_{{idx}}">
+                    <?php foreach ($contract_list as $record): ?>
+                      <option ng-selected="p.contract == <?php echo $record->discount_of_contract_id ?>" value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                    <?php endforeach; ?>
+                  </select>
+                </td>
+                <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list(idx)"></i></td>
+              </tr>
+              <tr ng-if="!selected_products.length">
+                <td colspan="8" class="text-center">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="submit-btn text-right"><button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button></p>
       </div>
     </div>
 
