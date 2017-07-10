@@ -48,7 +48,7 @@
     <div class="container">
       <h2 class="page-header">Order</h2>
       <div class="flex-warp">
-        <div class="flex flex-70">
+        <div class="flex flex-100">
           <div class="box-inner">
             <form class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
@@ -100,26 +100,32 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Search Product</label>
-                <div class="col-md-5">
-                  <div class="input-group">
-                    <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)">
-                      <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
-                      <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
-                        <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
-                      </ui-select-choices>
-                    </ui-select>
-                    <span class="input-group-btn">
-                      <button type="button" ng-click="search_product()" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search"></span>
-                      </button>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </form>
           </div>
+        </div>
+      </div>
+      <div class="flex flex-100">
+        <div class="box-inner">
+          <form class="form-horizontal" nrole="form" action="" method="">
+            <div class="form-group">
+              <label for="tel" class="col-md-4 control-label">Search Product</label>
+              <div class="col-md-5">
+                <div class="input-group">
+                  <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)">
+                    <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
+                      <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
+                    </ui-select-choices>
+                  </ui-select>
+                  <span class="input-group-btn">
+                    <button type="button" ng-click="search_product()" class="btn btn-default">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div class="table-wrap">
@@ -173,7 +179,7 @@
             </tbody>
           </table>
         </div>
-        <p class="submit-btn text-right"><button type="button" class="btn btn-primary btn-lg" ng-click="submit_products(info_form, info)">Next</button></p>
+        <p class="submit-btn text-right"><button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button></p>
       </div>
     </div>
 

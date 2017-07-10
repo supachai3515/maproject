@@ -19,7 +19,6 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: {search: val}
           }).success(function(data) {
-            console.log(data);
             $scope.products = data;
           });
 
@@ -28,7 +27,6 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
     $scope.add_product_list = function(val) {
       $scope.products = [];
       var item = $.extend({}, {'part_number': ''}, val, {'qty': 1}, $scope.order);
-      console.log(item);
       $scope.selected_products.push(item);
     }
     $scope.remove_product_list = function(idx) {
@@ -84,25 +82,29 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q) {
       });
     }
 
-    $scope.submit_products = function(info_form, info_model) {
-      info_form.submited = true;
+    $scope.submit_products = function() {
+      var form = $scope.info_form;
+      var info_model = $scope.info;
+      form.submited = true;
 
-      if(info_form.$invalid) {
+      if(form.$invalid || !$scope.selected_products.length) {
+        var msg = info_form.$invalid ? 'กรุณากรอกข้อมูลให้ครบ' : 'กรุณาเพิ่มสินค้า';
         swal(
           '',
-          'กรุณากรอกข้อมูลให้ครบ',
+          msg,
           'warning'
         )
         return;
       }
-      if(!$scope.selected_products.length) {
-        swal(
-          '',
-          'กรุณาเพิ่มสินค้า',
-          'warning'
-        )
-        return;
-      }
+      var model = $.extend({}, info_model, {'products_list': $scope.selected_products});
+      $http({
+              method: 'POST',
+              url: '<?php echo base_url('tos_cal');?>',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+              data: model
+          }).success(function(data) {
+            console.log('----->', data);
+          });
     }
  });
 
