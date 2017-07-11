@@ -47,18 +47,22 @@
         }
       });
 
-      if(is_selected !== true) {
+      if(!is_selected) {
         console.log('Please select product least one');
         return false;
       }
-      console.log('save---->',selected_products);
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal/save_order');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: selected_products
           }).success(function(data) {
-              console.log('response---->', data);
+            if(data) {
+              var ref_id = data.order_id.ref_id;
+              if(ref_id !== undefined) {
+                  window.location = '<?php echo base_url('/order_complete?id=');?>'+ref_id;
+              }
+            }
           });
     }
 

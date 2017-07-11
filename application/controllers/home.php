@@ -26,7 +26,6 @@ class Home extends BaseController {
 	public function get_products()
 	{
 			$search_val = json_decode(file_get_contents("php://input"));
-      //$data = $this->home_model->get_products($search_val->search);
 			$data = $this->home_model->get_products_serach($search_val->search,0,10);
 			$products = json_encode($data);
 			print $products;

@@ -7,6 +7,7 @@ class Select_product extends BaseController {
 		parent::__construct();
 		//call model inti
     $this->load->model('initdata_model');
+		$this->load->model('select_product_model');
 	}
 
 	public function index()
