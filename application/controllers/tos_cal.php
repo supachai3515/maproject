@@ -203,15 +203,16 @@ class Tos_cal extends BaseController {
 		$this->load->view('order_public/special_price', $data);
 	}
 
-	public function order_detail()
+	public function order_detail($ref_id)
 	{
-		$ref_id = json_decode(file_get_contents("php://input"));
-		$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id->$id);
+		$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id);
 		if(isset($order_id)){
 				//set status special_price
 				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
 				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-				echo json_encode($data);
+				$result = array( 'order' => $data['order_data'],
+				 								 'order_detail' => $data['order_detail_data'] );
+				echo json_encode($result);
 		} else {
 		}
 	}
