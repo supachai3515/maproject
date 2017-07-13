@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	var app = angular.module("mainApp", ['ui.bootstrap', 'ui.select', 'ngSanitize','angular.filter']);
+	var app = angular.module("mainApp", ['ui.bootstrap', 'ui.select', 'ngSanitize','angular.filter', 'angular-loading-bar', 'ngAnimate']);
 	app.controller("mainCtrl", function($scope, $http, $uibModal, $log) {
 	    //code
 	});
