@@ -84,66 +84,11 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
       });
     }
 
-    var dummy_data = {
-              	"email": "abc@gmail.com",
-              	"name": "Tony Stark",
-              	"tel": "123456789",
-              	"product_list": [
-              		{
-              			"brand_name": "Cissco",
-                    "is_have_product": "0",
-              			"model": "SV3200",
-              			"name": "1 MSA 1040 2Prt FC DC SFF Strg",
-              			"part_number": "E7W00A",
-              			"product_owner_id": "2",
-              			"province": "10",
-              			"contract": "2",
-              			"pm": "2",
-              			"qty": 1
-              		},
-              		{
-              			"brand_name": "Cissco",
-                    "is_have_product": "0",
-              			"model": "MSA2042",
-              			"name": "1 MSA 1040 2Prt 1G iSCSI DC LFF Strg",
-              			"part_number": "E7W01A",
-              			"product_owner_id": "3",
-              			"province": "10",
-              			"contract": "2",
-              			"pm": "2",
-              			"qty": 1
-              		},
-              		{
-              			"brand_name": "Cissco",
-                    "is_have_product": "0",
-              			"model": "WS-C2960C",
-              			"name": "1 MSA 1040 2Prt 1G iSCSI DC SFF Strg",
-              			"part_number": "E7W02A",
-              			"product_owner_id": "4",
-              			"province": "10",
-              			"contract": "2",
-              			"pm": "2",
-              			"qty": 1
-              		}
-              	]
-              }
-
     $scope.submit_products = function() {
       var form = $scope.info_form;
       var info_model = $scope.info;
-      //form.submited = true;
 
-      // if(form.$invalid || !$scope.selected_products.length) {
-      //   var msg = info_form.$invalid ? 'กรุณากรอกข้อมูลให้ครบ' : 'กรุณาเพิ่มสินค้า';
-      //   swal(
-      //     '',
-      //     msg,
-      //     'warning'
-      //   )
-      //   return;
-      // }
-      var model = $.extend({}, dummy_data);
-      //var model = $.extend({}, info_model, {'product_list': $scope.selected_products});
+      var model = $.extend({}, info_model, {'product_list': $scope.selected_products});
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal');?>',
