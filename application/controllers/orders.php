@@ -36,11 +36,11 @@ class Orders extends BaseController {
 
       $data['content'] = 'orders/orders_view';
       //if script file
-      //$data['script_file'] = 'js/orders_js';
-  		$data['header'] = array('title' => 'Product Brand | '.$this->config->item('sitename'),
-              								'description' =>  'Product Brand | '.$this->config->item('tagline'),
+      $data['script_file'] = 'js/orders_js';
+  		$data['header'] = array('title' => 'Orders | '.$this->config->item('sitename'),
+              								'description' =>  'Orders | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
-              								'keyword' => 'Product Brand');
+              								'keyword' => 'Orders');
   		$this->load->view('template/layout_main', $data);
     }
     else {
@@ -60,10 +60,10 @@ class Orders extends BaseController {
         $data['content'] = 'orders/orders_add_view';
         //if script file
         //$data['script_file'] = 'js/orders_js';
-  		  $data['header'] = array('title' => 'Add Product Brand | '.$this->config->item('sitename'),
-              								'description' =>  'Add Product Brand | '.$this->config->item('tagline'),
+  		  $data['header'] = array('title' => 'Add Orders | '.$this->config->item('sitename'),
+              								'description' =>  'Add Orders | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
-              								'keyword' => 'Product Brand');
+              								'keyword' => 'Orders');
   		  $this->load->view('template/layout_main', $data);
     }
     else {
@@ -99,10 +99,10 @@ class Orders extends BaseController {
         $data['content'] = 'orders/orders_info_view';
         //if script file
         //$data['script_file'] = 'js/orders_js';
-        $data['header'] = array('title' => 'View Product Brand | '.$this->config->item('sitename'),
-                              'description' =>  'View Product Brand | '.$this->config->item('tagline'),
+        $data['header'] = array('title' => 'View Orders | '.$this->config->item('sitename'),
+                              'description' =>  'View Orders | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
-                              'keyword' => 'Product Brand');
+                              'keyword' => 'Orders');
         $this->load->view('template/layout_main', $data);
     }
     else {
@@ -143,7 +143,7 @@ class Orders extends BaseController {
 
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'Add Product Brand created successfully');
+                  $this->session->set_flashdata('success', 'Add Orders created successfully');
               }
               else
               {
@@ -184,10 +184,10 @@ class Orders extends BaseController {
         $data['content'] = 'orders/orders_edit_view';
         //if script file
         //$data['script_file'] = 'js/orders_js';
-  		  $data['header'] = array('title' => 'Add Product Brand | '.$this->config->item('sitename'),
-              								'description' =>  'Add Product Brand | '.$this->config->item('tagline'),
+  		  $data['header'] = array('title' => 'Add Orders | '.$this->config->item('sitename'),
+              								'description' =>  'Add Orders | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
-              								'keyword' => 'Product Brand');
+              								'keyword' => 'Orders');
   		  $this->load->view('template/layout_main', $data);
     }
     else {
@@ -230,7 +230,7 @@ class Orders extends BaseController {
 
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'Edit Product Brand Update successfully');
+                  $this->session->set_flashdata('success', 'Edit Orders Update successfully');
               }
               else
               {

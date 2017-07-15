@@ -1,5 +1,5 @@
 <script type="text/javascript">
-	var app = angular.module("mainApp", ['ui.bootstrap', 'ui.select', 'ngSanitize','angular.filter', 'angular-loading-bar', 'ngAnimate']);
+	var app = angular.module("mainApp", ['ui.bootstrap', 'ui.select', 'ngSanitize','angular.filter', 'angular-loading-bar', 'ngAnimate','ngTable']);
 	app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.latencyThreshold = 100;
   }])

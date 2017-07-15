@@ -1,14 +1,14 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" ng-controller="orders_ctrl">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Product brand
+      Orders
       <small>ยี่ห้อ สินค้า</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Product brand</li>
+      <li class="active">Orders</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -24,7 +24,7 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                  <h3 class="box-title">Product brand List</h3>
+                  <h3 class="box-title">Orders List</h3>
                   <div class="box-tools">
                       <form action="<?php echo base_url() ?>orders" method="POST" id="searchList">
                           <div class="input-group">
@@ -40,20 +40,38 @@
                 <table class="table table-hover">
                     <tr>
                       <th>รหัส</th>
-                      <th>ชื่อ</th>
-                      <th>รายละเอียด</th>
-                      <th>วันที่สร้าง</th>
-                      <th>วันที่แก้ไข</th>
+                      <th>Company</th>
+                      <th>email</th>
+                      <th>tel</th>
+                      <th>qty</th>
+                      <th>total</th>
                       <th>สถานะ</th>
+                      <th>Assign by</th>
+                      <th>Assign to</th>
+                      <th>วันที่</th>
+                      <th>ใช้งาน</th>
                       <th class="text-center">Actions</th>
                     </tr>
                     <?php foreach ($orders_list as $record): ?>
                     <tr>
-                      <td><?php echo $record->orders_id ?></td>
-                      <td><?php echo $record->name ?></td>
-                      <td><?php echo $record->description ?></td>
-                      <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span></td>
-                      <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>
+                      <td>#<?php echo $record->order_id ?></td>
+                      <td><?php echo $record->company ?></td>
+                      <td><?php echo $record->email ?></td>
+                      <td><?php echo $record->tel ?></td>
+                      <td><?php echo $record->qty ?></td>
+                      <td><?php echo  number_format($record->total,0)  ?></td>
+                      <td><?php echo $record->status_name ?></td>
+                      <td>
+                        <?php echo $record->assign_by_name ?><br>
+                        <span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->assign_by_date));?></span>
+                      </td>
+                      <td>
+                        <?php echo $record->assign_to_name ?><br>
+                        <span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->assign_to_date));?></span>
+                      </td>
+                      <td>
+                        <span>สร้าง : <i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span><br>
+                        <span>แก้ไข : <i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>
                       <td>
                           <?php if ($record->is_active=="1"): ?>
                               <span><i class="fa fa-check"></i> ใช้งาน</span>
@@ -62,8 +80,8 @@
                           <?php endif ?>
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'orders/edit/'.$record->orders_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'orders/view/'.$record->orders_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'orders/edit/'.$record->order_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'orders/view/'.$record->order_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       </td>
                     </tr>
                     <?php endforeach; ?>
@@ -73,6 +91,32 @@
                   <?php if(isset($links_pagination)) {echo $links_pagination;} ?>
               </div>
             </div><!-- /.box -->
+          </div>
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-body table-responsive">
+                <div class="table-responsive">
+                   <button ng-click="tableParams.sorting({})" class="btn btn-info pull-right">Clear การเรียงลำดับ</button>
+                     <table ng-table="tableParams" class="table table-striped">
+                        <tr ng-repeat="p in $data">
+                            <td data-title="'รหัส'" sortable="'order_id'" align="" >
+                                {{p.order_id}}
+                            </td>
+                            <td data-title="'Company'" sortable="'company'" align="">
+                                {{p.company}}
+                            </td>
+                            <td data-title="'email'" sortable="'email'" align="">
+                                {{p.email}}
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-sm btn-warning" href="<?php echo base_url().'orders/edit/';?> {{p.order_id}}" ><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a class="btn btn-sm btn-info" href="<?php echo base_url().'orders/view/';?>{{p.order_id}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            </td>
+                          </tr>
+                     </table>
+                  </div>
+                </div>
+            </div>
           </div>
       </div>
   </section>
