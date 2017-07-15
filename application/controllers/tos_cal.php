@@ -159,7 +159,7 @@ class Tos_cal extends BaseController {
 				$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
 				echo json_encode($result);
 				//sendmail
-	      $data['email'] = $email;
+	      $data['email'] = $email;// toemail
 				$data['template'] = "email/send_order";
 				$data['subject'] = "Tos Order";
 				$data['bcc_mail'] = "supachai.wi@gmail.com";
