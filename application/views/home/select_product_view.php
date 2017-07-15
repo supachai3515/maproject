@@ -47,7 +47,32 @@
       <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
     </header>
     <div class="container">
-      <h2 class="page-header">Order</h2>
+      <div class="step">
+        <div class="step-inner">
+            <div class="connecting-line"></div>
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation">
+                <a href="#" role="tab">
+                  <span class="round-tab"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                </a>
+              </li>
+              <li role="presentation" class="active">
+                  <a href="#"  role="tab">
+                      <span class="round-tab">
+                          <i class="fa fa-check-square" aria-hidden="true"></i>
+                      </span>
+                  </a>
+              </li>
+              <li role="presentation">
+                  <a href="#" title="Complete">
+                      <span class="round-tab">
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                      </span>
+                  </a>
+              </li>
+            </ul>
+        </div>
+      </div>
       <div class="flex-warp">
         <div class="flex flex-100">
           <div class="box-inner">

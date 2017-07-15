@@ -96,6 +96,12 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
               data: model
           }).success(function() {
             window.location = '<?php echo base_url('/select_product');?>';
+          }).error(function (error){
+            swal(
+              'Error!',
+              'Technical error please contact the administrator',
+              'error'
+            )
           });
     }
  });

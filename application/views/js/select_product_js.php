@@ -48,7 +48,11 @@
       });
 
       if(!is_selected) {
-        console.log('Please select product least one');
+        swal(
+          '',
+          'Please select product least one',
+          'warning'
+        )
         return false;
       }
       $http({
@@ -57,14 +61,20 @@
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: selected_products
           }).success(function(data) {
-            console.log('----', data);
             if(data) {
               var ref_id = data.order_id.ref_id;
               if(ref_id !== undefined) {
                   window.location = '<?php echo base_url('/order_complete?id=');?>'+ref_id;
               }
             }
-          })
+          }).error(function (err){
+            console.log(err);
+            swal(
+              'Error!',
+              'Technical error please contact the administrator',
+              'error'
+            )
+          });
     }
 
   });

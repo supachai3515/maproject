@@ -42,10 +42,8 @@
     justify-content: center;
 }
 .flex{
+  margin-bottom: 20px;
   width: 100%;
-}
-.flex,.table-wrap{
-	padding: 15px;
 }
 .box-inner{
 	padding: 20px;
@@ -126,4 +124,102 @@
 .table-order .total-num { font-size: 18px;}
 .table-order .total-num span {
   font-weight: bold;
+}
+
+/*Order Step*/
+.step {
+    margin: 20px auto;
+    background: #fff;
+}
+
+    .step .nav-tabs {
+        position: relative;
+        margin: 40px auto;
+        margin-bottom: 0;
+        border-bottom-color: #e0e0e0;
+    }
+
+    .step > div.step-inner {
+        position: relative;
+    }
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 70%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.step  span.round-tab {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+.step  span.round-tab i{
+    color:#555555;
+}
+.step li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #5bc0de;
+
+}
+.step li.active span.round-tab i{
+    color: #5bc0de;
+}
+
+.step .nav-tabs > li {
+    width: 33.333%;
+}
+
+.step .nav-tabs > li a {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+    cursor: default;
+}
+
+.step .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.step h3 {
+    margin-top: 0;
+}
+
+@media( max-width : 585px ) {
+
+    .step {
+        width: 90%;
+        height: auto !important;
+    }
+
+    .step span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .step .nav-tabs > li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
 }
