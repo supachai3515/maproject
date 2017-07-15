@@ -65,14 +65,16 @@
                 <div class="col-md-5"><p class="form-control-static">{{info.tel || '-'}}</p></div>
               </div>
             </div>
-            <div style="margin-bottom: 30px;" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
-              product : {{$index}}
-              <ul style="margin-left: 30px;" ng-repeat="(idx, val) in value | groupBy: 'is_product_owner'">
-                  <li style="padding: 10px; margin: 0 0 10px 30px; list-style-type: none; background-color: #ddd;" ng-repeat="p in val">
-                    <div class="radio">
+            <div class="prodiucts_list" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
+              <strong>product : {{$index+1}}</strong>
+              <ul ng-repeat="(idx, val) in value | groupBy: 'is_product_owner'">
+                  <li ng-repeat="p in val">
+                    <div class="radio rodiucts_item">
                       <label for="product_{{key}}_{{idx}}_{{$index}}"><input type="radio" name="produc_{{key}}" id="product_{{key}}_{{idx}}_{{$index}}" ng-click="update_product_select(key, p)" ng-checked="p.selected"></label>
-                      <p>Type: {{p.type_name}}</p>
-                      <p>Description: {{p.type_description}}</p>
+                      <div class="prodiucts_detail">
+                        <p><strong>Type:</strong>  {{p.type_name}}</p>
+                        <p><strong>Description:</strong>  {{p.type_description}}</p>
+                      </div>
                     </div>
                   </li>
               </ul>

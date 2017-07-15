@@ -51,7 +51,104 @@
       <div class="flex-warp">
         <div class="flex flex-100">
           <div class="box-inner">
-            <p>Order Compleate</p>
+            <div class="order_box">
+              <h3 class="header_order">Order Info</h3>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-md-5 control-label">Email</label>
+                  <div class="col-md-7">
+                    <p class="form-control-static">{{order_info.email}}</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-5 control-label">Name/Company Name</label>
+                  <div class="col-md-7">
+                    <p class="form-control-static">{{order_info.company}}</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-5 control-label">Tel</label>
+                  <div class="col-md-7">
+                    <p class="form-control-static">{{order_info.tel}}</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="order_box">
+              <h3 class="header_order">Order Detail</h3>
+              <div class="order_detail" ng-repeat="(idx, p) in order_detail track by idx">
+                <div class="order_title">
+                  <h4>Product: <span class="text-primary">{{p.product_name}}</span></h4>
+                </div>
+                <table class="table table-striped table-order">
+                  <tbody>
+                    <tr>
+                      <td>Part Number</td>
+                      <td>{{p.part_number}}</td>
+                    </tr>
+                    <tr>
+                      <td>Type</td>
+                      <td>{{p.type_name}}</td>
+                    </tr>
+                    <tr>
+                      <td>Product Name</td>
+                      <td>{{p.product_name}}</td>
+                    </tr>
+                    <tr>
+                      <td>Product Description</td>
+                      <td>{{p.product_description}}</td>
+                    </tr>
+                    <tr>
+                      <td>Full Price</td>
+                      <td>{{p.full_price}}</td>
+                    </tr>
+                    <tr>
+                      <td>Dealer Price</td>
+                      <td>{{p.dealer_price}}</td>
+                    </tr>
+                    <tr>
+                      <td>Discount Of Contract</td>
+                      <td>{{p.discount_of_contract_value}}</td>
+                    </tr>
+                    <tr>
+                      <td>Discount Of QTY</td>
+                      <td>{{p.discount_of_qty_value}}</td>
+                    </tr>
+                    <tr>
+                      <td>discount sla type value</td>
+                      <td>{{p.discount_sla_type_value}}</td>
+                    </tr>
+                    <tr>
+                      <td>lb year qty</td>
+                      <td>{{p.lb_year_qty}}</td>
+                    </tr>
+                    <tr>
+                      <td>lb year val</td>
+                      <td>{{p.lb_year_value}}</td>
+                    </tr>
+                    <tr>
+                      <td>จังหวัด</td>
+                      <td>{{p.province_name}}</td>
+                    </tr>
+                    <tr>
+                      <td>QTY</td>
+                      <td>{{p.qty}}</td>
+                    </tr>
+                    <tr>
+                      <td>pm time qty</td>
+                      <td>{{p.pm_time_qty}}</td>
+                    </tr>
+                    <tr>
+                      <td>pm time val</td>
+                      <td>{{p.pm_time_value}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="total-num"><strong>Total:</strong> {{p.total | number : 2}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

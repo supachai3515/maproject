@@ -1,6 +1,8 @@
 
 <script type="text/javascript">
   app.controller("order_complete_ctrl", function($scope, $http) {
+    $scope.order_info = {};
+    $scope.order_detail = [];
     function getQueryVariable(variable) {
        var query = window.location.search.substring(1);
        var vars = query.split("&");
@@ -18,7 +20,11 @@
             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
             data: {id:ref_id}
         }).success(function(data) {
-          console.log('=====', data);
+          if(data) {
+            console.log(data);
+            $scope.order_info = data.order;
+            $scope.order_detail = data.order_detail;
+          }
         });
   });
 </script>
