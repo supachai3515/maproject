@@ -48,24 +48,70 @@
 											<tbody>
 												<tr>
 													<td style="padding:0 3.358%;font-size:15px;color:#555;line-height:24px">
-														<div style="min-height:28px"></div>
 														<div style="padding:24px 3.6% 24px;background:#fff;border:1px solid #e3e5e1">
-															<table cellpadding="0" cellspacing="0" style="width:100%;margin:0;padding:0">
+															<p style="font-weight: bold; font-size: 20px; border-bottom: 1px solid#333;">Order Info</p>
+															<table style="width: 100%;">
 																<tbody>
 																	<tr>
-																		<td align="center">
-																			<div style="width:100%">
-																				<b>Hi, <?php echo $data["name"]; ?></b>! <span class="il"><?php echo $data["tel"]; ?></span>
-																				<div style="min-height:20px"></div>
-																				<div style="width:100%">
-																					<p>TEST</p>
-																				</div>
-																				<div style="min-height:28px"></div>
-																			</div>
-																		</td>
+																		<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Email:</td>
+																		<td style="width: 50%;"><?php echo $order_data['email']; ?></td>
+																	</tr>
+																	<tr>
+																		<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Name / Company Name:</td>
+																		<td style="width: 50%;"><?php echo $order_data['company']; ?></td>
+																	</tr>
+																	<tr>
+																		<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Tel:</td>
+																		<td style="width: 50%;"><?php echo $order_data['tel']; ?></td>
 																	</tr>
 																</tbody>
 															</table>
+															<p style="font-weight: bold; font-size: 20px; border-bottom: 1px solid#333;">Order Detail</p>
+															<?php foreach ($order_detail_data as $model): ?>
+																<div style="padding: 10px;margin-bottom: 10px;box-shadow: 0 2px 2px rgba(10,16,20,.24),0 0 2px rgba(10,16,20,.12);">
+																	<p style="margin-bottom: 30px;padding-left: 10px;border-left: 3px solid #1779ba;">Product: <span style="color: #428bca;"><?php echo $model['product_name'] ?></span></p>
+																	<table style="width: 100%;">
+																		<tbody>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Part Number:</td>
+																				<td style="width: 50%;"><?php echo $model['part_number']; ?></td>
+																			</tr>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Type:</td>
+																				<td style="width: 50%;"><?php echo $model['type_name']; ?></td>
+																			</tr>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Product Name:</td>
+																				<td style="width: 50%;"><?php echo $model['product_name']; ?></td>
+																			</tr>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Full Price:</td>
+																				<td style="width: 50%;"><?php echo $model['full_price']; ?></td>
+																			</tr>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">lb year qty:</td>
+																				<td style="width: 50%;"><?php echo $model['lb_year_qty']; ?></td>
+																			</tr>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">จังหวัด:</td>
+																				<td style="width: 50%;"><?php echo $model['province_name']; ?></td>
+																			</tr>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">QTY:</td>
+																				<td style="width: 50%;"><?php echo $model['qty']; ?></td>
+																			</tr>
+																			<tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">pm time qty:</td>
+																				<td style="width: 50%;"><?php echo $model['pm_time_qty']; ?></td>
+																			</tr>
+																			<tr>
+																				<td colspan="2" style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Total: <span style="font-weight: normal;"><?php echo $model['total']; ?></span></td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+															<?php endforeach; ?>
+															<p style="text-align: center;"><a style="display: inline-block;color: #fff;background-color: #5bc0de;border-color: #46b8da;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;vertical-align: middle;cursor: pointer;text-decoration: none;border-radius: 4px;" href="tos_cal/special_price/<?php echo $order_data['ref_id']; ?>">Get Special Price</a></p>
 														</div>
 													</td>
 												</tr>

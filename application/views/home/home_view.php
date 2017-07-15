@@ -58,16 +58,12 @@
               </li>
               <li role="presentation">
                   <a href="#"  role="tab">
-                      <span class="round-tab">
-                          <i class="fa fa-check-square" aria-hidden="true"></i>
-                      </span>
+                      <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
                   </a>
               </li>
               <li role="presentation">
                   <a href="#" title="Complete">
-                      <span class="round-tab">
-                          <i class="fa fa-check" aria-hidden="true"></i>
-                      </span>
+                      <span class="round-tab"><i class="fa fa-check" aria-hidden="true"></i></span>
                   </a>
               </li>
             </ul>
@@ -101,7 +97,7 @@
                   <select class="form-control" name="province" ng-model="order.province" required>
                     <option value="">Select</option>
                     <?php foreach ($province_list as $record): ?>
-                      <option value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
+                      <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>

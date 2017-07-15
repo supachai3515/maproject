@@ -162,19 +162,21 @@ class Tos_cal extends BaseController {
 	      $data['email'] = $email;// toemail
 				$data['template'] = "email/send_order";
 				$data['subject'] = "Tos Order";
-				$data['bcc_mail'] = "supachai.wi@gmail.com";
+				$data['bcc_mail'] = "winchesterbee@gmail.com";
 				$data['name'] = $name;
 				$data['tel'] = $tel;
+				$this->load->view('email/send_order', $data);
+
 
 				//sendmail
-				$sendStatus = send_emali_template($data);
-				if($sendStatus){
-						$status = "send";
-						setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
-				} else {
-						$status = "notsend";
-						setFlashData($status, "Email has been failed, try again.");
-				}
+				//$sendStatus = send_emali_template($data);
+				//if($sendStatus){
+				//		$status = "send";
+				//		setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
+				//} else {
+				//		$status = "notsend";
+				//		setFlashData($status, "Email has been failed, try again.");
+				//}
 
 			}
 
@@ -183,6 +185,24 @@ class Tos_cal extends BaseController {
 			$result = array('status' => 'error', 'data'=> '');
 			echo json_encode($result);
 		}
+
+	}
+
+	public function test_email($order_id)
+	{
+		$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+		$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+		//$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
+		//echo json_encode($result);
+		//sendmail
+		$data['email'] = 'dddd';
+		$data['template'] = "email/send_order";
+		$data['subject'] = "Tos Order";
+		$data['bcc_mail'] = "winchesterbee@gmail.com";
+		$data['name'] = 'sdgfaswe';
+		$data['tel'] = 'zsdfz';
+		$this->load->view('email/send_order', $data);
+
 
 	}
 
@@ -201,6 +221,13 @@ class Tos_cal extends BaseController {
 		}
 
 		$this->load->view('order_public/special_price', $data);
+	}
+
+
+	public function save_special_price($ref_id)
+	{
+		//error message
+		# code...
 	}
 
 	public function order_detail()

@@ -58,9 +58,7 @@
               </li>
               <li role="presentation" class="active">
                   <a href="#"  role="tab">
-                      <span class="round-tab">
-                          <i class="fa fa-check-square" aria-hidden="true"></i>
-                      </span>
+                      <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
                   </a>
               </li>
               <li role="presentation">
@@ -97,8 +95,16 @@
                     <div class="radio rodiucts_item">
                       <label for="product_{{key}}_{{idx}}_{{$index}}"><input type="radio" name="produc_{{key}}" id="product_{{key}}_{{idx}}_{{$index}}" ng-click="update_product_select(key, p)" ng-checked="p.selected"></label>
                       <div class="prodiucts_detail">
-                        <p><strong>Type:</strong>  {{p.type_name}}</p>
-                        <p><strong>Description:</strong>  {{p.type_description}}</p>
+                        <p><strong>Type :</strong>   {{p.type_name || '-'}}</p>
+                        <p><strong>Description :</strong>   {{p.type_description || '-'}}</p>
+                        <p><strong>Full Price :</strong>   {{p.full_price || '-'}}</p>
+                        <p><strong>จังหวัด :</strong>   {{p.province_name || '-'}}</p>
+                        <p><strong>QTY :</strong>   {{p.qty || '-'}}</p>
+                        <p><strong>lb year qty :</strong>   {{p.lb_year_qty || '-'}}</p>
+                        <p><strong>lb year value :</strong>   {{p.lb_year_value || '-'}}</p>
+                        <p><strong>pm time qty :</strong>   {{p.pm_time_qty || '-'}}</p>
+                        <p><strong>pm time value :</strong>   {{p.pm_time_value || '-'}}</p>
+                        <p><strong>total :</strong>   {{p.total | number: 2 || '-'}}฿</p>
                       </div>
                     </div>
                   </li>

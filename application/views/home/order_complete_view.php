@@ -58,9 +58,7 @@
               </li>
               <li role="presentation">
                   <a href="#"  role="tab">
-                      <span class="round-tab">
-                          <i class="fa fa-check-square" aria-hidden="true"></i>
-                      </span>
+                      <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
                   </a>
               </li>
               <li role="presentation" class="active">

@@ -93,7 +93,7 @@
   -ms-flex-align: center;
   align-items: center;
 }
-.prodiucts_detail{padding-left: 10px;}
+.prodiucts_detail{padding-left: 30px;}
 
 /*Order Complete*/
 .order_box:not(:last-child) {
