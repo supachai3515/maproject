@@ -165,7 +165,7 @@ class Tos_cal extends BaseController {
 				$data['bcc_mail'] = "winchesterbee@gmail.com";
 				$data['name'] = $name;
 				$data['tel'] = $tel;
-				$this->load->view('email/send_order', $data);
+				//$this->load->view('email/send_order', $data);
 
 
 				//sendmail
