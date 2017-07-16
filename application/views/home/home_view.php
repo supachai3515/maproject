@@ -140,7 +140,7 @@
                     </ui-select-choices>
                   </ui-select>
                   <span class="input-group-btn">
-                    <button type="button" ng-click="search_product()" class="btn btn-default">
+                    <button type="button" ng-click="search_product()" class="btn btn-default" ng-disabled="info_form.$invalid">
                       <span class="glyphicon glyphicon-search"></span>
                     </button>
                   </span>

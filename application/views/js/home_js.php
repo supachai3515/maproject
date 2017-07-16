@@ -99,6 +99,16 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
         return false;
       }
 
+      if(!$scope.selected_products.length) {
+        swal(
+          '',
+          'เพิ่มสินค้าอย่างน้อย 1 อย่าง',
+          'warning'
+        )
+        return false;
+      }
+
+
       var model = $.extend({}, info_model, {'product_list': $scope.selected_products});
 
       $http({
