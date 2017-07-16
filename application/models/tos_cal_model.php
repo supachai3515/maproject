@@ -162,7 +162,7 @@ class Tos_cal_model extends CI_Model {
         $sql =  $sql." UNION ";
       }
 		}
-		print($sql);
+		//print($sql);
 
     $query = $this->db->query($sql);
     $result = $query->result();
