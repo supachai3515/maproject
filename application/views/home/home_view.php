@@ -75,25 +75,25 @@
             <form class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
                 <label for="email" class="col-md-4 control-label">Email<sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.email.$invalid)}">
+                <div class="col-md-5" ng-class="{'has-error': info_form.$submitted && info_form.email.$invalid}">
                   <input type="email" name="email" class="form-control" id="email" ng-model="info.email" required>
                 </div>
               </div>
               <div class="form-group">
                 <label for="name" class="col-md-4 control-label">Name/Company Name <sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.name.$invalid)}">
+                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.name.$invalid)}">
                   <input type="text" name="name" class="form-control" id="name" ng-model="info.name" required>
                 </div>
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Tel. <sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.tel.$invalid)}">
+                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.tel.$invalid)}">
                   <input type="tel" name="tel" class="form-control" id="tel" ng-model="info.tel" required>
                 </div>
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Province <sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.province.$invalid)}">
+                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.province.$invalid)}">
                   <select class="form-control" name="province" ng-model="order.province" required>
                     <option value="">Select</option>
                     <?php foreach ($province_list as $record): ?>
@@ -104,7 +104,7 @@
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">PM <sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.pm.$invalid)}">
+                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.pm.$invalid)}">
                   <select class="form-control" name="pm" ng-model="order.pm" required>
                     <option value="">Select</option>
                     <option value="{{pm}}" ng-repeat="pm in pm_list">{{pm}}</option>
@@ -113,7 +113,7 @@
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Contract <sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': (info_form.submited && info_form.contract.$invalid)}">
+                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.contract.$invalid)}">
                   <select class="form-control" name="contract" ng-model="order.contract" required>
                     <option value="">Select</option>
                     <?php foreach ($contract_list as $record): ?>
@@ -133,7 +133,7 @@
               <label for="tel" class="col-md-4 control-label">Search Product</label>
               <div class="col-md-5">
                 <div class="input-group">
-                  <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)">
+                  <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)" search-enabled="!info_form.$invalid" ng-disabled="info_form.$invalid">
                     <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
                     <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
                       <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
@@ -177,7 +177,7 @@
                 <td>
                   <select class="form-control" name="selected_province_{{idx}}">
                     <?php foreach ($province_list as $record): ?>
-                      <option ng-selected="p.province == <?php echo $record->province_code ?>" value="<?php echo $record->province_code ?>"><?php echo $record->province_name ?></option>
+                      <option ng-selected="p.province == <?php echo $record->province_id ?>" value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
                     <?php endforeach; ?>
                   </select>
                 </td>

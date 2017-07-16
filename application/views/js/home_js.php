@@ -28,7 +28,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
   }
     $scope.add_product_list = function(val) {
       $scope.products = [];
-      var item = $.extend({}, {'is_have_product': '0'}, val, {'qty': 1}, $scope.order);
+      var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': 1}, $scope.order);
       $scope.selected_products.push(item);
     }
     $scope.remove_product_list = function(idx) {
@@ -73,7 +73,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
           templateUrl: 'add_product_modal.html',
           controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
             $sc.add_new_product = function (model) {
-                var p_model = $.extend({}, {'is_have_product': '1'}, {'part_number': ''}, model);
+                var p_model = $.extend({}, {'is_have_product': '0'}, {'part_number': ''}, model);
                 $scope.selected_products.push(p_model);
                 $uib.close();
             }
@@ -88,7 +88,19 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
       var form = $scope.info_form;
       var info_model = $scope.info;
 
+      form.$submitted = true;
+
+      if(form.$invalid) {
+        swal(
+          '',
+          'กรอกข้อมูลไม่ครบ หรือ กรอกข้อมูลไม่สมบูรณ์',
+          'warning'
+        )
+        return false;
+      }
+
       var model = $.extend({}, info_model, {'product_list': $scope.selected_products});
+
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal');?>',

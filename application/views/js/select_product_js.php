@@ -26,6 +26,7 @@
         $.each(values[1].data, function(idx, val) {
           val.selected = false;
         });
+        console.log('----->', values[1].data);
         $scope.result_cal_product = values[1].data;
     });
 
