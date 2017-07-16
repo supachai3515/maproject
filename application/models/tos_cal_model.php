@@ -112,7 +112,7 @@ class Tos_cal_model extends CI_Model {
 						          pv.description type_des,
 						          pv.dealer_price,
 						          t.min discount_sla_type_value,
-						          pv.dealer_price + (pv.dealer_price * t.min) total
+						          pv.dealer_price + (pv.dealer_price * t.min)/100 total
 						   FROM product_vendor pv
 						   INNER JOIN product_owner pw ON pv.model = pw.model, discount_sla_type t
 						   WHERE pw.product_owner_id = $product->product_owner_id
@@ -162,6 +162,7 @@ class Tos_cal_model extends CI_Model {
         $sql =  $sql." UNION ";
       }
 		}
+		print($sql);
 
     $query = $this->db->query($sql);
     $result = $query->result();
