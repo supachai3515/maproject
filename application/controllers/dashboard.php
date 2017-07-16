@@ -14,7 +14,7 @@ class Dashboard extends BaseController {
 	public function index()
 	{
     $data['global'] = $this->global;
-    $data['menu_id'] ='1';
+    $data['menu_id'] ='2';
 		$data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access'])
