@@ -49,29 +49,6 @@ class Orders extends BaseController {
     }
   }
 
-  function add()
-  {
-    $data['global'] = $this->global;
-    $data['menu_id'] ='15';
-		$data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
-    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
-    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
-    {
-        $data['content'] = 'orders/orders_add_view';
-        //if script file
-        //$data['script_file'] = 'js/orders_js';
-  		  $data['header'] = array('title' => 'Add Orders | '.$this->config->item('sitename'),
-              								'description' =>  'Add Orders | '.$this->config->item('tagline'),
-              								'author' => $this->config->item('author'),
-              								'keyword' => 'Orders');
-  		  $this->load->view('template/layout_main', $data);
-    }
-    else {
-      // access denied
-       $this->loadThis();
-    }
-  }
-
   function view($id=NULL)
   {
     $data['global'] = $this->global;
@@ -91,6 +68,7 @@ class Orders extends BaseController {
       }
 
         $data['orders_data'] = $this->orders_model->get_orders_id($id);
+        $data['orders_detail_data'] = $this->orders_model->get_orders_detail($id);
 
         if(count($data['orders_data'])==0){
             redirect('error');
@@ -111,57 +89,11 @@ class Orders extends BaseController {
     }
   }
 
-
-  function add_save()
+  function assign($id=NULL)
   {
     $data['global'] = $this->global;
     $data['menu_id'] ='15';
-		$data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
-    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
-    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
-    {
-          $this->load->library('form_validation');
-          $this->form_validation->set_rules('name','Name','trim|required|max_length[128]|xss_clean');
-          $this->form_validation->set_rules('description','description','trim|xss_clean|max_length[128]');
-          $this->form_validation->set_rules('is_active','ใช้งาน','');
-
-          if($this->form_validation->run() == FALSE)
-          {
-              $this->add();
-          }
-          else
-          {
-              $name = $this->input->post('name');
-              $description = $this->input->post('description');
-              $is_active = $this->input->post('is_active');
-
-              $orders_info = array('name'=>$name, 'description'=>$description, 'is_active'=>$is_active,
-                                      'create_by'=>$this->vendorId, 'create_date'=>date('Y-m-d H:i:s'),
-                                      'modified_by'=>$this->vendorId, 'modified_date'=>date('Y-m-d H:i:s'));
-
-              $result = $this->orders_model->save_orders($orders_info);
-
-              if($result > 0)
-              {
-                  $this->session->set_flashdata('success', 'Add Orders created successfully');
-              }
-              else
-              {
-                  $this->session->set_flashdata('error', 'User creation failed');
-              }
-              redirect('orders/add');
-          }
-      }
-      else {
-           $this->loadThis();
-      }
-  }
-
-  function edit($id=NULL)
-  {
-    $data['global'] = $this->global;
-    $data['menu_id'] ='15';
-		$data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
     $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
     if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
     {
@@ -175,20 +107,21 @@ class Orders extends BaseController {
           }
         }
 
-
+        $data['user_sale'] = $this->orders_model->get_user_sale();
         $data['orders_data'] = $this->orders_model->get_orders_id($id);
+        $data['orders_detail_data'] = $this->orders_model->get_orders_detail($id);
         if(count($data['orders_data'])==0){
             redirect('error');
         }
 
-        $data['content'] = 'orders/orders_edit_view';
+        $data['content'] = 'orders/orders_assign_view';
         //if script file
-        //$data['script_file'] = 'js/orders_js';
-  		  $data['header'] = array('title' => 'Add Orders | '.$this->config->item('sitename'),
-              								'description' =>  'Add Orders | '.$this->config->item('tagline'),
-              								'author' => $this->config->item('author'),
-              								'keyword' => 'Orders');
-  		  $this->load->view('template/layout_main', $data);
+        //$data['script_file'] = 'js/product_brand_js';
+        $data['header'] = array('title' => 'Asign orders | '.$this->config->item('sitename'),
+                              'description' =>  'Asign orders | '.$this->config->item('tagline'),
+                              'author' => $this->config->item('author'),
+                              'keyword' => 'orders');
+        $this->load->view('template/layout_main', $data);
     }
     else {
       // access denied
@@ -196,51 +129,4 @@ class Orders extends BaseController {
     }
   }
 
-
-  function edit_save()
-  {
-    $data['global'] = $this->global;
-    $data['menu_id'] ='15';
-		$data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
-    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
-    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
-    {
-          $this->load->library('form_validation');
-          $this->form_validation->set_rules('name','Name','trim|required|max_length[128]|xss_clean');
-          $this->form_validation->set_rules('description','description','trim|xss_clean|max_length[128]');
-          $this->form_validation->set_rules('is_active','ใช้งาน','');
-
-          if($this->form_validation->run() == FALSE)
-          {
-              $this->add();
-          }
-          else
-          {
-              $name = $this->input->post('name');
-              $description = $this->input->post('description');
-              $is_active = $this->input->post('is_active');
-              $orders_id = $this->input->post('orders_id');
-
-              $orders_info = array('name'=>$name, 'description'=>$description, 'is_active'=>$is_active,
-                                      'orders_id'=>$orders_id,
-                                      'modified_by'=>$this->vendorId,
-                                      'modified_date'=>date('Y-m-d H:i:s'));
-
-              $result = $this->orders_model->update_orders($orders_info,$orders_id);
-
-              if($result > 0)
-              {
-                  $this->session->set_flashdata('success', 'Edit Orders Update successfully');
-              }
-              else
-              {
-                  $this->session->set_flashdata('error', 'User creation failed');
-              }
-              redirect('orders/edit/'.$orders_id);
-          }
-      }
-      else {
-           $this->loadThis();
-      }
-  }
 }

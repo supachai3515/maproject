@@ -62,25 +62,38 @@
                       <td><?php echo  number_format($record->total,0)  ?></td>
                       <td><?php echo $record->status_name ?></td>
                       <td>
-                        <?php echo $record->assign_by_name ?><br>
-                        <span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->assign_by_date));?></span>
+                        <?php if (isset($record->assign_by_name)): ?>
+                          <?php echo $record->assign_by_name ?><br>
+                          <span><i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->assign_by_date));?></span>
+                        <?php endif; ?>
                       </td>
                       <td>
-                        <?php echo $record->assign_to_name ?><br>
-                        <span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->assign_to_date));?></span>
+                        <?php if (isset($record->assign_to_name)): ?>
+                          <?php echo $record->assign_to_name ?><br>
+                          <span><i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->assign_to_date));?></span>
+                        <?php endif; ?>
                       </td>
                       <td>
-                        <span>สร้าง : <i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span><br>
-                        <span>แก้ไข : <i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>
+                        <?php if (isset($record->create_date)): ?>
+                          <span>สร้าง : <i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span><br>
+                        <?php endif; ?>
+                        <?php if (isset($record->modified_date)): ?>
+                          <span>แก้ไข : <i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span>
+                        <?php endif; ?>
                       <td>
                           <?php if ($record->is_active=="1"): ?>
-                              <span><i class="fa fa-check"></i> ใช้งาน</span>
+                              <span><i class="fa fa-check"></i></span>
                           <?php else: ?>
-                              <span class="text-danger"><i class="fa fa-times"></i> ยกเลิก</span>
+                              <span class="text-danger"><i class="fa fa-times"></i></span>
                           <?php endif ?>
                       </td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-warning" href="<?php echo base_url().'orders/edit/'.$record->order_id; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                        <?php if (isset($record->assign_to_name)): ?>
+                          <a class="btn btn-sm btn-success" href="<?php echo base_url().'orders/assign/'.$record->order_id; ?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                        <?php else: ?>
+                          <a class="btn btn-sm btn-default" href="<?php echo base_url().'orders/assign/'.$record->order_id; ?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                        <?php endif; ?>
+
                           <a class="btn btn-sm btn-info" href="<?php echo base_url().'orders/view/'.$record->order_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       </td>
                     </tr>
@@ -100,7 +113,7 @@
                      <table ng-table="tableParams" class="table table-striped">
                         <tr ng-repeat="p in $data">
                             <td data-title="'รหัส'" sortable="'order_id'" align="" >
-                                {{p.order_id}}
+                              #<span ng-bind="{{p.order_id}}"></span>
                             </td>
                             <td data-title="'Company'" sortable="'company'" align="">
                                 {{p.company}}
