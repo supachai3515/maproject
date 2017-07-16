@@ -129,4 +129,50 @@ class Orders extends BaseController {
     }
   }
 
+  function assign_save()
+  {
+    $data['global'] = $this->global;
+    $data['menu_id'] ='15';
+    $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
+    if($data['access_menu']['is_access']&&$data['access_menu']['is_edit'])
+    {
+          $this->load->library('form_validation');
+          $this->form_validation->set_rules('user','User','trim|required|numeric');
+          if($this->form_validation->run() == FALSE)
+          {
+              $this->index();
+          }
+          else
+          {
+              $order_id = $this->input->post('order_id');
+              $assign_to = $this->input->post('user');
+
+              $orders_info = array('assign_to'=>$assign_to,
+                                      'order_id'=>$order_id,
+                                      'assign_by'=>$this->vendorId,
+                                      'modified_by'=>$this->vendorId,
+                                      'assign_by_date'=>date('Y-m-d H:i:s'),
+                                      'assign_to_date'=>date('Y-m-d H:i:s'),
+                                      'modified_date'=>date('Y-m-d H:i:s'));
+
+              $result = $this->orders_model->update_orders($orders_info,$order_id);
+
+              if($result > 0)
+              {
+                  $this->session->set_flashdata('success', 'orders Assign Update successfully');
+              }
+              else
+              {
+                  $this->session->set_flashdata('error', 'Orders Assign failed');
+              }
+              redirect('orders/assign/'.$order_id);
+          }
+      }
+      else {
+           $this->loadThis();
+      }
+  }
+
+
 }

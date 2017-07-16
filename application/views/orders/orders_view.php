@@ -64,21 +64,21 @@
                       <td>
                         <?php if (isset($record->assign_by_name)): ?>
                           <?php echo $record->assign_by_name ?><br>
-                          <span><i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->assign_by_date));?></span>
+                          <span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->assign_by_date));?></span>
                         <?php endif; ?>
                       </td>
                       <td>
                         <?php if (isset($record->assign_to_name)): ?>
                           <?php echo $record->assign_to_name ?><br>
-                          <span><i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->assign_to_date));?></span>
+                          <span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->assign_to_date));?></span>
                         <?php endif; ?>
                       </td>
                       <td>
                         <?php if (isset($record->create_date)): ?>
-                          <span>สร้าง : <i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span><br>
+                          <span>สร้าง : <i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span><br>
                         <?php endif; ?>
                         <?php if (isset($record->modified_date)): ?>
-                          <span>แก้ไข : <i class="fa fa-calendar"></i><?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span>
+                          <span>แก้ไข : <i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span>
                         <?php endif; ?>
                       <td>
                           <?php if ($record->is_active=="1"): ?>

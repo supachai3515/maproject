@@ -90,6 +90,20 @@ class orders_model extends CI_Model {
 		$result = $query->result_array();
 		return $result;
 	}
+	public function get_user_sale()
+	{
+		$sql ="SELECT * FROM tbl_users WHERE roleId IN (4,5)";
+		$query = $this->db->query($sql);
+		$row = $query->result_array();
+		return $row;
+	}
+
+	function update_orders($orders_info,$id)
+	{
+			$this->db->where('order_id', $id);
+			$this->db->update('orders', $orders_info);
+			return TRUE;
+	}
 
 }
 
