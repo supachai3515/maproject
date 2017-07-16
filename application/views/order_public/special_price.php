@@ -104,14 +104,14 @@
                             <td><?php echo $record['pm_time_qty'] ?></td>
                           </tr>
                           <tr>
-                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo $record['total'] ?>฿</td>
+                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo number_format($record['total'],2) ?>฿</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                     <?php endforeach; ?>
                   </div>
-                  <a href="#"></a>
+                  <p class="text-center"><button type="button" class="btn btn-primary btn-lg">Special Price</button></p>
                 </div>
               </div>
             </div>

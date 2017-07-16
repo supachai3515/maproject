@@ -165,18 +165,18 @@ class Tos_cal extends BaseController {
 				$data['bcc_mail'] = "winchesterbee@gmail.com";
 				$data['name'] = $name;
 				$data['tel'] = $tel;
-				//$this->load->view('email/send_order', $data);
+				$this->load->view('email/send_order', $data);
 
 
 				//sendmail
-				//$sendStatus = send_emali_template($data);
-				//if($sendStatus){
-				//		$status = "send";
-				//		setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
-				//} else {
-				//		$status = "notsend";
-				//		setFlashData($status, "Email has been failed, try again.");
-				//}
+				$sendStatus = send_emali_template($data);
+				if($sendStatus){
+						$status = "send";
+						setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
+				} else {
+						$status = "notsend";
+						setFlashData($status, "Email has been failed, try again.");
+				}
 
 			}
 
