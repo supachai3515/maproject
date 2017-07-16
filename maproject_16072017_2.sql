@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-16 14:53:06
+Date: 2017-07-17 00:54:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('ae8ea059b380a49f5e168ffc7ac7722d', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1500191523', 'a:7:{s:9:\"user_data\";s:0:\"\";s:6:\"userId\";s:1:\"2\";s:4:\"role\";s:1:\"2\";s:13:\"menu_group_id\";s:1:\"2\";s:8:\"roleText\";s:7:\"Manager\";s:4:\"name\";s:17:\"Supachai Wisachai\";s:10:\"isLoggedIn\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('3e477bf4cc562f1e5426959766710a71', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1500227415', 'a:7:{s:9:\"user_data\";s:0:\"\";s:6:\"userId\";s:1:\"2\";s:4:\"role\";s:1:\"4\";s:13:\"menu_group_id\";s:1:\"4\";s:8:\"roleText\";s:4:\"Sale\";s:4:\"name\";s:17:\"Supachai Wisachai\";s:10:\"isLoggedIn\";b:1;}');
 
 -- ----------------------------
 -- Table structure for discount_of_contract
@@ -129,13 +129,13 @@ CREATE TABLE `menu` (
   `modified_date` datetime DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
 INSERT INTO `menu` VALUES ('1', '#', 'Users Manage', 'fa fa-users', '0', '1000', '1', '2017-06-10 20:05:21', '1', '2017-06-10 20:05:40', '1');
-INSERT INTO `menu` VALUES ('2', 'dashboard', 'Dashboard', 'fa fa-fw fa-dashboard', '99', '100', '1', '2017-06-10 20:06:48', '1', null, null);
+INSERT INTO `menu` VALUES ('2', 'dashboard', 'Dashboard', 'fa fa-fw fa-dashboard', '99', '1', '1', '2017-06-10 20:06:48', '1', null, null);
 INSERT INTO `menu` VALUES ('3', 'userListing', 'Users', 'fa fa-circle-o', '1', '200', '1', '2017-06-17 17:37:58', '1', null, null);
 INSERT INTO `menu` VALUES ('4', 'menugroup', 'Menu Group', 'fa fa-circle-o', '1', '100', '1', '2017-06-17 17:37:56', '1', null, null);
 INSERT INTO `menu` VALUES ('5', '#', 'Master Data', 'fa fa-database', '0', '300', '1', '2017-06-17 17:37:52', '1', '2017-06-20 22:37:51', null);
@@ -149,7 +149,8 @@ INSERT INTO `menu` VALUES ('12', 'product_vendor', 'Product Vendor', 'fa fa-circ
 INSERT INTO `menu` VALUES ('13', 'product_brand', 'Product Brand', 'fa fa-circle-o', '10', '100', '1', '2017-06-24 17:59:37', '1', null, null);
 INSERT INTO `menu` VALUES ('14', '#', 'Document', 'fa fa-file-text-o', '0', '100', '1', '2017-06-24 17:59:16', '1', null, null);
 INSERT INTO `menu` VALUES ('15', 'orders', 'Orders', 'fa fa-circle-o', '14', '100', '1', '2017-06-24 18:02:33', '1', null, null);
-INSERT INTO `menu` VALUES ('16', 'order_sale', 'Orders (Sale)', 'fa fa-circle-o', '14', '200', '1', '2017-06-24 18:03:37', '1', null, null);
+INSERT INTO `menu` VALUES ('16', 'orders_sale', 'Orders (Sale)', 'fa fa-circle-o', '14', '200', '1', '2017-06-24 18:03:37', '1', null, null);
+INSERT INTO `menu` VALUES ('17', 'roles', 'Roles', 'fa fa-circle-o', '1', '110', '1', '2017-07-16 16:45:44', '1', null, null);
 
 -- ----------------------------
 -- Table structure for menu_group
@@ -172,9 +173,9 @@ CREATE TABLE `menu_group` (
 -- ----------------------------
 INSERT INTO `menu_group` VALUES ('1', 'System', 'System Management', '1', '2017-06-11 21:50:39', '1', '2017-06-24 18:09:33', '1');
 INSERT INTO `menu_group` VALUES ('2', 'Admin', 'Admin Management', '1', '2017-06-11 16:58:02', '1', '2017-06-17 15:52:34', '1');
-INSERT INTO `menu_group` VALUES ('3', 'Sale Agen', 'Sale Agen Management', '1', '2017-06-11 16:59:33', '1', '2017-06-17 15:29:56', '1');
+INSERT INTO `menu_group` VALUES ('3', 'Super Admin', 'Super Admin Management', '1', '2017-06-11 16:59:33', '1', '2017-06-17 15:29:56', '1');
 INSERT INTO `menu_group` VALUES ('4', 'Sale office', 'Sale office Management', '1', '2017-06-17 14:37:55', '1', '2017-06-18 21:12:19', '1');
-INSERT INTO `menu_group` VALUES ('5', 'Super Admin', 'Super Admin Management', '1', '2017-06-17 15:40:13', '1', '2017-06-17 15:52:19', '1');
+INSERT INTO `menu_group` VALUES ('5', 'Sale Agen', 'Sale Agen Management', '1', '2017-06-17 15:40:13', '1', '2017-06-17 15:52:19', '1');
 
 -- ----------------------------
 -- Table structure for menu_group_detail
@@ -196,8 +197,8 @@ CREATE TABLE `menu_group_detail` (
 INSERT INTO `menu_group_detail` VALUES ('1', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('1', '2', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('1', '3', '0', '0', '0', '0');
-INSERT INTO `menu_group_detail` VALUES ('1', '4', '1', '1', '1', '1');
-INSERT INTO `menu_group_detail` VALUES ('1', '5', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('1', '4', '0', '0', '0', '0');
+INSERT INTO `menu_group_detail` VALUES ('1', '5', '0', '0', '0', '0');
 INSERT INTO `menu_group_detail` VALUES ('2', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('2', '2', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('2', '3', '0', '0', '0', '0');
@@ -206,40 +207,78 @@ INSERT INTO `menu_group_detail` VALUES ('2', '5', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('3', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('3', '2', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('3', '3', '0', '0', '0', '0');
-INSERT INTO `menu_group_detail` VALUES ('3', '4', '1', '1', '1', '1');
-INSERT INTO `menu_group_detail` VALUES ('3', '5', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('3', '4', '0', '1', '0', '0');
+INSERT INTO `menu_group_detail` VALUES ('3', '5', '0', '0', '0', '0');
 INSERT INTO `menu_group_detail` VALUES ('4', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('4', '2', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('4', '3', '0', '0', '0', '0');
-INSERT INTO `menu_group_detail` VALUES ('4', '4', '1', '1', '1', '1');
-INSERT INTO `menu_group_detail` VALUES ('4', '5', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('4', '4', '0', '0', '0', '0');
+INSERT INTO `menu_group_detail` VALUES ('4', '5', '0', '0', '0', '0');
 INSERT INTO `menu_group_detail` VALUES ('5', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('5', '2', '1', '1', '1', '1');
-INSERT INTO `menu_group_detail` VALUES ('5', '5', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('5', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('5', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('5', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('6', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('6', '2', '1', '1', '1', '1');
-INSERT INTO `menu_group_detail` VALUES ('6', '5', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('6', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('6', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('6', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('7', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('7', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('7', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('7', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('7', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('8', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('8', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('8', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('8', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('8', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('9', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('9', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('9', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('9', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('9', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('10', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('10', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('10', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('10', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('10', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('11', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('11', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('11', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('11', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('11', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('12', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('12', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('12', '3', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('12', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('12', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('13', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('13', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('13', '3', '1', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('13', '4', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('13', '5', '0', '1', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('14', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('14', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('14', '3', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('14', '4', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('14', '5', '0', '0', '0', '1');
 INSERT INTO `menu_group_detail` VALUES ('15', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('15', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('15', '3', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('15', '4', '0', '0', '0', '0');
+INSERT INTO `menu_group_detail` VALUES ('15', '5', '0', '0', '0', '0');
 INSERT INTO `menu_group_detail` VALUES ('16', '1', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('16', '2', '1', '1', '1', '1');
 INSERT INTO `menu_group_detail` VALUES ('16', '3', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('16', '4', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('16', '5', '0', '1', '0', '1');
+INSERT INTO `menu_group_detail` VALUES ('17', '1', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('17', '2', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('17', '3', '1', '1', '1', '1');
+INSERT INTO `menu_group_detail` VALUES ('17', '4', '0', '1', '0', '0');
+INSERT INTO `menu_group_detail` VALUES ('17', '5', '0', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for orders
@@ -253,6 +292,7 @@ CREATE TABLE `orders` (
   `address` varchar(512) NOT NULL,
   `tel` varchar(15) NOT NULL,
   `email` varchar(128) NOT NULL,
+  `comment_order` varchar(1024) DEFAULT NULL,
   `order_status_id` int(11) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
   `total` decimal(11,4) DEFAULT NULL,
@@ -266,20 +306,23 @@ CREATE TABLE `orders` (
   `modified_date` datetime DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '5a4e4905eb1cd2acd6bc79f1c58b3fe9', '2017-07-10 20:54:28', 'Tony Stark', '', '123456789', 'abc@gmail.com', '1', '4', '79660.3500', '1', '2017-07-10 20:54:28', null, null, null, null, '1', '2017-07-10 20:54:28', '1');
-INSERT INTO `orders` VALUES ('2', '771fe90bc96f592c77e1ffd5abb0c8b7', '2017-07-10 20:55:32', 'Tony Stark', '', '123456789', 'abc@gmail.com', '1', '4', '79660.3500', '1', '2017-07-10 20:55:32', null, null, null, null, '1', '2017-07-10 20:55:32', '1');
-INSERT INTO `orders` VALUES ('3', 'fe177dab4bc2f1e99b14877142726d88', '2017-07-10 23:34:09', 'Tony Stark', '', '123456789', 'supachai.wisa@gmail.com', '1', '4', '79660.3500', '1', '2017-07-10 23:34:09', null, null, null, null, '1', '2017-07-10 23:34:09', '1');
-INSERT INTO `orders` VALUES ('4', 'b06c38942d1affa1ba27de70112bb49e', '2017-07-11 00:51:55', 'Tony Stark', '', '123456789', 'abc@gmail.com', '1', '0', '0.0000', '1', '2017-07-11 00:51:55', null, null, null, null, '1', '2017-07-11 00:51:55', '1');
-INSERT INTO `orders` VALUES ('5', 'c0b777bfa17c8a4d7a772a8b821f6d9e', '2017-07-11 01:07:13', 'Tony Stark', '', '123456789', 'abc@gmail.com', '1', '8', '172132.3500', '1', '2017-07-11 01:07:13', null, null, null, null, '1', '2017-07-11 01:07:13', '1');
-INSERT INTO `orders` VALUES ('6', '29c3e1c3ac4b4c1b1a3b113c9d627569', '2017-07-11 01:19:33', 'Tony Stark', '', '123456789', 'abc@gmail.com', '1', '8', '1379323.2000', '1', '2017-07-11 01:19:33', null, null, null, null, '1', '2017-07-11 01:19:33', '1');
-INSERT INTO `orders` VALUES ('7', '1d58ddb871e927291df134b22dc67ee3', '2017-07-11 01:21:42', 'Tony Stark', '', '123456789', 'abc@gmail.com', '1', '8', '1849320.0000', '1', '2017-07-11 01:21:42', null, null, null, null, '1', '2017-07-11 01:21:42', '1');
-INSERT INTO `orders` VALUES ('8', '2c43630ec9e7e5c79267118745c1ac01', '2017-07-15 17:26:39', 'supachai', '', '0917750586', 'supachai@wisadev.com', '1', '2', '20400.0000', '1', '2017-07-15 17:26:39', null, null, null, null, '1', '2017-07-15 17:26:39', '1');
-INSERT INTO `orders` VALUES ('9', '9b4a60c4ff33288a9c7d4f6115c055e8', '2017-07-15 23:22:25', 'supachai', '', '0044444', 'supachai@wisadev.com', '1', '2', '39462.5000', '1', '2017-07-15 23:22:25', null, null, null, null, '1', '2017-07-15 23:22:25', '1');
+INSERT INTO `orders` VALUES ('1', '5a4e4905eb1cd2acd6bc79f1c58b3fe9', '2017-07-10 20:54:28', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 20:54:28', null, null, null, null, '1', '2017-07-10 20:54:28', '1');
+INSERT INTO `orders` VALUES ('2', '771fe90bc96f592c77e1ffd5abb0c8b7', '2017-07-10 20:55:32', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 20:55:32', null, null, null, null, '1', '2017-07-10 20:55:32', '1');
+INSERT INTO `orders` VALUES ('3', 'fe177dab4bc2f1e99b14877142726d88', '2017-07-10 23:34:09', 'Tony Stark', '', '123456789', 'supachai.wisa@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 23:34:09', null, null, null, null, '1', '2017-07-10 23:34:09', '1');
+INSERT INTO `orders` VALUES ('4', 'b06c38942d1affa1ba27de70112bb49e', '2017-07-11 00:51:55', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '0', '0.0000', '1', '2017-07-11 00:51:55', null, null, null, null, '1', '2017-07-11 00:51:55', '1');
+INSERT INTO `orders` VALUES ('5', 'c0b777bfa17c8a4d7a772a8b821f6d9e', '2017-07-11 01:07:13', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '172132.3500', '1', '2017-07-11 01:07:13', null, null, null, null, '1', '2017-07-11 01:07:13', '1');
+INSERT INTO `orders` VALUES ('6', '29c3e1c3ac4b4c1b1a3b113c9d627569', '2017-07-11 01:19:33', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '1379323.2000', '1', '2017-07-11 01:19:33', null, null, null, null, '1', '2017-07-11 01:19:33', '1');
+INSERT INTO `orders` VALUES ('7', '1d58ddb871e927291df134b22dc67ee3', '2017-07-11 01:21:42', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '1849320.0000', '1', '2017-07-11 01:21:42', null, null, null, null, '1', '2017-07-11 01:21:42', '1');
+INSERT INTO `orders` VALUES ('8', '2c43630ec9e7e5c79267118745c1ac01', '2017-07-15 17:26:39', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '1', '2', '20400.0000', '1', '2017-07-15 17:26:39', null, null, null, null, '1', '2017-07-15 17:26:39', '1');
+INSERT INTO `orders` VALUES ('9', '9b4a60c4ff33288a9c7d4f6115c055e8', '2017-07-15 23:22:25', 'supachai', '', '0044444', 'supachai@wisadev.com', null, '1', '2', '39462.5000', '1', '2017-07-15 23:22:25', null, null, null, null, '1', '2017-07-15 23:22:25', '1');
+INSERT INTO `orders` VALUES ('10', 'c37cb9592de40bb371548cad1f450349', '2017-07-16 16:19:55', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '1', '34500.0000', '1', '2017-07-16 16:19:55', '1', '2017-07-16 23:09:19', '2', '2017-07-16 23:09:19', '1', '2017-07-16 23:09:19', '1');
+INSERT INTO `orders` VALUES ('11', '6c4793236b6dcdd661c3e73d3e3a0976', '2017-07-16 16:26:22', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '2', '65650.0000', '1', '2017-07-16 16:26:22', '2', '2017-07-16 18:10:18', '2', '2017-07-16 18:10:18', '1', '2017-07-16 18:10:18', '2');
+INSERT INTO `orders` VALUES ('12', 'a3051dbf2e6a73cd8831e9e61b6aef3c', '2017-07-16 16:29:38', 'supachai', '', '0917750586', 'supachai@wisadev.com', 'Test comment', '1', '2', '65650.0000', '1', '2017-07-16 16:29:38', '1', '2017-07-16 18:10:49', '2', '2017-07-16 18:10:49', '1', '2017-07-17 00:35:05', '2');
 
 -- ----------------------------
 -- Table structure for order_detail
@@ -310,7 +353,7 @@ CREATE TABLE `order_detail` (
   `qty` int(11) DEFAULT NULL,
   `total` decimal(11,4) DEFAULT NULL,
   PRIMARY KEY (`order_id`,`line_number`,`product_owner_id`,`province_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_detail
@@ -335,6 +378,9 @@ INSERT INTO `order_detail` VALUES ('7', '3', '4', '10', '1', '', '0', '9', 'GP',
 INSERT INTO `order_detail` VALUES ('7', '4', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0.0000', '0.0000', '0', '0.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', '2', '0.0000');
 INSERT INTO `order_detail` VALUES ('8', '1', '4', '10', '1', '', '0', '7', 'GP', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '0.0000', '1700.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', '2', '20400.0000');
 INSERT INTO `order_detail` VALUES ('9', '1', '6', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '225500.0000', '0.0000', '1', '75.0000', '0.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', '2', '39462.5000');
+INSERT INTO `order_detail` VALUES ('10', '1', '1', '1', '1', '', '0', '3', 'GP', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '0.0000', '30000.0000', '4', '5.0000', '0.0000', '0.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', '1', '34500.0000');
+INSERT INTO `order_detail` VALUES ('11', '1', '1', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '358000.0000', '0.0000', '1', '75.0000', '0.0000', '30.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', '2', '65650.0000');
+INSERT INTO `order_detail` VALUES ('12', '1', '1', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '358000.0000', '0.0000', '1', '75.0000', '0.0000', '30.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', '2', '65650.0000');
 
 -- ----------------------------
 -- Table structure for order_status
@@ -547,8 +593,8 @@ CREATE TABLE `product_vendor` (
 -- ----------------------------
 INSERT INTO `product_vendor` VALUES ('1', 'SV3200', '1', '1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service', '1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service', '60970', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
 INSERT INTO `product_vendor` VALUES ('2', 'SV3200', '1', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '107840', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('3', 'MSA1040', '1', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '96690', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('4', 'MSA1040', '1', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '58750', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('3', 'MSA1040', '1', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '30000', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('4', 'MSA1040', '1', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '35000', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
 INSERT INTO `product_vendor` VALUES ('5', 'MSA2042', '1', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '129450', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
 INSERT INTO `product_vendor` VALUES ('6', 'MSA2042', '1', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '91440', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
 INSERT INTO `product_vendor` VALUES ('7', 'WS-C2960C', '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
@@ -693,6 +739,7 @@ DROP TABLE IF EXISTS `tbl_roles`;
 CREATE TABLE `tbl_roles` (
   `roleId` tinyint(4) NOT NULL AUTO_INCREMENT COMMENT 'role id',
   `role` varchar(50) NOT NULL COMMENT 'role text',
+  `description` varchar(128) DEFAULT NULL,
   `menu_group_id` int(11) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `create_date` datetime NOT NULL,
@@ -700,14 +747,17 @@ CREATE TABLE `tbl_roles` (
   `modified_date` datetime DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`roleId`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbl_roles
 -- ----------------------------
-INSERT INTO `tbl_roles` VALUES ('1', 'System Administrator', '1', '1', '2017-06-10 11:05:25', '1', null, null);
-INSERT INTO `tbl_roles` VALUES ('2', 'Manager', '2', '1', '2017-06-10 11:05:30', '1', null, null);
-INSERT INTO `tbl_roles` VALUES ('3', 'Employee', '3', '1', '2017-06-10 11:05:32', '1', null, null);
+INSERT INTO `tbl_roles` VALUES ('1', 'System Administrator', null, '1', '1', '2017-06-10 11:05:25', '1', null, null);
+INSERT INTO `tbl_roles` VALUES ('2', 'Manager', null, '2', '1', '2017-06-10 11:05:30', '1', null, null);
+INSERT INTO `tbl_roles` VALUES ('3', 'Employee', null, '3', '1', '2017-06-10 11:05:32', '1', null, null);
+INSERT INTO `tbl_roles` VALUES ('4', 'Sale', null, '4', '1', '2017-07-16 16:35:42', '1', null, null);
+INSERT INTO `tbl_roles` VALUES ('5', 'Sale Agen', null, '5', '1', '2017-07-16 16:36:08', '1', null, null);
+INSERT INTO `tbl_roles` VALUES ('8', 'Officer', 'Officer', '0', '1', '2017-07-16 17:03:13', '2', '2017-07-16 17:19:00', '2');
 
 -- ----------------------------
 -- Table structure for tbl_users
@@ -735,6 +785,6 @@ CREATE TABLE `tbl_users` (
 -- Records of tbl_users
 -- ----------------------------
 INSERT INTO `tbl_users` VALUES ('1', 'system@wisadev.com', '$2y$10$abl8Qcd71JSqUeRPJd7ZQOZfiHzujLnYNFJMV.zv4cMHZvxpcVBSi', 'System Admin', null, '1', '1', null, null, '0', '1', '2017-06-11 21:44:51', '1', '2017-06-11 21:44:54');
-INSERT INTO `tbl_users` VALUES ('2', 'supachai@wisadev.com', '$2y$10$I5FpXKlnpaj8WYAWvSkgBuO3Hc.jr.k7sjwbr.QNy0qinDCqVzR0i', 'Supachai Wisachai', '0917750586', '5', '2', null, null, '0', '1', '2017-06-11 16:56:35', '1', '2017-06-24 18:09:06');
+INSERT INTO `tbl_users` VALUES ('2', 'supachai@wisadev.com', '$2y$10$I5FpXKlnpaj8WYAWvSkgBuO3Hc.jr.k7sjwbr.QNy0qinDCqVzR0i', 'Supachai Wisachai', '0917750586', '5', '4', null, null, '0', '1', '2017-06-11 16:56:35', '2', '2017-07-16 16:41:54');
 INSERT INTO `tbl_users` VALUES ('3', 'manager@wisadev.com', '$2y$10$dj.u.qiqcj7Y9Db5oK3QJuygwyi.Z7ceQH2F6A34cGUbkuWpyDi.2', 'Manager', '0917750586', '2', '2', null, null, '0', '1', '2017-06-11 17:24:57', null, null);
 INSERT INTO `tbl_users` VALUES ('4', 'employee@wsiadev.com', '$2y$10$olThVYD4MwDAGAIZOf0KxelUk.gkOdpkahzWvgVKwK2g/dF6Zks7.', 'Employee', '0917750586', '3', '3', null, null, '0', '1', '2017-06-11 17:26:02', null, null);
