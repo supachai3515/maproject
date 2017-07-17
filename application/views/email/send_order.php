@@ -111,7 +111,7 @@
 																	</table>
 																</div>
 															<?php endforeach; ?>
-															<p style="text-align: center;"><a style="display: inline-block;color: #fff;background-color: #5bc0de;border-color: #46b8da;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;vertical-align: middle;cursor: pointer;text-decoration: none;border-radius: 4px;" href="tos_cal/special_price/<?php echo $order_data['ref_id']; ?>">Get Special Price</a></p>
+															<p style="text-align: center;"><a style="display: inline-block;color: #fff;background-color: #5bc0de;border-color: #46b8da;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;vertical-align: middle;cursor: pointer;text-decoration: none;border-radius: 4px;" href="<?php echo base_url(); ?>tos_cal/special_price/<?php echo $order_data['ref_id']; ?>">Get Special Price</a></p>
 														</div>
 													</td>
 												</tr>
