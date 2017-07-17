@@ -60,7 +60,7 @@ class Tos_cal_model extends CI_Model {
 						             t.full_price,
 						             t.type_name,
 						             t.type_des,
-						             2 qty,
+						             $product->contract qty,
 						             t.total * (100 - q.discount)/100 AS total
 						      FROM discount_of_qty q,
 
