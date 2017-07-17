@@ -78,19 +78,19 @@
               <h3 class="header_order">Order Info</h3>
               <form class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-md-5 control-label">Email</label>
+                  <label class="col-md-5 control-label">Email :</label>
                   <div class="col-md-7">
                     <p class="form-control-static">{{order_info.email}}</p>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-5 control-label">Name/Company Name</label>
+                  <label class="col-md-5 control-label">Name/Company Name :</label>
                   <div class="col-md-7">
                     <p class="form-control-static">{{order_info.company}}</p>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-md-5 control-label">Tel</label>
+                  <label class="col-md-5 control-label">Tel :</label>
                   <div class="col-md-7">
                     <p class="form-control-static">{{order_info.tel}}</p>
                   </div>
@@ -106,67 +106,39 @@
                 <table class="table table-striped table-order">
                   <tbody>
                     <tr>
-                      <td>Part Number</td>
+                      <td>Part Number :</td>
                       <td>{{p.part_number}}</td>
                     </tr>
                     <tr>
-                      <td>Type</td>
+                      <td>Type :</td>
                       <td>{{p.type_name}}</td>
                     </tr>
                     <tr>
-                      <td>Product Name</td>
+                      <td>Product Name :</td>
                       <td>{{p.product_name}}</td>
                     </tr>
                     <tr>
-                      <td>Product Description</td>
+                      <td>Product Description :</td>
                       <td>{{p.product_description}}</td>
                     </tr>
                     <tr>
-                      <td>Full Price</td>
-                      <td>{{p.full_price}}</td>
-                    </tr>
-                    <tr>
-                      <td>Dealer Price</td>
-                      <td>{{p.dealer_price}}</td>
-                    </tr>
-                    <tr>
-                      <td>Discount Of Contract</td>
-                      <td>{{p.discount_of_contract_value}}</td>
-                    </tr>
-                    <tr>
-                      <td>Discount Of QTY</td>
-                      <td>{{p.discount_of_qty_value}}</td>
-                    </tr>
-                    <tr>
-                      <td>discount sla type value</td>
-                      <td>{{p.discount_sla_type_value}}</td>
-                    </tr>
-                    <tr>
-                      <td>lb year qty</td>
-                      <td>{{p.lb_year_qty}}</td>
-                    </tr>
-                    <tr>
-                      <td>lb year val</td>
-                      <td>{{p.lb_year_value}}</td>
-                    </tr>
-                    <tr>
-                      <td>จังหวัด</td>
+                      <td>จังหวัด :</td>
                       <td>{{p.province_name}}</td>
                     </tr>
                     <tr>
-                      <td>QTY</td>
+                      <td>LB Year QTY :</td>
+                      <td>{{p.lb_year_qty}}</td>
+                    </tr>
+                    <tr>
+                      <td>QTY :</td>
                       <td>{{p.qty}}</td>
                     </tr>
                     <tr>
-                      <td>pm time qty</td>
+                      <td>PM Time QTY :</td>
                       <td>{{p.pm_time_qty}}</td>
                     </tr>
                     <tr>
-                      <td>pm time val</td>
-                      <td>{{p.pm_time_value}}</td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" class="total-num"><strong>Total:</strong> {{p.total | number : 2}}฿</td>
+                      <td colspan="2" class="total-num"><strong>Total :</strong> {{p.total | number :0}}</td>
                     </tr>
                   </tbody>
                 </table>

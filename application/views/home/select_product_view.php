@@ -76,15 +76,15 @@
           <div class="box-inner">
             <div class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
-                <label for="email" class="col-md-4 control-label">Email</label>
+                <label for="email" class="col-md-4 control-label">Email :</label>
                 <div class="col-md-5"><p class="form-control-static">{{info.email || '-'}}</p></div>
               </div>
               <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Name/Company Name</label>
+                <label for="name" class="col-md-4 control-label">Name/Company Name :</label>
                 <div class="col-md-5"><p class="form-control-static">{{info.name || '-'}}</p></div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Tel.</label>
+                <label for="tel" class="col-md-4 control-label">Tel :</label>
                 <div class="col-md-5"><p class="form-control-static">{{info.tel || '-'}}</p></div>
               </div>
             </div>

@@ -43,19 +43,19 @@
                     <h3 class="header_order">Order Info</h3>
                     <form class="form-horizontal">
                       <div class="form-group">
-                        <label class="col-md-5 control-label">Email</label>
+                        <label class="col-md-5 control-label">Email :</label>
                         <div class="col-md-7">
                           <p class="form-control-static"><?php echo $order_data['email']; ?></p>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-md-5 control-label">Name/Company Name</label>
+                        <label class="col-md-5 control-label">Name/Company Name :</label>
                         <div class="col-md-7">
                           <p class="form-control-static"><?php echo $order_data['company']; ?></p>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-md-5 control-label">Tel</label>
+                        <label class="col-md-5 control-label">Tel :</label>
                         <div class="col-md-7">
                           <p class="form-control-static"><?php echo $order_data['tel']; ?></p>
                         </div>
@@ -72,39 +72,35 @@
                       <table class="table table-striped table-order">
                         <tbody>
                           <tr>
-                            <td>Part Number</td>
+                            <td>Part Number :</td>
                             <td><?php echo $record['part_number'] ?></td>
                           </tr>
                           <tr>
-                            <td>Type</td>
+                            <td>Type :</td>
                             <td><?php echo $record['type_name'] ?></td>
                           </tr>
                           <tr>
-                            <td>Product Name</td>
+                            <td>Product Name :</td>
                             <td><?php echo $record['product_name'] ?></td>
                           </tr>
                           <tr>
-                            <td>Full Price</td>
-                            <td><?php echo $record['full_price'] ?></td>
-                          </tr>
-                          <tr>
-                            <td>lb year qty</td>
-                            <td><?php echo $record['lb_year_qty'] ?></td>
-                          </tr>
-                          <tr>
-                            <td>จังหวัด</td>
+                            <td>จังหวัด :</td>
                             <td><?php echo $record['province_name'] ?></td>
                           </tr>
                           <tr>
-                            <td>QTY</td>
+                            <td>LB Year QTY :</td>
+                            <td><?php echo $record['lb_year_qty'] ?></td>
+                          </tr>
+                          <tr>
+                            <td>QTY :</td>
                             <td><?php echo $record['qty'] ?></td>
                           </tr>
                           <tr>
-                            <td>pm time qty</td>
+                            <td>PM Time QTY :</td>
                             <td><?php echo $record['pm_time_qty'] ?></td>
                           </tr>
                           <tr>
-                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo number_format($record['total'],2) ?>฿</td>
+                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo number_format($record['total'],0) ?></td>
                           </tr>
                         </tbody>
                       </table>
