@@ -153,7 +153,7 @@ if(!function_exists('send_emali_template'))
         $CI->email->from(EMAIL_FROM, FROM_NAME);
         $CI->email->subject($detail["subject"]);
         $CI->email->bcc($detail["bcc_mail"]);
-        $CI->email->message($CI->load->view($detail["template"], $data, TRUE));
+        $CI->email->message($CI->load->view($detail["template"], $detail, TRUE));
         $CI->email->to($detail["email"]);
         $status = $CI->email->send();
 
