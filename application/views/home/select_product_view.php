@@ -76,15 +76,15 @@
           <div class="box-inner">
             <div class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
-                <label for="email" class="col-md-4 control-label">Email :</label>
+                <label for="email" class="col-md-4 control-label">Email:</label>
                 <div class="col-md-5"><p class="form-control-static">{{info.email || '-'}}</p></div>
               </div>
               <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Name/Company Name :</label>
+                <label for="name" class="col-md-4 control-label">Name/Company Name:</label>
                 <div class="col-md-5"><p class="form-control-static">{{info.name || '-'}}</p></div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Tel :</label>
+                <label for="tel" class="col-md-4 control-label">Tel:</label>
                 <div class="col-md-5"><p class="form-control-static">{{info.tel || '-'}}</p></div>
               </div>
             </div>
@@ -95,14 +95,14 @@
                     <div class="radio rodiucts_item">
                       <label for="product_{{key}}_{{idx}}_{{$index}}"><input type="radio" name="produc_{{key}}" id="product_{{key}}_{{idx}}_{{$index}}" ng-click="update_product_select(key, p)" ng-checked="p.selected"></label>
                       <div class="prodiucts_detail">
-                        <p><strong>Type :</strong>   {{p.type_name || '-'}}</p>
-                        <p><strong>Description :</strong>   {{p.type_description || '-'}}</p>
-                        <p><strong>จังหวัด :</strong>   {{p.province_name || '-'}}</p>
-                        <p><strong>PM Time QTY :</strong>   {{p.pm_time_qty || '-'}}</p>
-                        <p><strong>LB Year QTY :</strong>   {{p.lb_year_qty || '-'}}</p>
-                        <p><strong>Contract :</strong>   {{p.contract_qty || '-'}}</p>
-                        <p><strong>QTY :</strong>   {{p.qty || '-'}}</p>
-                        <p><strong>Total :</strong>   {{(p.total | number:0) || '-'}}</p>
+                        <p><strong>Type:</strong>   {{p.type_name || '-'}}</p>
+                        <p><strong>Description:</strong>   {{p.type_description || '-'}}</p>
+                        <p><strong>จังหวัด:</strong>   {{p.province_name || '-'}}</p>
+                        <p><strong>PM Time QTY:</strong>   {{p.pm_time_qty || '-'}}</p>
+                        <p><strong>LB Year QTY:</strong>   {{p.lb_year_qty || '-'}}</p>
+                        <p><strong>Contract:</strong>   {{p.contract_qty || '-'}}</p>
+                        <p><strong>QTY:</strong>   {{p.qty || '-'}}</p>
+                        <p><strong>Total:</strong>   {{(p.total | number:0) || '-'}}</p>
                       </div>
                     </div>
                   </li>

@@ -72,35 +72,35 @@
                       <table class="table table-striped table-order">
                         <tbody>
                           <tr>
-                            <td>Part Number :</td>
+                            <td>Part Number:</td>
                             <td><?php echo $record['part_number'] ?></td>
                           </tr>
                           <tr>
-                            <td>Type :</td>
+                            <td>Type:</td>
                             <td><?php echo $record['type_name'] ?></td>
                           </tr>
                           <tr>
-                            <td>Product Name :</td>
+                            <td>Product Name:</td>
                             <td><?php echo $record['product_name'] ?></td>
                           </tr>
                           <tr>
-                            <td>จังหวัด :</td>
+                            <td>จังหวัด:</td>
                             <td><?php echo $record['province_name'] ?></td>
                           </tr>
                           <tr>
-                            <td>LB Year QTY :</td>
+                            <td>LB Year QTY:</td>
                             <td><?php echo $record['lb_year_qty'] ?></td>
                           </tr>
                           <tr>
-                            <td>QTY :</td>
+                            <td>QTY:</td>
                             <td><?php echo $record['qty'] ?></td>
                           </tr>
                           <tr>
-                            <td>PM Time QTY :</td>
+                            <td>PM Time QTY:</td>
                             <td><?php echo $record['pm_time_qty'] ?></td>
                           </tr>
                           <tr>
-                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo number_format($record['total'],0) ?></td>
+                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo $record['total'] ?></td>
                           </tr>
                         </tbody>
                       </table>

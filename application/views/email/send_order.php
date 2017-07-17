@@ -85,11 +85,7 @@
 																				<td style="width: 50%;"><?php echo $model['product_name']; ?></td>
 																			</tr>
 																			<tr>
-																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Full Price:</td>
-																				<td style="width: 50%;"><?php echo $model['full_price']; ?></td>
-																			</tr>
-																			<tr>
-																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">lb year qty:</td>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">LB Year QTY:</td>
 																				<td style="width: 50%;"><?php echo $model['lb_year_qty']; ?></td>
 																			</tr>
 																			<tr>
@@ -101,11 +97,11 @@
 																				<td style="width: 50%;"><?php echo $model['qty']; ?></td>
 																			</tr>
 																			<tr>
-																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">pm time qty:</td>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">PM Time QTY:</td>
 																				<td style="width: 50%;"><?php echo $model['pm_time_qty']; ?></td>
 																			</tr>
 																			<tr>
-																				<td colspan="2" style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Total: <span style="font-weight: normal;"><?php echo $model['total']; ?></span></td>
+																				<td colspan="2" style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Total: <span style="font-weight: normal;"><?php echo number_format($model['total'],0) ?></span></td>
 																			</tr>
 																		</tbody>
 																	</table>
