@@ -97,12 +97,12 @@
                       <div class="prodiucts_detail">
                         <p><strong>Type :</strong>   {{p.type_name || '-'}}</p>
                         <p><strong>Description :</strong>   {{p.type_description || '-'}}</p>
-                        <p><strong>Full Price :</strong>   {{p.full_price || '-'}}</p>
                         <p><strong>จังหวัด :</strong>   {{p.province_name || '-'}}</p>
+                        <p><strong>PM Time QTY :</strong>   {{p.pm_time_qty || '-'}}</p>
+                        <p><strong>LB Year QTY :</strong>   {{p.lb_year_qty || '-'}}</p>
+                        <p><strong>Contract :</strong>   {{p.contract_qty || '-'}}</p>
                         <p><strong>QTY :</strong>   {{p.qty || '-'}}</p>
-                        <p><strong>lb year qty :</strong>   {{p.lb_year_qty || '-'}}</p>
-                        <p><strong>pm time qty :</strong>   {{p.pm_time_qty || '-'}}</p>
-                        <p><strong>total :</strong>   {{p.total | number: 2 || '-'}}฿</p>
+                        <p><strong>Total :</strong>   {{(p.total | number:0) || '-'}}</p>
                       </div>
                     </div>
                   </li>
