@@ -32,8 +32,9 @@ class Tos_cal_model extends CI_Model {
 						           v.lb_year_value,
 						           v.pm_time_qty,
 						           v.lb_year_qty,
+											 $product->contract contract_qty,
 						           v.qty,
-						           (v.total * (100 - c.discount)/100) * $product->contract AS total
+						           (v.total * (100 - c.discount)/100) * $product->qty AS total
 						FROM discount_of_contract c,
 
 						  (SELECT q.product_owner_id,
@@ -60,7 +61,7 @@ class Tos_cal_model extends CI_Model {
 						             t.full_price,
 						             t.type_name,
 						             t.type_des,
-						             $product->contract qty,
+						             $product->qty qty,
 						             t.total * (100 - q.discount)/100 AS total
 						      FROM discount_of_qty q,
 
@@ -100,8 +101,9 @@ class Tos_cal_model extends CI_Model {
 						       v1.lb_year lb_year_value,
 						       $product->pm pm_time_qty,
 						       $product->pm lb_year_qty,
-						       $product->contract qty,
-						       ((v1.pm_time * $product->pm) + (v1.lb_year * $product->pm) + q.total) * $product->contract AS total
+									 $product->contract contract_qty,
+						       $product->qty qty,
+						       ((v1.pm_time * $product->pm) + (v1.lb_year * $product->pm) + q.total) * $product->qty AS total
 						FROM province v1,
 
 						  (SELECT pv.product_vendor_id,
@@ -151,7 +153,8 @@ class Tos_cal_model extends CI_Model {
 														''  lb_year_value,
 														$product->pm pm_time_qty,
 														$product->pm lb_year_qty,
-														$product->contract  qty ,
+														$product->contract contract_qty,
+														$product->qty  qty ,
 														0 AS total
 														FROM province v
 														WHERE v.province_id = $product->province ";
@@ -232,6 +235,7 @@ class Tos_cal_model extends CI_Model {
 						'lb_year_value' => $row->lb_year_value,
 						'pm_time_qty' => $row->pm_time_qty,
 						'lb_year_qty' => $row->lb_year_qty,
+						'contract_qty' => $row->contract_qty,
 						'qty' => $row->qty,
 						'total' => $row->total,
 					);
@@ -257,8 +261,6 @@ class Tos_cal_model extends CI_Model {
 		}
 
 	}
-
-
 
 	public function get_order_id_by_ref($ref_id)
 	{
