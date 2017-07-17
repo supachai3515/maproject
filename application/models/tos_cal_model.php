@@ -47,8 +47,8 @@ class Tos_cal_model extends CI_Model {
 						          v1.province_name,
 						          v1.pm_time pm_time_value,
 						          v1.lb_year lb_year_value,
-						          2 pm_time_qty,
-						          2 lb_year_qty,
+						          $product->pm pm_time_qty,
+						          $product->pm lb_year_qty,
 						          q.qty,
 						          (v1.pm_time * $product->pm) + (v1.lb_year * $product->pm) + q.total AS total
 						   FROM province v1,
@@ -98,8 +98,8 @@ class Tos_cal_model extends CI_Model {
 						       v1.province_name,
 						       v1.pm_time pm_time_value,
 						       v1.lb_year lb_year_value,
-						       2 pm_time_qty,
-						       2 lb_year_qty,
+						       $product->pm pm_time_qty,
+						       $product->pm lb_year_qty,
 						       $product->contract qty,
 						       ((v1.pm_time * $product->pm) + (v1.lb_year * $product->pm) + q.total) * $product->contract AS total
 						FROM province v1,
