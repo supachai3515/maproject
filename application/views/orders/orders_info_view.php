@@ -90,6 +90,7 @@
                   <th>province</th>
                   <th>pm</th>
                   <th>lb</th>
+                  <th>contract</th>
                   <th>qty</th>
                   <th>total</th>
                 </tr>
@@ -110,6 +111,7 @@
                   <td><?php echo $row['province_name']; ?></td>
                   <td><?php echo $row['pm_time_qty']; ?></td>
                   <td><?php echo $row['lb_year_qty']; ?></td>
+                  <td><?php echo $row['contract_qty']; ?></td>
                   <td><?php echo $row['qty']; ?></td>
                   <td><?php echo number_format($row['total'],2); ?></td>
                 </tr>
