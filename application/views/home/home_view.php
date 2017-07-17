@@ -92,7 +92,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Province <sup class="text-danger">*</sup></label>
+                <label for="tel" class="col-md-4 control-label">Province<sup class="text-danger">*</sup></label>
                 <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.province.$invalid)}">
                   <select class="form-control" name="province" ng-model="order.province" required>
                     <option value="">Select</option>
@@ -172,24 +172,24 @@
                 <td>{{p.name || '-'}}</td>
                 <td class="text-center">{{p.model || '-'}}</td>
                 <td>
-                  <input class="form-control text-center" type="number" name="selected_model_{{idx}}" value="{{p.qty}}" min="1">
+                  <input type="number" class="form-control text-center"  name="selected_model_{{idx}}" ng-model="selected_products[idx].qty" min="1">
                 </td>
                 <td>
-                  <select class="form-control" name="selected_province_{{idx}}">
+                  <select class="form-control" name="selected_province_{{idx}}" ng-model="selected_products[idx].province">
                     <?php foreach ($province_list as $record): ?>
-                      <option ng-selected="p.province == <?php echo $record->province_id ?>" value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
+                      <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
                     <?php endforeach; ?>
                   </select>
                 </td>
                 <td>
-                  <select class="form-control" name="selected_pm_{{idx}}">
-                    <option value="p.pm" ng-repeat="pm in pm_list" ng-selected="p.pm == pm">{{pm}}</option>
+                  <select class="form-control" name="selected_pm_{{idx}}" ng-model="selected_products[idx].pm">
+                    <option ng-repeat="pm in pm_list">{{pm}}</option>
                   </select>
                 </td>
                 <td>
-                  <select class="form-control" name="selected_contract_{{idx}}">
+                  <select class="form-control" name="selected_contract_{{idx}}" ng-model="selected_products[idx].contract">
                     <?php foreach ($contract_list as $record): ?>
-                      <option ng-selected="p.contract == <?php echo $record->discount_of_contract_id ?>" value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                      <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
                     <?php endforeach; ?>
                   </select>
                 </td>

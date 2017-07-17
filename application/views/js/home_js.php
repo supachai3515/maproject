@@ -108,9 +108,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
         return false;
       }
 
-
       var model = $.extend({}, info_model, {'product_list': $scope.selected_products});
-
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal');?>',
