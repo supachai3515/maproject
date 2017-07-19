@@ -34,7 +34,7 @@ class Tos_cal_model extends CI_Model {
 						           v.lb_year_qty,
 											 $product->contract contract_qty,
 						           v.qty,
-						           (v.total * (100 - c.discount)/100) * $product->qty AS total
+						           ((v.total * (100 - c.discount)/100) * $product->qty) * $product->contract AS total
 						FROM discount_of_contract c,
 
 						  (SELECT q.product_owner_id,
@@ -103,7 +103,7 @@ class Tos_cal_model extends CI_Model {
 						       $product->pm lb_year_qty,
 									 $product->contract contract_qty,
 						       $product->qty qty,
-						       ((v1.pm_time * $product->pm) + (v1.lb_year * $product->pm) + q.total) * $product->qty AS total
+						       (((v1.pm_time * $product->pm) + (v1.lb_year * $product->pm) + q.total) * $product->qty ) * $product->contract AS total
 						FROM province v1,
 
 						  (SELECT pv.product_vendor_id,
