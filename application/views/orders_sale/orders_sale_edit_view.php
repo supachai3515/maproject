@@ -1,5 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper" ng-controller="order_sale">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
@@ -15,10 +15,148 @@
   <!-- Main content -->
   <section class="content">
     <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+              <h3 class="box-title"><?php echo $orders_data['company'] ?> (<?php echo $orders_data['order_id'] ?>)</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tr>
+                  <th>รหัส</th>
+                  <th>Company</th>
+                  <th>email</th>
+                  <th>tel</th>
+                  <th>qty</th>
+                  <th>total</th>
+                  <th>สถานะ</th>
+                  <th>Assign by</th>
+                  <th>Assign to</th>
+                  <th>วันที่</th>
+                  <th>ใช้งาน</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+                <tr>
+                  <td><span ng-bind="order_list.order_id"></span></td>
+                  <td><span ng-bind="order_list.company"></span></td>
+                  <td><span ng-bind="order_list.email"></span></td>
+                  <td><span ng-bind="order_list.tel"></span></td>
+                  <td><span ng-bind="order_list.qty"></span></td>
+                  <td><span ng-bind="order_list.total | number:2"></span></td>
+                  <td><span ng-bind="order_list.status_name"></span></td>
+                  <td><span ng-bind="order_list.assign_by_name"></span></td>
+                  <td><span ng-bind="order_list.assign_to_name"></span></td>
+                  <td><span ng-bind="order_list.create_date"></span></td>
+                  <td><span ng-bind="order_list.modified_date"></span></td>
+                  <td><span ng-bind="order_list.is_active"></span></td>
+                </tr>
+
+              </table>
+          </div><!-- /.box-body -->
+        </div><!-- /.box -->
+      </div>
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"><?php echo $orders_data['company'] ?> (<?php echo $orders_data['order_id'] ?>)</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>part number</th>
+                  <th>product name</th>
+                  <th>Description</th>
+                  <th>comment</th>
+                  <th>type name</th>
+                  <th>type description</th>
+                  <th>full price</th>
+                  <th>dealer price</th>
+                  <th>discount sla</th>
+                  <th>discount contract</th>
+                  <th>discount qty</th>
+                  <th>province</th>
+                  <th>pm</th>
+                  <th>lb</th>
+                  <th>qty</th>
+                  <th>total</th>
+                  <th>Edit</th>
+                </tr>
+
+                <tr ng-repeat="row in orders_detail">
+                  <td><span ng-bind="row.line_number"></span></td>
+                  <td><span ng-bind="row.part_number"></span></td>
+                  <td><span ng-bind="row.product_name"></span></td>
+                  <td><span ng-bind="row.product_description"></span></td>
+                  <td><span ng-bind="row.comment"></span></td>
+                  <td><span ng-bind="row.type_name"></span></td>
+                  <td><span ng-bind="row.type_description"></span></td>
+                  <td><span ng-bind="row.full_price | number"></span></td>
+                  <td><span ng-bind="row.dealer_price | number"></span></td>
+                  <td><span ng-bind="row.discount_sla_type_value | number"></span>%</td>
+                  <td><span ng-bind="row.discount_of_contract_value | number"></span>%</td>
+                  <td><span ng-bind="row.discount_of_qty_value | number"></span>%</td>
+                  <td><span ng-bind="row.province_name"></span></td>
+                  <td><span ng-bind="row.pm_time_qty | number"></span></td>
+                  <td><span ng-bind="row.lb_year_qty | number"></span></td>
+                  <td><span ng-bind="row.qty | number"></span></td>
+                  <td><span ng-bind="row.total | number:2"></span></td>
+                  <td><a class="btn btn-sm btn-warning"  ng-click="edit_ordes(row.line_number,row.part_number,row.order_id)" > <i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                </tr>
+              </table>
+
+              <!--
+              <table class="table table-hover">
+                <tr>
+                  <th>ลำดับ</th>
+                  <th>part number</th>
+                  <th>product name</th>
+                  <th>Description</th>
+                  <th>comment</th>
+                  <th>type name</th>
+                  <th>type description</th>
+                  <th>full price</th>
+                  <th>dealer price</th>
+                  <th>discount sla</th>
+                  <th>discount contract</th>
+                  <th>discount qty</th>
+                  <th>province</th>
+                  <th>pm</th>
+                  <th>lb</th>
+                  <th>qty</th>
+                  <th>total</th>
+                </tr>
+                <?php foreach ($orders_detail_data as $row): ?>
+                <tr>
+                  <td><?php echo $row['line_number']; ?></td>
+                  <td><?php echo $row['part_number']; ?></td>
+                  <td><?php echo $row['product_name']; ?></td>
+                  <td><?php echo $row['product_description']; ?></td>
+                  <td><?php echo $row['comment']; ?></td>
+                  <td><?php echo $row['type_name']; ?></td>
+                  <td><?php echo $row['type_description']; ?></td>
+                  <td><?php echo number_format($row['full_price'],0); ?></td>
+                  <td><?php echo number_format($row['dealer_price'],0); ?></td>
+                  <td><?php echo number_format($row['discount_sla_type_value'],0); ?>%</td>
+                  <td><?php echo number_format($row['discount_of_contract_value'],0); ?>%</td>
+                  <td><?php echo number_format($row['discount_of_qty_value'],0); ?>%</td>
+                  <td><?php echo $row['province_name']; ?></td>
+                  <td><?php echo $row['pm_time_qty']; ?></td>
+                  <td><?php echo $row['lb_year_qty']; ?></td>
+                  <td><?php echo $row['qty']; ?></td>
+                  <td><?php echo number_format($row['total'],2); ?></td>
+                </tr>
+                <?php endforeach; ?>
+              </table>
+              -->
+            </div><!-- /.box-body -->
+          </div><!-- /.box -->
+        </div>
+    </div>
+    <div class="row">
         <!-- left column -->
         <div class="col-md-8">
           <!-- general form elements -->
-
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Edit Order : (<?php echo $orders_data['order_id']; ?>)</h3>
@@ -109,59 +247,6 @@
                     <?php echo validation_errors('<div class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></div>'); ?>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-                <h3 class="box-title"><?php echo $orders_data['company'] ?> (<?php echo $orders_data['order_id'] ?>)</h3>
-            </div><!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>ลำดับ</th>
-                  <th>part number</th>
-                  <th>product name</th>
-                  <th>Description</th>
-                  <th>comment</th>
-                  <th>type name</th>
-                  <th>type description</th>
-                  <th>full price</th>
-                  <th>dealer price</th>
-                  <th>discount sla</th>
-                  <th>discount contract</th>
-                  <th>discount qty</th>
-                  <th>province</th>
-                  <th>pm</th>
-                  <th>lb</th>
-                  <th>qty</th>
-                  <th>total</th>
-                </tr>
-                <?php foreach ($orders_detail_data as $row): ?>
-                <tr>
-                  <td><?php echo $row['line_number']; ?></td>
-                  <td><?php echo $row['part_number']; ?></td>
-                  <td><?php echo $row['product_name']; ?></td>
-                  <td><?php echo $row['product_description']; ?></td>
-                  <td><?php echo $row['comment']; ?></td>
-                  <td><?php echo $row['type_name']; ?></td>
-                  <td><?php echo $row['type_description']; ?></td>
-                  <td><?php echo number_format($row['full_price'],0); ?></td>
-                  <td><?php echo number_format($row['dealer_price'],0); ?></td>
-                  <td><?php echo number_format($row['discount_sla_type_value'],0); ?>%</td>
-                  <td><?php echo number_format($row['discount_of_contract_value'],0); ?>%</td>
-                  <td><?php echo number_format($row['discount_of_qty_value'],0); ?>%</td>
-                  <td><?php echo $row['province_name']; ?></td>
-                  <td><?php echo $row['pm_time_qty']; ?></td>
-                  <td><?php echo $row['lb_year_qty']; ?></td>
-                  <td><?php echo $row['qty']; ?></td>
-                  <td><?php echo number_format($row['total'],2); ?></td>
-                </tr>
-                <?php endforeach; ?>
-              </table>
-            </div><!-- /.box-body -->
-          </div><!-- /.box -->
         </div>
     </div>
   </section>

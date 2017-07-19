@@ -37,7 +37,7 @@ class Orders_sale extends BaseController {
 
       $data['content'] = 'orders_sale/orders_sale_view';
       //if script file
-      //$data['script_file'] = 'js/orders_sale_view';
+      $data['script_file'] = 'js/orders_sale_js';
   		$data['header'] = array('title' => 'Orders | '.$this->config->item('sitename'),
               								'description' =>  'Orders | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
@@ -77,7 +77,7 @@ class Orders_sale extends BaseController {
 
         $data['content'] = 'orders/orders_info_view';
         //if script file
-        //$data['script_file'] = 'js/orders_js';
+        $data['script_file'] = 'js/orders_sale_js';
         $data['header'] = array('title' => 'View Orders | '.$this->config->item('sitename'),
                               'description' =>  'View Orders | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
@@ -117,7 +117,7 @@ class Orders_sale extends BaseController {
 
         $data['content'] = 'orders_sale/orders_sale_edit_view';
         //if script file
-        //$data['script_file'] = 'js/orders_sale_js';
+        $data['script_file'] = 'js/orders_sale_js';
   		  $data['header'] = array('title' => 'Edit Orders | '.$this->config->item('sitename'),
               								'description' =>  'Edit Orders | '.$this->config->item('tagline'),
               								'author' => $this->config->item('author'),
@@ -181,5 +181,19 @@ class Orders_sale extends BaseController {
            $this->loadThis();
       }
   }
+
+  function get_order()
+  {
+    $value = json_decode(file_get_contents("php://input"));
+    $data['order'] = $this->orders_model->get_orders_id($value->order_id);
+    print json_encode($data['order']);
+  }
+
+  function get_order_detail()
+	{
+		$value = json_decode(file_get_contents("php://input"));
+    $data['orders_detail'] = $this->orders_model->get_orders_detail($value->order_id);
+		print json_encode($data['orders_detail']);
+	}
 
 }
