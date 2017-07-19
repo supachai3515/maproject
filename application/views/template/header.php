@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/ng-table.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/angular-loading-bar/loading-bar.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/loading-template.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <style>
     .error {

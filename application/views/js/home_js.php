@@ -1,7 +1,7 @@
 
 <script type="text/javascript">
 
-app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $location) {
+app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $location, cfpLoadingBar) {
   var char_search = '';
   $scope.pm_list = ["1","2","3","4","5"];
   $scope.info_form = {};
@@ -125,38 +125,6 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
           });
     }
  });
-
- app.filter('propsFilter', function() {
-  return function(items, props) {
-    var out = [];
-
-    if (angular.isArray(items)) {
-      var keys = Object.keys(props);
-
-      items.forEach(function(item) {
-        var itemMatches = false;
-
-        for (var i = 0; i < keys.length; i++) {
-          var prop = keys[i];
-          var text = props[prop].toLowerCase();
-          if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
-            itemMatches = true;
-            break;
-          }
-        }
-
-        if (itemMatches) {
-          out.push(item);
-        }
-      });
-    } else {
-      // Let the output be the input untouched
-      out = items;
-    }
-
-    return out;
-  };
-});
 </script>
 
 <script type="text/ng-template" id="add_product_modal.html">
