@@ -77,7 +77,7 @@ class Orders_sale extends BaseController {
 
         $data['content'] = 'orders/orders_info_view';
         //if script file
-        $data['script_file'] = 'js/orders_sale_js';
+        //$data['script_file'] = 'js/orders_sale_js';
         $data['header'] = array('title' => 'View Orders | '.$this->config->item('sitename'),
                               'description' =>  'View Orders | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
@@ -184,34 +184,32 @@ class Orders_sale extends BaseController {
 
   function get_order()
   {
-    $value = json_decode(file_get_contents("php://input"));
-    $data['order'] = $this->orders_model->get_orders_id($value->order_id);
-    print json_encode($data['order']);
+
+    $method = $_SERVER['REQUEST_METHOD'];
+    if($method != 'POST'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+        $value = json_decode(file_get_contents("php://input"));
+        if($value){
+          $data['order'] = $this->orders_model->get_orders_id($value->order_id);
+          json_output(200,$data['order']);
+        }
+    }
+
   }
 
   function get_order_detail()
 	{
-		$value = json_decode(file_get_contents("php://input"));
-    $data['orders_detail'] = $this->orders_model->get_orders_detail($value->order_id);
-		print json_encode($data['orders_detail']);
-	}
-
-
-  public function detail($id)
-  {
     $method = $_SERVER['REQUEST_METHOD'];
-    if($method != 'POS' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
-      json_output(400,array('status' => 400,'message' => 'Bad request.'));
-    } else {
-      $check_auth_client = $this->MyModel->check_auth_client();
-      if($check_auth_client == true){
-            $response = $this->MyModel->auth();
-            if($response['status'] == 200){
-              $resp = $this->MyModel->book_detail_data($id);
-          json_output($response['status'],$resp);
-            }
-      }
+    if($method != 'POST'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+        $value = json_decode(file_get_contents("php://input"));
+        if($value){
+          $data['orders_detail'] = $this->orders_model->get_orders_detail($value->order_id);
+          json_output(200,$data['orders_detail']);
+        }
     }
-  }
+	}
 
 }

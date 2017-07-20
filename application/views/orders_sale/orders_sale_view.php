@@ -1,5 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" ng-controller="orders_ctrl">
+<div class="content-wrapper" ng-controller="order_sale_ctrl">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>

@@ -1,5 +1,5 @@
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" ng-controller="order_sale">
+<div class="content-wrapper" ng-controller="order_sale_ctrl">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
@@ -55,6 +55,11 @@
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div>
+        <div class="col-xs-12 text-right">
+            <div class="form-group">
+                <a class="btn btn-primary" ng-click="new(row)" ><i class="fa fa-plus"></i> Add New</a>
+            </div>
+        </div>
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
@@ -101,7 +106,10 @@
                   <td><span ng-bind="row.lb_year_qty | number"></span></td>
                   <td><span ng-bind="row.qty | number"></span></td>
                   <td><span ng-bind="row.total | number:2"></span></td>
-                  <td><a class="btn btn-sm btn-warning"  ng-click="edit_ordes(row.line_number,row.part_number,row.order_id)" > <i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+                  <td>
+                    <a class="btn btn-sm btn-warning"  ng-click="open(row)" > <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-sm btn-danger"  ng-click="delete(row)" > <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                  </td>
                 </tr>
               </table>
 
