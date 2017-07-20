@@ -68,7 +68,7 @@
 															</table>
 															<p style="font-weight: bold; font-size: 20px; border-bottom: 1px solid#333;">Order Detail</p>
 															<?php foreach ($order_detail_data as $model): ?>
-																<div style="padding: 10px;margin-bottom: 10px;box-shadow: 0 2px 2px rgba(10,16,20,.24),0 0 2px rgba(10,16,20,.12);">
+																<div style="padding: 10px;margin-bottom: 10px;">
 																	<p style="margin-bottom: 30px;padding-left: 10px;border-left: 3px solid #1779ba;">Product: <span style="color: #428bca;"><?php echo $model['product_name'] ?></span></p>
 																	<table style="width: 100%;">
 																		<tbody>
@@ -107,7 +107,7 @@
 																	</table>
 																</div>
 															<?php endforeach; ?>
-															<p style="text-align: center;"><a style="display: inline-block;color: #fff;background-color: #5bc0de;border-color: #46b8da;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;vertical-align: middle;cursor: pointer;text-decoration: none;border-radius: 4px;" href="<?php echo base_url(); ?>tos_cal/special_price/<?php echo $order_data['ref_id']; ?>">Get Special Price</a></p>
+															<p style="text-align: center;"><a style="display: inline-block;color: #fff;background-color: #5bc0de;border-color: #46b8da;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;vertical-align: middle;cursor: pointer;text-decoration: none;border-radius: 4px;" href="<?php echo base_url(); ?>tos_cal/special_price/<?php echo $order_data['ref_id']; ?>">ขอราคาพิเศษ</a></p>
 														</div>
 													</td>
 												</tr>

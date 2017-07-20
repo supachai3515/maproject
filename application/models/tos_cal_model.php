@@ -272,6 +272,23 @@ class Tos_cal_model extends CI_Model {
 			return  $row['order_id'];
 		}
 	}
+	public function get_order_status_id_by_ref($ref_id)
+	{
+		$ref_id = $this->db->escape($ref_id);
+		$sql =" SELECT order_status_id FROM  orders WHERE ref_id = $ref_id ";
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+		if($row != null){
+			return  $row['order_status_id'];
+		}
+	}
+
+	public function update_spacial_price_status($ref_id)
+	{
+		$ref_id = $this->db->escape($ref_id);
+		$sql = "UPDATE orders SET order_status_id =  2  WHERE ref_id  = $ref_id ";
+		$this->db->query($sql);
+	}
 
 	public function get_order($order_id)
 	{

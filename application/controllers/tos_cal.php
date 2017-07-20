@@ -192,46 +192,44 @@ class Tos_cal extends BaseController {
 
 	}
 
-	public function test_email($order_id)
-	{
-		$data['order_data'] = $this->tos_cal_model->get_order($order_id);
-		$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-		//$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
-		//echo json_encode($result);
-		//sendmail
-		$data['email'] = 'dddd';
-		$data['template'] = "email/send_order";
-		$data['subject'] = "Tos Order";
-		$data['bcc_mail'] = "winchesterbee@gmail.com";
-		$data['name'] = 'sdgfaswe';
-		$data['tel'] = 'zsdfz';
-		$this->load->view('email/send_order', $data);
-
-
-	}
-
 	public function special_price($ref_id)
 	{
 		$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id);
 		if(isset($order_id)){
 				//set status special_price
+				$data['ref_id'] = $ref_id;
 				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
 				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
 				$status = "success";
-				setFlashData($status, "ทางเราได้รับคำขอจากท่านเรียบร้อยแล้ว กรุณารอทางเราติดต่อครับ");
+				//setFlashData($status, "ทางเราได้รับคำขอจากท่านเรียบร้อยแล้ว กรุณารอทางเราติดต่อครับ");
 		} else {
 				$status = "error";
-				setFlashData($status, "ข้อผิดผลาด");
+				//setFlashData($status, "ข้อผิดผลาด");
 		}
 
 		$this->load->view('order_public/special_price', $data);
 	}
 
 
-	public function save_special_price($ref_id)
+	public function request_special_price()
 	{
-		//error message
-		# code...
+		$ref_id = json_decode(file_get_contents("php://input"));
+		$order_status = $this->tos_cal_model->get_order_status_id_by_ref($ref_id->id);
+		if(isset($order_status)){
+			if($order_status < 2)
+			{
+				$result_update = $this->tos_cal_model->update_spacial_price_status($ref_id->id);
+				$result = array('success' => true);
+				echo json_encode($result);
+			}
+			else
+			{
+				$result = array('success' => false);
+				echo json_encode($result);
+			}
+
+		} else {
+		}
 	}
 
 	public function order_detail()

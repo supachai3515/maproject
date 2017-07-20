@@ -6,17 +6,14 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
          <title>special_price</title>
 
-         <!-- Bootstrap CSS -->
-         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
+         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/loading-template.css">
          <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
-         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-         <!--[if lt IE 9]>
-         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-         <![endif]-->
        </head>
-       <body>
+       <body ng-app="mainApp" ng-controller="special_price_ctrl">
         <h1 class="text-center">Special Price</h1>
         <div class="container">
           <?php
@@ -107,16 +104,29 @@
                     </div>
                     <?php endforeach; ?>
                   </div>
-                  <p class="text-center"><button type="button" class="btn btn-primary btn-lg">Special Price</button></p>
+                  <p class="text-center"><button type="button" class="btn btn-primary btn-lg" ng-click="get_special_price()">ขอราคาพิเศษ</button></p>
                 </div>
               </div>
             </div>
         </div>
 
-        <!-- jQuery -->
-        <script src="//code.jquery.com/jquery.min.js"></script>
-        <!-- Bootstrap JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <!-- Your own javascript -->
+        <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/jquery.validate.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/validation.js"></script>
+        <script src="<?php echo base_url(); ?>assets/dist/js/sweetalert2.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/angular.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/angular-sanitize.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/angular-animate.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/ui-bootstrap-tpls-1.2.1.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/bootstrap-notify.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/ui-select/select.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/angular-filter/angular-filter-0.5.16.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/angular-loading-bar/loading-bar.js"></script>
+        <script src="<?php echo base_url(); ?>assets/dist/js/ng-table.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+        <!-- page script -->
+        <?php $this->load->view("js/main_app"); ?>
+        <?php $this->load->view("js/special_price_js"); ?>
        </body>
 </html>
