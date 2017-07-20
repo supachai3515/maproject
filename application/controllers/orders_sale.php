@@ -196,4 +196,22 @@ class Orders_sale extends BaseController {
 		print json_encode($data['orders_detail']);
 	}
 
+
+  public function detail($id)
+  {
+    $method = $_SERVER['REQUEST_METHOD'];
+    if($method != 'POS' || $this->uri->segment(3) == '' || is_numeric($this->uri->segment(3)) == FALSE){
+      json_output(400,array('status' => 400,'message' => 'Bad request.'));
+    } else {
+      $check_auth_client = $this->MyModel->check_auth_client();
+      if($check_auth_client == true){
+            $response = $this->MyModel->auth();
+            if($response['status'] == 200){
+              $resp = $this->MyModel->book_detail_data($id);
+          json_output($response['status'],$resp);
+            }
+      }
+    }
+  }
+
 }

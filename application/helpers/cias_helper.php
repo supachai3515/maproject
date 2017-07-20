@@ -11,6 +11,14 @@ function pre($data)
     echo "</pre>";
 }
 
+function json_output($statusHeader,$response)
+{
+  $ci =& get_instance();
+  $ci->output->set_content_type('application/json');
+  $ci->output->set_status_header($statusHeader);
+  $ci->output->set_output(json_encode($response));
+}
+
 /**
  * This function used to get the CI instance
  */
