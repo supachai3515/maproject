@@ -41,7 +41,7 @@
     <![endif]-->
 </head>
 
-<body style="background-color: #f5f8fa;" ng-app="mainApp" ng-controller="home_ctrl">
+<body ng-app="mainApp" ng-controller="home_ctrl">
     <header class="header">
       <a href="/"><h1>TOS</h1></a>
       <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
@@ -55,16 +55,19 @@
                 <a href="#" role="tab">
                   <span class="round-tab"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                 </a>
+                <span>เพิ่มสินค้า</span>
               </li>
               <li role="presentation">
                   <a href="#"  role="tab">
                       <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
                   </a>
+                  <span>เลือกสินค้า</span>
               </li>
               <li role="presentation">
                   <a href="#" title="Complete">
                       <span class="round-tab"><i class="fa fa-check" aria-hidden="true"></i></span>
                   </a>
+                  <span>สำเร็จ</span>
               </li>
             </ul>
         </div>
