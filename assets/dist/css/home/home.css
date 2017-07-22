@@ -136,7 +136,7 @@
         position: relative;
         margin: 40px auto;
         margin-bottom: 0;
-        border-bottom-color: #e0e0e0;
+        border-bottom: none;
     }
 
     .step > div.step-inner {
@@ -183,6 +183,7 @@
 
 .step .nav-tabs > li {
     width: 33.333%;
+    text-align: center;
 }
 
 .step .nav-tabs > li a {

@@ -16,23 +16,31 @@
        <body ng-app="mainApp" ng-controller="special_price_ctrl">
         <h1 class="text-center">Special Price</h1>
         <div class="container">
-          <?php
-          $success = $this->session->flashdata('success');
-          $error = $this->session->flashdata('error');
-          ?>
-          <?php if ($success): ?>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <?php echo $success; ?>
-        </div>
-
-            <?php endif; ?>
-           <?php if ($error): ?>
-               <div class="alert alert-danger alert-dismissable">
-                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                   <?php echo $error; ?>
-               </div>
-            <?php endif; ?>
+          <div class="step">
+            <div class="step-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" ng-class="{'active': special_status == 1}">
+                    <a href="#" role="tab">
+                      <span class="round-tab"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></i></span>
+                    </a>
+                    <span>ขอราคาพิเศษ</span>
+                  </li>
+                  <li role="presentation" ng-class="{'active': special_status == 2}">
+                      <a href="#"  role="tab">
+                          <span class="round-tab"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+                      </a>
+                      <span>รอการตรวจสอบ</span>
+                  </li>
+                  <li role="presentation" ng-class="{'active': special_status == 3}">
+                      <a href="#" title="Complete">
+                          <span class="round-tab"><i class="fa fa-check" aria-hidden="true"></i></span>
+                      </a>
+                      <span>สำเร็จ</span>
+                  </li>
+                </ul>
+            </div>
+          </div>
             <div class="flex-warp">
               <div class="flex flex-100">
                 <div class="box-inner">
@@ -97,7 +105,7 @@
                             <td><?php echo $record['pm_time_qty'] ?></td>
                           </tr>
                           <tr>
-                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo $record['total'] ?></td>
+                            <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo number_format($record['total'],0) ?></td>
                           </tr>
                         </tbody>
                       </table>
