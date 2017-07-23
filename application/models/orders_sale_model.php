@@ -70,10 +70,11 @@ class Orders_sale_model extends CI_Model
 
     public function save_detail($data_info, $user_id)
     {
+        if ($data_info->contract_qty == null) {
+            $data_info->contract_qty = 1;
+        }
+
         if ($data_info->is_product_owner == "1" && $data_info->is_have_product == "1") {
-            if ($data_info->contract_qty == null) {
-                $data_info->contract_qty = 1;
-            }
             //product_owner
             $sql = "SELECT
 											c.discount discount_of_contract_value,
@@ -127,8 +128,31 @@ class Orders_sale_model extends CI_Model
                 return false;
             }
         } elseif ($data_info->is_product_owner == "0" && $data_info->is_have_product == "1") {
-            pre($data_info);
             //product_vander
+            $sql = "SELECT
+											pv.province_name,
+											(v.total * $data_info->qty) * $data_info->contract_qty AS total
+										FROM
+											province pv,
+											(
+												SELECT
+													($data_info->pm_time_value * $data_info->pm_time_qty) +
+													($data_info->lb_year_value * $data_info->lb_year_qty) +
+													($data_info->full_price * (100 - $data_info->discount_sla_type_value) / 100) AS total
+											) v
+										WHERE pv.province_id = $data_info->province_id
+										";
+            $query = $this->db->query($sql);
+            $row = $query->row_array();
+            $data_info->total = $row['total'];
+            $data_info->province_name = $row['province_name'];
+            //update
+            $result = $this->update_order($data_info, $user_id);
+            if ($result) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             //not have product
             return false;
@@ -184,6 +208,78 @@ class Orders_sale_model extends CI_Model
                 'modified_date' => date("Y-m-d H:i:s"),
                 'modified_by' => $user_id
             );
+        $where_order = array('order_id' => $data_info->order_id);
+        $this->db->update('orders', $data, $where_order);
+
+        if ($this->db->trans_status() === false) {
+            $this->db->trans_rollback();
+            return false;
+        } else {
+            $this->db->trans_commit();
+            return true;
+        }
+    }
+
+    public function del_detail($data_info, $user_id)
+    {
+        $this->load->model('orders_model');
+        // transection
+        $this->db->trans_begin();
+
+        //delete detail
+        $sql = "DELETE FROM order_detail WHERE order_id = '$data_info->order_id' AND line_number = '$data_info->line_number' AND product_owner_id = '$data_info->product_owner_id' ";
+        $query = $this->db->query($sql);
+        $order_list = $this->orders_model->get_orders_detail($data_info->order_id);
+        //delete all
+        $sql = "DELETE FROM order_detail WHERE order_id = '$data_info->order_id' ";
+        $query = $this->db->query($sql);
+        $line_number = 1;
+        foreach ($order_list as $row) {
+            $data_detail = array(
+                            'order_id' => $row['order_id'],
+                            'line_number' => $line_number,
+                            'is_product_owner' => $row['is_product_owner'],
+                            'is_have_product' => $row['is_have_product'],
+                            'comment' => $row['comment'],
+                            'product_owner_id' => $row['product_owner_id'],
+                            'product_vendor_id' => $row['product_vendor_id'],
+                            'type_name' => $row['type_name'],
+                            'type_description' => $row['type_description'],
+                            'full_price' => $row['full_price'],
+                            'dealer_price' => $row['dealer_price'],
+                            'discount_sla_type_id' => $row['discount_sla_type_id'],
+                            'discount_sla_type_value' => $row['discount_sla_type_value'],
+                            'discount_of_contract_value' => $row['discount_of_contract_value'],
+                            'discount_of_qty_value' => $row['discount_of_qty_value'],
+                            'province_id' => $row['province_id'],
+                            'province_name' => $row['province_name'],
+                            'pm_time_value' => $row['pm_time_value'],
+                            'lb_year_value' => $row['lb_year_value'],
+                            'pm_time_qty' => $row['pm_time_qty'],
+                            'lb_year_qty' => $row['lb_year_qty'],
+                            'contract_qty' => $row['contract_qty'],
+                            'qty' => $row['qty'],
+                            'total' => $row['total'],
+                                            );
+            $this->db->insert('order_detail', $data_detail);
+            $line_number++;
+        }
+
+        //update header
+        $total_cal = 0;
+        $total_qty = 0;
+        foreach ($this->orders_model->get_orders_detail($data_info->order_id) as $row) {
+            $total_cal  = $total_cal  + $row['total'];
+            $total_qty  = $total_qty  + $row['qty'];
+        }
+
+        date_default_timezone_set("Asia/Bangkok");
+        $data = array(
+                                'qty' => $total_qty ,
+                                'total' => $total_cal,
+                                'modified_date' => date("Y-m-d H:i:s"),
+                                'modified_by' => $user_id
+                        );
         $where_order = array('order_id' => $data_info->order_id);
         $this->db->update('orders', $data, $where_order);
 
