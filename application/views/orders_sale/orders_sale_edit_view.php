@@ -55,12 +55,12 @@
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div>
-        <div class="col-xs-12 text-right">
+      <div class="col-xs-12 text-right">
             <div class="form-group">
                 <a class="btn btn-primary" ng-click="new(row)" ><i class="fa fa-plus"></i> Add</a>
             </div>
         </div>
-        <div class="col-xs-12">
+      <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
                 <h3 class="box-title"><?php echo $orders_data['company'] ?> (<?php echo $orders_data['order_id'] ?>)</h3>
@@ -107,7 +107,7 @@
                   <td><span ng-bind="row.qty | number"></span></td>
                   <td><span ng-bind="row.total | number:2"></span></td>
                   <td>
-                    <a class="btn btn-sm btn-warning"  ng-click="open(row)" > <i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-sm btn-warning"  ng-click="edit_order(row)" > <i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a class="btn btn-sm btn-danger"  ng-click="delete(row)" > <i class="fa fa-trash-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>

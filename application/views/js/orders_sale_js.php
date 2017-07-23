@@ -2,7 +2,6 @@
 //swal('Hello world!');
 app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
   <?php if (isset($orders_detail_data)): ?>
-
   $scope.initget_order = function() {
           $http({
            method: 'POST',
@@ -36,6 +35,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
          console.log(response.status);
        });
     }
+
     $scope.initget_order ();
     $scope.initget_order_detail();
 
@@ -44,63 +44,56 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
   }
 
 
-  $scope.open = function (row_data) {
-    $scope.items = row_data;
+  $scope.edit_order = function (row_data) {
+    $uibModal.open({
+        templateUrl: 'edit_order_view.html',
+        controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
+          $sc.pm_val = ["1","2","3","4","5"];
+          $sc.order_detail = row_data;
 
-     var modalInstance = $uibModal.open({
-       animation: $scope.animationsEnabled,
-       templateUrl: 'myModalContent.html',
-       controller: 'ModalInstanceCtrl',
-       size: "lg",
-       resolve: {
-         items: function () {
-           return $scope.items;
-         }
-       }
-     });
+          $sc.save_edit = function (model) {
+              console.log('====',model);
+              // edit_func(model).then(function(data) {
+              //   console.log('---', data);
+              // });
+              $scope.initget_order ();
+              $scope.initget_order_detail();
+              $uib.close();
+          }
 
-     $scope.animationsEnabled = true;
-     modalInstance.result.then(function () {
-       $scope.initget_order ();
-       $scope.initget_order_detail();
-       console.log("---->save");
-     }, function () {
-       $log.info('Modal dismissed at: ' + new Date());
-     });
-   };
+          $sc.cancel = function () {
+              $uib.dismiss('cancel');
+          }
 
-   $scope.toggleAnimation = function () {
-     $scope.animationsEnabled = !$scope.animationsEnabled;
+          function edit_func(model) {
+            let defer = $q.defer();
+            $http({
+                    method: 'POST',
+                    url: '<?php echo base_url('orders_sale/edit_save');?>',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: model
+                  }).then(function(response) {
+                    $q.resolve(response);
+                  }, function(reason) {
+                    $q.reject(reason);
+                  });
+            return defer.promise;
+          }
+        }]
+    });
    };
 
   <?php endif ?>
-});
-
-angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope,$http, $uibModalInstance, items) {
-    $scope.items = items;
-
-    $scope.ok = function () {
-      $uibModalInstance.close();
-    };
-
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
-
-  $scope.save_edit = function () {
-    console.log($scope.order_detail);
-  };
-
 });
 
 </script>
 
 <?php if (isset($orders_detail_data)): ?>
 
-<script type="text/ng-template" id="myModalContent.html">
+<script type="text/ng-template" id="edit_order_view.html">
   <div class="modal-header">
-    <h4>Edit (<span ng-bind="items.part_number"></span>) <small><span ng-bind="items.product_name"></span></small></h4>
-    <p><strong ng-bind="items.type_name"></strong> <span ng-bind="items.type_description"></span></p>
+    <h4>Edit (<span ng-bind="order_detail.part_number"></span>) <small><span ng-bind="order_detail.product_name"></span></small></h4>
+    <p><strong ng-bind="order_detail.type_name"></strong> <span ng-bind="order_detail.type_description"></span></p>
   </div>
   <div class="modal-body">
     <form role="form"  ng-submit="save_edit(order_detail)">
@@ -109,41 +102,46 @@ angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope,
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name">discount_sla_type_value</label>
-                        <input type="text" class="form-control required" ng-model="order_detail.discount_sla_type_value" ng-init="order_detail.discount_sla_type_value = items.discount_sla_type_value"  ng-value="items.discount_sla_type_value | number" required>
-                        <input type="hidden" ng-model="order_detail.order_id"  ng-init="order_detail.order_id = items.order_id" ng-value="items.order_id" />
+                        <input type="text" class="form-control required" ng-model="order_detail.discount_sla_type_value"  required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">discount_of_contract_value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.discount_of_contract_value" ng-init="order_detail.discount_of_contract_value = items.discount_of_contract_value"   ng-value="items.discount_of_contract_value | number" required>
+                      <input type="text" class="form-control required" ng-model="order_detail.discount_of_contract_value" readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">discount_of_qty_value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.discount_of_qty_value" ng-init="order_detail.discount_of_qty_value = items.discount_of_qty_value"   ng-value="items.discount_of_qty_value | number" required>
+                      <input type="text" class="form-control required" ng-model="order_detail.discount_of_qty_value" readonly>
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name">province_name</label>
-                        <input type="text" class="form-control required" ng-model="order_detail.province_name" ng-init="order_detail.province_name = items.province_name"   ng-value="items.province_name" required>
+                        <select class="form-control" name="contract" ng-model="order_detail.province_id" required>
+                          <?php foreach ($province_list as $record): ?>
+                            <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
+                          <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">pm_time_qty</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.pm_time_qty" ng-init="order_detail.pm_time_qty = items.pm_time_qty"   ng-value="items.pm_time_qty | number" required>
+                      <select class="form-control" name="pm" ng-model="order_detail.pm_time_qty" required>
+                        <option value="">Select</option>
+                        <option value="{{pm}}" ng-repeat="pm in pm_val">{{pm}}</option>
+                      </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">pm_time_value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.pm_time_value" ng-init="order_detail.pm_time_value = items.pm_time_value"   ng-value="items.pm_time_value | number" required>
+                      <input type="text" class="form-control required" ng-model="order_detail.pm_time_value" readonly>
                     </div>
                 </div>
             </div>
@@ -151,19 +149,23 @@ angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope,
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">lb_year_qty</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_qty"  ng-init="order_detail.lb_year_qty = items.lb_year_qty"  ng-value="items.lb_year_qty | number" required>
+                      <select class="form-control" name="lb_year_qty" ng-model="order_detail.lb_year_qty">
+                        <?php foreach ($contract_list as $record): ?>
+                          <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                        <?php endforeach; ?>
+                      </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">lb_year_value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_value" ng-init="order_detail.lb_year_value = items.lb_year_value"   ng-value="items.lb_year_value | number" required>
+                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_value" readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name">qty</label>
-                        <input type="text" class="form-control required" ng-model="order_detail.qty" ng-init="order_detail.qty = items.qty"   ng-value="items.qty  | number" required>
+                        <input type="text" class="form-control required" ng-model="order_detail.qty" required>
                     </div>
                 </div>
             </div>

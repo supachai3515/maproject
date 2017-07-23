@@ -43,7 +43,7 @@
 
 <body ng-app="mainApp" ng-controller="select_product_ctrl">
     <header class="header">
-      <a href="/"><h1>TOS</h1></a>
+      <a href="<?php echo base_url(); ?>"><h1>TOS</h1></a>
       <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
     </header>
     <div class="container">

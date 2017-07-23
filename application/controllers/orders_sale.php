@@ -10,6 +10,7 @@ class Orders_sale extends BaseController {
     $this->load->model('initdata_model');
 		$this->load->model('orders_model');
     $this->load->model('orders_sale_model');
+    $this->load->model('home_model');
     $this->isLoggedIn();
   }
 
@@ -33,7 +34,6 @@ class Orders_sale extends BaseController {
       $count = $this->orders_sale_model->get_orders_count($searchText,$this->vendorId);
       $data['links_pagination'] = $this->pagination_compress( "orders/index", $count, $this->config->item('pre_page') );
   	  $data['orders_list'] = $this->orders_sale_model->get_orders( $searchText, $page, $this->config->item('pre_page'),$this->vendorId);
-
 
       $data['content'] = 'orders_sale/orders_sale_view';
       //if script file
@@ -111,6 +111,8 @@ class Orders_sale extends BaseController {
 
         $data['orders_data'] = $this->orders_model->get_orders_id($id);
         $data['orders_detail_data'] = $this->orders_model->get_orders_detail($id);
+        $data['province_list'] = $this->home_model->get_province();
+        $data['contract_list'] = $this->home_model->get_contract();
         if(count($data['orders_data'])==0){
             redirect('error');
         }
