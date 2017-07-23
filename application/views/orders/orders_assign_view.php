@@ -37,12 +37,12 @@
                                         <option value="0">Select User</option>
 
                                         <?php
-                                        if(!empty($user_sale))
-                                        {
-                                            foreach ($user_sale as $rl)
-                                            {
+                                        if (!empty($user_sale)) {
+                                            foreach ($user_sale as $rl) {
                                                 ?>
-                                                <option value="<?php echo $rl['userId']; ?>" <?php if($rl['userId'] == $orders_data['assign_to']) {echo "selected=selected";} ?>><?php echo $rl['name']; ?></option>
+                                                <option value="<?php echo $rl['userId']; ?>" <?php if ($rl['userId'] == $orders_data['assign_to']) {
+                                                    echo "selected=selected";
+                                                } ?>><?php echo $rl['name']; ?></option>
                                                 <?php
                                             }
                                         }
@@ -64,24 +64,24 @@
             <?php
                 $this->load->helper('form');
                 $error = $this->session->flashdata('error');
-                if($error)
-                {
-            ?>
+                if ($error) {
+                    ?>
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $this->session->flashdata('error'); ?>
             </div>
-            <?php } ?>
+            <?php
+                } ?>
             <?php
                 $success = $this->session->flashdata('success');
-                if($success)
-                {
-            ?>
+                if ($success) {
+                    ?>
             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $this->session->flashdata('success'); ?>
             </div>
-            <?php } ?>
+            <?php
+                } ?>
 
             <div class="row">
                 <div class="col-md-12">
@@ -118,16 +118,24 @@
                     <dt>qty</dt>
                     <dd><?php echo $orders_data['qty']; ?></dd>
                     <dt>total</dt>
-                    <dd><?php echo number_format($orders_data['total'],0); ?></dd>
+                    <dd><?php echo number_format($orders_data['total'], 0); ?></dd>
                     <dt>Assign by</dt>
                     <dd><?php echo $orders_data['assign_by_name']; ?></dd>
-                    <dd><span><i class="fa fa-calendar"></i> <?php if (isset($orders_data['assign_by_date'])) {echo date("d-m-Y H:i", strtotime($orders_data['assign_by_date']));}?></span></dd>
+                    <dd><span><i class="fa fa-calendar"></i> <?php if (isset($orders_data['assign_by_date'])) {
+                    echo date("d-m-Y H:i", strtotime($orders_data['assign_by_date']));
+                }?></span></dd>
                     <dt>Assign to</dt>
                     <dd><?php echo $orders_data['assign_to_name']; ?></dd>
-                    <dd><span><i class="fa fa-calendar"></i> <?php if (isset($orders_data['assign_to_date'])) {echo date("d-m-Y H:i", strtotime($orders_data['assign_to_date']));}?></span></dd>
+                    <dd><span><i class="fa fa-calendar"></i> <?php if (isset($orders_data['assign_to_date'])) {
+                    echo date("d-m-Y H:i", strtotime($orders_data['assign_to_date']));
+                }?></span></dd>
                     <dt>วันที่</dt>
-                    <dd><span>สร้าง : <i class="fa fa-calendar"></i> <?php if (isset($orders_data['create_date'])) {echo date("d-m-Y H:i", strtotime($orders_data['create_date']));}?></span></dd>
-                    <dd><span>แก้ไข : <i class="fa fa-calendar"></i> <?php if (isset($orders_data['modified_date'])) {echo date("d-m-Y H:i", strtotime($orders_data['modified_date']));}?></span></dd>
+                    <dd><span>สร้าง : <i class="fa fa-calendar"></i> <?php if (isset($orders_data['create_date'])) {
+                    echo date("d-m-Y H:i", strtotime($orders_data['create_date']));
+                }?></span></dd>
+                    <dd><span>แก้ไข : <i class="fa fa-calendar"></i> <?php if (isset($orders_data['modified_date'])) {
+                    echo date("d-m-Y H:i", strtotime($orders_data['modified_date']));
+                }?></span></dd>
                     <dt>ใช้งาน</dt>
                     <dd><?php if ($orders_data['is_active']=="1"): ?>
                         <span><i class="fa fa-check"></i> ใช้งาน</span>
@@ -178,16 +186,16 @@
                   <td><?php echo $row['comment']; ?></td>
                   <td><?php echo $row['type_name']; ?></td>
                   <td><?php echo $row['type_description']; ?></td>
-                  <td><?php echo number_format($row['full_price'],0); ?></td>
-                  <td><?php echo number_format($row['dealer_price'],0); ?></td>
-                  <td><?php echo number_format($row['discount_sla_type_value'],0); ?>%</td>
-                  <td><?php echo number_format($row['discount_of_contract_value'],0); ?>%</td>
-                  <td><?php echo number_format($row['discount_of_qty_value'],0); ?>%</td>
+                  <td><?php echo number_format($row['full_price'], 0); ?></td>
+                  <td><?php echo number_format($row['dealer_price'], 0); ?></td>
+                  <td><?php echo number_format($row['discount_sla_type_value'], 0); ?>%</td>
+                  <td><?php echo number_format($row['discount_of_contract_value'], 0); ?>%</td>
+                  <td><?php echo number_format($row['discount_of_qty_value'], 0); ?>%</td>
                   <td><?php echo $row['province_name']; ?></td>
                   <td><?php echo $row['pm_time_qty']; ?></td>
                   <td><?php echo $row['lb_year_qty']; ?></td>
                   <td><?php echo $row['qty']; ?></td>
-                  <td><?php echo number_format($row['total'],2); ?></td>
+                  <td><?php echo number_format($row['total'], 2); ?></td>
                 </tr>
                 <?php endforeach; ?>
               </table>
