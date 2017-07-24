@@ -47,17 +47,20 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
   $scope.edit_order = function (row_data) {
     $uibModal.open({
         templateUrl: 'edit_order_view.html',
+        size: 'lg',
         controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
           $sc.pm_val = ["1","2","3","4","5"];
           $sc.order_detail = row_data;
 
           $sc.save_edit = function (model) {
-              console.log('====',model);
-              // edit_func(model).then(function(data) {
-              //   console.log('---', data);
-              // });
-              $scope.initget_order ();
-              $scope.initget_order_detail();
+              edit_func(model).then(function(data) {
+                swal(
+                  '',
+                  'Update Order successfully',
+                  'success'
+                )
+                $scope.initget_order_detail();
+              });
               $uib.close();
           }
 
@@ -66,16 +69,21 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
           }
 
           function edit_func(model) {
-            let defer = $q.defer();
+            var defer = $q.defer();
             $http({
                     method: 'POST',
-                    url: '<?php echo base_url('orders_sale/edit_save');?>',
+                    url: '<?php echo base_url('orders_sale/edit_save_detail');?>',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     data: model
                   }).then(function(response) {
-                    $q.resolve(response);
+                    defer.resolve(response);
                   }, function(reason) {
-                    $q.reject(reason);
+                    swal(
+                      'Error!',
+                      'Order update failed',
+                      'error'
+                    )
+                    defer.reject(reason);
                   });
             return defer.promise;
           }
@@ -101,19 +109,19 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="name">discount_sla_type_value</label>
+                        <label for="name">Discount SLA Type Value</label>
                         <input type="text" class="form-control required" ng-model="order_detail.discount_sla_type_value"  required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                      <label for="name">discount_of_contract_value</label>
+                      <label for="name">Discount Contract Value</label>
                       <input type="text" class="form-control required" ng-model="order_detail.discount_of_contract_value" readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                      <label for="name">discount_of_qty_value</label>
+                      <label for="name">Discount QTY Value</label>
                       <input type="text" class="form-control required" ng-model="order_detail.discount_of_qty_value" readonly>
                     </div>
                 </div>
@@ -121,7 +129,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="name">province_name</label>
+                        <label for="name">จังหวัด</label>
                         <select class="form-control" name="contract" ng-model="order_detail.province_id" required>
                           <?php foreach ($province_list as $record): ?>
                             <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
@@ -131,7 +139,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                      <label for="name">pm_time_qty</label>
+                      <label for="name">PM</label>
                       <select class="form-control" name="pm" ng-model="order_detail.pm_time_qty" required>
                         <option value="">Select</option>
                         <option value="{{pm}}" ng-repeat="pm in pm_val">{{pm}}</option>
@@ -140,32 +148,33 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                      <label for="name">pm_time_value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.pm_time_value" readonly>
+                      <label for="name">PM Time Value</label>
+                      <input type="text" class="form-control required" ng-model="order_detail.pm_time_value">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                      <label for="name">lb_year_qty</label>
-                      <select class="form-control" name="lb_year_qty" ng-model="order_detail.lb_year_qty">
+                      <label for="name">Contact QTY</label>
+                      <select class="form-control" name="selected_contract_{{idx}}" ng-model="order_detail.contract_qty">
+                        <option value="">Select</option>
                         <?php foreach ($contract_list as $record): ?>
-                          <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                          <option value="<?php echo $record->number ?>"><?php echo $record->number ?> ปี</option>
                         <?php endforeach; ?>
                       </select>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                      <label for="name">lb_year_value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_value" readonly>
+                      <label for="name">LB Year Value</label>
+                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_value">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="name">qty</label>
-                        <input type="text" class="form-control required" ng-model="order_detail.qty" required>
+                        <label for="name">QTY</label>
+                        <input type="text" class="form-control required" ng-model="order_detail.qty">
                     </div>
                 </div>
             </div>
@@ -178,7 +187,6 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
   <div class="modal-footer">
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
   </div>
-    <pre>{{items}}</pre>
 </script>
 
 <?php endif ?>
