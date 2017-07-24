@@ -88,7 +88,7 @@
                   <th>Edit</th>
                 </tr>
 
-                <tr ng-repeat="row in orders_detail">
+                <tr ng-repeat="(idx, row) in orders_detail track by idx">
                   <td><span ng-bind="row.line_number"></span></td>
                   <td><span ng-bind="row.part_number"></span></td>
                   <td><span ng-bind="row.product_name"></span></td>
