@@ -295,47 +295,48 @@ class Orders_sale extends BaseController
     public function get_product_cal()
     {
         $json_str ='{
-        "is_have_product" : "1",
-        "brand_name": "Cissco",
-        "model": "SV3200",
-        "name": "1 MSA 1040 2Prt FC DC SFF Strg",
-        "part_number": "E7W00A",
-        "product_owner_id": "2",
-        "province": "10",
-        "contract": "2",
-        "pm": "2",
-        "qty": 1
-      }';
+                      "order_id": "12"
+                      "is_have_product" : "1",
+                      "brand_name": "Cissco",
+                      "model": "SV3200",
+                      "name": "1 MSA 1040 2Prt FC DC SFF Strg",
+                      "part_number": "E7W00A",
+                      "product_owner_id": "2",
+                      "province": "10",
+                      "contract": "2",
+                      "pm": "2",
+                      "qty": 1
+                    }';
 
-      $json_return ='{
-              "part_number": "E7V99A",
-              "product_name": "1 MSA 1040 2Prt FC DC LFF Strg",
-              "product_description": "1 MSA 1040 2Prt FC DC LFF Strg",
-              "order_id": "12",
-              "line_number": "1",
-              "product_owner_id": "1",
-              "province_id": "1",
-              "is_have_product": "1",
-              "comment": "",
-              "is_product_owner": "0",
-              "product_vendor_id": "1",
-              "type_name": "GOLD",
-              "type_description": "Gold typee",
-              "full_price": "50000",
-              "dealer_price": "0",
-              "discount_sla_type_id": "1",
-              "discount_sla_type_value": "75",
-              "discount_of_contract_value": "0",
-              "discount_of_qty_value": "30",
-              "province_name": "กรุงเทพมหานคร",
-              "pm_time_value": "1000",
-              "lb_year_value": "2000",
-              "pm_time_qty": "2",
-              "lb_year_qty": "2",
-              "contract_qty": null,
-              "qty": "2",
-              "total": "65650.0000"
-            }';
+        $json_return ='{
+                          "part_number": "E7V99A",
+                          "product_name": "1 MSA 1040 2Prt FC DC LFF Strg",
+                          "product_description": "1 MSA 1040 2Prt FC DC LFF Strg",
+                          "order_id": "12",
+                          "line_number": "1",
+                          "product_owner_id": "1",
+                          "province_id": "1",
+                          "is_have_product": "1",
+                          "comment": "",
+                          "is_product_owner": "0",
+                          "product_vendor_id": "1",
+                          "type_name": "GOLD",
+                          "type_description": "Gold typee",
+                          "full_price": "50000",
+                          "dealer_price": "0",
+                          "discount_sla_type_id": "1",
+                          "discount_sla_type_value": "75",
+                          "discount_of_contract_value": "0",
+                          "discount_of_qty_value": "30",
+                          "province_name": "กรุงเทพมหานคร",
+                          "pm_time_value": "1000",
+                          "lb_year_value": "2000",
+                          "pm_time_qty": "2",
+                          "lb_year_qty": "2",
+                          "contract_qty": null,
+                          "qty": "2",
+                          "total": "65650.0000"
+                        }';
 
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method != 'POST') {
