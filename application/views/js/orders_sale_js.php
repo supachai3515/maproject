@@ -174,7 +174,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name">QTY</label>
-                        <input type="text" class="form-control required" ng-model="order_detail.qty">
+                        <input type="number" class="form-control required" string-to-number ng-model="order_detail.qty">
                     </div>
                 </div>
             </div>
