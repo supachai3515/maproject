@@ -226,15 +226,10 @@ class Orders_sale extends BaseController
                 }';
 
         $method = $_SERVER['REQUEST_METHOD'];
-<<<<<<< HEAD
+
         if ($method != 'POST') {
             json_output(400, array('status' => 400,'message' => 'Bad request.'));
         } else {
-=======
-        //if ($method == 'POST') {
-            json_output(400, array('status' => 400,'message' => 'Bad request.'));
-        //} else {
->>>>>>> origin/master
             $data_info = json_decode(file_get_contents("php://input"));
             //$data_info = json_decode($json_str);
             if ($data_info) {
@@ -242,15 +237,15 @@ class Orders_sale extends BaseController
                 if ($result) {
                     json_output(200, array('status' => 200,'message' => $result));
                 } else {
-                  json_output(400, array('status' => 400,'message' => 'error'));
+                    json_output(400, array('status' => 400,'message' => 'error'));
                 }
             }
-        //}
+        }
     }
 
     public function del_save_detail()
     {
-      $json_str ='{
+        $json_str ='{
                 "part_number": "E7V99A",
                 "product_name": "1 MSA 1040 2Prt FC DC LFF Strg",
                 "product_description": "1 MSA 1040 2Prt FC DC LFF Strg",
@@ -280,20 +275,20 @@ class Orders_sale extends BaseController
                 "total": "65650.0000"
               }';
 
-      $method = $_SERVER['REQUEST_METHOD'];
-      if ($method != 'POST') {
-          json_output(400, array('status' => 400,'message' => 'Bad request.'));
-      } else {
-          $data_info = json_decode(file_get_contents("php://input"));
-          //$data_info = json_decode($json_str);
-          if ($data_info) {
-              $result = $this->orders_sale_model->del_detail($data_info, $this->vendorId);
-              if ($result) {
-                  json_output(200, array('status' => 200,'message' => $result));
-              } else {
-                  json_output(400, array('status' => 400,'message' => 'error'));
-              }
-          }
-      }
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method != 'POST') {
+            json_output(400, array('status' => 400,'message' => 'Bad request.'));
+        } else {
+            $data_info = json_decode(file_get_contents("php://input"));
+            //$data_info = json_decode($json_str);
+            if ($data_info) {
+                $result = $this->orders_sale_model->del_detail($data_info, $this->vendorId);
+                if ($result) {
+                    json_output(200, array('status' => 200,'message' => $result));
+                } else {
+                    json_output(400, array('status' => 400,'message' => 'error'));
+                }
+            }
+        }
     }
 }
