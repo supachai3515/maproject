@@ -91,6 +91,27 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
     });
    };
 
+   $scope.delete_order = function(model) {
+     $http({
+             method: 'POST',
+             url: '<?php echo base_url('orders_sale/del_save_detail');?>',
+             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+             data: model
+           }).then(function(response) {
+             swal(
+               '',
+               'Delete Order successfully',
+               'success'
+             )
+           }, function(reason) {
+             swal(
+               'Error!',
+               'Order delete failed',
+               'error'
+             )
+           });
+   }
+
   <?php endif ?>
 });
 
@@ -127,7 +148,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">จังหวัด</label>
                         <select class="form-control" name="contract" ng-model="order_detail.province_id" required>
@@ -137,7 +158,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                       <label for="name">PM</label>
                       <select class="form-control" name="pm" ng-model="order_detail.pm_time_qty" required>
@@ -146,15 +167,23 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                       </select>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="name">PM Time Value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.pm_time_value">
-                    </div>
-                </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name">PM Time Value</label>
+                    <input type="text" class="form-control required" ng-model="order_detail.pm_time_value">
+                  </div>
+              </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name">LB Year Value</label>
+                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_value">
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
                     <div class="form-group">
                       <label for="name">Contact QTY</label>
                       <select class="form-control" name="selected_contract_{{idx}}" ng-model="order_detail.contract_qty">
@@ -165,13 +194,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                       </select>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="name">LB Year Value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_value">
-                    </div>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">QTY</label>
                         <input type="number" class="form-control required" string-to-number ng-model="order_detail.qty">

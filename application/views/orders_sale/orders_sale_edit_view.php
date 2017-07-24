@@ -108,7 +108,7 @@
                   <td><span ng-bind="row.total | number:2"></span></td>
                   <td>
                     <a class="btn btn-sm btn-warning"  ng-click="edit_order(row)" > <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a class="btn btn-sm btn-danger"  ng-click="delete(row)" > <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a class="btn btn-sm btn-danger"  ng-click="delete_order(row)" > <i class="fa fa-trash-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>
               </table>
