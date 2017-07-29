@@ -541,11 +541,11 @@ class Orders_sale extends BaseController
 
         $method = $_SERVER['REQUEST_METHOD'];
 
-        if ($method != 'POST') {
+        if ($method == 'POST') {
             json_output(400, array('status' => 400,'message' => 'Bad request.'));
         } else {
-            $data_info = json_decode(file_get_contents("php://input"));
-            //$data_info = json_decode($json_str);
+            //$data_info = json_decode(file_get_contents("php://input"));
+            $data_info = json_decode($json_str);
             if ($data_info) {
                 $result = $this->orders_sale_model->new_save_detail($data_info, $this->vendorId);
                 if ($result) {
