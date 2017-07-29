@@ -270,10 +270,11 @@ class Product_owner extends BaseController
 
     public function upload_save()
     {
-      $this->load->library('my_upload');
+        $this->load->library('my_upload');
+        $this->load->library('excel');//load PHPExcel library
         $dir ='./uploads/excel/'.date("Ym").'/';
         $dir_insert ='uploads/excel/'.date("Ym").'/';
-
+        $file_name ='';
 
         $this->my_upload->upload($_FILES["file_excel"]);
         if ($this->my_upload->uploaded == true) {
@@ -281,15 +282,36 @@ class Product_owner extends BaseController
             $this->my_upload->process($dir);
 
             if ($this->my_upload->processed == true) {
-                $image_name  = $this->my_upload->file_dst_name;
+                $file_name  = $this->my_upload->file_dst_name;
                 //update img
                 $this->my_upload->clean();
+                //$objReader =PHPExcel_IOFactory::createReader('Excel5');     //For excel 2003
+                $objReader= PHPExcel_IOFactory::createReader('Excel2007');	// For excel 2007
+                //Set to read only
+                $objReader->setReadDataOnly(true);
+                //Load excel file
+                $objPHPExcel=$objReader->load($dir.$file_name);
+                $totalrows=$objPHPExcel->setActiveSheetIndex(0)->getHighestRow();   //Count Numbe of rows avalable in excel
+                $objWorksheet=$objPHPExcel->setActiveSheetIndex(0);
+                //loop from first data untill last data
+                for($i=2;$i<=$totalrows;$i++)
+                {
+                    $FirstName= $objWorksheet->getCellByColumnAndRow(0,$i)->getValue();
+                    $LastName= $objWorksheet->getCellByColumnAndRow(1,$i)->getValue(); //Excel Column 1
+                    $Email= $objWorksheet->getCellByColumnAndRow(2,$i)->getValue(); //Excel Column 2
+                    $Mobile=$objWorksheet->getCellByColumnAndRow(3,$i)->getValue(); //Excel Column 3
+                    $Address=$objWorksheet->getCellByColumnAndRow(4,$i)->getValue(); //Excel Column 4
+                    $data_user=array('FirstName'=>$FirstName, 'LastName'=>$LastName ,'Email'=>$Email ,'Mobile'=>$Mobile , 'Address'=>$Address);
+                    pre($data_user);
+                    //$this->excel_data_insert_model->Add_User($data_user);
+                }
             } else {
                 $data['errors'] = $this->my_upload->error;
-                echo $data['errors'];
+
             }
         } else {
             $data['errors'] = $this->my_upload->error;
+            echo $data['errors'];
         }
     }
 }
