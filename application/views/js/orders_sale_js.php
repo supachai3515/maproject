@@ -42,10 +42,6 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
     $scope.initget_order ();
     $scope.initget_order_detail();
 
-  $scope.edit_ordes= function (row_data)  {
-    swal(row_data.line_number + ' '+ row_data.part_number+' '+ row_data.order_id);
-  }
-
   //Get master data
   get_master().then(function(result) {
     $scope.master_init_data =  result.data;
@@ -396,27 +392,39 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           });
         }]
     });
-   };
+   }
 
    $scope.delete_order = function(model) {
-     $http({
-             method: 'POST',
-             url: '<?php echo base_url('orders_sale/del_save_detail');?>',
-             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-             data: model
-           }).then(function(response) {
-             swal(
-               '',
-               'Delete Order successfully',
-               'success'
-             )
-           }, function(reason) {
-             swal(
-               'Error!',
-               'Order delete failed',
-               'error'
-             )
-           });
+     swal({
+       title: '',
+       text: "คุณต้องการลบสินค้า",
+       type: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#008CBA',
+       cancelButtonColor: '#8388a1',
+       confirmButtonText: 'ยืนยัน',
+       cancelButtonText: 'ยกเลิก',
+     }).then(function () {
+       $http({
+           method: 'POST',
+           url: '<?php echo base_url('orders_sale/del_save_detail');?>',
+           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+           data: model
+         }).then(function success(response) {
+           swal(
+             '',
+             'Delete Order successfully',
+             'success'
+           )
+           $scope.initget_order_detail();
+         }, function error(reason) {
+           swal(
+             'Error!',
+             'Order delete failed',
+             'error'
+           )
+         });
+     });
    }
 
   <?php endif ?>
