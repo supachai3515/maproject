@@ -97,6 +97,20 @@ class orders_model extends CI_Model {
 		$row = $query->result_array();
 		return $row;
 	}
+	public function get_discount_qty()
+	{
+		$sql ="SELECT from_number,discount FROM discount_of_qty";
+		$query = $this->db->query($sql);
+		$row = $query->result_array();
+		return $row;
+	}
+	public function get_discount_contract()
+	{
+		$sql ="SELECT number,discount FROM discount_of_contract";
+		$query = $this->db->query($sql);
+		$row = $query->result_array();
+		return $row;
+	}
 
 	function update_orders($orders_info,$id)
 	{

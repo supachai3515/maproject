@@ -1,6 +1,7 @@
 <script>
 //swal('Hello world!');
-app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
+app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
+  $scope.master_init_data = {};
   <?php if (isset($orders_detail_data)): ?>
   $scope.initget_order = function() {
           $http({
@@ -43,7 +44,27 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
     swal(row_data.line_number + ' '+ row_data.part_number+' '+ row_data.order_id);
   }
 
+  //Get master data
+  get_master().then(function(result) {
+    $scope.master_init_data =  result.data;
+    console.log('===', $scope.master_init_data);
+  });
 
+  function get_master() {
+    var defer = $q.defer();
+    $http({
+          method: 'GET',
+          url: '<?php echo base_url('orders_sale/get_master_order_data');?>',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+      }).then(function sucess(response) {
+        defer.resolve(response);
+      }, function error(reason){
+        defer.reject(reason);
+      });
+      return defer.promise;
+  }
+
+  //Edit order
   $scope.edit_order = function (row_data) {
     $uibModal.open({
         templateUrl: 'edit_order_view.html',
@@ -51,7 +72,8 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
         controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
           $sc.pm_val = ["1","2","3","4","5"];
           $sc.order_detail = row_data;
-
+          var qty_discount =  $scope.master_init_data.discount_qty;
+          var contract_discount =  $scope.master_init_data.discount_contract;
           $sc.save_edit = function (model) {
               edit_func(model).then(function(data) {
                 swal(
@@ -87,6 +109,31 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log) {
                   });
             return defer.promise;
           }
+
+          $sc.$watch('order_detail.qty', function(val) {
+            if(val) {
+              for (var i = 0; i < qty_discount.length; i++) {
+                if(val == qty_discount[i].from_number) {
+                  $sc.order_detail.discount_of_qty_value = qty_discount[i].discount;
+                  return false;
+                } else if (val > 5) {
+                  $sc.order_detail.discount_of_qty_value = '50';
+                  return false;
+                }
+              }
+            }
+          });
+
+          $sc.$watch('order_detail.contract_qty', function(val) {
+            if(val) {
+              for (var i = 0; i < contract_discount.length; i++) {
+                if(val == contract_discount[i].number) {
+                  $sc.order_detail.discount_of_contract_value = contract_discount[i].discount;
+                  return false;
+                }
+              }
+            }
+          });
         }]
     });
    };

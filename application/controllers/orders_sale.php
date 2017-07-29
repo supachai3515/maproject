@@ -121,6 +121,13 @@ class Orders_sale extends BaseController
         }
     }
 
+    public function get_master_order_data()
+    {
+      $data['discount_contract'] = $this->orders_model->get_discount_contract();
+      $data['discount_qty'] = $this->orders_model->get_discount_qty();
+      echo json_encode($data);
+    }
+
     public function edit_save()
     {
         $data['global'] = $this->global;

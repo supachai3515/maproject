@@ -18,7 +18,7 @@
                               url: '<?php echo base_url('tos_cal/get_cal_product');?>',
                               headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
                           }).success(function() {
-                          });;
+                          });
 
     $q.all([get_info, get_cal_product]).then(function(values) {
         $scope.info = values[0].data;
