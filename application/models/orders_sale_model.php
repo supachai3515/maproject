@@ -299,4 +299,88 @@ class Orders_sale_model extends CI_Model
       $product_list = json_decode($json_str);
       return  $this->tos_cal_model->get_cal_product($product_list);
     }
+
+    public function get_product_cal($data_info, $user_id)
+    {
+        if ($data_info->contract_qty == null) {
+            $data_info->contract_qty = 1;
+        }
+
+        if ($data_info->is_product_owner == "1" && $data_info->is_have_product == "1") {
+            //product_owner
+            $sql = "SELECT
+											c.discount discount_of_contract_value,
+											v.discount_of_qty_value,
+											pv.province_name,
+											(
+												(
+													v.total * (100 - c.discount) / 100
+												) * $data_info->qty
+											) * $data_info->contract_qty AS total
+										FROM
+											discount_of_contract c,
+											province pv,
+											(
+												SELECT
+													q.discount discount_of_qty_value,
+													(
+														$data_info->pm_time_value * $data_info->pm_time_qty
+													) + (
+														$data_info->lb_year_value * $data_info->lb_year_qty
+													) + (
+														t.total * (100 - q.discount) / 100
+													) AS total
+												FROM
+													discount_of_qty q,
+													(
+														SELECT
+															$data_info->full_price * (
+																100 - $data_info->discount_sla_type_value
+															) / 100 AS total
+													) t
+												WHERE
+													$data_info->qty BETWEEN q.from_number
+												AND q.to_number
+											) v
+										WHERE
+											c.number = $data_info->contract_qty AND pv.province_id = $data_info->province_id
+											";
+            $query = $this->db->query($sql);
+            $row = $query->row_array();
+            $data_info->total = $row['total'];
+            $data_info->discount_of_contract_value = $row['discount_of_contract_value'];
+            $data_info->discount_of_qty_value = $row['discount_of_qty_value'];
+            $data_info->province_name = $row['province_name'];
+            return $data_info;
+
+        } elseif ($data_info->is_product_owner == "0" && $data_info->is_have_product == "1") {
+            //product_vander
+            $sql = "SELECT
+											pv.province_name,
+											(v.total * $data_info->qty) * $data_info->contract_qty AS total
+										FROM
+											province pv,
+											(
+												SELECT
+													($data_info->pm_time_value * $data_info->pm_time_qty) +
+													($data_info->lb_year_value * $data_info->lb_year_qty) +
+													($data_info->full_price * (100 - $data_info->discount_sla_type_value) / 100) AS total
+											) v
+										WHERE pv.province_id = $data_info->province_id
+										";
+            $query = $this->db->query($sql);
+            $row = $query->row_array();
+            $data_info->total = $row['total'];
+            $data_info->province_name = $row['province_name'];
+            return $data_info;
+        } else {
+            //not have product
+            return null;
+        }
+    }
+
+    public function new_save_detail($data_info, $user_id)
+    {
+      # code...
+    }
 }

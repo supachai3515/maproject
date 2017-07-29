@@ -497,7 +497,7 @@ class Orders_sale extends BaseController
             $data_info = json_decode($json_str);
             //$data_return = json_decode($json_return);
             if ($data_info) {
-                $result = $this->orders_sale_model->get_product_cal($data_info);
+                $result = $this->orders_sale_model->get_product_cal($data_info, $this->vendorId);
                 if ($result) {
                     json_output(200, $result);
                 } else {
@@ -547,7 +547,7 @@ class Orders_sale extends BaseController
             $data_info = json_decode(file_get_contents("php://input"));
             //$data_info = json_decode($json_str);
             if ($data_info) {
-                $result = $this->orders_sale_model->save_detail($data_info, $this->vendorId);
+                $result = $this->orders_sale_model->new_save_detail($data_info, $this->vendorId);
                 if ($result) {
                     json_output(200, array('status' => 200,'message' => $result));
                 } else {
