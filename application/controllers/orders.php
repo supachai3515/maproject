@@ -160,7 +160,30 @@ class Orders extends BaseController {
 
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'orders Assign Update successfully');
+                  $this->load->model('user_model');
+                  $data['order_data'] = $this->orders_model->get_orders_id($order_id);
+                  $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
+                  $data['user_data_assign_to'] = $this->orders_model->get_user_info($assign_to);
+                  $data['user_data_assign'] = $this->orders_model->get_user_info($this->vendorId);
+
+          				//sendmail
+          	      $data['email'] = $data['user_data_assign_to']->email.",".$data['user_data_assign']->email; //To Email
+          				$data['template'] = "email/assign_order";
+          				$data['subject'] = "Assign order #".$order_id;
+          				$data['bcc_mail'] = $this->config->item('email_cc_group');
+          				$data['name'] = $name;
+          				$data['tel'] = $tel;
+
+          				//sendmail
+          				$sendStatus = send_emali_template($data);
+          				if($sendStatus){
+          						$status = "send";
+          						setFlashData('success', 'orders Assign Update and Send email successfully');
+          				} else {
+          						$status = "notsend";
+          						setFlashData($status, "Email has been failed, try again.");
+          				}
+
               }
               else
               {
