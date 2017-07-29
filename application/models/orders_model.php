@@ -116,6 +116,9 @@ class orders_model extends CI_Model {
 	{
 			$this->db->where('order_id', $id);
 			$this->db->update('orders', $orders_info);
+
+			$sql =" UPDATE orders SET order_status_id = 3 WHERE order_status_id < 4 AND order_id = $id ";
+			$this->db->query($sql);
 			return TRUE;
 	}
 

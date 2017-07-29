@@ -167,7 +167,7 @@ class Orders extends BaseController {
                   $data['user_data_assign'] = $this->orders_model->get_user_info($this->vendorId);
 
           				//sendmail
-          	      $data['email'] = $data['user_data_assign_to']->email.",".$data['user_data_assign']->email; //To Email
+          	      $data['email'] = $data['user_data_assign_to']['email'].",".$data['user_data_assign']['email']; //To Email
           				$data['template'] = "email/assign_order";
           				$data['subject'] = "Assign order #".$order_id;
           				$data['bcc_mail'] = $this->config->item('email_cc_group');
