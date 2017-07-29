@@ -299,11 +299,11 @@ class Orders_sale extends BaseController
         }
     }
 
-    public function get_product_cal()
+    public function get_search_product_cal()
     {
         $json_str ='{
-                      "order_id": "12"
-                      "is_have_product" : "1",
+                      "order_id": "12",
+                      "is_have_product": "1",
                       "brand_name": "Cissco",
                       "model": "SV3200",
                       "name": "1 MSA 1040 2Prt FC DC SFF Strg",
@@ -315,47 +315,191 @@ class Orders_sale extends BaseController
                       "qty": 1
                     }';
 
-        $json_return ='{
-                          "part_number": "E7V99A",
-                          "product_name": "1 MSA 1040 2Prt FC DC LFF Strg",
-                          "product_description": "1 MSA 1040 2Prt FC DC LFF Strg",
-                          "order_id": "12",
-                          "line_number": "1",
-                          "product_owner_id": "1",
-                          "province_id": "1",
-                          "is_have_product": "1",
-                          "comment": "",
-                          "is_product_owner": "0",
-                          "product_vendor_id": "1",
-                          "type_name": "GOLD",
-                          "type_description": "Gold typee",
-                          "full_price": "50000",
-                          "dealer_price": "0",
-                          "discount_sla_type_id": "1",
-                          "discount_sla_type_value": "75",
-                          "discount_of_contract_value": "0",
-                          "discount_of_qty_value": "30",
-                          "province_name": "กรุงเทพมหานคร",
-                          "pm_time_value": "1000",
-                          "lb_year_value": "2000",
-                          "pm_time_qty": "2",
-                          "lb_year_qty": "2",
-                          "contract_qty": null,
-                          "qty": "2",
-                          "total": "65650.0000"
-                        }';
+        $json_return ='[
+                        	{
+                        		"is_product_owner": "1",
+                        		"is_have_product": "1",
+                        		"comment": "",
+                        		"product_owner_id": "2",
+                        		"product_vendor_id": "0",
+                        		"type_name": "GOLD",
+                        		"type_description": "Gold typee",
+                        		"full_price": "229900",
+                        		"dealer_price": "0",
+                        		"discount_sla_type_id": "1",
+                        		"discount_sla_type_value": "75",
+                        		"discount_of_contract_value": "1",
+                        		"discount_of_qty_value": "0",
+                        		"province_id": "10",
+                        		"province_name": "สระบุรี",
+                        		"pm_time_value": "0",
+                        		"lb_year_value": "0",
+                        		"pm_time_qty": "2",
+                        		"lb_year_qty": "2",
+                        		"contract_qty": "2",
+                        		"qty": "1",
+                        		"total": "113800.500000000000"
+                        	},
+                        	{
+                        		"is_product_owner": "1",
+                        		"is_have_product": "1",
+                        		"comment": "",
+                        		"product_owner_id": "2",
+                        		"product_vendor_id": "0",
+                        		"type_name": "SILVER",
+                        		"type_description": "Silver type",
+                        		"full_price": "229900",
+                        		"dealer_price": "0",
+                        		"discount_sla_type_id": "2",
+                        		"discount_sla_type_value": "85",
+                        		"discount_of_contract_value": "1",
+                        		"discount_of_qty_value": "0",
+                        		"province_id": "10",
+                        		"province_name": "สระบุรี",
+                        		"pm_time_value": "0",
+                        		"lb_year_value": "0",
+                        		"pm_time_qty": "2",
+                        		"lb_year_qty": "2",
+                        		"contract_qty": "2",
+                        		"qty": "1",
+                        		"total": "68280.300000000000"
+                        	},
+                        	{
+                        		"is_product_owner": "1",
+                        		"is_have_product": "1",
+                        		"comment": "",
+                        		"product_owner_id": "2",
+                        		"product_vendor_id": "0",
+                        		"type_name": "BRONZ",
+                        		"type_description": "Bronze type",
+                        		"full_price": "229900",
+                        		"dealer_price": "0",
+                        		"discount_sla_type_id": "3",
+                        		"discount_sla_type_value": "90",
+                        		"discount_of_contract_value": "1",
+                        		"discount_of_qty_value": "0",
+                        		"province_id": "10",
+                        		"province_name": "สระบุรี",
+                        		"pm_time_value": "0",
+                        		"lb_year_value": "0",
+                        		"pm_time_qty": "2",
+                        		"lb_year_qty": "2",
+                        		"contract_qty": "2",
+                        		"qty": "1",
+                        		"total": "45520.200000000000"
+                        	},
+                        	{
+                        		"is_product_owner": "0",
+                        		"is_have_product": "1",
+                        		"comment": "",
+                        		"product_owner_id": "2",
+                        		"product_vendor_id": "1",
+                        		"type_name": "GP",
+                        		"type_description": "1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service",
+                        		"full_price": "0",
+                        		"dealer_price": "60970",
+                        		"discount_sla_type_id": "4",
+                        		"discount_sla_type_value": "5",
+                        		"discount_of_contract_value": "0",
+                        		"discount_of_qty_value": "0",
+                        		"province_id": "10",
+                        		"province_name": "สระบุรี",
+                        		"pm_time_value": "0",
+                        		"lb_year_value": "0",
+                        		"pm_time_qty": "2",
+                        		"lb_year_qty": "2",
+                        		"contract_qty": "2",
+                        		"qty": "1",
+                        		"total": "128037.000000000000"
+                        	},
+                        	{
+                        		"is_product_owner": "0",
+                        		"is_have_product": "1",
+                        		"comment": "",
+                        		"product_owner_id": "2",
+                        		"product_vendor_id": "2",
+                        		"type_name": "GP",
+                        		"type_description": "1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service",
+                        		"full_price": "0",
+                        		"dealer_price": "107840",
+                        		"discount_sla_type_id": "4",
+                        		"discount_sla_type_value": "5",
+                        		"discount_of_contract_value": "0",
+                        		"discount_of_qty_value": "0",
+                        		"province_id": "10",
+                        		"province_name": "สระบุรี",
+                        		"pm_time_value": "0",
+                        		"lb_year_value": "0",
+                        		"pm_time_qty": "2",
+                        		"lb_year_qty": "2",
+                        		"contract_qty": "2",
+                        		"qty": "1",
+                        		"total": "226464.000000000000"
+                        	}
+                        ]';
 
         $method = $_SERVER['REQUEST_METHOD'];
-        if ($method != 'POST') {
+        if ($method == 'POST') {
             json_output(400, array('status' => 400,'message' => 'Bad request.'));
         } else {
             //$data_info = json_decode(file_get_contents("php://input"));
             $data_info = json_decode($json_str);
-            $data_return = json_decode($json_return);
+            //$data_return = json_decode($json_return);
             if ($data_info) {
-                $result = $this->orders_sale_model->del_detail($data_info, $this->vendorId);
+                $result = $this->orders_sale_model->get_search_product_cal($data_info);
                 if ($result) {
-                    json_output(200, $data_return);
+                    json_output(200, $result);
+                } else {
+                    json_output(400, array('status' => 400,'message' => 'error'));
+                }
+            }
+        }
+    }
+
+
+    public function get_product_cal()
+    {
+      $json_str ='{
+                "part_number": "E7V99A",
+                "product_name": "1 MSA 1040 2Prt FC DC LFF Strg",
+                "product_description": "1 MSA 1040 2Prt FC DC LFF Strg",
+                "order_id": "12",
+                "line_number": "1",
+                "product_owner_id": "1",
+                "province_id": "1",
+                "is_have_product": "1",
+                "comment": "",
+                "is_product_owner": "0",
+                "product_vendor_id": "1",
+                "type_name": "GOLD",
+                "type_description": "Gold typee",
+                "full_price": "50000",
+                "dealer_price": "0",
+                "discount_sla_type_id": "1",
+                "discount_sla_type_value": "75",
+                "discount_of_contract_value": "0",
+                "discount_of_qty_value": "30",
+                "province_name": "กรุงเทพมหานคร",
+                "pm_time_value": "1000",
+                "lb_year_value": "2000",
+                "pm_time_qty": "2",
+                "lb_year_qty": "2",
+                "contract_qty": null,
+                "qty": "2",
+                "total": "65650.0000"
+              }';
+
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == 'POST') {
+            json_output(400, array('status' => 400,'message' => 'Bad request.'));
+        } else {
+            //$data_info = json_decode(file_get_contents("php://input"));
+            $data_info = json_decode($json_str);
+            //$data_return = json_decode($json_return);
+            if ($data_info) {
+                $result = $this->orders_sale_model->get_product_cal($data_info);
+                if ($result) {
+                    json_output(200, $result);
                 } else {
                     json_output(400, array('status' => 400,'message' => 'error'));
                 }

@@ -291,4 +291,12 @@ class Orders_sale_model extends CI_Model
             return true;
         }
     }
+
+    public function get_search_product_cal($product)
+    {
+      $this->load->model('tos_cal_model');
+      $json_str = "[".json_encode($product)."]";
+      $product_list = json_decode($json_str);
+      return  $this->tos_cal_model->get_cal_product($product_list);
+    }
 }
