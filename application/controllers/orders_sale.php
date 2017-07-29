@@ -442,8 +442,8 @@ class Orders_sale extends BaseController
         if ($method == 'POST') {
             json_output(400, array('status' => 400,'message' => 'Bad request.'));
         } else {
-            //$data_info = json_decode(file_get_contents("php://input"));
-            $data_info = json_decode($json_str);
+            $data_info = json_decode(file_get_contents("php://input"));
+            //$data_info = json_decode($json_str);
             //$data_return = json_decode($json_return);
             if ($data_info) {
                 $result = $this->orders_sale_model->get_search_product_cal($data_info);
