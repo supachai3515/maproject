@@ -17,6 +17,7 @@
         <div class="col-xs-12 text-right">
             <div class="form-group">
                 <a class="btn btn-primary" href="<?php echo base_url(); ?>product_owner/add"><i class="fa fa-plus"></i> Add New</a>
+                <a class="btn btn-info" href="<?php echo base_url(); ?>product_owner/upload"><i class="fa fa-upload"></i> Upload New</a>
             </div>
         </div>
     </div>
