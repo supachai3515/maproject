@@ -139,7 +139,6 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
             $sc.products = [];
             var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': 1}, {'order_id': order_info.order_id}, {'province': '1'}, {'contract': '1'}, {'pm': '1'});
             $sc.selected_products = item;
-            console.log($sc.selected_products);
           }
           $sc.remove_product_list = function(idx) {
             $sc.selected_products = {};
@@ -176,7 +175,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $sc.selected_products
             }).then(function success(result) {
-                console.log('==', result.data);
+                console.log('result -->', result.data);
             }, function error() {
               swal(
                 'Error!',
