@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/ui-select/select.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/loading-template.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
   <style>
     .error {
       color: red;

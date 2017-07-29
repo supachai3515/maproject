@@ -456,7 +456,7 @@ class Orders_sale extends BaseController
         }
     }
 
-
+    //ไม่ได้ใช้
     public function get_product_cal()
     {
       $json_str ='{

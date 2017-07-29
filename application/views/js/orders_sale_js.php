@@ -64,26 +64,16 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
       return defer.promise;
   }
 
+  //Add Order
   $scope.add_order = function(order_info) {
-    $scope.add_order_sep = 1;
     $uibModal.open({
-        templateUrl: function() {
-          switch ($scope.add_order_sep) {
-            case 1:
-              return 'add_order_view.html'
-              break;
-            case 2:
-              return 'select_order_view.html'
-              break;
-            default:
-              return 'add_order_view.html'
-          }
-        },
+        templateUrl: 'add_order_view.html',
         size: 'lg',
         backdrop  : 'static',
         controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
           $sc.selected_products = {};
           $sc.pm_val = ["1","2","3","4","5"];
+
           $sc.input_search = function(val) {
             char_search = val;
             if(val && val.length >= 3) {
@@ -168,14 +158,14 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
               )
               return;
             }
-            console.log('send model--->', $sc.selected_products);
             $http({
                 method: 'POST',
                 url: '<?php echo base_url('orders_sale/get_search_product_cal');?>',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $sc.selected_products
             }).then(function success(result) {
-                console.log('result -->', result.data);
+              $uib.close();
+              $scope.choose_order(result.data);
             }, function error() {
               swal(
                 'Error!',
@@ -188,6 +178,144 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
 
           $sc.isObjectEmpty = function(card){
             return Object.keys(card).length === 0;
+          }
+        }]
+    });
+  }
+
+  //Choose Order
+  $scope.choose_order = function(model) {
+    $uibModal.open({
+        templateUrl: 'choose_order_view.html',
+        size: 'lg',
+        backdrop  : 'static',
+        controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
+          $sc.result_cal_product = model;
+          var is_selected = false,
+              choosed_products = {};
+          $.each($sc.result_cal_product, function(idx, val) {
+            val.selected = false;
+          });
+          $sc.update_product_select = function(product, val) {
+            $sc.result_cal_product.forEach(function(v) {
+              if(v.product_owner_id == product) {
+                v.selected = v === val;
+              }
+            });
+          }
+          $sc.next_to_edit_order = function() {
+            choosed_products = {};
+            is_selected = false;
+            $sc.result_cal_product.forEach(function(v) {
+              if(v.selected) {
+                is_selected = true;
+                choosed_products = v;
+              }
+            });
+
+            if(!is_selected) {
+              swal(
+                '',
+                'โปรดเลือกสินค้าอย่างน้อย 1 อย่าง',
+                'warning'
+              )
+              return false;
+            }
+            $uib.close();
+            $scope.edit_choosed_order(choosed_products);
+          }
+          $sc.cancel = function () {
+            swal({
+              title: '',
+              text: "คุณต้องการออกจากหน้าเลือกสินค้า",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#008CBA',
+              cancelButtonColor: '#8388a1',
+              confirmButtonText: 'ยืนยัน',
+              cancelButtonText: 'ยกเลิก',
+            }).then(function () {
+              $uib.dismiss('cancel');
+            })
+          }
+        }]
+    });
+  }
+
+  //Edit Choosed Order
+  $scope.edit_choosed_order = function(model) {
+    $uibModal.open({
+        templateUrl: 'edit_choosed_order_view.html',
+        size: 'lg',
+        backdrop  : 'static',
+        controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
+          $sc.order_choosed_detail = model;
+          $sc.pm_val = ["1","2","3","4","5"];
+          var qty_discount =  $scope.master_init_data.discount_qty;
+          var contract_discount =  $scope.master_init_data.discount_contract;
+
+          $sc.submit_new_order = function(val) {
+            console.log('send data ---->',val);
+            $http({
+                    method: 'POST',
+                    url: '<?php echo base_url('orders_sale/new_save_detail');?>',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+                    data: val
+                }).then(function success(result) {
+                  swal(
+                    '',
+                    'Order save successfully',
+                    'success'
+                  )
+                  $uib.close();
+                }, function error(reason) {
+                  console.log('error--->',reason);
+                  swal(
+                    '',
+                    'Order save failed',
+                    'error'
+                  )
+                });
+          }
+
+          $sc.$watch('order_choosed_detail.qty', function(val) {
+            if(val) {
+              for (var i = 0; i < qty_discount.length; i++) {
+                if(val == qty_discount[i].from_number) {
+                  $sc.order_choosed_detail.discount_of_qty_value = qty_discount[i].discount;
+                  return false;
+                } else if (val > 5) {
+                  $sc.order_choosed_detail.discount_of_qty_value = '50';
+                  return false;
+                }
+              }
+            }
+          });
+
+          $sc.$watch('order_choosed_detail.contract_qty', function(val) {
+            if(val) {
+              for (var i = 0; i < contract_discount.length; i++) {
+                if(val == contract_discount[i].number) {
+                  $sc.order_choosed_detail.discount_of_contract_value = contract_discount[i].discount;
+                  return false;
+                }
+              }
+            }
+          });
+
+          $sc.cancel = function () {
+            swal({
+              title: '',
+              text: "คุณต้องการออกจากหน้าแก้ไขสินค้า",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#008CBA',
+              cancelButtonColor: '#8388a1',
+              confirmButtonText: 'ยืนยัน',
+              cancelButtonText: 'ยกเลิก',
+            }).then(function () {
+              $uib.dismiss('cancel');
+            });
           }
         }]
     });
@@ -296,75 +424,205 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
 <?php if (isset($orders_detail_data)): ?>
 
   <script type="text/ng-template" id="add_order_view.html">
+      <div class="modal-header">
+        <h4>Add Order</h4>
+      </div>
+      <div class="modal-body">
+        <div class="input-group" style="margin-bottom: 20px;">
+          <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)" search-enabled="isObjectEmpty(selected_products)" ng-disabled="!isObjectEmpty(selected_products)">
+            <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="pd in products" refresh="input_search($select.search)" refresh-delay="300">
+              <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
+            </ui-select-choices>
+          </ui-select>
+          <span class="input-group-btn">
+            <button type="button" ng-click="btn_search()" class="btn btn-default" ng-disabled="!isObjectEmpty(selected_products)">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+        <form role="form">
+            <div class="box-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="col-md-2 text-center">Part number</th>
+                    <th class="col-md-2 text-center">Name</th>
+                    <th class="col-md-2 text-center">Medel</th>
+                    <th class="col-md-1 text-center">QTY</th>
+                    <th class="col-md-2 text-center">Province</th>
+                    <th class="col-md-1 text-center">PM</th>
+                    <th class="col-md-1 text-center">Contract</th>
+                    <th class="col-md-1 text-center">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-show="!isObjectEmpty(selected_products)">
+                    <td class="text-center">{{selected_products.part_number || '-'}}</td>
+                    <td>{{selected_products.name || '-'}}</td>
+                    <td class="text-center">{{selected_products.model || '-'}}</td>
+                    <td>
+                      <input type="number" class="form-control text-center"  name="model_qty" ng-model="selected_products.qty" min="1">
+                    </td>
+                    <td>
+                      <select class="form-control" name="model_province" ng-model="selected_products.province">
+                        <?php foreach ($province_list as $record): ?>
+                          <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control" name="model_pm" ng-model="selected_products.pm">
+                        <option value="{{pm}}" ng-repeat="pm in pm_val">{{pm}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control" name="model_contract" ng-model="selected_products.contract">
+                        <?php foreach ($contract_list as $record): ?>
+                          <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                        <?php endforeach; ?>
+                      </select>
+                    </td>
+                    <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list()"></i></td>
+                  </tr>
+                  <tr ng-show="isObjectEmpty(selected_products)">
+                    <td colspan="8" class="text-center">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_choose_product()">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+  </script>
+
+  <script type="text/ng-template" id="choose_order_view.html">
+      <div class="modal-header">
+        <h4>Choose Order</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+            <div class="box-body">
+              <div class="prodiucts_list" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
+                <strong>product : {{$index+1}}</strong>
+                <ul ng-repeat="(idx, val) in value | groupBy: 'is_product_owner'">
+                    <li ng-repeat="p in val">
+                      <div class="radio rodiucts_item">
+                        <label for="product_{{key}}_{{idx}}_{{$index}}"><input type="radio" name="produc_{{key}}" id="product_{{key}}_{{idx}}_{{$index}}" ng-click="update_product_select(key, p)" ng-checked="p.selected"></label>
+                        <div class="prodiucts_detail">
+                          <p><strong>Type:</strong>   {{p.type_name || '-'}}</p>
+                          <p><strong>Description:</strong>   {{p.type_description || '-'}}</p>
+                          <p><strong>จังหวัด:</strong>   {{p.province_name || '-'}}</p>
+                          <p><strong>PM Time QTY:</strong>   {{p.pm_time_qty || '-'}}</p>
+                          <p><strong>LB Year QTY:</strong>   {{p.lb_year_qty || '-'}}</p>
+                          <p><strong>Contract:</strong>   {{p.contract_qty || '-'}}</p>
+                          <p><strong>QTY:</strong>   {{p.qty || '-'}}</p>
+                          <p><strong>Total:</strong>   {{(p.total | number:0) || '-'}}</p>
+                        </div>
+                      </div>
+                    </li>
+                </ul>
+              </div>
+            </div><!-- /.box-body -->
+            <div class="box-footer">
+                <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_edit_order()">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+  </script>
+
+  <script type="text/ng-template" id="edit_choosed_order_view.html">
     <div class="modal-header">
-      <h4>Add Order</h4>
+      <h4>Edit </h4>
     </div>
     <div class="modal-body">
-      <div class="input-group" style="margin-bottom: 20px;">
-        <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)" search-enabled="isObjectEmpty(selected_products)" ng-disabled="!isObjectEmpty(selected_products)">
-          <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
-          <ui-select-choices repeat="pd in products" refresh="input_search($select.search)" refresh-delay="300">
-            <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
-          </ui-select-choices>
-        </ui-select>
-        <span class="input-group-btn">
-          <button type="button" ng-click="btn_search()" class="btn btn-default" ng-disabled="!isObjectEmpty(selected_products)">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
       <form role="form">
           <div class="box-body">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th class="col-md-2 text-center">Part number</th>
-                  <th class="col-md-2 text-center">Name</th>
-                  <th class="col-md-2 text-center">Medel</th>
-                  <th class="col-md-1 text-center">QTY</th>
-                  <th class="col-md-2 text-center">Province</th>
-                  <th class="col-md-1 text-center">PM</th>
-                  <th class="col-md-1 text-center">Contract</th>
-                  <th class="col-md-1 text-center">Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-show="!isObjectEmpty(selected_products)">
-                  <td class="text-center">{{selected_products.part_number || '-'}}</td>
-                  <td>{{selected_products.name || '-'}}</td>
-                  <td class="text-center">{{selected_products.model || '-'}}</td>
-                  <td>
-                    <input type="number" class="form-control text-center"  name="model_qty" ng-model="selected_products.qty" min="1">
-                  </td>
-                  <td>
-                    <select class="form-control" name="model_province" ng-model="selected_products.province">
-                      <?php foreach ($province_list as $record): ?>
-                        <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
-                      <?php endforeach; ?>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control" name="model_pm" ng-model="selected_products.pm">
-                      <option value="{{pm}}" ng-repeat="pm in pm_val">{{pm}}</option>
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control" name="model_contract" ng-model="selected_products.contract">
-                      <?php foreach ($contract_list as $record): ?>
-                        <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
-                      <?php endforeach; ?>
-                    </select>
-                  </td>
-                  <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list()"></i></td>
-                </tr>
-                <tr ng-show="isObjectEmpty(selected_products)">
-                  <td colspan="8" class="text-center">-</td>
-                </tr>
-              </tbody>
-            </table>
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="name">Discount SLA Type Value</label>
+                          <input type="text" class="form-control required" ng-model="order_choosed_detail.discount_sla_type_value"  required>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="name">Discount Contract Value</label>
+                        <input type="text" class="form-control required" ng-model="order_choosed_detail.discount_of_contract_value" readonly>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="name">Discount QTY Value</label>
+                        <input type="text" class="form-control required" ng-model="order_choosed_detail.discount_of_qty_value" readonly>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="name">จังหวัด</label>
+                          <select class="form-control" name="contract" ng-model="order_choosed_detail.province_id" required>
+                            <?php foreach ($province_list as $record): ?>
+                              <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="name">PM</label>
+                        <select class="form-control" name="pm" ng-model="order_choosed_detail.pm_time_qty" required>
+                          <option value="">Select</option>
+                          <option value="{{pm}}" ng-repeat="pm in pm_val">{{pm}}</option>
+                        </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name">PM Time Value</label>
+                      <input type="text" class="form-control required" ng-model="order_choosed_detail.pm_time_value">
+                    </div>
+                </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="name">LB Year Value</label>
+                        <input type="text" class="form-control required" ng-model="order_choosed_detail.lb_year_value">
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="name">Contact QTY</label>
+                        <select class="form-control" name="selected_contract_{{idx}}" ng-model="order_choosed_detail.contract_qty">
+                          <option value="">Select</option>
+                          <?php foreach ($contract_list as $record): ?>
+                            <option value="<?php echo $record->number ?>"><?php echo $record->number ?> ปี</option>
+                          <?php endforeach; ?>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label for="name">QTY</label>
+                          <input type="number" class="form-control required" string-to-number ng-model="order_choosed_detail.qty">
+                      </div>
+                  </div>
+              </div>
           </div><!-- /.box-body -->
           <div class="box-footer">
-              <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_choose_product()">
+              <input type="submit" class="btn btn-primary" value="Submit" ng-click="submit_new_order(order_choosed_detail)">
           </div>
       </form>
     </div>
@@ -373,7 +631,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
     </div>
   </script>
 
-  <script type="text/ng-template" id="result_search_product_modal.html">
+<script type="text/ng-template" id="result_search_product_modal.html">
       <div class="modal-header text-center"><h4>เลือกสินค้า</h4></div>
       <div class="modal-body">
         <table class="table table-striped">
