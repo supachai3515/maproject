@@ -57,7 +57,7 @@
       </div>
       <div class="col-xs-12 text-right">
             <div class="form-group">
-                <a class="btn btn-primary" ng-click="new(row)" ><i class="fa fa-plus"></i> Add</a>
+                <a class="btn btn-primary" ng-click="add_order(order_list)" ><i class="fa fa-plus"></i> Add</a>
             </div>
         </div>
       <div class="col-xs-12">
