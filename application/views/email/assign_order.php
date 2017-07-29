@@ -95,13 +95,17 @@
 																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">จังหวัด:</td>
 																				<td style="width: 50%;"><?php echo $model['province_name']; ?></td>
 																			</tr>
+                                      <tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">PM Time QTY:</td>
+																				<td style="width: 50%;"><?php echo $model['pm_time_qty']; ?></td>
+																			</tr>
+                                      <tr>
+																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Contract QTY:</td>
+																				<td style="width: 50%;"><?php echo $model['contract_qty']; ?></td>
+																			</tr>
 																			<tr>
 																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">QTY:</td>
 																				<td style="width: 50%;"><?php echo $model['qty']; ?></td>
-																			</tr>
-																			<tr>
-																				<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">PM Time QTY:</td>
-																				<td style="width: 50%;"><?php echo $model['pm_time_qty']; ?></td>
 																			</tr>
 																			<tr>
 																				<td colspan="2" style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Total: <span style="font-weight: normal;"><?php echo number_format($model['total'],0) ?></span></td>

@@ -439,7 +439,7 @@ class Orders_sale extends BaseController
                         ]';
 
         $method = $_SERVER['REQUEST_METHOD'];
-        if ($method == 'POST') {
+        if ($method != 'POST') {
             json_output(400, array('status' => 400,'message' => 'Bad request.'));
         } else {
             $data_info = json_decode(file_get_contents("php://input"));
