@@ -2,6 +2,7 @@
 //swal('Hello world!');
 app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
   $scope.master_init_data = {};
+  $scope.owner_id = '';
   var char_search = '';
   <?php if (isset($orders_detail_data)): ?>
   $scope.initget_order = function() {
@@ -66,6 +67,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
 
   //Add Order
   $scope.add_order = function(order_info) {
+    $scope.owner_id = order_info.order_id;
     $uibModal.open({
         templateUrl: 'add_order_view.html',
         size: 'lg',
@@ -110,7 +112,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                         $scp.add_select_product = function() {
                             if($scp.selected_model) {
                               var product = $scp.result_products[$scp.selected_model];
-                              var item = $.extend({},{'is_have_product': '1'},product, {'qty': 1}, {'order_id': order_info.order_id}, {'province': '1'}, {'contract': '1'}, {'pm': '1'});
+                              var item = $.extend({},{'is_have_product': '1'},product, {'qty': 1}, {'order_id': $scope.owner_id}, {'province': '1'}, {'contract': '1'}, {'pm': '1'});
                               $sc.selected_products = item;
                             }
                             $sc.products = [];
@@ -127,7 +129,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           }
           $sc.add_product_list = function(val) {
             $sc.products = [];
-            var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': 1}, {'order_id': order_info.order_id}, {'province': '1'}, {'contract': '1'}, {'pm': '1'});
+            var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': 1}, {'order_id': $scope.owner_id}, {'province': '1'}, {'contract': '1'}, {'pm': '1'});
             $sc.selected_products = item;
           }
           $sc.remove_product_list = function(idx) {
@@ -255,7 +257,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           var contract_discount =  $scope.master_init_data.discount_contract;
 
           $sc.submit_new_order = function(val) {
-            console.log('send data ---->',val);
+            val.order_id = $scope.owner_id;
             $http({
                     method: 'POST',
                     url: '<?php echo base_url('orders_sale/new_save_detail');?>',
@@ -268,8 +270,9 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                     'success'
                   )
                   $uib.close();
+                  $scope.initget_order_detail();
                 }, function error(reason) {
-                  console.log('error--->',reason);
+                  console.log(reason);
                   swal(
                     '',
                     'Order save failed',
