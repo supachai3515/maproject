@@ -65,13 +65,26 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
   }
 
   $scope.add_order = function(order_info) {
+    $scope.add_order_sep = 1;
     $uibModal.open({
-        templateUrl: 'add_order_view.html',
+        templateUrl: function() {
+          switch ($scope.add_order_sep) {
+            case 1:
+              return 'add_order_view.html'
+              break;
+            case 2:
+              return 'select_order_view.html'
+              break;
+            default:
+              return 'add_order_view.html'
+          }
+        },
         size: 'lg',
+        backdrop  : 'static',
         controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
-          $sc.selected_products = [];
-
-          $sc.input_Select = function(val) {
+          $sc.selected_products = {};
+          $sc.pm_val = ["1","2","3","4","5"];
+          $sc.input_search = function(val) {
             char_search = val;
             if(val && val.length >= 3) {
               $sc.products = [];
@@ -88,7 +101,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
 
             }
           }
-          $sc.search_product = function() {
+          $sc.btn_search = function() {
             if(!char_search)
               return;
             $http({
@@ -107,8 +120,8 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                         $scp.add_select_product = function() {
                             if($scp.selected_model) {
                               var product = $scp.result_products[$scp.selected_model];
-                              var item = $.extend({}, product, {'qty': order_info.qty});
-                              $sc.selected_products.push(item)
+                              var item = $.extend({},{'is_have_product': '1'},product, {'qty': 1}, {'order_id': order_info.order_id}, {'province': '1'}, {'contract': '1'}, {'pm': '1'});
+                              $sc.selected_products = item;
                             }
                             $sc.products = [];
                             $uib.close();
@@ -124,12 +137,58 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           }
           $sc.add_product_list = function(val) {
             $sc.products = [];
-            var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': order_info.qty}, {'order_id': order_info.order_id});
-            $sc.selected_products.push(item);
+            var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': 1}, {'order_id': order_info.order_id}, {'province': '1'}, {'contract': '1'}, {'pm': '1'});
+            $sc.selected_products = item;
+            console.log($sc.selected_products);
+          }
+          $sc.remove_product_list = function(idx) {
+            $sc.selected_products = {};
           }
 
           $sc.cancel = function () {
+            swal({
+              title: '',
+              text: "คุณต้องการออกจากหน้าเพิ่มสินค้า",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#008CBA',
+              cancelButtonColor: '#8388a1',
+              confirmButtonText: 'ยืนยัน',
+              cancelButtonText: 'ยกเลิก',
+            }).then(function () {
               $uib.dismiss('cancel');
+            })
+          }
+
+          $sc.next_to_choose_product = function() {
+            if($sc.isObjectEmpty($sc.selected_products)) {
+              swal(
+                '',
+                'คุณยังไม่ได้เพิ่มสินค้า',
+                'warning'
+              )
+              return;
+            }
+            console.log('send model--->', $sc.selected_products);
+            $http({
+                method: 'POST',
+                url: '<?php echo base_url('orders_sale/get_search_product_cal');?>',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $sc.selected_products
+            }).then(function success(result) {
+                console.log('==', result.data);
+            }, function error() {
+              swal(
+                'Error!',
+                'Technical error please contact the administrator',
+                'error'
+              )
+            });
+
+          }
+
+          $sc.isObjectEmpty = function(card){
+            return Object.keys(card).length === 0;
           }
         }]
     });
@@ -243,46 +302,70 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
     </div>
     <div class="modal-body">
       <div class="input-group" style="margin-bottom: 20px;">
-        <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)" search-enabled="selected_products.length < 1" ng-disabled="selected_products.length == 1">
+        <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)" search-enabled="isObjectEmpty(selected_products)" ng-disabled="!isObjectEmpty(selected_products)">
           <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
-          <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
+          <ui-select-choices repeat="pd in products" refresh="input_search($select.search)" refresh-delay="300">
             <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
           </ui-select-choices>
         </ui-select>
         <span class="input-group-btn">
-          <button type="button" ng-click="search_product()" class="btn btn-default" ng-disabled="selected_products.length == 1">
+          <button type="button" ng-click="btn_search()" class="btn btn-default" ng-disabled="!isObjectEmpty(selected_products)">
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </span>
       </div>
-      <form role="form"  ng-submit="save_edit(order_detail)">
+      <form role="form">
           <div class="box-body">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th class="col-md-2 text-center">Part number</th>
-                  <th class="col-md-4 text-center">Name</th>
-                  <th class="col-md-3 text-center">Medel</th>
+                  <th class="col-md-2 text-center">Name</th>
+                  <th class="col-md-2 text-center">Medel</th>
                   <th class="col-md-1 text-center">QTY</th>
-                  <th class="col-md-2 text-center">Delete</th>
+                  <th class="col-md-2 text-center">Province</th>
+                  <th class="col-md-1 text-center">PM</th>
+                  <th class="col-md-1 text-center">Contract</th>
+                  <th class="col-md-1 text-center">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="(idx, p) in selected_products track by idx">
-                  <td class="text-center">{{p.part_number || '-'}}</td>
-                  <td>{{p.name || '-'}}</td>
-                  <td class="text-center">{{p.model || '-'}}</td>
-                  <td class="text-center">{{p.qty || '-'}}</td>
-                  <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list(idx)"></i></td>
+                <tr ng-show="!isObjectEmpty(selected_products)">
+                  <td class="text-center">{{selected_products.part_number || '-'}}</td>
+                  <td>{{selected_products.name || '-'}}</td>
+                  <td class="text-center">{{selected_products.model || '-'}}</td>
+                  <td>
+                    <input type="number" class="form-control text-center"  name="model_qty" ng-model="selected_products.qty" min="1">
+                  </td>
+                  <td>
+                    <select class="form-control" name="model_province" ng-model="selected_products.province">
+                      <?php foreach ($province_list as $record): ?>
+                        <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-control" name="model_pm" ng-model="selected_products.pm">
+                      <option value="{{pm}}" ng-repeat="pm in pm_val">{{pm}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-control" name="model_contract" ng-model="selected_products.contract">
+                      <?php foreach ($contract_list as $record): ?>
+                        <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                      <?php endforeach; ?>
+                    </select>
+                  </td>
+                  <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list()"></i></td>
                 </tr>
-                <tr ng-if="!selected_products.length">
+                <tr ng-show="isObjectEmpty(selected_products)">
                   <td colspan="8" class="text-center">-</td>
                 </tr>
               </tbody>
             </table>
           </div><!-- /.box-body -->
           <div class="box-footer">
-              <input type="submit" class="btn btn-primary" value="Next" />
+              <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_choose_product()">
           </div>
       </form>
     </div>
