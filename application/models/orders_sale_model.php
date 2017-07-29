@@ -74,6 +74,10 @@ class Orders_sale_model extends CI_Model
             $data_info->contract_qty = 1;
         }
 
+        $data_info->pm_time_qty = $data_info->pm_time_qty;
+        $data_info->lb_year_qty = $data_info->pm_time_qty;
+
+
         if ($data_info->is_product_owner == "1" && $data_info->is_have_product == "1") {
             //product_owner
             $sql = "SELECT

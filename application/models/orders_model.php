@@ -119,6 +119,15 @@ class orders_model extends CI_Model {
 			return TRUE;
 	}
 
+	function get_user_info($user_id)
+	{
+
+			$sql ="SELECT * FROM tbl_users where userId = $user_id ";
+			$query = $this->db->query($sql);
+			$row = $query->row_array();
+			return $row;
+	}
+
 }
 
 /* End of file orders_model.php */

@@ -34,7 +34,8 @@ $config['email_name'] = "supachai";
 $config['email_noreply'] = "system@wisadev.com";
 $config['pass_mail_noreply'] = "system";
 $config['weburl'] = "http://demo.wisadev.com/";
-$config['line_id'] = "@cyberbatt";
+
+$config['email_cc_group'] = "supachai.wi@gmail.com";
 
 //information
 $config['pre_page'] = "10";
