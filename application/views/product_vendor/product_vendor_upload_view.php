@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Upload Product TOS
-      <small>Upload สินค้า TOS</small>
+      Upload Product Vendor
+      <small>Upload สินค้า Vendor</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('product_owner'); ?>"> Product TOS</a></li>
-      <li class="active">Upload Product TOS</li>
+      <li><a href="<?php echo base_url('product_vendor'); ?>"> Product Vendor</a></li>
+      <li class="active">Upload Product Vendor</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -21,18 +21,18 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Upload Product owner </h3>
-                    <a type="button" class="btn btn-info" href="<?php echo base_url() ?>uploads/excel/201707/product_tos.xlsx"><i class="ion ion-ios-cloud-download-outline"></i> Template</a>
+                    <h3 class="box-title">Upload Product vendor </h3>
+                    <a type="button" class="btn btn-info" href="<?php echo base_url() ?>uploads/excel/201707/product_Vendor.xlsx"><i class="ion ion-ios-cloud-download-outline"></i> Template</a>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" id="addUser" action="<?php echo base_url() ?>product_owner/upload_save" method="post" role="form" enctype="multipart/form-data">
+                <form role="form" id="addUser" action="<?php echo base_url() ?>product_vendor/upload_save" method="post" role="form" enctype="multipart/form-data">
                     <div class="box-body">
                       <div class="row">
                           <div class="col-md-6">
                               <div class="form-group">
-                                <label for="file_excel">File product TOS</label>
+                                <label for="file_excel">File product Vendor</label>
                                 <input type="file" id="file_excel" name="file_excel" required="true">
-                                <p class="help-block">File Excel 2007 .xlsx กรณีมี part_number ในระบบ ระบบจะทำการอับเดตให้ ถ้าไม่มี ระบบจะทำการสร้างสินค้าใหม่ให้</p>
+                                <p class="help-block">File Excel 2007 .xlsx กรณี กำหนด product_vendor_id  = 0 หมายถึงสร้างสินค้าใหม่ ถ้ากำหนด product_vendor_id ตามระบบ ระบบจะทำการ อับเดตให้</p>
                               </div>
                           </div>
 
@@ -81,20 +81,21 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-striped">
                   <tr>
-                    <th>Part number</th>
+                    <th>Product vendor id</th>
                     <th>Model</th>
                     <th>ชื่อ</th>
                     <th>Brand</th>
-                    <th>Full price</th>
+                    <th>Dealer price</th>
                     <th>บันทึก</th>
                   </tr>
                   <?php foreach ($data_upload as $record): ?>
                   <tr>
-                    <td><?php echo $record->part_number ?></td>
+                    <td><?php echo $record->product_vendor_id ?></td>
                     <td><?php echo $record->model ?></td>
                     <td><?php echo $record->name ?></td>
                     <td><?php echo $record->product_brand_id ?></td>
-                    <td class="text-right"><?php echo number_format($record->full_price, 2); ?></td>
+                    <td class="text-right"><?php echo number_format($record->dealer_price, 2); ?></td>
+                    <td class="text-center"><?php echo $record->comment ?></td>
                     <td class="text-center">
                         <?php if ($record->is_error == 0): ?>
                             <span><i class="fa fa-check"></i> สำเร็จ</span>
@@ -102,6 +103,7 @@
                             <span class="text-danger"><i class="fa fa-times"></i> ผิดผลาด</span>
                         <?php endif ?>
                     </td>
+
                   </tr>
                   <?php endforeach; ?>
                 </table>

@@ -135,7 +135,7 @@ class product_owner_model extends CI_Model
 																				'modified_by'=>$user_id,
 																				'modified_date'=>date('Y-m-d H:i:s'));
             $this->db->insert('product_owner', $product_owner_info);
-            $data_product->comment = $this->db->insert_id();
+            $data_product['comment'] = $this->db->insert_id();
             //insert
         } else {
             //update

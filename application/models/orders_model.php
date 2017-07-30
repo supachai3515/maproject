@@ -119,6 +119,10 @@ class orders_model extends CI_Model {
 
 			$sql =" UPDATE orders SET order_status_id = 3 WHERE order_status_id < 4 AND order_id = $id ";
 			$this->db->query($sql);
+
+			$sql =" INSERT INTO order_status_history VALUES($id,3,'Assaign sale',NOW()) ";
+			$this->db->query($sql);
+
 			return TRUE;
 	}
 

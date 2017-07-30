@@ -262,4 +262,113 @@ class Product_vendor extends BaseController {
            $this->loadThis();
     }
   }
+
+  public function upload()
+  {
+      $data['global'] = $this->global;
+      $data['menu_id'] ='11';
+      $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+      $data['access_menu'] = $this->isAccessMenu($data['menu_list'], $data['menu_id']);
+      if ($data['access_menu']['is_access']&&$data['access_menu']['is_add']) {
+          $data['list_product_brand'] = $this->initdata_model->get_product_brand();
+          $data['content'] = 'product_vendor/product_vendor_upload_view';
+          //if script file
+          //$data['script_file'] = 'js/product_vendor_js';
+          $data['header'] = array('title' => 'Upload Product Vendor | '.$this->config->item('sitename'),
+                                            'description' =>  'Upload Product Vendor | '.$this->config->item('tagline'),
+                                            'author' => $this->config->item('author'),
+                                            'keyword' => 'Product Vendor');
+          $this->load->view('template/layout_main', $data);
+      } else {
+          // access denied
+          $this->loadThis();
+      }
+  }
+
+
+  public function upload_save()
+  {
+    $data['global'] = $this->global;
+    $data['menu_id'] ='11';
+    $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['access_menu'] = $this->isAccessMenu($data['menu_list'], $data['menu_id']);
+    if ($data['access_menu']['is_access']&&$data['access_menu']['is_add']) {
+        $data['list_product_brand'] = $this->initdata_model->get_product_brand();
+        $data['content'] = 'product_vendor/product_vendor_upload_view';
+        //if script file
+
+        $this->load->library('my_upload');
+        $this->load->library('excel');//load PHPExcel library
+        $dir ='./uploads/excel/'.date("Ym").'/';
+        $dir_insert ='uploads/excel/'.date("Ym").'/';
+        $file_name ='';
+
+        $this->my_upload->upload($_FILES["file_excel"]);
+        if ($this->my_upload->uploaded == true) {
+            //$this->my_upload->allowed  = array('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            $this->my_upload->process($dir);
+
+            if ($this->my_upload->processed == true) {
+                $file_name  = $this->my_upload->file_dst_name;
+                //update img
+                $this->my_upload->clean();
+                //$objReader =PHPExcel_IOFactory::createReader('Excel5');     //For excel 2003
+                $objReader= PHPExcel_IOFactory::createReader('Excel2007');    // For excel 2007
+                //Set to read only
+                $objReader->setReadDataOnly(true);
+                //Load excel file
+                $objPHPExcel=$objReader->load($dir.$file_name); //load file name
+                $totalrows=$objPHPExcel->setActiveSheetIndex(0)->getHighestRow();   //Count Numbe of rows avalable in excel
+                $objWorksheet=$objPHPExcel->setActiveSheetIndex(0);
+                //loop from first data untill last data
+                  $json_arr = "";
+                for ($i=2;$i<=$totalrows;$i++) {
+                    $product_vendor_id= $objWorksheet->getCellByColumnAndRow(0, $i)->getValue(); //Excel Column 0
+                    $model= $objWorksheet->getCellByColumnAndRow(1, $i)->getValue(); //Excel Column 1
+                    $product_brand_id = $objWorksheet->getCellByColumnAndRow(2, $i)->getValue(); //Excel Column 2
+                    $name =$objWorksheet->getCellByColumnAndRow(3, $i)->getValue(); //Excel Column 3
+                    $description =$objWorksheet->getCellByColumnAndRow(4, $i)->getValue(); //Excel Column 4
+                    $dealer_price =$objWorksheet->getCellByColumnAndRow(5, $i)->getValue(); //Excel Column 5
+                    $comment =$objWorksheet->getCellByColumnAndRow(6, $i)->getValue(); //Excel Column 6
+
+                   $data_product =  array('product_vendor_id'=>$product_vendor_id, 'model'=>$model ,'product_brand_id'=>$product_brand_id ,'name'=>$name ,
+                                            'description'=> $description, 'dealer_price'=> $dealer_price ,'is_error'=> 0 , 'comment' => $comment );
+
+                  $data_product = $this->product_vendor_model->upload_product_vendor($data_product, $this->vendorId);
+
+                   $json_arr_t = json_encode($data_product);
+                   $json_arr = $json_arr.','.$json_arr_t;
+
+                }
+                if($json_arr!= ""){
+                  $data_product = json_decode('['.substr($json_arr,1).']');
+                  $data['data_upload'] = $data_product;
+                }
+                else {
+                    $data['errors'] = "No data upload.";
+                }
+
+            } else {
+
+                $data['errors'] = $this->my_upload->error;
+                $this->session->set_flashdata('error',  $this->my_upload->error);
+
+            }
+        } else {
+            $data['errors'] = $this->my_upload->error;
+            $this->session->set_flashdata('error', $this->my_upload->error);
+            echo $data['errors'];
+        }
+
+        $data['header'] = array('title' => 'Upload Product Vendor | '.$this->config->item('sitename'),
+                                          'description' =>  'Upload Product Vendor | '.$this->config->item('tagline'),
+                                          'author' => $this->config->item('author'),
+                                          'keyword' => 'Product Vendor');
+        $this->load->view('template/layout_main', $data);
+    } else {
+        // access denied
+        $this->loadThis();
+    }
+
+  }
 }
