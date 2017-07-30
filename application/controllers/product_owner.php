@@ -312,14 +312,18 @@ class Product_owner extends BaseController
                       $description =$objWorksheet->getCellByColumnAndRow(4, $i)->getValue(); //Excel Column 4
                       $full_price =$objWorksheet->getCellByColumnAndRow(5, $i)->getValue(); //Excel Column 5
 
-                     $data_user =  array('part_number'=>$part_number, 'model'=>$model ,'product_brand_id'=>$product_brand_id ,'name'=>$name , 'description'=> $description, 'full_price'=> $full_price);
-                     $json_arr_t = json_encode($data_user);
+                     $data_product =  array('part_number'=>$part_number, 'model'=>$model ,'product_brand_id'=>$product_brand_id ,'name'=>$name ,
+                                              'description'=> $description, 'full_price'=> $full_price ,'is_error'=> 0 , 'comment' => "" );
+
+                    $data_product = $this->product_owner_model->upload_product_owner($data_product, $this->vendorId);
+
+                     $json_arr_t = json_encode($data_product);
                      $json_arr = $json_arr.','.$json_arr_t;
 
                   }
                   if($json_arr!= ""){
-                    $data_user = json_decode('['.substr($json_arr,1).']');
-                    $data['data_upload'] = $data_user;
+                    $data_product = json_decode('['.substr($json_arr,1).']');
+                    $data['data_upload'] = $data_product;
                   }
                   else {
                       $data['errors'] = "No data upload.";

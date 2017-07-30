@@ -21,7 +21,8 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Add Product owner</h3>
+                    <h3 class="box-title">Upload Product owner </h3>
+                    <a type="button" class="btn btn-info" href="<?php echo base_url() ?>uploads/excel/201707/product_tos.xlsx"><i class="ion ion-ios-cloud-download-outline"></i> Template</a>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" id="addUser" action="<?php echo base_url() ?>product_owner/upload_save" method="post" role="form" enctype="multipart/form-data">
@@ -85,6 +86,7 @@
                     <th>ชื่อ</th>
                     <th>Brand</th>
                     <th>Full price</th>
+                    <th>บันทึก</th>
                   </tr>
                   <?php foreach ($data_upload as $record): ?>
                   <tr>
@@ -93,6 +95,13 @@
                     <td><?php echo $record->name ?></td>
                     <td><?php echo $record->product_brand_id ?></td>
                     <td class="text-right"><?php echo number_format($record->full_price, 2); ?></td>
+                    <td class="text-center">
+                        <?php if ($record->is_error == 0): ?>
+                            <span><i class="fa fa-check"></i> สำเร็จ</span>
+                        <?php else: ?>
+                            <span class="text-danger"><i class="fa fa-times"></i> ผิดผลาด</span>
+                        <?php endif ?>
+                    </td>
                   </tr>
                   <?php endforeach; ?>
                 </table>
