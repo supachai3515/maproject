@@ -317,8 +317,13 @@ class Product_owner extends BaseController
                      $json_arr = $json_arr.','.$json_arr_t;
 
                   }
-                  $data_user = json_decode('['.substr($json_arr,1).']');
-                  $data['data_upload'] = $data_user;
+                  if($json_arr!= ""){
+                    $data_user = json_decode('['.substr($json_arr,1).']');
+                    $data['data_upload'] = $data_user;
+                  }
+                  else {
+                      $data['errors'] = "No data upload.";
+                  }
 
               } else {
 
