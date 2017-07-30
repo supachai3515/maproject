@@ -105,6 +105,7 @@
               </div>
             </div><!-- /.box -->
           </div>
+          <!--
           <div class="col-xs-12">
             <div class="box">
               <div class="box-body table-responsive">
@@ -131,6 +132,7 @@
                 </div>
             </div>
           </div>
+          -->
       </div>
   </section>
   <!-- /.content -->

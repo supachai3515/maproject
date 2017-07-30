@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-30 12:10:06
+Date: 2017-07-30 12:25:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('9e2d836778628bdec377d8090f0c53ae', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1501391290', 'a:8:{s:9:\"user_data\";s:0:\"\";s:6:\"userId\";s:1:\"1\";s:4:\"role\";s:1:\"1\";s:13:\"menu_group_id\";s:1:\"1\";s:8:\"roleText\";s:20:\"System Administrator\";s:4:\"name\";s:12:\"System Admin\";s:10:\"isLoggedIn\";b:1;s:17:\"flash:new:notsend\";s:33:\"Email has been failed, try again.\";}');
+INSERT INTO `ci_sessions` VALUES ('7a6b1419ab58777e1d572f3eed436487', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1501392073', 'a:7:{s:9:\"user_data\";s:0:\"\";s:6:\"userId\";s:1:\"6\";s:4:\"role\";s:1:\"4\";s:13:\"menu_group_id\";s:1:\"4\";s:8:\"roleText\";s:4:\"Sale\";s:4:\"name\";s:17:\"Aphirak Janthadee\";s:10:\"isLoggedIn\";b:1;}');
 
 -- ----------------------------
 -- Table structure for discount_of_contract
@@ -306,27 +306,11 @@ CREATE TABLE `orders` (
   `modified_date` datetime DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '5a4e4905eb1cd2acd6bc79f1c58b3fe9', '2017-07-10 20:54:28', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 20:54:28', null, null, null, null, '1', '2017-07-10 20:54:28', '1');
-INSERT INTO `orders` VALUES ('2', '771fe90bc96f592c77e1ffd5abb0c8b7', '2017-07-10 20:55:32', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 20:55:32', null, null, null, null, '1', '2017-07-10 20:55:32', '1');
-INSERT INTO `orders` VALUES ('3', 'fe177dab4bc2f1e99b14877142726d88', '2017-07-10 23:34:09', 'Tony Stark', '', '123456789', 'supachai.wisa@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 23:34:09', null, null, null, null, '1', '2017-07-10 23:34:09', '1');
-INSERT INTO `orders` VALUES ('4', 'b06c38942d1affa1ba27de70112bb49e', '2017-07-11 00:51:55', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '0', '0.0000', '1', '2017-07-11 00:51:55', null, null, null, null, '1', '2017-07-11 00:51:55', '1');
-INSERT INTO `orders` VALUES ('5', 'c0b777bfa17c8a4d7a772a8b821f6d9e', '2017-07-11 01:07:13', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '172132.3500', '1', '2017-07-11 01:07:13', null, null, null, null, '1', '2017-07-11 01:07:13', '1');
-INSERT INTO `orders` VALUES ('6', '29c3e1c3ac4b4c1b1a3b113c9d627569', '2017-07-11 01:19:33', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '1379323.2000', '1', '2017-07-11 01:19:33', null, null, null, null, '1', '2017-07-11 01:19:33', '1');
-INSERT INTO `orders` VALUES ('7', '1d58ddb871e927291df134b22dc67ee3', '2017-07-11 01:21:42', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '6', '1117680.0000', '1', '2017-07-11 01:21:42', null, null, null, null, '1', '2017-07-24 01:19:20', '2');
-INSERT INTO `orders` VALUES ('8', '2c43630ec9e7e5c79267118745c1ac01', '2017-07-15 17:26:39', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '1', '2', '20400.0000', '1', '2017-07-15 17:26:39', null, null, null, null, '1', '2017-07-15 17:26:39', '1');
-INSERT INTO `orders` VALUES ('9', '9b4a60c4ff33288a9c7d4f6115c055e8', '2017-07-15 23:22:25', 'supachai', '', '0044444', 'supachai@wisadev.com', null, '1', '2', '39462.5000', '1', '2017-07-15 23:22:25', null, null, null, null, '1', '2017-07-15 23:22:25', '1');
-INSERT INTO `orders` VALUES ('10', 'c37cb9592de40bb371548cad1f450349', '2017-07-16 16:19:55', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '0', '0.0000', '1', '2017-07-16 16:19:55', '1', '2017-07-16 23:09:19', '2', '2017-07-16 23:09:19', '1', '2017-07-29 00:38:46', '2');
-INSERT INTO `orders` VALUES ('11', '6c4793236b6dcdd661c3e73d3e3a0976', '2017-07-16 16:26:22', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '2', '65650.0000', '1', '2017-07-16 16:26:22', '2', '2017-07-16 18:10:18', '2', '2017-07-16 18:10:18', '1', '2017-07-16 18:10:18', '2');
-INSERT INTO `orders` VALUES ('12', 'a3051dbf2e6a73cd8831e9e61b6aef3c', '2017-07-16 16:29:38', 'supachai wisachai', '', '0917750586', 'supachai@wisadev.com', 'Test comment', '1', '1', '14500.0000', '1', '2017-07-16 16:29:38', '1', '2017-07-29 23:17:53', '2', '2017-07-29 23:17:53', '1', '2017-07-29 23:17:53', '1');
-INSERT INTO `orders` VALUES ('13', 'f93c65e00d0b9220c534d75c5d808283', '2017-07-17 00:59:50', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '3', '2', '6290.0000', '1', '2017-07-17 00:59:50', '1', '2017-07-30 12:09:42', '6', '2017-07-30 12:09:42', '1', '2017-07-30 12:09:42', '1');
-INSERT INTO `orders` VALUES ('14', '0bf7d63556fefbcdd41914c1c78479fb', '2017-07-17 20:24:48', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '1', '34500.0000', '1', '2017-07-17 20:24:48', '1', '2017-07-29 23:46:01', '5', '2017-07-29 23:46:01', '1', '2017-07-29 23:46:01', '1');
-INSERT INTO `orders` VALUES ('15', 'da9d11a834c63ba0afbaae28ed068eda', '2017-07-19 22:36:51', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '3', '2', '187460.0000', '1', '2017-07-19 22:36:51', '1', '2017-07-30 00:56:27', '2', '2017-07-30 00:56:27', '1', '2017-07-30 12:07:58', '2');
-INSERT INTO `orders` VALUES ('16', '88162fdbdfa011cefadf3127045eca3e', '2017-07-24 23:25:49', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '3', '1', '92500.0000', '1', '2017-07-24 23:25:49', '1', '2017-07-30 02:20:09', '5', '2017-07-30 02:20:09', '1', '2017-07-30 02:20:09', '1');
 
 -- ----------------------------
 -- Table structure for order_detail
@@ -358,38 +342,11 @@ CREATE TABLE `order_detail` (
   `qty` int(3) DEFAULT NULL,
   `total` decimal(11,4) DEFAULT NULL,
   PRIMARY KEY (`order_id`,`line_number`,`product_owner_id`,`province_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_detail
 -- ----------------------------
-INSERT INTO `order_detail` VALUES ('1', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900', '0', '1', '75', '1', '30', 'สระบุรี', '0', '0', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('1', '2', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0', '0', '0', '0', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('2', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900', '0', '1', '75', '1', '30', 'สระบุรี', '0', '0', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('2', '2', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0', '0', '0', '0', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('3', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900', '0', '1', '75', '1', '30', 'สระบุรี', '0', '0', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('3', '2', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0', '0', '0', '0', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('5', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900', '0', '1', '75', '1', '30', 'สระบุรี', '0', '0', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('5', '2', '3', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '208000', '0', '1', '75', '1', '30', 'สระบุรี', '0', '0', '2', '2', null, '2', '72072.0000');
-INSERT INTO `order_detail` VALUES ('5', '3', '4', '10', '1', '', '0', '9', 'GP', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '0', '1700', '4', '5', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '20400.0000');
-INSERT INTO `order_detail` VALUES ('5', '4', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0', '0', '0', '0', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('6', '1', '2', '10', '1', '', '0', '2', 'GP', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '0', '107840', '4', '5', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '1294080.0000');
-INSERT INTO `order_detail` VALUES ('6', '2', '3', '10', '1', '', '1', '0', 'SILVER', 'Silver type', '208000', '0', '2', '85', '1', '30', 'สระบุรี', '0', '0', '2', '2', null, '2', '43243.2000');
-INSERT INTO `order_detail` VALUES ('6', '3', '4', '10', '1', '', '0', '14', 'GP', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '0', '3500', '4', '5', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '42000.0000');
-INSERT INTO `order_detail` VALUES ('6', '4', '0', '10', '0', 'Name: 1 MSA 1040 2Prt FC DC SFF Strg , Model: SV3200', '0', '0', '', '', '0', '0', '0', '0', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('7', '1', '3', '10', '1', '', '0', '6', 'GP', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '0', '91440', '4', '5', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '1097280.0000');
-INSERT INTO `order_detail` VALUES ('7', '2', '4', '10', '1', '', '0', '9', 'GP', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '0', '1700', '4', '5', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '20400.0000');
-INSERT INTO `order_detail` VALUES ('7', '3', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0', '0', '0', '0', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('8', '1', '4', '10', '1', '', '0', '7', 'GP', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '0', '1700', '4', '5', '0', '0', 'สระบุรี', '0', '0', '2', '2', null, '2', '20400.0000');
-INSERT INTO `order_detail` VALUES ('9', '1', '6', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '225500', '0', '1', '75', '0', '30', 'สระบุรี', '0', '0', '2', '2', null, '2', '39462.5000');
-INSERT INTO `order_detail` VALUES ('11', '1', '1', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '358000', '0', '1', '75', '0', '30', 'กรุงเทพมหานคร   ', '1000', '2000', '2', '2', null, '2', '65650.0000');
-INSERT INTO `order_detail` VALUES ('12', '1', '1', '6', '1', '', '0', '1', 'GOLD', 'Gold typee', '50000', '0', '1', '75', '0', '0', 'อ่างทอง   ', '1000', '1000', '1', '1', '1', '1', '14500.0000');
-INSERT INTO `order_detail` VALUES ('13', '1', '25', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '18800', '0', '1', '75', '0', '30', 'กรุงเทพมหานคร   ', '1000', '2000', '2', '2', null, '2', '6290.0000');
-INSERT INTO `order_detail` VALUES ('14', '1', '1', '1', '1', '', '0', '3', 'GP', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '0', '30000', '4', '5', '0', '0', 'กรุงเทพมหานคร   ', '1000', '2000', '2', '2', null, '1', '34500.0000');
-INSERT INTO `order_detail` VALUES ('15', '1', '1', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '358000', '0', '1', '75', '0', '0', 'กรุงเทพมหานคร   ', '1000', '2000', '1', '1', '1', '1', '92500.0000');
-INSERT INTO `order_detail` VALUES ('15', '2', '2', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900', '0', '1', '60', '0', '0', 'กรุงเทพมหานคร   ', '1000', '2000', '1', '1', '1', '1', '94960.0000');
-INSERT INTO `order_detail` VALUES ('16', '1', '1', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '358000', '0', '1', '75', '0', '0', 'กรุงเทพมหานคร   ', '1000', '2000', '1', '1', '1', '1', '92500.0000');
-INSERT INTO `order_detail` VALUES ('17', '999', '1', '1', '1', '', '0', '3', 'GP', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '0', '30000', '4', '7', '0', '0', 'กรุงเทพมหานคร   ', '1000', '2000', '1', '1', '1', '1', '3000.0000');
 
 -- ----------------------------
 -- Table structure for order_status
