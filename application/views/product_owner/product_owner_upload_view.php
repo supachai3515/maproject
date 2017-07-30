@@ -47,24 +47,24 @@
             <?php
                 $this->load->helper('form');
                 $error = $this->session->flashdata('error');
-                if($error)
-                {
-            ?>
+                if ($error) {
+                    ?>
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $this->session->flashdata('error'); ?>
             </div>
-            <?php } ?>
+            <?php
+                } ?>
             <?php
                 $success = $this->session->flashdata('success');
-                if($success)
-                {
-            ?>
+                if ($success) {
+                    ?>
             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $this->session->flashdata('success'); ?>
             </div>
-            <?php } ?>
+            <?php
+                } ?>
 
             <div class="row">
                 <div class="col-md-12">
@@ -72,6 +72,34 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <?php if (isset($data_upload)): ?>
+          <div class="box">
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-striped">
+                  <tr>
+                    <th>Part number</th>
+                    <th>Model</th>
+                    <th>ชื่อ</th>
+                    <th>Brand</th>
+                    <th>Full price</th>
+                  </tr>
+                  <?php foreach ($data_upload as $record): ?>
+                  <tr>
+                    <td><?php echo $record->part_number ?></td>
+                    <td><?php echo $record->model ?></td>
+                    <td><?php echo $record->name ?></td>
+                    <td><?php echo $record->product_brand_id ?></td>
+                    <td class="text-right"><?php echo number_format($record->full_price, 2); ?></td>
+                  </tr>
+                  <?php endforeach; ?>
+                </table>
+            </div><!-- /.box-body -->
+          </div>
+        <?php endif; ?>
+      </div>
     </div>
   </section>
   <!-- /.content -->

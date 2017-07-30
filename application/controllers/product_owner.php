@@ -270,46 +270,77 @@ class Product_owner extends BaseController
 
     public function upload_save()
     {
-        $this->load->library('my_upload');
-        $this->load->library('excel');//load PHPExcel library
-        $dir ='./uploads/excel/'.date("Ym").'/';
-        $dir_insert ='uploads/excel/'.date("Ym").'/';
-        $file_name ='';
+      $data['global'] = $this->global;
+      $data['menu_id'] ='11';
+      $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+      $data['access_menu'] = $this->isAccessMenu($data['menu_list'], $data['menu_id']);
+      if ($data['access_menu']['is_access']&&$data['access_menu']['is_add']) {
+          $data['list_product_brand'] = $this->initdata_model->get_product_brand();
+          $data['content'] = 'product_owner/product_owner_upload_view';
+          //if script file
 
-        $this->my_upload->upload($_FILES["file_excel"]);
-        if ($this->my_upload->uploaded == true) {
-            //$this->my_upload->allowed  = array('image/*');
-            $this->my_upload->process($dir);
+          $this->load->library('my_upload');
+          $this->load->library('excel');//load PHPExcel library
+          $dir ='./uploads/excel/'.date("Ym").'/';
+          $dir_insert ='uploads/excel/'.date("Ym").'/';
+          $file_name ='';
 
-            if ($this->my_upload->processed == true) {
-                $file_name  = $this->my_upload->file_dst_name;
-                //update img
-                $this->my_upload->clean();
-                //$objReader =PHPExcel_IOFactory::createReader('Excel5');     //For excel 2003
-                $objReader= PHPExcel_IOFactory::createReader('Excel2007');    // For excel 2007
-                //Set to read only
-                $objReader->setReadDataOnly(true);
-                //Load excel file
-                $objPHPExcel=$objReader->load($dir.$file_name); //load file name
-                $totalrows=$objPHPExcel->setActiveSheetIndex(0)->getHighestRow();   //Count Numbe of rows avalable in excel
-                $objWorksheet=$objPHPExcel->setActiveSheetIndex(0);
-                //loop from first data untill last data
-                for ($i=2;$i<=$totalrows;$i++) {
-                    $FirstName= $objWorksheet->getCellByColumnAndRow(0, $i)->getValue(); //Excel Column 0
-                    $LastName= $objWorksheet->getCellByColumnAndRow(1, $i)->getValue(); //Excel Column 1
-                    $Email= $objWorksheet->getCellByColumnAndRow(2, $i)->getValue(); //Excel Column 2
-                    $Mobile=$objWorksheet->getCellByColumnAndRow(3, $i)->getValue(); //Excel Column 3
-                    $Address=$objWorksheet->getCellByColumnAndRow(4, $i)->getValue(); //Excel Column 4
-                    $data_user = array('FirstName'=>$FirstName, 'LastName'=>$LastName ,'Email'=>$Email ,'Mobile'=>$Mobile , 'Address'=>$Address);
-                    pre($data_user);
-                    //$this->excel_data_insert_model->Add_User($data_user);
-                }
-            } else {
-                $data['errors'] = $this->my_upload->error;
-            }
-        } else {
-            $data['errors'] = $this->my_upload->error;
-            echo $data['errors'];
-        }
+          $this->my_upload->upload($_FILES["file_excel"]);
+          if ($this->my_upload->uploaded == true) {
+              //$this->my_upload->allowed  = array('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+              $this->my_upload->process($dir);
+
+              if ($this->my_upload->processed == true) {
+                  $file_name  = $this->my_upload->file_dst_name;
+                  //update img
+                  $this->my_upload->clean();
+                  //$objReader =PHPExcel_IOFactory::createReader('Excel5');     //For excel 2003
+                  $objReader= PHPExcel_IOFactory::createReader('Excel2007');    // For excel 2007
+                  //Set to read only
+                  $objReader->setReadDataOnly(true);
+                  //Load excel file
+                  $objPHPExcel=$objReader->load($dir.$file_name); //load file name
+                  $totalrows=$objPHPExcel->setActiveSheetIndex(0)->getHighestRow();   //Count Numbe of rows avalable in excel
+                  $objWorksheet=$objPHPExcel->setActiveSheetIndex(0);
+                  //loop from first data untill last data
+                    $json_arr = "";
+                  for ($i=2;$i<=$totalrows;$i++) {
+                      $part_number= $objWorksheet->getCellByColumnAndRow(0, $i)->getValue(); //Excel Column 0
+                      $model= $objWorksheet->getCellByColumnAndRow(1, $i)->getValue(); //Excel Column 1
+                      $product_brand_id = $objWorksheet->getCellByColumnAndRow(2, $i)->getValue(); //Excel Column 2
+                      $name =$objWorksheet->getCellByColumnAndRow(3, $i)->getValue(); //Excel Column 3
+                      $description =$objWorksheet->getCellByColumnAndRow(4, $i)->getValue(); //Excel Column 4
+                      $full_price =$objWorksheet->getCellByColumnAndRow(5, $i)->getValue(); //Excel Column 5
+
+                     $data_user =  array('part_number'=>$part_number, 'model'=>$model ,'product_brand_id'=>$product_brand_id ,'name'=>$name , 'description'=> $description, 'full_price'=> $full_price);
+                     $json_arr_t = json_encode($data_user);
+                     $json_arr = $json_arr.','.$json_arr_t;
+
+                  }
+                  $data_user = json_decode('['.substr($json_arr,1).']');
+                  $data['data_upload'] = $data_user;
+
+              } else {
+
+                  $data['errors'] = $this->my_upload->error;
+                  $this->session->set_flashdata('error',  $this->my_upload->error);
+
+              }
+          } else {
+              $data['errors'] = $this->my_upload->error;
+              $this->session->set_flashdata('error', $this->my_upload->error);
+              echo $data['errors'];
+          }
+
+          $data['header'] = array('title' => 'Upload Product TOS | '.$this->config->item('sitename'),
+                                            'description' =>  'Upload Product TOS | '.$this->config->item('tagline'),
+                                            'author' => $this->config->item('author'),
+                                            'keyword' => 'Product TOS');
+          $this->load->view('template/layout_main', $data);
+      } else {
+          // access denied
+          $this->loadThis();
+      }
+
     }
 }
