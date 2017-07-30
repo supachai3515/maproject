@@ -484,4 +484,11 @@ class Orders_sale_model extends CI_Model
           return true;
       }
     }
+
+    public function update_special_price($ref_id)
+    {
+      $ref_id = $this->db->escape($ref_id);
+      $sql = "UPDATE orders SET order_status_id = 4  WHERE ref_id  = $ref_id ";
+      $this->db->query($sql);
+    }
 }

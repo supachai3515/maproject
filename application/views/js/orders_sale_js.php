@@ -3,7 +3,9 @@
 app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
   $scope.master_init_data = {};
   $scope.owner_id = '';
+
   var char_search = '';
+
   <?php if (isset($orders_detail_data)): ?>
   $scope.initget_order = function() {
           $http({
@@ -251,6 +253,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           $sc.pm_val = ["1","2","3","4","5"];
           var qty_discount =  $scope.master_init_data.discount_qty;
           var contract_discount =  $scope.master_init_data.discount_contract;
+          var province_discount =  $scope.master_init_data.discount_province;
 
           $sc.submit_new_order = function(val) {
             val.order_id = $scope.owner_id;
@@ -302,6 +305,18 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
             }
           });
 
+          $sc.discount_for_province =  function(province_id) {
+            if(province_id) {
+              for (var i = 0; i < province_discount.length; i++) {
+                if(province_id == province_discount[i].province_id) {
+                  $sc.order_choosed_detail.lb_year_value = province_discount[i].lb_year;
+                  $sc.order_choosed_detail.pm_time_value = province_discount[i].pm_time;
+                  return false;
+                }
+              }
+            }
+          };
+
           $sc.cancel = function () {
             swal({
               title: '',
@@ -330,6 +345,8 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           $sc.order_detail = row_data;
           var qty_discount =  $scope.master_init_data.discount_qty;
           var contract_discount =  $scope.master_init_data.discount_contract;
+          var province_discount =  $scope.master_init_data.discount_province;
+
           $sc.save_edit = function (model) {
               edit_func(model).then(function(data) {
                 swal(
@@ -390,6 +407,19 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
               }
             }
           });
+
+          $sc.discount_for_province =  function(province_id) {
+            if(province_id) {
+              for (var i = 0; i < province_discount.length; i++) {
+                if(province_id == province_discount[i].province_id) {
+                  $sc.order_detail.lb_year_value = province_discount[i].lb_year;
+                  $sc.order_detail.pm_time_value = province_discount[i].pm_time;
+                  return false;
+                }
+              }
+            }
+          };
+
         }]
     });
    }
@@ -425,6 +455,43 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
            )
          });
      });
+   }
+
+   $scope.special_price = function(ref_id) {
+     swal({
+       title: '',
+       text: "ยืนยันการส่งสินค้าราคาพิเศษ",
+       type: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#008CBA',
+       cancelButtonColor: '#8388a1',
+       confirmButtonText: 'ยืนยัน',
+       cancelButtonText: 'ยกเลิก',
+     }).then(function () {
+       confirm_send_special_price(ref_id);
+     });
+   }
+
+   function confirm_send_special_price(ref_id) {
+     $http({
+             method: 'POST',
+             url: '<?php echo base_url('orders_sale/send_special_price');?>',
+             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+             data: {id:ref_id}
+         }).then(function success(response) {
+           swal(
+             '',
+             'ส่งราคาพิเศษสำเร็จ',
+             'success'
+           )
+         }, function error(reason) {
+           console.log(reason);
+           swal(
+             '',
+             'Technical error please contact the administrator',
+             'error'
+           )
+         });
    }
 
   <?php endif ?>
@@ -552,7 +619,8 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
 
   <script type="text/ng-template" id="edit_choosed_order_view.html">
     <div class="modal-header">
-      <h4>Edit </h4>
+      <h4>Edit (<span ng-bind="order_choosed_detail.type_name"></span>)</h4>
+      <p><span ng-bind="order_choosed_detail.type_description"></span></p>
     </div>
     <div class="modal-body">
       <form role="form">
@@ -581,7 +649,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                   <div class="col-md-6">
                       <div class="form-group">
                           <label for="name">จังหวัด</label>
-                          <select class="form-control" name="contract" ng-model="order_choosed_detail.province_id" required>
+                          <select class="form-control" name="contract" ng-model="order_choosed_detail.province_id" ng-change="discount_for_province(order_choosed_detail.province_id)" required>
                             <?php foreach ($province_list as $record): ?>
                               <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
                             <?php endforeach; ?>
@@ -705,7 +773,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">จังหวัด</label>
-                        <select class="form-control" name="contract" ng-model="order_detail.province_id" required>
+                        <select class="form-control" name="contract" ng-model="order_detail.province_id" ng-change="discount_for_province(order_detail.province_id)" required>
                           <?php foreach ($province_list as $record): ?>
                             <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
                           <?php endforeach; ?>

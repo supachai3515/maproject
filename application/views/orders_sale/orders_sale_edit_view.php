@@ -25,19 +25,19 @@
                 <tr>
                   <th>รหัส</th>
                   <th>Company</th>
-                  <th>email</th>
-                  <th>tel</th>
-                  <th>qty</th>
-                  <th>total</th>
+                  <th>Email</th>
+                  <th>Tel</th>
+                  <th>QTY</th>
+                  <th>Total</th>
                   <th>สถานะ</th>
-                  <th>Assign by</th>
-                  <th>Assign to</th>
-                  <th>วันที่</th>
-                  <th>ใช้งาน</th>
+                  <th>Assign By</th>
+                  <th>Assign To</th>
+                  <th>Create Date</th>
+                  <th>Modified Date</th>
                   <th class="text-center">Actions</th>
                 </tr>
                 <tr>
-                  <td><span ng-bind="order_list.order_id"></span></td>
+                  <td class="text-center"><span ng-bind="order_list.order_id"></span></td>
                   <td><span ng-bind="order_list.company"></span></td>
                   <td><span ng-bind="order_list.email"></span></td>
                   <td><span ng-bind="order_list.tel"></span></td>
@@ -48,7 +48,7 @@
                   <td><span ng-bind="order_list.assign_to_name"></span></td>
                   <td><span ng-bind="order_list.create_date"></span></td>
                   <td><span ng-bind="order_list.modified_date"></span></td>
-                  <td><span ng-bind="order_list.is_active"></span></td>
+                  <td class="text-center"><i class="fa fa-check" aria-hidden="true" ng-if="order_list.is_active == 1"></i><i class="fa fa-times" aria-hidden="true" ng-if="order_list.is_active == 0"></i></td>
                 </tr>
 
               </table>
@@ -66,53 +66,77 @@
                 <h3 class="box-title"><?php echo $orders_data['company'] ?> (<?php echo $orders_data['order_id'] ?>)</h3>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
+              <table class="table table-hover table-striped">
                 <tr>
                   <th>ลำดับ</th>
-                  <th>part number</th>
-                  <th>product name</th>
-                  <th>Description</th>
-                  <th>comment</th>
-                  <th>type name</th>
-                  <th>type description</th>
-                  <th>full price</th>
-                  <th>dealer price</th>
-                  <th>discount sla</th>
-                  <th>discount contract</th>
-                  <th>discount qty</th>
-                  <th>province</th>
-                  <th>pm</th>
-                  <th>lb</th>
-                  <th>qty</th>
-                  <th>total</th>
-                  <th>Edit</th>
+                  <th colspan="2">Order Description</th>
+                  <th></th>
                 </tr>
 
                 <tr ng-repeat="(idx, row) in orders_detail track by idx">
-                  <td><span ng-bind="row.line_number"></span></td>
-                  <td><span ng-bind="row.part_number"></span></td>
-                  <td><span ng-bind="row.product_name"></span></td>
-                  <td><span ng-bind="row.product_description"></span></td>
-                  <td><span ng-bind="row.comment"></span></td>
-                  <td><span ng-bind="row.type_name"></span></td>
-                  <td><span ng-bind="row.type_description"></span></td>
-                  <td><span ng-bind="row.full_price | number"></span></td>
-                  <td><span ng-bind="row.dealer_price | number"></span></td>
-                  <td><span ng-bind="row.discount_sla_type_value | number"></span>%</td>
-                  <td><span ng-bind="row.discount_of_contract_value | number"></span>%</td>
-                  <td><span ng-bind="row.discount_of_qty_value | number"></span>%</td>
-                  <td><span ng-bind="row.province_name"></span></td>
-                  <td><span ng-bind="row.pm_time_qty | number"></span></td>
-                  <td><span ng-bind="row.lb_year_qty | number"></span></td>
-                  <td><span ng-bind="row.qty | number"></span></td>
-                  <td><span ng-bind="row.total | number:2"></span></td>
+                  <td class="text-center"><span ng-bind="row.line_number"></span></td>
+                  <td colspan="2">
+                    <table>
+                      <tr>
+                        <td class="text-right"><strong>Part number :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.part_number"></span></td>
+                        <td class="text-right"><strong>Product name :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.product_name"></span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-right"><strong>Description :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.product_description"></span></td>
+                        <td class="text-right"><strong>Comment :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.comment || '-'"></span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-right"><strong>Type :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.type_name"></span></td>
+                        <td class="text-right"><strong>Type Description :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.type_description"></span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-right"><strong>Full Price :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.full_price | number"></span></td>
+                        <td class="text-right"><strong>Dealer Price :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.dealer_price | number"></span></td>
+                      </tr>
+
+                      <tr>
+                        <td class="text-right"><strong>Discount SLA :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.discount_sla_type_value | number"></span>%</td>
+                        <td class="text-right"><strong>Discount Contract :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.discount_of_contract_value | number"></span>%</td>
+                      </tr>
+                      <tr>
+                        <td class="text-right"><strong>Discount QTY :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.discount_of_qty_value | number"></span>%</td>
+                        <td class="text-right"><strong>Province :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.province_name"></span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-right"><strong>PM :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.pm_time_qty | number"></span></td>
+                        <td class="text-right"><strong>LB :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.lb_year_qty | number"></span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-right"><strong>QTY :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.qty | number"></span></td>
+                        <td class="text-right"><strong>Toral :</strong>&nbsp;&nbsp;</td>
+                        <td><span ng-bind="row.total | number:2"></span></td>
+                      </tr>
+                    </table>
+                  </td>
                   <td>
-                    <a class="btn btn-sm btn-warning"  ng-click="edit_order(row)" > <i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a class="btn btn-sm btn-danger"  ng-click="delete_order(row)" > <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a class="btn btn-sm btn-warning"  ng-click="edit_order(row)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-sm btn-danger"  ng-click="delete_order(row)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>
               </table>
-
+              <div class="box-footer">
+                <p class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="special_price(order_list.ref_id)"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
+              </div>
               <!--
               <table class="table table-hover">
                 <tr>

@@ -11,6 +11,7 @@ class Orders_sale extends BaseController
         $this->load->model('orders_model');
         $this->load->model('orders_sale_model');
         $this->load->model('home_model');
+        $this->load->model('tos_cal_model');
         $this->isLoggedIn();
     }
 
@@ -125,6 +126,7 @@ class Orders_sale extends BaseController
     {
       $data['discount_contract'] = $this->orders_model->get_discount_contract();
       $data['discount_qty'] = $this->orders_model->get_discount_qty();
+      $data['discount_province'] = $this->home_model->get_province();
       echo json_encode($data);
     }
 
@@ -555,5 +557,27 @@ class Orders_sale extends BaseController
                 }
             }
         }
+    }
+
+    public function send_special_price()
+    {
+      $method = $_SERVER['REQUEST_METHOD'];
+      if ($method != 'POST') {
+          json_output(400, array('status' => 400,'message' => 'Bad request.'));
+      } else {
+        $ref_id = json_decode(file_get_contents("php://input"));
+        $order_status = $this->tos_cal_model->get_order_status_id_by_ref($ref_id->id);
+        if(isset($order_status)){
+          if($order_status == 3)
+    			{
+            $result_update = $this->orders_sale_model->update_special_price($ref_id->id);
+            if ($result_update) {
+                json_output(200, array('status' => 200,'message' => $result_update));
+            } else {
+                json_output(400, array('status' => 400,'message' => 'error'));
+            }
+          }
+        }
+      }
     }
 }
