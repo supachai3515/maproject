@@ -171,8 +171,8 @@ class Orders extends BaseController {
           				$data['template'] = "email/assign_order";
           				$data['subject'] = "Assign order #".$order_id;
           				$data['bcc_mail'] = $this->config->item('email_cc_group');
-          				$data['name'] = $name;
-          				$data['tel'] = $tel;
+          				$data['name'] = "";
+          				$data['tel'] = "";
 
           				//sendmail
           				$sendStatus = send_emali_template($data);
