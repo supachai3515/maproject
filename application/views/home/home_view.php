@@ -155,7 +155,7 @@
       </div>
       <div class="table-wrap">
         <div class="box-inner">
-          <p class="text-right"><button type="button" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
+          <p class="text-right"><button type="button" ng-class="{disabled: info_form.$invalid}" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
           <table class="table table-striped">
             <thead>
               <tr>

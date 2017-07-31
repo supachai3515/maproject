@@ -41,7 +41,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
        });
     }
 
-    $scope.initget_order ();
+    $scope.initget_order();
     $scope.initget_order_detail();
 
   //Get master data

@@ -134,7 +134,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
     <div class="modal-body">
       <form class="form-horizontal">
         <div class="form-group">
-          <label for="email" class="col-md-3 control-label">Name</label>
+          <label for="email" class="col-md-3 control-label">Part number</label>
           <div class="col-md-9">
             <input type="text" name="p_name" ng-model="add_product.name" class="form-control" id="p_name" autofocus>
           </div>
