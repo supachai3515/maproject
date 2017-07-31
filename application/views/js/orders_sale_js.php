@@ -336,7 +336,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
   }
 
   //Edit order
-  $scope.edit_order = function (row_data) {
+  $scope.edit_order = function(row_data) {
     $uibModal.open({
         templateUrl: 'edit_order_view.html',
         size: 'lg',
@@ -457,7 +457,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
      });
    }
 
-   $scope.special_price = function(ref_id) {
+   $scope.special_price = function(ref_id, order_id) {
      swal({
        title: '',
        text: "ยืนยันการส่งสินค้าราคาพิเศษ",
@@ -477,7 +477,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
              method: 'POST',
              url: '<?php echo base_url('orders_sale/send_special_price');?>',
              headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-             data: {id:ref_id}
+             data: {ref: ref_id, order: order_id}
          }).then(function success(response) {
            swal(
              '',

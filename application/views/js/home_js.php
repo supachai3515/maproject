@@ -140,15 +140,9 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
           </div>
         </div>
         <div class="form-group">
-          <label for="name" class="col-md-3 control-label">Model</label>
+          <label for="name" class="col-md-3 control-label">Name</label>
           <div class="col-md-9">
             <input type="text" name="p_model" ng-model="add_product.model" class="form-control" id="p_model">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="tel" class="col-md-3 control-label">QTY</label>
-          <div class="col-md-9">
-              <input type="number" name="p_qty" ng-model="add_product.qty" class="form-control" id="p_qty" min="1">
           </div>
         </div>
       </form>

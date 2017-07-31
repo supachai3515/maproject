@@ -135,7 +135,7 @@
                 </tr>
               </table>
               <div class="box-footer">
-                <p class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="special_price(order_list.ref_id)"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
+                <p class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="special_price(order_list.ref_id, order_list.order_id)"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
               </div>
               <!--
               <table class="table table-hover">

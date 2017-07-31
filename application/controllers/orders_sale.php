@@ -561,23 +561,58 @@ class Orders_sale extends BaseController
 
     public function send_special_price()
     {
-      $method = $_SERVER['REQUEST_METHOD'];
-      if ($method != 'POST') {
-          json_output(400, array('status' => 400,'message' => 'Bad request.'));
-      } else {
-        $ref_id = json_decode(file_get_contents("php://input"));
-        $order_status = $this->tos_cal_model->get_order_status_id_by_ref($ref_id->id);
-        if(isset($order_status)){
-          if($order_status == 3)
-    			{
-            $result_update = $this->orders_sale_model->update_special_price($ref_id->id);
-            if ($result_update) {
-                json_output(200, array('status' => 200,'message' => $result_update));
-            } else {
-                json_output(400, array('status' => 400,'message' => 'error'));
+      if($this->session->userdata('info_name') != null  && $this->session->userdata('info_tel') != null && $this->session->userdata('info_email') != null )
+  		{
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method != 'POST') {
+            json_output(400, array('status' => 400,'message' => 'Bad request.'));
+        } else {
+          $param = json_decode(file_get_contents("php://input"));
+          $order_status = $this->tos_cal_model->get_order_status_id_by_ref($param->ref);
+
+          if(isset($order_status)){
+            if($order_status == 3)
+      			{
+              $result_update = $this->orders_sale_model->update_special_price($param->ref);
+              if($result_update == "0"){
+        				$result = array('status' => 'error', 'data'=> '');
+        				echo json_encode($result);
+        			}
+              else
+              {
+                $data['order_data'] = $this->tos_cal_model->get_order($param->order);
+        				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($param->order);
+        				$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
+        				echo json_encode($result);
+
+        				//sendmail
+        	      $data['email'] = $email;// toemail
+        				$data['template'] = "email/send_order";
+        				$data['subject'] = "Tos Order";
+        				$data['bcc_mail'] = "system@gmail.com";
+        				$data['name'] = $name;
+        				$data['tel'] = $tel;
+        				//$this->load->view('email/send_order', $data);
+
+
+        				//sendmail
+        				$sendStatus = send_emali_template($data);
+        				if($sendStatus){
+        						$status = "send";
+        						setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
+        				} else {
+        						$status = "notsend";
+        						setFlashData($status, "Email has been failed, try again.");
+        				}
+              }
             }
           }
         }
+      }
+      else
+      {
+        $result = array('status' => 'error', 'data'=> '');
+  			echo json_encode($result);
       }
     }
 }
