@@ -254,6 +254,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           var qty_discount =  $scope.master_init_data.discount_qty;
           var contract_discount =  $scope.master_init_data.discount_contract;
           var province_discount =  $scope.master_init_data.discount_province;
+          var tos_discount =  $scope.master_init_data.discount_tos;
 
           $sc.submit_new_order = function(val) {
             val.order_id = $scope.owner_id;
@@ -315,7 +316,14 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 }
               }
             }
-          };
+          }
+
+          $sc.get_sla_type_min = function(val) {
+              return _.findWhere(tos_discount, {name: val}).min || false;
+          }
+          $sc.get_sla_type_max = function(val) {
+            return _.findWhere(tos_discount, {name: val}).max || false;
+          }
 
           $sc.cancel = function () {
             swal({
@@ -346,8 +354,9 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           var qty_discount =  $scope.master_init_data.discount_qty;
           var contract_discount =  $scope.master_init_data.discount_contract;
           var province_discount =  $scope.master_init_data.discount_province;
+          var tos_discount =  $scope.master_init_data.discount_tos;
 
-          $sc.save_edit = function (model) {
+          $sc.save_edit = function (form, model) {
               edit_func(model).then(function(data) {
                 swal(
                   '',
@@ -418,7 +427,13 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 }
               }
             }
-          };
+          }
+          $sc.get_sla_type_min = function(val) {
+              return _.findWhere(tos_discount, {name: val}).min || false;
+          }
+          $sc.get_sla_type_max = function(val) {
+            return _.findWhere(tos_discount, {name: val}).max || false;
+          }
 
         }]
     });
@@ -457,7 +472,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
      });
    }
 
-   $scope.special_price = function(ref_id, order_id) {
+   $scope.approve_spacial = function() {
      swal({
        title: '',
        text: "ยืนยันการส่งสินค้าราคาพิเศษ",
@@ -468,30 +483,8 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
        confirmButtonText: 'ยืนยัน',
        cancelButtonText: 'ยกเลิก',
      }).then(function () {
-       confirm_send_special_price(ref_id);
+       window.location = '<?php echo base_url().'orders_sale/send_special_price/'; ?>'+$scope.order_list.order_id;
      });
-   }
-
-   function confirm_send_special_price(ref_id) {
-     $http({
-             method: 'POST',
-             url: '<?php echo base_url('orders_sale/send_special_price');?>',
-             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-             data: {ref: ref_id, order: order_id}
-         }).then(function success(response) {
-           swal(
-             '',
-             'ส่งราคาพิเศษสำเร็จ',
-             'success'
-           )
-         }, function error(reason) {
-           console.log(reason);
-           swal(
-             '',
-             'Technical error please contact the administrator',
-             'error'
-           )
-         });
    }
 
   <?php endif ?>
@@ -623,25 +616,41 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
       <p><span ng-bind="order_choosed_detail.type_description"></span></p>
     </div>
     <div class="modal-body">
-      <form role="form">
+      <form role="form" name="edit_choosed_order_form">
           <div class="box-body">
               <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-4" ng-class="{'has-error': (edit_choosed_order_form.discount_sla.$error.min || edit_choosed_order_form.discount_sla.$error.max) || (edit_choosed_order_form.$submitted && edit_choosed_order_form.discount_sla.$error.required)}">
                       <div class="form-group">
                           <label for="name">Discount SLA Type Value</label>
-                          <input type="text" class="form-control required" ng-model="order_choosed_detail.discount_sla_type_value"  required>
+                          <input type="number"
+                            name="discount_sla"
+                            class="form-control"
+                            ng-model="order_choosed_detail.discount_sla_type_value"
+                            ng-min="get_sla_type_min(order_choosed_detail.type_name)"
+                            ng-max="get_sla_type_max(order_choosed_detail.type_name)"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="{{get_sla_type_min(order_choosed_detail.type_name)+' - '+get_sla_type_max(order_choosed_detail.type_name)}}"
+                            string-to-number
+                            required>
                       </div>
                   </div>
                   <div class="col-md-4">
                       <div class="form-group">
                         <label for="name">Discount Contract Value</label>
-                        <input type="text" class="form-control required" ng-model="order_choosed_detail.discount_of_contract_value" readonly>
+                        <input type="text"
+                          class="form-control"
+                          ng-model="order_choosed_detail.discount_of_contract_value"
+                          readonly>
                       </div>
                   </div>
                   <div class="col-md-4">
                       <div class="form-group">
                         <label for="name">Discount QTY Value</label>
-                        <input type="text" class="form-control required" ng-model="order_choosed_detail.discount_of_qty_value" readonly>
+                        <input type="text"
+                          class="form-control"
+                          ng-model="order_choosed_detail.discount_of_qty_value"
+                          readonly>
                       </div>
                   </div>
               </div>
@@ -649,7 +658,10 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                   <div class="col-md-6">
                       <div class="form-group">
                           <label for="name">จังหวัด</label>
-                          <select class="form-control" name="contract" ng-model="order_choosed_detail.province_id" ng-change="discount_for_province(order_choosed_detail.province_id)" required>
+                          <select class="form-control"
+                            name="contract"
+                            ng-model="order_choosed_detail.province_id"
+                            ng-change="discount_for_province(order_choosed_detail.province_id)" required>
                             <?php foreach ($province_list as $record): ?>
                               <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
                             <?php endforeach; ?>
@@ -659,7 +671,9 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="name">PM</label>
-                        <select class="form-control" name="pm" ng-model="order_choosed_detail.pm_time_qty" required>
+                        <select class="form-control"
+                          name="pm"
+                          ng-model="order_choosed_detail.pm_time_qty" required>
                           <option value="">Select</option>
                           <option value="{{pm}}" ng-repeat="pm in pm_val">{{pm}}</option>
                         </select>
@@ -667,16 +681,22 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                   </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.$submitted && edit_choosed_order_form.pm_time.$error.required}">
                     <div class="form-group">
                       <label for="name">PM Time Value</label>
-                      <input type="text" class="form-control required" ng-model="order_choosed_detail.pm_time_value">
+                      <input type="text"
+                        name="pm_time"
+                        class="form-control"
+                        ng-model="order_choosed_detail.pm_time_value" required>
                     </div>
                 </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.$submitted && edit_choosed_order_form.lb_year.$error.required}">
                       <div class="form-group">
                         <label for="name">LB Year Value</label>
-                        <input type="text" class="form-control required" ng-model="order_choosed_detail.lb_year_value">
+                        <input type="text"
+                          name="lb_year"
+                          class="form-control"
+                          ng-model="order_choosed_detail.lb_year_value" required>
                       </div>
                   </div>
                 </div>
@@ -684,7 +704,9 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="name">Contact QTY</label>
-                        <select class="form-control" name="selected_contract_{{idx}}" ng-model="order_choosed_detail.contract_qty">
+                        <select class="form-control"
+                          name="selected_contract_{{idx}}"
+                          ng-model="order_choosed_detail.contract_qty">
                           <option value="">Select</option>
                           <?php foreach ($contract_list as $record): ?>
                             <option value="<?php echo $record->number ?>"><?php echo $record->number ?> ปี</option>
@@ -692,10 +714,16 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                         </select>
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.qty.$error.min || (edit_choosed_order_form.$submitted && edit_choosed_order_form.qty.$error.required)}">
                       <div class="form-group">
                           <label for="name">QTY</label>
-                          <input type="number" class="form-control required" string-to-number ng-model="order_choosed_detail.qty">
+                          <input type="number"
+                          class="form-control"
+                          name="qty"
+                          class="form-control required"
+                          string-to-number
+                          ng-model="order_choosed_detail.qty"
+                          ng-min="1" required>
                       </div>
                   </div>
               </div>
@@ -747,25 +775,40 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
     <p><strong ng-bind="order_detail.type_name"></strong> <span ng-bind="order_detail.type_description"></span></p>
   </div>
   <div class="modal-body">
-    <form role="form"  ng-submit="save_edit(order_detail)">
+    <form role="form" name="edit_order_form"  ng-submit="save_edit(edit_order_form, order_detail)">
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" ng-class="{'has-error': (edit_order_form.discount_sla.$error.min || edit_order_form.discount_sla.$error.max) || (edit_order_form.$submitted && edit_order_form.discount_sla.$error.required)}">
                     <div class="form-group">
                         <label for="name">Discount SLA Type Value</label>
-                        <input type="text" class="form-control required" ng-model="order_detail.discount_sla_type_value"  required>
+                        <input type="number"
+                          name="discount_sla"
+                          class="form-control required"
+                          ng-model="order_detail.discount_sla_type_value"
+                          ng-min="get_sla_type_min(order_detail.type_name)"
+                          ng-max="get_sla_type_max(order_detail.type_name)"
+                          data-toggle="tooltip"
+                          data-placement="right"
+                          title="{{get_sla_type_min(order_detail.type_name)+' - '+get_sla_type_max(order_detail.type_name)}}"
+                          string-to-number
+                          required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">Discount Contract Value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.discount_of_contract_value" readonly>
+                      <input type="text"
+                        class="form-control"
+                        ng-model="order_detail.discount_of_contract_value"
+                        readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                       <label for="name">Discount QTY Value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.discount_of_qty_value" readonly>
+                      <input type="text"
+                        class="form-control required"
+                        ng-model="order_detail.discount_of_qty_value" readonly>
                     </div>
                 </div>
             </div>
@@ -773,7 +816,10 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="name">จังหวัด</label>
-                        <select class="form-control" name="contract" ng-model="order_detail.province_id" ng-change="discount_for_province(order_detail.province_id)" required>
+                        <select class="form-control"
+                          name="contract"
+                          ng-model="order_detail.province_id"
+                          ng-change="discount_for_province(order_detail.province_id)" required>
                           <?php foreach ($province_list as $record): ?>
                             <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
                           <?php endforeach; ?>
@@ -791,16 +837,22 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6" ng-class="{'has-error': edit_order_form.$submitted && edit_order_form.pm_time.$error.required}">
                   <div class="form-group">
                     <label for="name">PM Time Value</label>
-                    <input type="text" class="form-control required" ng-model="order_detail.pm_time_value">
+                    <input type="text"
+                      name="pm_time"
+                      class="form-control"
+                      ng-model="order_detail.pm_time_value" required>
                   </div>
               </div>
-                <div class="col-md-6">
+                <div class="col-md-6" ng-class="{'has-error': edit_order_form.$submitted && edit_order_form.lb_year.$error.required}">
                     <div class="form-group">
                       <label for="name">LB Year Value</label>
-                      <input type="text" class="form-control required" ng-model="order_detail.lb_year_value">
+                      <input type="text"
+                        name='lb_year'
+                        class="form-control"
+                        ng-model="order_detail.lb_year_value" required>
                     </div>
                 </div>
               </div>
@@ -816,10 +868,15 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                       </select>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" ng-class="{'has-error': edit_order_form.qty.$error.min || (edit_order_form.$submitted && edit_order_form.qty.$error.required)}">
                     <div class="form-group">
                         <label for="name">QTY</label>
-                        <input type="number" class="form-control required" string-to-number ng-model="order_detail.qty">
+                        <input type="number"
+                          name="qty"
+                          class="form-control required"
+                          string-to-number
+                          ng-model="order_detail.qty"
+                          ng-min="1" required>
                     </div>
                 </div>
             </div>

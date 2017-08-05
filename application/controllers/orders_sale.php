@@ -126,6 +126,7 @@ class Orders_sale extends BaseController
     {
       $data['discount_contract'] = $this->orders_model->get_discount_contract();
       $data['discount_qty'] = $this->orders_model->get_discount_qty();
+      $data['discount_tos'] = $this->orders_model->get_tos_discount();
       $data['discount_province'] = $this->home_model->get_province();
       echo json_encode($data);
     }
@@ -559,60 +560,48 @@ class Orders_sale extends BaseController
         }
     }
 
-    public function send_special_price()
+    public function send_special_price($order_id)
     {
-      if($this->session->userdata('info_name') != null  && $this->session->userdata('info_tel') != null && $this->session->userdata('info_email') != null )
-  		{
-        $method = $_SERVER['REQUEST_METHOD'];
-        if ($method != 'POST') {
-            json_output(400, array('status' => 400,'message' => 'Bad request.'));
-        } else {
-          $param = json_decode(file_get_contents("php://input"));
-          $order_status = $this->tos_cal_model->get_order_status_id_by_ref($param->ref);
+      $data['global'] = $this->global;
+      $data['menu_id'] ='16';
+      $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+      $data['access_menu'] = $this->isAccessMenu($data['menu_list'], $data['menu_id']);
+      if ($data['access_menu']['is_access']&&$data['access_menu']['is_add']) {
 
-          if(isset($order_status)){
-            if($order_status == 3)
-      			{
-              $result_update = $this->orders_sale_model->update_special_price($param->ref);
-              if($result_update == "0"){
-        				$result = array('status' => 'error', 'data'=> '');
-        				echo json_encode($result);
-        			}
-              else
-              {
-                $data['order_data'] = $this->tos_cal_model->get_order($param->order);
-        				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($param->order);
-        				$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
-        				echo json_encode($result);
+            $result = $this->orders_sale_model->update_confirm_special_price($order_id);
 
-        				//sendmail
-        	      $data['email'] = $email;// toemail
-        				$data['template'] = "email/send_order";
-        				$data['subject'] = "Tos Order";
-        				$data['bcc_mail'] = "system@gmail.com";
-        				$data['name'] = $name;
-        				$data['tel'] = $tel;
-        				//$this->load->view('email/send_order', $data);
+          if ($result > 0) {
+
+            $data['order_data'] = $this->orders_model->get_orders_id($order_id);
+            $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
+            //pre($data['order_data']);
+            //pre($data['order_detail_data']);
+            //sendmail
+    	      $data['email'] = $data['order_data']->email;// toemail
+    				$data['template'] = "email/send_order";
+    				$data['subject'] = "Approve special price #".$order_id;
+    				$data['bcc_mail'] = $this->config->item('email_cc_group');
+    				$data['name'] = $data['order_data']->name;
+    				$data['tel'] = $data['order_data']->tel;
+    				$this->load->view('email/send_order', $data);
 
 
-        				//sendmail
-        				$sendStatus = send_emali_template($data);
-        				if($sendStatus){
-        						$status = "send";
-        						setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
-        				} else {
-        						$status = "notsend";
-        						setFlashData($status, "Email has been failed, try again.");
-        				}
-              }
-            }
+    				//sendmail
+    				$sendStatus = send_emali_template($data);
+    				if($sendStatus){
+    						setFlashData('success', "ส่งอีเมลยืนยันคำขอราคาพิเศษสำเร็จ");
+    				} else {
+    						setFlashData('error', "Email has been failed, try again.");
+    				}
+              $this->session->set_flashdata('success', 'Approve special price successfully');
+
+          } else {
+              $this->session->set_flashdata('error', 'Approve special price failed');
           }
-        }
-      }
-      else
-      {
-        $result = array('status' => 'error', 'data'=> '');
-  			echo json_encode($result);
+          redirect('orders_sale/edit/'.$order_id);
+
+      } else {
+          $this->loadThis();
       }
     }
 }

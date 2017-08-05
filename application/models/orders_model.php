@@ -111,6 +111,13 @@ class orders_model extends CI_Model {
 		$row = $query->result_array();
 		return $row;
 	}
+	public function get_tos_discount()
+	{
+		$sql ="SELECT name,min,max,is_owner FROM discount_sla_type";
+		$query = $this->db->query($sql);
+		$row = $query->result_array();
+		return $row;
+	}
 
 	function update_orders($orders_info,$id)
 	{

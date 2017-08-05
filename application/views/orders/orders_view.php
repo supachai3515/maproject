@@ -41,10 +41,10 @@
                     <tr>
                       <th>รหัส</th>
                       <th>Company</th>
-                      <th>email</th>
-                      <th>tel</th>
-                      <th>qty</th>
-                      <th>total</th>
+                      <th>Email</th>
+                      <th>Tel</th>
+                      <th>QTY</th>
+                      <th>Total</th>
                       <th>สถานะ</th>
                       <th>Assign by</th>
                       <th>Assign to</th>
@@ -58,7 +58,7 @@
                       <td><?php echo $record->company ?></td>
                       <td><?php echo $record->email ?></td>
                       <td><?php echo $record->tel ?></td>
-                      <td><?php echo $record->qty ?></td>
+                      <td class="text-center"><?php echo $record->qty ?></td>
                       <td><?php echo  number_format($record->total,0)  ?></td>
                       <td><?php echo $record->status_name ?></td>
                       <td>
@@ -80,7 +80,7 @@
                         <?php if (isset($record->modified_date)): ?>
                           <span>แก้ไข : <i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span>
                         <?php endif; ?>
-                      <td>
+                      <td class="text-center">
                           <?php if ($record->is_active=="1"): ?>
                               <span><i class="fa fa-check"></i></span>
                           <?php else: ?>

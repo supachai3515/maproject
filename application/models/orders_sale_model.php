@@ -485,10 +485,13 @@ class Orders_sale_model extends CI_Model
       }
     }
 
-    public function update_special_price($ref_id)
+    public function update_confirm_special_price($id)
     {
-      $ref_id = $this->db->escape($ref_id);
-      $sql = "UPDATE orders SET order_status_id = 4  WHERE ref_id  = $ref_id ";
-      $this->db->query($sql);
+      $sql =" UPDATE orders SET order_status_id = 4 WHERE order_status_id < 4 AND order_id = $id ";
+			$this->db->query($sql);
+
+			$sql =" INSERT INTO order_status_history VALUES($id,4,'Approve special price',NOW()) ";
+			$this->db->query($sql);
+			return true;
     }
 }

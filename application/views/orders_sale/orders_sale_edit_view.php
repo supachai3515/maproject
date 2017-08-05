@@ -135,7 +135,12 @@
                 </tr>
               </table>
               <div class="box-footer">
-                <p class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="special_price(order_list.ref_id, order_list.order_id)"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
+                <p id="approve_spacial_price_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="approve_spacial()" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
+                <script type="text/javascript">
+                $('#approve_spacial_price_btn').click(function(e) {
+                  e.preventDefault();
+                });
+                </script>
               </div>
               <!--
               <table class="table table-hover">
@@ -223,7 +228,7 @@
                           <div class="col-md-6">
                               <div class="form-group">
                                   <label for="comment_order">Comment</label>
-                                  <textarea name="comment_order"  class="form-control" id="comment_order" rows="8" cols="80"><?php echo $orders_data['comment_order']; ?></textarea>
+                                  <textarea style="resize: none;" name="comment_order"  class="form-control" id="comment_order" rows="8" cols="80"><?php echo $orders_data['comment_order']; ?></textarea>
                               </div>
                           </div>
                         </div>
