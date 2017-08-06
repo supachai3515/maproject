@@ -47,7 +47,8 @@
 										<table style="margin:0%;width:100%;border-spacing:0;table-layout:fixed" cellpadding="0" cellspacing="0">
 											<tbody>
 												<tr>
-													<td style="padding:0 3.358%;font-size:15px;color:#555;line-height:24px">
+                          <p>ท่านได้ทำการขอราคาพิเศษเรียบร้อยแล้ว <a href="<?php echo base_url(); ?>tos_cal/special_price/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a> เพื่อไปยังหน้าสินค้า</p>
+													<td style="font-size:15px;color:#555;line-height:24px">
 														<div style="padding:24px 3.6% 24px;background:#fff;border:1px solid #e3e5e1">
 															<p style="font-weight: bold; font-size: 20px; border-bottom: 1px solid#333;">Order Info</p>
 															<table style="width: 100%;">
@@ -107,7 +108,6 @@
 																	</table>
 																</div>
 															<?php endforeach; ?>
-															<p style="text-align: center;"><a style="display: inline-block;color: #fff;background-color: #5bc0de;border-color: #46b8da;padding: 6px 12px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;vertical-align: middle;cursor: pointer;text-decoration: none;border-radius: 4px;" href="<?php echo base_url(); ?>tos_cal/special_price/<?php echo $order_data['ref_id']; ?>">ไปหน้าขอราคาพิเศษ</a></p>
 														</div>
 													</td>
 												</tr>

@@ -1,19 +1,20 @@
 
 <script type="text/javascript">
-  app.controller("special_price_ctrl", function($scope, $http) {
+  app.controller("special_price_ctrl", function($scope, $http, cfpLoadingBar) {
     var ref_id = '<?php echo $ref_id ?>';
-    $scope.special_status = null;
+    $scope.order_status = null;
 
-    function get_special_status(){
+    function get_order_status(){
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal/get_order_status');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: {id:ref_id}
-          }).success(function(data) {
-            var status = data;
-            $scope.special_status = Number(status);
-          }).error(function (){
+          }).then(function success(result) {
+            var status = result.data;
+            $scope.order_status = Number(status);
+          }, function(err) {
+            console.log(err);
             swal(
               'Error!',
               'Technical error please contact the administrator',
@@ -21,29 +22,67 @@
             )
           });
     }
-    get_special_status();
+    get_order_status();
 
+    $scope.canSubmit = function() {
+      return _.contains([1,4,5], $scope.order_status);
+    }
 
-    $scope.get_special_price = function() {
-      switch($scope.special_status) {
-        case 1:
-          canSubmit();
-          break;
-        case 2:
-          onProcess_special_price();
-          break;
-        case 3:
-          special_price_success();
-          break;
-        default:
-
+    var params = {
+      confirm_msg: function() {
+        var msg = '';
+        switch ($scope.order_status) {
+          case 1:
+            msg = "ยืนยันการขอราคาพิเศษ";
+            break;
+          case 4:
+            msg = "ยืนยันราคาพิเศษ";
+            break;
+          case 5:
+            msg = "ยืนยันการส่งเอกสาร";
+            break;
+          default:
+        }
+        return msg;
+      },
+      url: function() {
+        var url = '';
+        switch ($scope.order_status) {
+          case 1:
+            url = '<?php echo base_url('tos_cal/request_special_price');?>';
+            break;
+          case 4:
+            url = '<?php echo base_url('tos_cal/accept_special_price');?>';
+            break;
+          case 5:
+            url = '<?php echo base_url('tos_cal/send_order_document');?>';
+            break;
+          default:
+        }
+        return url;
+      },
+      respond_msg: function() {
+        var msg = '';
+        switch ($scope.order_status) {
+          case 1:
+            msg = 'ระบบได้รับเรื่องการขอราคาพิเศษของท่านแล้ว กรุณารอการติดต่อกลับ';
+            break;
+          case 4:
+            msg = 'ระบบได้รับการยืนยันราคาท่านแล้ว กรุณารอการติดต่อกลับ';
+            break;
+          case 5:
+            msg = 'ระบบได้รับเอกสารการสั่งซื้อของท่านแล้ว กรุณารอการติดต่อกลับ';
+            break;
+          default:
+        }
+        return msg;
       }
     }
 
-    function canSubmit(){
+    $scope.submit_order = function(){
       swal({
         title: '',
-        text: "ยืนยันการขอราคาพิเศษ",
+        text: params.confirm_msg(),
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#008CBA',
@@ -55,38 +94,21 @@
       })
     }
 
-    function onProcess_special_price(){
-      swal(
-        '',
-        'ท่านได้ทำการขอราคาพิเศษแล้ว อยู่ระหว่างขั้นตอนการตรวจสอบ กรุณารอการติดต่อกลับ',
-        'warning'
-      )
-    }
-
-    function special_price_success(){
-      swal(
-        '',
-        'คำขอราคาพิเศษของท่านเสร็จสมบูรณ์แล้ว',
-        'warning'
-      )
-    }
-
     function confirm_submit(){
       $http({
               method: 'POST',
-              url: '<?php echo base_url('tos_cal/request_special_price');?>',
+              url: params.url(),
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-              data: {id:ref_id}
-          }).success(function(data) {
-            if(data.success) {
+              data: { order_id : '<?php echo $order_data['order_id'] ?>'}
+          }).then(function success(result) {
+            console.log(result);
               swal(
                 '',
-                'ระบบได้รับเรื่องการขอราคาพิเศษของท่านแล้ว กรุณารอการติดต่อกลับ',
+                params.respond_msg(),
                 'success'
               )
-              get_special_status();
-            }
-          }).error(function (){
+              get_order_status();
+          }, function error(reason) {
             swal(
               'Error!',
               'Technical error please contact the administrator',

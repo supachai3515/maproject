@@ -8,6 +8,7 @@ class Tos_cal extends BaseController {
 		//call model inti
     $this->load->model('initdata_model');
     $this->load->model('tos_cal_model');
+		$this->load->model('orders_model');
 	}
 
 	public function index()
@@ -220,23 +221,73 @@ class Tos_cal extends BaseController {
 
 	public function request_special_price()
 	{
-		$ref_id = json_decode(file_get_contents("php://input"));
-		$order_status = $this->tos_cal_model->get_order_status_id_by_ref($ref_id->id);
-		if(isset($order_status)){
-			if($order_status < 2)
-			{
-				$result_update = $this->tos_cal_model->update_spacial_price_status($ref_id->id);
-				$result = array('success' => true);
-				echo json_encode($result);
-			}
-			else
-			{
-				$result = array('success' => false);
-				echo json_encode($result);
-			}
+		$id = json_decode(file_get_contents("php://input"));
+		$order_id = $id->order_id;
+		$result = $this->tos_cal_model->update_request_spacial_price($order_id);
 
+		if ($result > 0) {
+
+			$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+			//pre($data['order_data']);
+			//pre($data['order_detail_data']);
+			//sendmail
+			$data['email'] = $data['order_data']->email;// toemail
+			$data['template'] = "email/request_special_price";
+			$data['subject'] = "Request special price #".$order_id;
+			$data['bcc_mail'] = $this->config->item('email_cc_group');
+			$data['name'] = $data['order_data']->name;
+			$data['tel'] = $data['order_data']->tel;
+
+			//sendmail
+			$sendStatus = send_emali_template($data);
+			if($sendStatus){
+					json_output(200, array('status' => 200,'message' => 'success'));
+			} else {
+					json_output(400, array('status' => 400,'message' => 'error'));
+			}
+				json_output(200, array('status' => 200,'message' => 'success'));
 		} else {
+				json_output(400, array('status' => 400,'message' => 'error'));
 		}
+	}
+
+	public function accept_special_price()
+	{
+		$id = json_decode(file_get_contents("php://input"));
+		$order_id = $id->order_id;
+		$result = $this->tos_cal_model->update_accept_special_price($order_id);
+
+		if ($result > 0) {
+
+			$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+			//pre($data['order_data']);
+			//pre($data['order_detail_data']);
+			//sendmail
+			$data['email'] = $data['order_data']->email;// toemail
+			$data['template'] = "email/accept_special_price";
+			$data['subject'] = "Accept special price #".$order_id;
+			$data['bcc_mail'] = $this->config->item('email_cc_group');
+			$data['name'] = $data['order_data']->name;
+			$data['tel'] = $data['order_data']->tel;
+
+			//sendmail
+			$sendStatus = send_emali_template($data);
+			if($sendStatus){
+					json_output(200, array('status' => 200,'message' => 'success'));
+			} else {
+					json_output(400, array('status' => 400,'message' => 'error'));
+			}
+				json_output(200, array('status' => 200,'message' => 'success'));
+		} else {
+				json_output(400, array('status' => 400,'message' => 'error'));
+		}
+	}
+
+	public function send_order_document()
+	{
+		# code...
 	}
 
 	public function order_detail()

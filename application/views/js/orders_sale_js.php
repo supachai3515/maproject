@@ -491,7 +491,6 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
 });
 
 </script>
-
 <?php if (isset($orders_detail_data)): ?>
 
   <script type="text/ng-template" id="add_order_view.html">

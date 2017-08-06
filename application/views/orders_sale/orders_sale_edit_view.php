@@ -72,7 +72,6 @@
                   <th colspan="2">Order Description</th>
                   <th></th>
                 </tr>
-
                 <tr ng-repeat="(idx, row) in orders_detail track by idx">
                   <td class="text-center"><span ng-bind="row.line_number"></span></td>
                   <td colspan="2">
@@ -135,9 +134,9 @@
                 </tr>
               </table>
               <div class="box-footer">
-                <p id="approve_spacial_price_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="approve_spacial()" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
+                <p id="approve_special_price_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="approve_spacial()" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
                 <script type="text/javascript">
-                $('#approve_spacial_price_btn').click(function(e) {
+                $('#approve_special_price_btn').click(function(e) {
                   e.preventDefault();
                 });
                 </script>

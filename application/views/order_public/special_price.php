@@ -14,25 +14,31 @@
          <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
        </head>
        <body ng-app="mainApp" ng-controller="special_price_ctrl">
-        <h1 class="text-center">Special Price</h1>
+        <h1 class="text-center">Order</h1>
         <div class="container">
           <div class="step">
             <div class="step-inner">
                 <div class="connecting-line"></div>
                 <ul class="nav nav-tabs" role="tablist">
-                  <li role="presentation" ng-class="{'active': special_status == 1}">
+                  <li role="presentation" ng-class="{'active': order_status > 0}">
                     <a href="#" role="tab">
                       <span class="round-tab"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></i></span>
                     </a>
                     <span>ขอราคาพิเศษ</span>
                   </li>
-                  <li role="presentation" ng-class="{'active': special_status == 2}">
+                  <li role="presentation" ng-class="{'active': (order_status > 1) && (order_status <= 7)}">
                       <a href="#"  role="tab">
-                          <span class="round-tab"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+                          <span ng-if="order_status > 0 && order_status <= 3" class="round-tab"><i class="fa fa-tasks" aria-hidden="true"></i></span>
+                          <span ng-if="order_status == 4" class="round-tab"><i class="fa fa-exchange" aria-hidden="true"></i></span>
+                          <span ng-if="order_status == 5" class="round-tab"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+                          <span ng-if="order_status == 6 || order_status == 7" class="round-tab"><i class="fa fa-file-text" aria-hidden="true"></i></span>
                       </a>
-                      <span>รอการตรวจสอบ</span>
+                      <span ng-if="order_status > 0 && order_status <= 3">รอการยืนยันราคาพิเศษ</span>
+                      <span ng-if="order_status == 4">ยืนยันราคา</span>
+                      <span ng-if="order_status == 5">ส่งเอกสารสั่งซื้อ</span>
+                      <span ng-if="order_status == 6 || order_status == 7">ดำเนินการสั่งซื้อ</span>
                   </li>
-                  <li role="presentation" ng-class="{'active': special_status == 3}">
+                  <li role="presentation" ng-class="{'active': order_status == 7}">
                       <a href="#" title="Complete">
                           <span class="round-tab"><i class="fa fa-check" aria-hidden="true"></i></span>
                       </a>
@@ -112,7 +118,13 @@
                     </div>
                     <?php endforeach; ?>
                   </div>
-                  <p class="text-center"><button type="button" class="btn btn-primary btn-lg" ng-click="get_special_price()">ขอราคาพิเศษ</button></p>
+                  <p class="text-center" ng-if="canSubmit()">
+                    <button type="button" class="btn btn-primary btn-lg" ng-click="submit_order()">
+                      <span ng-if="order_status == 1">ขอราคาพิเศษ</span>
+                      <span ng-if="order_status == 4">ยืนยันราคา</span>
+                      <span ng-if="order_status == 5">ส่งเอกสารสั่งซื้อ</span>
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -132,6 +144,7 @@
         <script src="<?php echo base_url(); ?>assets/plugins/angular-filter/angular-filter-0.5.16.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/angular-loading-bar/loading-bar.js"></script>
         <script src="<?php echo base_url(); ?>assets/dist/js/ng-table.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/underscorejs/underscore-min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
         <!-- page script -->
         <?php $this->load->view("js/main_app"); ?>

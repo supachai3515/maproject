@@ -277,11 +277,28 @@ class Tos_cal_model extends CI_Model
         }
     }
 
-    public function update_spacial_price_status($ref_id)
+    public function update_request_spacial_price($id)
     {
-        $ref_id = $this->db->escape($ref_id);
-        $sql = "UPDATE orders SET order_status_id =  2  WHERE ref_id  = $ref_id ";
-        $this->db->query($sql);
+      $order_id = $this->db->escape_str($id);
+      $sql =" UPDATE orders SET order_status_id = 2 WHERE order_status_id < 2 AND order_id = $order_id ";
+      $this->db->query($sql);
+
+      $sql =" INSERT INTO order_status_history VALUES($id,2,'Request special price',NOW()) ";
+      $this->db->query($sql);
+
+      return true;
+    }
+
+    public function update_accept_special_price($id)
+    {
+      $order_id = $this->db->escape_str($id);
+      $sql =" UPDATE orders SET order_status_id = 5 WHERE order_status_id < 5 AND order_id = $order_id ";
+      $this->db->query($sql);
+
+      $sql =" INSERT INTO order_status_history VALUES($id,5,'Request special price',NOW()) ";
+      $this->db->query($sql);
+
+      return true;
     }
 
     public function get_order($order_id)
