@@ -12,7 +12,9 @@ class Product_vendor_model extends CI_Model
     public function get_product_vendor_count($searchText = '')
     {
         $searchText = $this->db->escape_like_str($searchText);
-        $sql =" SELECT COUNT(m.product_vendor_id) as connt_id FROM  product_vendor m WHERE 1=1 ";
+        $sql =" SELECT COUNT(m.product_vendor_id) as connt_id FROM  product_vendor m
+        LEFT JOIN product_brand b ON m.product_brand_id = b.product_brand_id 
+        WHERE 1=1 ";
         if (!empty($searchText)) {
             $sql = $sql." AND (m.product_vendor_id  LIKE '%".$searchText."%'
 												OR  m.name  LIKE '%".$searchText."%'

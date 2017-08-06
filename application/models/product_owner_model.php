@@ -12,13 +12,15 @@ class product_owner_model extends CI_Model
     public function get_product_owner_count($searchText = '')
     {
         $searchText = $this->db->escape_like_str($searchText);
-        $sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_owner m WHERE 1=1 ";
+        $sql =" SELECT COUNT(m.part_number) as connt_id FROM  product_owner m
+        LEFT JOIN product_brand b ON m.product_brand_id = b.product_brand_id
+        WHERE 1=1 ";
         if (!empty($searchText)) {
             $sql = $sql." AND (m.part_number  LIKE '%".$searchText."%'
 												OR  m.model  LIKE '%".$searchText."%'
 												OR  m.name  LIKE '%".$searchText."%'
 												OR  m.description  LIKE '%".$searchText."%'
-												OR  b.name  LIKE '%".$searchText."%')";
+												OR  m.name  LIKE '%".$searchText."%')";
         }
         $query = $this->db->query($sql);
         $row = $query->row_array();
