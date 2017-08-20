@@ -58,6 +58,9 @@ class Tos_cal extends BaseController {
           $session_info = array('info_email'=>$data_info->email,
             'info_name'=>$data_info->name,
             'info_tel'=>$data_info->tel,
+						'info_province'=>$data_info->province,
+						'info_pm'=>$data_info->pm,
+						'info_contract'=>$data_info->contract,
             'product_list'=>$data_info->product_list
           );
           $this->session->set_userdata($session_info);
@@ -80,7 +83,10 @@ class Tos_cal extends BaseController {
       $name = $this->session->userdata('info_name');
       $tel = $this->session->userdata('info_tel');
       $email = $this->session->userdata('info_email');
-      $info = array('name' => $name,'tel' => $tel,'email' => $email );
+			$province = $this->session->userdata('info_province');
+			$pm = $this->session->userdata('info_pm');
+			$contract = $this->session->userdata('info_contract');
+      $info = array('name' => $name,'tel' => $tel,'email' => $email, 'province' => $province, 'pm' => $pm, 'contract' => $contract);
       echo json_encode($info);
   }
 
@@ -162,6 +168,7 @@ class Tos_cal extends BaseController {
 				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
 				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
 				$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
+				$this->session->unset_userdata('info_name','info_tel','info_email','info_province','info_pm','info_contract','product_list');
 				echo json_encode($result);
 				//sendmail
 	      $data['email'] = $email;// toemail
@@ -210,6 +217,56 @@ class Tos_cal extends BaseController {
 
 		$this->load->view('order_public/special_price', $data);
 	}
+
+	public function confirm_order($ref_id)
+	{
+		$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id);
+		if(isset($order_id)){
+				//set status special_price
+				$data['header'] = array('title' => 'Orders | '.$this->config->item('sitename'),
+	              								'description' =>  'Orders | '.$this->config->item('tagline'),
+	              								'author' => $this->config->item('author'),
+	              								'keyword' => 'Orders');
+				$data['ref_id'] = $ref_id;
+				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+				$status = "success";
+		} else {
+				$status = "error";
+		}
+		$this->load->view('home/order_complete_view', $data);
+	}
+
+	public function get_session_order_info()
+ {
+
+	$name = $this->session->userdata('info_name');
+ 	$tel = $this->session->userdata('info_tel');
+ 	$email = $this->session->userdata('info_email');
+ 	$province = $this->session->userdata('info_province');
+ 	$pm = $this->session->userdata('info_pm');
+ 	$contract = $this->session->userdata('info_contract');
+ 	$info = array('name' => $name,
+	'tel' => $tel,
+	'email' => $email,
+	'province' => $province,
+	'pm' => $pm,
+	'contract' => $contract);
+ 	echo json_encode($info);
+
+ }
+
+ public function get_session_order_detail()
+ {
+  $product_list = $this->session->userdata('product_list');
+	if(!isset($product_list)){
+		echo json_encode($product_list);
+	}
+	else{
+		json_output(400, array('status' => 400,'message' => 'erro'));
+	}
+
+ }
 
 	public function get_order_status()
 	{
@@ -262,8 +319,7 @@ class Tos_cal extends BaseController {
 
 			$data['order_data'] = $this->tos_cal_model->get_order($order_id);
 			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-			//pre($data['order_data']);
-			//pre($data['order_detail_data']);
+
 			//sendmail
 			$data['email'] = $data['order_data']->email;// toemail
 			$data['template'] = "email/accept_special_price";
@@ -290,18 +346,31 @@ class Tos_cal extends BaseController {
 		# code...
 	}
 
-	public function order_detail()
+	public function get_order()
 	{
-		$data_info = json_decode(file_get_contents("php://input"));
-		$order_id = $this->tos_cal_model->get_order_id_by_ref($data_info->id);
-		if(isset($order_id)){
-				//set status special_price
-				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
-				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-				$result = array( 'order' => $data['order_data'],
-				 								 'order_detail' => $data['order_detail_data'] );
-				echo json_encode($result);
-		} else {
-		}
+			$method = $_SERVER['REQUEST_METHOD'];
+			if ($method != 'POST') {
+					json_output(400, array('status' => 400,'message' => 'Bad request.'));
+			} else {
+					$value = json_decode(file_get_contents("php://input"));
+					if ($value) {
+							$data['order'] = $this->orders_model->get_orders_id($value->order_id);
+							json_output(200, $data['order']);
+					}
+			}
+	}
+
+	public function get_order_detail()
+	{
+			$method = $_SERVER['REQUEST_METHOD'];
+			if ($method != 'POST') {
+					json_output(400, array('status' => 400,'message' => 'Bad request.'));
+			} else {
+					$value = json_decode(file_get_contents("php://input"));
+					if ($value) {
+							$data['orders_detail'] = $this->orders_model->get_orders_detail($value->order_id);
+							json_output(200, $data['orders_detail']);
+					}
+			}
 	}
 }

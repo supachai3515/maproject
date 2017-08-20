@@ -1,7 +1,7 @@
 
 <script type="text/javascript">
 
-app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $location, cfpLoadingBar) {
+app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $location) {
   var char_search = '';
   $scope.pm_list = ["1","2","3","4","5"];
   $scope.info_form = {};
@@ -10,6 +10,38 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
   $scope.products = [];
   $scope.selected_products = [];
   $scope.result_products_list = [];
+
+  function get_order_info() {
+    $http({
+            method: 'GET',
+            url: '<?php echo base_url('tos_cal/get_session_order_info');?>',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function(response) {
+          var data = response.data;
+          if(data.contract) {
+            $scope.info = data;
+            $scope.order = data;
+          }
+        }, function(reason) {
+          console.log(reason);
+        });
+
+  }
+
+function get_order_detail() {
+  $http({
+          method: 'GET',
+          url: '<?php echo base_url('tos_cal/get_session_order_detail');?>',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+      }).then(function(response) {
+        var data = response.data;
+        $scope.selected_products = data;
+      }, function(reason) {
+        console.log(reason);
+      });
+}
+get_order_info();
+get_order_detail();
 
   $scope.input_Select = function(val) {
     char_search = val;
@@ -73,7 +105,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
           templateUrl: 'add_product_modal.html',
           controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
             $sc.add_new_product = function (model) {
-                var p_model = $.extend({}, {'is_have_product': '0'}, {'part_number': ''}, model);
+                var p_model = $.extend({}, {'is_have_product': '0'}, model, {'qty': 1}, $scope.order);
                 $scope.selected_products.push(p_model);
                 $uib.close();
             }
@@ -108,7 +140,7 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
         return false;
       }
 
-      var model = $.extend({}, info_model, {'product_list': $scope.selected_products});
+      var model = $.extend({}, info_model, $scope.order, {'product_list': $scope.selected_products});
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal');?>',
@@ -134,15 +166,15 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
     <div class="modal-body">
       <form class="form-horizontal">
         <div class="form-group">
-          <label for="email" class="col-md-3 control-label">Part number</label>
+          <label for="p_number" class="col-md-3 control-label">Part number</label>
           <div class="col-md-9">
-            <input type="text" name="p_name" ng-model="add_product.name" class="form-control" id="p_name" autofocus>
+            <input type="text" name="p_number" ng-model="add_product.part_number" class="form-control" id="p_number" autofocus>
           </div>
         </div>
         <div class="form-group">
-          <label for="name" class="col-md-3 control-label">Name</label>
+          <label for="p_name" class="col-md-3 control-label">Name</label>
           <div class="col-md-9">
-            <input type="text" name="p_model" ng-model="add_product.model" class="form-control" id="p_model">
+            <input type="text" name="p_name" ng-model="add_product.name" class="form-control" id="p_name">
           </div>
         </div>
       </form>

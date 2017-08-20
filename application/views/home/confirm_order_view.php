@@ -41,7 +41,7 @@
     <![endif]-->
 </head>
 
-<body ng-app="mainApp" ng-controller="select_product_ctrl">
+<body ng-app="mainApp" ng-controller="confirm_order_ctrl">
     <header class="header">
       <a href="<?php echo base_url(); ?>"><h1>TOS</h1></a>
       <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
@@ -52,19 +52,19 @@
             <div class="connecting-line"></div>
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation">
-                <a href="" role="tab">
+                <a href="#" role="tab">
                   <span class="round-tab"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                 </a>
                 <span>เพิ่มสินค้า</span>
               </li>
               <li role="presentation" class="active">
-                  <a href=""  role="tab">
+                  <a href="#"  role="tab">
                       <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
                   </a>
                   <span>เลือกสินค้า</span>
               </li>
               <li role="presentation">
-                  <a href="" title="Complete">
+                  <a href="#" title="Complete">
                       <span class="round-tab">
                           <i class="fa fa-check" aria-hidden="true"></i>
                       </span>
@@ -74,44 +74,80 @@
             </ul>
         </div>
       </div>
-      <div class="flex-warp">
-        <div class="flex flex-100">
-          <div class="box-inner">
-            <div class="form-horizontal" name="info_form" role="form" action="" method="post">
-              <div class="form-group">
-                <label for="email" class="col-md-4 control-label">Email:</label>
-                <div class="col-md-5"><p class="form-control-static">{{info.email || '-'}}</p></div>
-              </div>
-              <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Name/Company Name:</label>
-                <div class="col-md-5"><p class="form-control-static">{{info.name || '-'}}</p></div>
-              </div>
-              <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Tel:</label>
-                <div class="col-md-5"><p class="form-control-static">{{info.tel || '-'}}</p></div>
+      <div class="box-inner">
+            <div class="order_box">
+              <h3 class="header_order">Order Info</h3>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-md-5 control-label">Email:</label>
+                  <div class="col-md-7">
+                    <p class="form-control-static">{{order_info.email}}</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-5 control-label">Name/Company Name:</label>
+                  <div class="col-md-7">
+                    <p class="form-control-static">{{order_info.name}}</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-5 control-label">Tel:</label>
+                  <div class="col-md-7">
+                    <p class="form-control-static">{{order_info.tel}}</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="order_box">
+              <h3 class="header_order">Order Detail</h3>
+              <div class="order_detail" ng-repeat="(idx, p) in order_detail track by idx">
+                <div class="order_title">
+                  <h4>Product: <span class="text-primary">{{p.product_name}}</span></h4>
+                </div>
+                <table class="table table-striped table-order">
+                  <tbody>
+                    <tr>
+                      <td class="col-md-6">Part Number:</td>
+                      <td class="col-md-6">{{p.part_number}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-6">Type:</td>
+                      <td class="col-md-6">{{p.type_name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-6">Product Name:</td>
+                      <td class="col-md-6">{{p.product_name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-6">Product Description:</td>
+                      <td class="col-md-6">{{p.product_description}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-6">จังหวัด:</td>
+                      <td class="col-md-6">{{p.province_name}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-6">LB Year QTY:</td>
+                      <td class="col-md-6">{{p.lb_year_qty}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-6">QTY:</td>
+                      <td class="col-md-6">{{p.qty}}</td>
+                    </tr>
+                    <tr>
+                      <td class="col-md-6">PM Time QTY:</td>
+                      <td class="col-md-6">{{p.pm_time_qty}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="total-num"><strong>Total:</strong> {{p.total | number :0}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div class="prodiucts_list" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
-              <strong>product : {{$index+1}}</strong>
-              <ul ng-repeat="(idx, val) in value | groupBy: 'is_product_owner'">
-                  <li ng-repeat="p in val">
-                    <div class="radio rodiucts_item">
-                      <label for="product_{{key}}_{{idx}}_{{$index}}"><input type="radio" name="produc_{{key}}" id="product_{{key}}_{{idx}}_{{$index}}" ng-click="update_product_select(key, p)" ng-checked="p.selected"></label>
-                      <div class="prodiucts_detail">
-                        <p><strong>Type:</strong>   {{p.type_name || '-'}}</p>
-                        <p><strong>Description:</strong>   {{p.type_description || '-'}}</p>
-                        <p><strong>Total:</strong>   {{(p.total | number:0) || '-'}}</p>
-                      </div>
-                    </div>
-                  </li>
-              </ul>
-            </div>
           </div>
-          <div class="text-center">
-            <button type="button" class="btn btn-primary btn-lg" ng-click="back_add_product()">Back</button>
-            <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button>
-          </div>
-        </div>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Submit</button>
       </div>
     </div>
 

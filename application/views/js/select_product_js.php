@@ -37,6 +37,9 @@
       });
     }
 
+    $scope.back_add_product = function() {
+      window.location = '<?php echo base_url();?>'
+    }
     $scope.submit_products = function() {
       selected_products = [];
       is_selected = false;
@@ -55,25 +58,16 @@
         )
         return false;
       }
+
       $http({
               method: 'POST',
-              url: '<?php echo base_url('tos_cal/save_order');?>',
+              url: '<?php echo base_url('confirm_order/set_confirm_order_session');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-              data: selected_products
-          }).success(function(data) {
-            if(data) {
-              var ref_id = data.order_id.ref_id;
-              if(ref_id !== undefined) {
-                  window.location = '<?php echo base_url('/order_complete?id=');?>'+ref_id;
-              }
-            }
-          }).error(function (err){
-            console.log(err);
-            swal(
-              'Error!',
-              'Technical error please contact the administrator',
-              'error'
-            )
+              data: {'info':$scope.info,'detail':selected_products}
+          }).then(function(data) {
+            window.location = '<?php echo base_url('/confirm_order');?>';
+          }, function(reason) {
+            console.log(reason);
           });
     }
 

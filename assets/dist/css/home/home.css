@@ -45,6 +45,7 @@
   width: 100%;
 }
 .box-inner{
+  margin-bottom: 40px;
 	padding: 20px;
 	background-color: #fff;
   border-radius: 4px;
@@ -62,7 +63,9 @@
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-
+.add_order_box {
+  margin-top: 50px;
+}
 /*Select Products*/
 .prodiucts_list {
   margin-bottom: 30px;

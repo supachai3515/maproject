@@ -72,13 +72,11 @@
             </ul>
         </div>
       </div>
-      <div class="flex-warp">
-        <div class="flex flex-100">
-          <div class="box-inner">
+      <div class="box-inner">
             <form class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
                 <label for="email" class="col-md-4 control-label">Email<sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': info_form.$submitted && info_form.email.$invalid}">
+                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.email.$invalid) || info_form.email.$error.email}">
                   <input type="email" name="email" class="form-control" id="email" ng-model="info.email" required>
                 </div>
               </div>
@@ -127,33 +125,28 @@
               </div>
             </form>
           </div>
-        </div>
-      </div>
-      <div class="flex flex-100">
-        <div class="box-inner">
-          <form class="form-horizontal" nrole="form" action="" method="">
-            <div class="form-group">
-              <label for="tel" class="col-md-4 control-label">Search Product</label>
-              <div class="col-md-5">
-                <div class="input-group">
-                  <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)" search-enabled="!info_form.$invalid" ng-disabled="info_form.$invalid">
-                    <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
-                    <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
-                      <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
-                    </ui-select-choices>
-                  </ui-select>
-                  <span class="input-group-btn">
-                    <button type="button" ng-click="search_product()" class="btn btn-default" ng-disabled="info_form.$invalid">
-                      <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                  </span>
-                </div>
+      <div class="box-inner">
+        <form class="form-horizontal" nrole="form" action="" method="">
+          <div class="form-group">
+            <label for="tel" class="col-md-4 control-label">Search Product</label>
+            <div class="col-md-5">
+              <div class="input-group">
+                <ui-select ng-model="products.selected" theme="bootstrap" on-select="add_product_list($item)" search-enabled="!info_form.$invalid" ng-disabled="info_form.$invalid">
+                  <ui-select-match placeholder="Select or search a products">{{$select.selected.name}}</ui-select-match>
+                  <ui-select-choices repeat="pd in products" refresh="input_Select($select.search)" refresh-delay="300">
+                    <span ng-bind-html="pd.part_number | highlight: $select.search"></span><span ng-bind-html="pd.name | highlight: $select.search"></span>
+                  </ui-select-choices>
+                </ui-select>
+                <span class="input-group-btn">
+                  <button type="button" ng-click="search_product()" class="btn btn-default" ng-disabled="info_form.$invalid">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </span>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-      <div class="table-wrap">
         <div class="box-inner">
           <p class="text-right"><button type="button" ng-class="{disabled: info_form.$invalid}" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
           <table class="table table-striped">
@@ -204,8 +197,9 @@
             </tbody>
           </table>
         </div>
-        <p class="submit-btn text-right"><button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button></p>
-      </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button>
+        </div>
     </div>
 
     <footer class="main-footer text-center">
