@@ -42,7 +42,8 @@
                     <tr>
                       <th>รหัส</th>
                       <th>Model</th>
-                      <th>ชื่อ</th>
+                      <th>part number</th>
+                      <th>Description</th>
                       <th>Brand</th>
                       <th>Dealer price</th>
                       <th>วันที่แก้ไข</th>
@@ -53,9 +54,10 @@
                     <tr>
                       <td><?php echo $record->product_vendor_id ?></td>
                       <td><?php echo $record->model ?></td>
-                      <td><?php echo $record->name ?></td>
+                      <td><?php echo $record->part_number ?></td>
+                      <td><?php echo $record->description ?></td>
                       <td><?php echo $record->product_brand_name ?></td>
-                      <td><?php echo number_format($record->dealer_price,2) ?></td>
+                      <td><?php echo number_format($record->dealer_price, 2) ?></td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>
                       <td>
                           <?php if ($record->is_active=="1"): ?>
@@ -73,7 +75,9 @@
                   </table>
               </div><!-- /.box-body -->
               <div class="box-footer clearfix">
-                  <?php if(isset($links_pagination)) {echo $links_pagination;} ?>
+                  <?php if (isset($links_pagination)) {
+                      echo $links_pagination;
+                  } ?>
               </div>
             </div><!-- /.box -->
           </div>

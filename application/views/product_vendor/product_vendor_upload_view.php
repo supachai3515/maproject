@@ -83,7 +83,8 @@
                   <tr>
                     <th>Product vendor id</th>
                     <th>Model</th>
-                    <th>ชื่อ</th>
+                    <th>Part number</th>
+                    <th>description</th>
                     <th>Brand</th>
                     <th>Dealer price</th>
                     <th>บันทึก</th>
@@ -92,7 +93,8 @@
                   <tr>
                     <td><?php echo $record->product_vendor_id ?></td>
                     <td><?php echo $record->model ?></td>
-                    <td><?php echo $record->name ?></td>
+                    <td><?php echo $record->part_number ?></td>
+                    <td><?php echo $record->description ?></td>
                     <td><?php echo $record->product_brand_id ?></td>
                     <td class="text-right"><?php echo number_format($record->dealer_price, 2); ?></td>
                     <td class="text-center"><?php echo $record->comment ?></td>

@@ -34,12 +34,17 @@
                                   <input type="text" class="form-control" id="model"  name="model" maxlength="64"  required="true">
                               </div>
                           </div>
+
+
                           <div class="col-md-6">
                               <div class="form-group">
-                                  <label for="name">Name</label>
-                                  <input type="text" class="form-control required" id="name" name="name" maxlength="120" required="true">
+                                  <label for="description">Part number</label>
+                                  <input type="text" class="form-control" id="part_number"  name="part_number" maxlength="1204">
                               </div>
                           </div>
+
+
+
                       </div>
                         <div class="row">
                           <div class="col-md-6">
@@ -48,10 +53,8 @@
                                   <select class="form-control required" id="product_brand_id" name="product_brand_id" required="true">
                                       <option value="0">Select Brand</option>
                                       <?php
-                                      if(!empty($list_product_brand))
-                                      {
-                                          foreach ($list_product_brand as $row)
-                                          {
+                                      if (!empty($list_product_brand)) {
+                                          foreach ($list_product_brand as $row) {
                                               ?>
                                               <option value="<?php echo $row['product_brand_id'] ?>"><?php echo $row['name'] ?></option>
                                               <?php
@@ -62,14 +65,21 @@
                               </div>
                           </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <input type="text" class="form-control" id="description"  name="description" maxlength="1204">
-                                </div>
-                            </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="description">Description</label>
+                                  <input type="text" class="form-control" id="description"  name="description" maxlength="1204">
+                              </div>
+                          </div>
+
                         </div>
                         <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control required" id="name" name="name" maxlength="120" required="true">
+                              </div>
+                          </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -88,6 +98,8 @@
                                 </div>
                               </div>
                             </div>
+
+
                         </div>
                     </div><!-- /.box-body -->
 
@@ -102,24 +114,24 @@
             <?php
                 $this->load->helper('form');
                 $error = $this->session->flashdata('error');
-                if($error)
-                {
-            ?>
+                if ($error) {
+                    ?>
             <div class="alert alert-danger alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $this->session->flashdata('error'); ?>
             </div>
-            <?php } ?>
+            <?php
+                } ?>
             <?php
                 $success = $this->session->flashdata('success');
-                if($success)
-                {
-            ?>
+                if ($success) {
+                    ?>
             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <?php echo $this->session->flashdata('success'); ?>
             </div>
-            <?php } ?>
+            <?php
+                } ?>
 
             <div class="row">
                 <div class="col-md-12">

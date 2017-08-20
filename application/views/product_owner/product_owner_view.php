@@ -43,7 +43,7 @@
                       <th>รหัส</th>
                       <th>Part number</th>
                       <th>Model</th>
-                      <th>ชื่อ</th>
+                      <th>Description</th>
                       <th>Brand</th>
                       <th>Full price</th>
                       <th>วันที่แก้ไข</th>
@@ -55,7 +55,7 @@
                       <td><?php echo $record->product_owner_id ?></td>
                       <td><?php echo $record->part_number ?></td>
                       <td><?php echo $record->model ?></td>
-                      <td><?php echo $record->name ?></td>
+                      <td><?php echo $record->description ?></td>
                       <td><?php echo $record->product_brand_name ?></td>
                       <td><?php echo number_format($record->full_price,2); ?></td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>

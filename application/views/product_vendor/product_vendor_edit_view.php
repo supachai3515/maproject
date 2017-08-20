@@ -35,13 +35,13 @@
                                   <input type="text" class="form-control" id="model"  name="model" value="<?php echo $product_vendor_data['model']; ?>"  maxlength="64"  required="true">
                               </div>
                           </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control required" id="name" name="name" value="<?php echo $product_vendor_data['name']; ?>" maxlength="128">
-                                    <input type="hidden" value="<?php echo $product_vendor_data['product_vendor_id']; ?>" name="product_vendor_id" id="product_vendor_id" />
-                                </div>
-                            </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="description">Part number</label>
+                                  <input type="text" class="form-control" id="part_number"  name="part_number" value="<?php echo $product_vendor_data['part_number']; ?>" maxlength="1204">
+                              </div>
+                          </div>
+
                           </div>
                             <div class="row">
                             <div class="col-md-6">
@@ -71,6 +71,13 @@
                           </div>
                         </div>
                         <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control required" id="name" name="name" value="<?php echo $product_vendor_data['name']; ?>" maxlength="128">
+                                  <input type="hidden" value="<?php echo $product_vendor_data['product_vendor_id']; ?>" name="product_vendor_id" id="product_vendor_id" />
+                              </div>
+                          </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Dealer price</label>

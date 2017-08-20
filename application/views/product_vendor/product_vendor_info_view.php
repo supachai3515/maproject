@@ -35,13 +35,14 @@
                               </div>
                           </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control required" id="name" name="name" value="<?php echo $product_vendor_data['name']; ?>" maxlength="128" readonly>
-                                    <input type="hidden" value="<?php echo $product_vendor_data['product_vendor_id']; ?>" name="product_vendor_id" id="product_vendor_id" />
-                                </div>
-                            </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="name">Part number</label>
+                                  <input type="text" class="form-control required" id="part_number" name="part_number" value="<?php echo $product_vendor_data['part_number']; ?>" maxlength="128" readonly>
+                              </div>
+                          </div>
+
+
                           </div>
                             <div class="row">
                             <div class="col-md-6">
@@ -57,12 +58,12 @@
                                   <select class="form-control required" id="product_brand_id" name="product_brand_id" required="true"  disabled="true">
                                       <option value="0">Select Brand</option>
                                       <?php
-                                      if(!empty($list_product_brand))
-                                      {
-                                          foreach ($list_product_brand as $row)
-                                          {
+                                      if (!empty($list_product_brand)) {
+                                          foreach ($list_product_brand as $row) {
                                               ?>
-                                              <option value="<?php echo $row['product_brand_id'] ?>" <?php if($row['product_brand_id'] == $product_vendor_data['product_brand_id']) {echo "selected=selected";} ?>><?php echo $row['name'] ?></option>>
+                                              <option value="<?php echo $row['product_brand_id'] ?>" <?php if ($row['product_brand_id'] == $product_vendor_data['product_brand_id']) {
+                                                  echo "selected=selected";
+                                              } ?>><?php echo $row['name'] ?></option>>
                                               <?php
                                           }
                                       }
@@ -72,6 +73,16 @@
                           </div>
                         </div>
                         <div class="row">
+
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label for="name">Name</label>
+                                  <input type="text" class="form-control required" id="name" name="name" value="<?php echo $product_vendor_data['name']; ?>" maxlength="128" readonly>
+                                  <input type="hidden" value="<?php echo $product_vendor_data['product_vendor_id']; ?>" name="product_vendor_id" id="product_vendor_id" />
+                              </div>
+                          </div>
+
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Dealer Price</label>

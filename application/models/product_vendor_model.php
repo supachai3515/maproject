@@ -13,7 +13,7 @@ class Product_vendor_model extends CI_Model
     {
         $searchText = $this->db->escape_like_str($searchText);
         $sql =" SELECT COUNT(m.product_vendor_id) as connt_id FROM  product_vendor m
-        LEFT JOIN product_brand b ON m.product_brand_id = b.product_brand_id 
+        LEFT JOIN product_brand b ON m.product_brand_id = b.product_brand_id
         WHERE 1=1 ";
         if (!empty($searchText)) {
             $sql = $sql." AND (m.product_vendor_id  LIKE '%".$searchText."%'
@@ -45,7 +45,7 @@ class Product_vendor_model extends CI_Model
 													OR  m.description  LIKE '%".$searchText."%'
 													OR  b.name  LIKE '%".$searchText."%')";
         }
-        $sql = $sql." LIMIT ".$page.",".$segment." ";
+        $sql = $sql." ORDER BY m.product_vendor_id DESC  LIMIT ".$page.",".$segment." ";
         $query = $this->db->query($sql);
         $result = $query->result();
         return $result;
