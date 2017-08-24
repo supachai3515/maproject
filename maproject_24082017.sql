@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-07-17 21:37:45
+Date: 2017-08-24 21:08:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,9 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('15257706bb1346e0f3275bef333e524a', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1500302077', 'a:11:{s:9:\"user_data\";s:0:\"\";s:6:\"userId\";s:1:\"2\";s:4:\"role\";s:1:\"4\";s:13:\"menu_group_id\";s:1:\"4\";s:8:\"roleText\";s:4:\"Sale\";s:4:\"name\";s:17:\"Supachai Wisachai\";s:10:\"isLoggedIn\";b:1;s:10:\"info_email\";s:21:\"supachai.wi@gmail.com\";s:9:\"info_name\";s:8:\"supachai\";s:8:\"info_tel\";s:10:\"0917750586\";s:12:\"product_list\";a:1:{i:0;O:8:\"stdClass\":10:{s:15:\"is_have_product\";s:1:\"1\";s:16:\"product_owner_id\";s:1:\"1\";s:11:\"part_number\";s:6:\"E7V99A\";s:4:\"name\";s:30:\"1 MSA 1040 2Prt FC DC LFF Strg\";s:5:\"model\";s:7:\"MSA1040\";s:10:\"brand_name\";s:6:\"Cissco\";s:3:\"qty\";i:2;s:8:\"province\";s:1:\"1\";s:2:\"pm\";s:1:\"1\";s:8:\"contract\";s:1:\"1\";}}}');
+INSERT INTO `ci_sessions` VALUES ('2c84da508254ebc80453a5ae7fe0703c', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1503583571', 'a:6:{s:9:\"user_data\";s:0:\"\";s:13:\"info_province\";s:1:\"1\";s:7:\"info_pm\";s:1:\"2\";s:13:\"info_contract\";s:1:\"1\";s:17:\"info_selct_prodct\";O:8:\"stdClass\":2:{s:4:\"info\";O:8:\"stdClass\":6:{s:4:\"name\";s:8:\"supachai\";s:3:\"tel\";s:10:\"0917750586\";s:5:\"email\";s:20:\"supachai@wisadev.com\";s:8:\"province\";s:1:\"1\";s:2:\"pm\";s:1:\"2\";s:8:\"contract\";s:1:\"1\";}s:6:\"detail\";a:1:{i:0;O:8:\"stdClass\":23:{s:16:\"is_product_owner\";s:1:\"0\";s:15:\"is_have_product\";s:1:\"1\";s:7:\"comment\";s:0:\"\";s:16:\"product_owner_id\";s:1:\"2\";s:17:\"product_vendor_id\";s:1:\"2\";s:9:\"type_name\";s:2:\"GP\";s:16:\"type_description\";s:54:\"1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service\";s:10:\"full_price\";s:1:\"0\";s:12:\"dealer_price\";s:6:\"107840\";s:20:\"discount_sla_type_id\";s:1:\"4\";s:23:\"discount_sla_type_value\";s:1:\"5\";s:26:\"discount_of_contract_value\";s:1:\"0\";s:21:\"discount_of_qty_value\";s:1:\"0\";s:11:\"province_id\";s:1:\"1\";s:13:\"province_name\";s:42:\"กรุงเทพมหานคร   \";s:13:\"pm_time_value\";s:4:\"1000\";s:13:\"lb_year_value\";s:4:\"2000\";s:11:\"pm_time_qty\";s:1:\"2\";s:11:\"lb_year_qty\";s:1:\"2\";s:12:\"contract_qty\";s:1:\"1\";s:3:\"qty\";s:1:\"1\";s:5:\"total\";s:19:\"119232.000000000000\";s:8:\"selected\";b:1;}}}s:14:\"flash:old:send\";s:170:\"ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email\";}');
+INSERT INTO `ci_sessions` VALUES ('64a1171810a23b7d94bebe23bd7e839d', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1503331586', 'a:7:{s:9:\"user_data\";s:0:\"\";s:6:\"userId\";s:1:\"1\";s:4:\"role\";s:1:\"1\";s:13:\"menu_group_id\";s:1:\"1\";s:8:\"roleText\";s:20:\"System Administrator\";s:4:\"name\";s:12:\"System Admin\";s:10:\"isLoggedIn\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('a74dadce502f9c886913c841efceb40e', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0', '1503325007', '');
 
 -- ----------------------------
 -- Table structure for discount_of_contract
@@ -82,7 +84,7 @@ CREATE TABLE `discount_of_qty` (
 -- Records of discount_of_qty
 -- ----------------------------
 INSERT INTO `discount_of_qty` VALUES ('1', '1', '1', '0', 'จำนวนอุปรกรณ์ซ้ำกัน 1 ชิ้น', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:23:26', '1');
-INSERT INTO `discount_of_qty` VALUES ('2', '2', '2', '30', 'จำนวนอุปรกรณ์ซ้ำกัน 2 ชิ้น', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:23:36', '1');
+INSERT INTO `discount_of_qty` VALUES ('2', '2', '4', '30', 'จำนวนอุปรกรณ์ซ้ำกัน 2 ชิ้น', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:23:36', '1');
 INSERT INTO `discount_of_qty` VALUES ('3', '5', '99', '50', 'จำนวนอุปรกรณ์ซ้ำกัน 5 ชิ้น ขึ้นไป', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:24:03', '1');
 
 -- ----------------------------
@@ -294,7 +296,7 @@ CREATE TABLE `orders` (
   `email` varchar(128) NOT NULL,
   `comment_order` varchar(1024) DEFAULT NULL,
   `order_status_id` int(11) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL,
+  `qty` int(3) DEFAULT NULL,
   `total` decimal(11,4) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `create_date` datetime NOT NULL,
@@ -306,25 +308,12 @@ CREATE TABLE `orders` (
   `modified_date` datetime DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '5a4e4905eb1cd2acd6bc79f1c58b3fe9', '2017-07-10 20:54:28', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 20:54:28', null, null, null, null, '1', '2017-07-10 20:54:28', '1');
-INSERT INTO `orders` VALUES ('2', '771fe90bc96f592c77e1ffd5abb0c8b7', '2017-07-10 20:55:32', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 20:55:32', null, null, null, null, '1', '2017-07-10 20:55:32', '1');
-INSERT INTO `orders` VALUES ('3', 'fe177dab4bc2f1e99b14877142726d88', '2017-07-10 23:34:09', 'Tony Stark', '', '123456789', 'supachai.wisa@gmail.com', null, '1', '4', '79660.3500', '1', '2017-07-10 23:34:09', null, null, null, null, '1', '2017-07-10 23:34:09', '1');
-INSERT INTO `orders` VALUES ('4', 'b06c38942d1affa1ba27de70112bb49e', '2017-07-11 00:51:55', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '0', '0.0000', '1', '2017-07-11 00:51:55', null, null, null, null, '1', '2017-07-11 00:51:55', '1');
-INSERT INTO `orders` VALUES ('5', 'c0b777bfa17c8a4d7a772a8b821f6d9e', '2017-07-11 01:07:13', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '172132.3500', '1', '2017-07-11 01:07:13', null, null, null, null, '1', '2017-07-11 01:07:13', '1');
-INSERT INTO `orders` VALUES ('6', '29c3e1c3ac4b4c1b1a3b113c9d627569', '2017-07-11 01:19:33', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '1379323.2000', '1', '2017-07-11 01:19:33', null, null, null, null, '1', '2017-07-11 01:19:33', '1');
-INSERT INTO `orders` VALUES ('7', '1d58ddb871e927291df134b22dc67ee3', '2017-07-11 01:21:42', 'Tony Stark', '', '123456789', 'abc@gmail.com', null, '1', '8', '1849320.0000', '1', '2017-07-11 01:21:42', null, null, null, null, '1', '2017-07-11 01:21:42', '1');
-INSERT INTO `orders` VALUES ('8', '2c43630ec9e7e5c79267118745c1ac01', '2017-07-15 17:26:39', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '1', '2', '20400.0000', '1', '2017-07-15 17:26:39', null, null, null, null, '1', '2017-07-15 17:26:39', '1');
-INSERT INTO `orders` VALUES ('9', '9b4a60c4ff33288a9c7d4f6115c055e8', '2017-07-15 23:22:25', 'supachai', '', '0044444', 'supachai@wisadev.com', null, '1', '2', '39462.5000', '1', '2017-07-15 23:22:25', null, null, null, null, '1', '2017-07-15 23:22:25', '1');
-INSERT INTO `orders` VALUES ('10', 'c37cb9592de40bb371548cad1f450349', '2017-07-16 16:19:55', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '1', '34500.0000', '1', '2017-07-16 16:19:55', '1', '2017-07-16 23:09:19', '2', '2017-07-16 23:09:19', '1', '2017-07-16 23:09:19', '1');
-INSERT INTO `orders` VALUES ('11', '6c4793236b6dcdd661c3e73d3e3a0976', '2017-07-16 16:26:22', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '2', '65650.0000', '1', '2017-07-16 16:26:22', '2', '2017-07-16 18:10:18', '2', '2017-07-16 18:10:18', '1', '2017-07-16 18:10:18', '2');
-INSERT INTO `orders` VALUES ('12', 'a3051dbf2e6a73cd8831e9e61b6aef3c', '2017-07-16 16:29:38', 'supachai', '', '0917750586', 'supachai@wisadev.com', 'Test comment', '1', '2', '65650.0000', '1', '2017-07-16 16:29:38', '1', '2017-07-16 18:10:49', '2', '2017-07-16 18:10:49', '1', '2017-07-17 00:35:05', '2');
-INSERT INTO `orders` VALUES ('13', 'f93c65e00d0b9220c534d75c5d808283', '2017-07-17 00:59:50', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '1', '2', '6290.0000', '1', '2017-07-17 00:59:50', null, null, null, null, '1', '2017-07-17 00:59:50', '1');
-INSERT INTO `orders` VALUES ('14', '0bf7d63556fefbcdd41914c1c78479fb', '2017-07-17 20:24:48', 'supachai', '', '0917750586', 'supachai.wi@gmail.com', null, '1', '1', '34500.0000', '1', '2017-07-17 20:24:48', null, null, null, null, '1', '2017-07-17 20:24:48', '1');
+INSERT INTO `orders` VALUES ('1', '51580a230b9d676ea6401fbcc4c9b15f', '2017-08-24 21:07:46', 'supachai', '', '0917750586', 'supachai@wisadev.com', null, '1', '1', '119232.0000', '1', '2017-08-24 21:07:46', null, null, null, null, '1', '2017-08-24 21:07:46', '1');
 
 -- ----------------------------
 -- Table structure for order_detail
@@ -341,51 +330,27 @@ CREATE TABLE `order_detail` (
   `product_vendor_id` int(11) DEFAULT NULL,
   `type_name` varchar(255) DEFAULT NULL,
   `type_description` varchar(255) DEFAULT NULL,
-  `full_price` decimal(10,4) DEFAULT NULL,
-  `dealer_price` decimal(10,4) DEFAULT NULL,
-  `discount_sla_type_id` int(11) DEFAULT NULL,
-  `discount_sla_type_value` decimal(11,4) DEFAULT NULL,
-  `discount_of_contract_value` decimal(11,4) DEFAULT NULL,
-  `discount_of_qty_value` decimal(11,4) DEFAULT NULL,
+  `full_price` int(10) DEFAULT NULL,
+  `dealer_price` int(10) DEFAULT NULL,
+  `discount_sla_type_id` int(3) DEFAULT NULL,
+  `discount_sla_type_value` int(3) DEFAULT NULL,
+  `discount_of_contract_value` int(3) DEFAULT NULL,
+  `discount_of_qty_value` int(3) DEFAULT NULL,
   `province_name` varchar(255) DEFAULT NULL,
-  `pm_time_value` decimal(11,0) DEFAULT NULL,
-  `lb_year_value` decimal(11,4) DEFAULT NULL,
-  `pm_time_qty` int(11) DEFAULT NULL,
-  `lb_year_qty` int(11) DEFAULT NULL,
-  `contract_qty` int(11) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL,
+  `pm_time_value` int(3) DEFAULT NULL,
+  `lb_year_value` int(3) DEFAULT NULL,
+  `pm_time_qty` int(3) DEFAULT NULL,
+  `lb_year_qty` int(3) DEFAULT NULL,
+  `contract_qty` int(3) DEFAULT NULL,
+  `qty` int(3) DEFAULT NULL,
   `total` decimal(11,4) DEFAULT NULL,
   PRIMARY KEY (`order_id`,`line_number`,`product_owner_id`,`province_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_detail
 -- ----------------------------
-INSERT INTO `order_detail` VALUES ('1', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900.0000', '0.0000', '1', '75.0000', '1.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('1', '2', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0.0000', '0.0000', '0', '0.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('2', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900.0000', '0.0000', '1', '75.0000', '1.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('2', '2', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0.0000', '0.0000', '0', '0.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('3', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900.0000', '0.0000', '1', '75.0000', '1.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('3', '2', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0.0000', '0.0000', '0', '0.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('5', '1', '2', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '229900.0000', '0.0000', '1', '75.0000', '1.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '79660.3500');
-INSERT INTO `order_detail` VALUES ('5', '2', '3', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '208000.0000', '0.0000', '1', '75.0000', '1.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '72072.0000');
-INSERT INTO `order_detail` VALUES ('5', '3', '4', '10', '1', '', '0', '9', 'GP', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '0.0000', '1700.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '20400.0000');
-INSERT INTO `order_detail` VALUES ('5', '4', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0.0000', '0.0000', '0', '0.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('6', '1', '2', '10', '1', '', '0', '2', 'GP', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '0.0000', '107840.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '1294080.0000');
-INSERT INTO `order_detail` VALUES ('6', '2', '3', '10', '1', '', '1', '0', 'SILVER', 'Silver type', '208000.0000', '0.0000', '2', '85.0000', '1.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '43243.2000');
-INSERT INTO `order_detail` VALUES ('6', '3', '4', '10', '1', '', '0', '14', 'GP', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '0.0000', '3500.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '42000.0000');
-INSERT INTO `order_detail` VALUES ('6', '4', '0', '10', '0', 'Name: 1 MSA 1040 2Prt FC DC SFF Strg , Model: SV3200', '0', '0', '', '', '0.0000', '0.0000', '0', '0.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('7', '1', '2', '10', '1', '', '0', '1', 'GP', '1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service', '0.0000', '60970.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '731640.0000');
-INSERT INTO `order_detail` VALUES ('7', '2', '3', '10', '1', '', '0', '6', 'GP', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '0.0000', '91440.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '1097280.0000');
-INSERT INTO `order_detail` VALUES ('7', '3', '4', '10', '1', '', '0', '9', 'GP', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '0.0000', '1700.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '20400.0000');
-INSERT INTO `order_detail` VALUES ('7', '4', '0', '10', '0', 'Name: 1 MSA 1040 2Prt 1G iSCSI DC SFF Strg , Model: WS-C2960C', '0', '0', '', '', '0.0000', '0.0000', '0', '0.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '0.0000');
-INSERT INTO `order_detail` VALUES ('8', '1', '4', '10', '1', '', '0', '7', 'GP', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '0.0000', '1700.0000', '4', '5.0000', '0.0000', '0.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '20400.0000');
-INSERT INTO `order_detail` VALUES ('9', '1', '6', '10', '1', '', '1', '0', 'GOLD', 'Gold typee', '225500.0000', '0.0000', '1', '75.0000', '0.0000', '30.0000', 'สระบุรี', '0', '0.0000', '2', '2', null, '2', '39462.5000');
-INSERT INTO `order_detail` VALUES ('10', '1', '1', '1', '1', '', '0', '3', 'GP', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '0.0000', '30000.0000', '4', '5.0000', '0.0000', '0.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', null, '1', '34500.0000');
-INSERT INTO `order_detail` VALUES ('11', '1', '1', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '358000.0000', '0.0000', '1', '75.0000', '0.0000', '30.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', null, '2', '65650.0000');
-INSERT INTO `order_detail` VALUES ('12', '1', '1', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '358000.0000', '0.0000', '1', '75.0000', '0.0000', '30.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', null, '2', '65650.0000');
-INSERT INTO `order_detail` VALUES ('13', '1', '25', '1', '1', '', '1', '0', 'GOLD', 'Gold typee', '18800.0000', '0.0000', '1', '75.0000', '0.0000', '30.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', null, '2', '6290.0000');
-INSERT INTO `order_detail` VALUES ('14', '1', '1', '1', '1', '', '0', '3', 'GP', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '0.0000', '30000.0000', '4', '5.0000', '0.0000', '0.0000', 'กรุงเทพมหานคร   ', '1000', '2000.0000', '2', '2', null, '1', '34500.0000');
+INSERT INTO `order_detail` VALUES ('1', '1', '2', '1', '1', '', '0', '2', 'GP', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '0', '107840', '4', '5', '0', '0', 'กรุงเทพมหานคร   ', '1000', '2000', '2', '2', '1', '1', '119232.0000');
 
 -- ----------------------------
 -- Table structure for order_status
@@ -581,6 +546,7 @@ DROP TABLE IF EXISTS `product_vendor`;
 CREATE TABLE `product_vendor` (
   `product_vendor_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(64) NOT NULL,
+  `part_number` varchar(64) DEFAULT NULL,
   `product_brand_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
@@ -591,29 +557,45 @@ CREATE TABLE `product_vendor` (
   `modified_date` datetime DEFAULT NULL,
   `modified_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`product_vendor_id`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of product_vendor
 -- ----------------------------
-INSERT INTO `product_vendor` VALUES ('1', 'SV3200', '1', '1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service', '1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service', '60970', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('2', 'SV3200', '1', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '107840', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('3', 'MSA1040', '1', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '30000', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('4', 'MSA1040', '1', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '35000', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('5', 'MSA2042', '1', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '129450', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('6', 'MSA2042', '1', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '91440', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('7', 'WS-C2960C', '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('8', 'WS-C2960C', '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('9', 'WS-C2960C', '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('10', 'WS-C2960C', '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('11', 'WS-C2960C', '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('12', 'WS-C2960C', '2', '1 Year Onsite 8x5xNBD ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('13', 'WS-C2960C', '2', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('14', 'WS-C2960C', '2', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('15', 'WS-C2960C', '2', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('16', 'WS-C2960C', '2', '1 Year Onsite 24x7x4 , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 24x7x4 , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('17', 'WS-C2960C', '2', '1 Year Onsite 24x7x4 , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 24x7x4 , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
-INSERT INTO `product_vendor` VALUES ('18', 'WS-C2960C', '2', '1 Year Onsite 24x7x4 ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 24x7x4 ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('1', 'SV3200', null, '1', '1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service', '1 5 Year Proactive Care Next Business Day StoreVirtual 3200 Service', '60970', '1', '2017-06-24 17:48:05', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('2', 'SV3200', null, '1', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '1 5 Year Proactive Care 24x7 StoreVirtual 3200 Service', '107840', '1', '2017-06-24 17:48:05', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('3', 'MSA1040', null, '1', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '1 5 year Proactive Care 24x7 MSA2000 G3 Arrays Service', '30000', '1', '2017-06-24 17:48:05', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('4', 'MSA1040', null, '1', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '1 5 year Proactive Care Next business day MSA2000 G3 Arrays Service', '35000', '1', '2017-06-24 17:48:05', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('5', 'MSA2042', null, '1', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '129450', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('6', 'MSA2042', null, '1', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '91440', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('7', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('8', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('9', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('10', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('11', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('12', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('13', 'WS-C2960C', null, '2', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('14', 'WS-C2960C', null, '2', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('15', 'WS-C2960C', null, '2', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1 Year Onsite 24x7x4 , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('16', 'WS-C2960C', null, '2', '1 Year Onsite 24x7x4 , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 24x7x4 , Catalyst 2960C PD PSE Switch 8 FE PoE, 2 x 1G, PoE+ LAN Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('17', 'WS-C2960C', null, '2', '1 Year Onsite 24x7x4 , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '1 Year Onsite 24x7x4 , Catalyst 2960C PD Switch 8 FE, 2 x 1G, PoE+ LAN Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('18', 'WS-C2960C', null, '2', '1 Year Onsite 24x7x4 ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 24x7x4 ,Catalyst 2960C Switch 12 FE PoE, 2 x Dual Uplink, Lan Base', '3500', '1', '2017-06-24 17:48:05', '1', '2017-06-24 17:53:27', '1');
+INSERT INTO `product_vendor` VALUES ('19', 'A121s', '12345t6s', '0', 'wsdx32', 'sxdcs', '1111', '1', '2017-08-20 12:39:29', '1', '2017-08-20 12:43:24', '1');
+INSERT INTO `product_vendor` VALUES ('20', 'MSA2042', null, '1', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '129450', '0', '1', '2017-08-20 12:52:57', '1', '2017-08-20 12:52:57', '1');
+INSERT INTO `product_vendor` VALUES ('21', 'MSA2042', null, '1', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '91440', '0', '1', '2017-08-20 12:52:57', '1', '2017-08-20 12:52:57', '1');
+INSERT INTO `product_vendor` VALUES ('22', 'WS-C2960C', null, '1', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '0', '1', '2017-08-20 12:52:57', '1', '2017-08-20 12:52:57', '1');
+INSERT INTO `product_vendor` VALUES ('23', 'WS-C2960C', null, '1', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1700', '0', '1', '2017-08-20 12:52:57', '1', '2017-08-20 12:52:57', '1');
+INSERT INTO `product_vendor` VALUES ('24', 'WS-C2960C', null, '1', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1700', '0', '1', '2017-08-20 12:52:57', '1', '2017-08-20 12:52:57', '1');
+INSERT INTO `product_vendor` VALUES ('25', 'MSA2042', null, '1', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '129450', '1', '2017-08-20 12:55:14', '1', '2017-08-20 12:55:14', '1');
+INSERT INTO `product_vendor` VALUES ('26', 'MSA2042', null, '1', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '91440', '1', '2017-08-20 12:55:14', '1', '2017-08-20 12:55:14', '1');
+INSERT INTO `product_vendor` VALUES ('27', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-08-20 12:55:14', '1', '2017-08-20 12:55:14', '1');
+INSERT INTO `product_vendor` VALUES ('28', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-08-20 12:55:14', '1', '2017-08-20 12:55:14', '1');
+INSERT INTO `product_vendor` VALUES ('29', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1700', '1', '2017-08-20 12:55:14', '1', '2017-08-20 12:55:14', '1');
+INSERT INTO `product_vendor` VALUES ('30', 'MSA2042', null, '1', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '1 5 Year Proactive Care 24x7 MSA 2042 Storage Service', '129450', '1', '2017-08-20 12:56:29', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('31', 'MSA2042', null, '1', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '1 5 Year Proactive Care Next Business Day MSA 2042 Storage Service', '91440', '1', '2017-08-20 12:56:29', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('32', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE PoE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-08-20 12:56:29', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('33', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Base', '1700', '1', '2017-08-20 12:56:29', '1', '2017-08-20 12:56:29', '1');
+INSERT INTO `product_vendor` VALUES ('34', 'WS-C2960C', null, '2', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1 Year Onsite 8x5xNBD , Catalyst 2960C Switch 8 FE, 2 x Dual Uplink, Lan Lite', '1700', '1', '2017-08-20 12:56:29', '1', '2017-08-20 12:56:29', '1');
 
 -- ----------------------------
 -- Table structure for province
@@ -784,7 +766,7 @@ CREATE TABLE `tbl_users` (
   `updatedBy` int(11) DEFAULT NULL,
   `updatedDtm` datetime DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbl_users
@@ -793,3 +775,5 @@ INSERT INTO `tbl_users` VALUES ('1', 'system@wisadev.com', '$2y$10$abl8Qcd71JSqU
 INSERT INTO `tbl_users` VALUES ('2', 'supachai@wisadev.com', '$2y$10$I5FpXKlnpaj8WYAWvSkgBuO3Hc.jr.k7sjwbr.QNy0qinDCqVzR0i', 'Supachai Wisachai', '0917750586', '5', '4', null, null, '0', '1', '2017-06-11 16:56:35', '2', '2017-07-16 16:41:54');
 INSERT INTO `tbl_users` VALUES ('3', 'manager@wisadev.com', '$2y$10$dj.u.qiqcj7Y9Db5oK3QJuygwyi.Z7ceQH2F6A34cGUbkuWpyDi.2', 'Manager', '0917750586', '2', '2', null, null, '0', '1', '2017-06-11 17:24:57', null, null);
 INSERT INTO `tbl_users` VALUES ('4', 'employee@wsiadev.com', '$2y$10$olThVYD4MwDAGAIZOf0KxelUk.gkOdpkahzWvgVKwK2g/dF6Zks7.', 'Employee', '0917750586', '3', '3', null, null, '0', '1', '2017-06-11 17:26:02', null, null);
+INSERT INTO `tbl_users` VALUES ('5', 'supachai.wisa@gmail.com', '$2y$10$39Ml8B4.lD2Pvu1xcAOh.uByqErQX/PQZcYjwpWV29gUeV4oK7KDS', 'Em', '0917750586', '4', '4', null, null, '0', '1', '2017-07-29 23:45:39', null, null);
+INSERT INTO `tbl_users` VALUES ('6', 'winchesterbee@gmail.com', '$2y$10$ckugqdIJyF2NdzcTlYQV5eDo0UNQfB7gSKE9pnu2SOI2NAIL6T0De', 'Aphirak Janthadee', '0971406899', '4', '4', null, null, '0', '1', '2017-07-30 12:09:26', null, null);
