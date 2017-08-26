@@ -263,7 +263,7 @@ class Tos_cal extends BaseController {
 		echo json_encode($product_list);
 	}
 	else{
-		json_output(400, array('status' => 400,'message' => 'erro'));
+		json_output(400, array('status' => 400,'message' => 'error'));
 	}
 
  }

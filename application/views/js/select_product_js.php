@@ -32,9 +32,9 @@
 
         $scope.result_cal_product.forEach(function(v) {
             v.selected = false;
-            if(v.is_product_owner == 1) {
+            if((v.is_product_owner == 1) && (v.is_have_product == 1)) {
               $scope.product_owner.push(v)
-            } else {
+            } else if((v.is_product_owner == 0) && (v.is_have_product == 1)) {
               $scope.product_vendor.push(v)
             }
         });
@@ -42,6 +42,13 @@
 
     $scope.update_product_owner = function(product, val) {
       $scope.product_owner.forEach(function(v) {
+        if(v.product_owner_id == product) {
+          v.selected = v === val;
+        }
+      });
+    }
+    $scope.update_product_vender = function(product, val) {
+      $scope.product_vendor.forEach(function(v) {
         if(v.product_owner_id == product) {
           v.selected = v === val;
         }
@@ -60,9 +67,12 @@
           selected_products.push(v);
         }
       });
-      if ($scope.product_vendor) {
-        selected_products.push($scope.product_vendor);
-      }
+      $scope.product_vendor.forEach(function(v) {
+        if(v.selected) {
+          is_selected = true;
+          selected_products.push(v);
+        }
+      });
 
       if(!is_selected) {
         swal(
