@@ -107,9 +107,9 @@ get_order_detail();
           templateUrl: 'add_product_modal.html',
           controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
             $sc.add_new_product = function (model) {
-                var p_model = $.extend({}, {'is_have_product': '0'}, model, {'qty': 1}, $scope.order);
-                $scope.selected_products.push(p_model);
-                $uib.close();
+              var p_model = $.extend({}, {'is_have_product': '0'}, model, {'qty': 1}, {'product_owner_id': 0}, $scope.order);
+              $scope.selected_products.push(p_model);
+              $uib.close();
             }
             $sc.cancel = function () {
                 $uib.dismiss('cancel');

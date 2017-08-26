@@ -93,7 +93,7 @@
             </div>
             <div class="row" style="margin-top: 80px;">
               <div class="col-sm-6">
-                <h3 class="order-title">Produc</h3>
+                <h3 class="order-title">Product</h3>
                 <table class="table table-striped">
                   <thead>
                     <tr>

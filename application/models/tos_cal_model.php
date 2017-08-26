@@ -135,7 +135,7 @@ class Tos_cal_model extends CI_Model
 
                 $sql =  $sql."  SELECT 0 is_product_owner,
 														0 is_have_product,
-														CONCAT('Name: $product->name',' , Model: $product->model') comment,
+														CONCAT('Name: $product->name',' , part_number: $product->part_number') comment,
 														0	product_owner_id,
 														0 product_vendor_id,
 														'' type_name,
