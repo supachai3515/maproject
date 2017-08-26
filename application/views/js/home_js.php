@@ -64,7 +64,6 @@ get_order_detail();
       $scope.products = [];
       var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': 1}, $scope.order);
       $scope.selected_products.push(item);
-      console.log('====', $scope.order);
     }
     $scope.remove_product_list = function(idx) {
       $scope.selected_products.splice(idx,1);
