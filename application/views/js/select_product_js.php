@@ -47,13 +47,6 @@
         }
       });
     }
-    $scope.update_product_vendor = function(product, val) {
-      $scope.product_vendor.forEach(function(v) {
-        if(v.product_owner_id == product) {
-          v.selected = v === val;
-        }
-      });
-    }
 
     $scope.back_add_product = function() {
       window.location = '<?php echo base_url();?>'
@@ -67,6 +60,9 @@
           selected_products.push(v);
         }
       });
+      if ($scope.product_vendor) {
+        selected_products.push($scope.product_vendor);
+      }
 
       if(!is_selected) {
         swal(

@@ -259,7 +259,7 @@ class Tos_cal extends BaseController {
  public function get_session_order_detail()
  {
   $product_list = $this->session->userdata('product_list');
-	if(!isset($product_list)){
+	if(isset($product_list)){
 		echo json_encode($product_list);
 	}
 	else{

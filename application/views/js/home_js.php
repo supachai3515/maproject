@@ -165,26 +165,26 @@ get_order_detail();
     <div class="modal-header text-center">
       <h4>เพิ่มสินค้า</h4>
     </div>
-    <div class="modal-body">
-      <form class="form-horizontal">
+    <form class="form-horizontal" name="self_add_product_form">
+      <div class="modal-body">
         <div class="form-group">
           <label for="p_number" class="col-md-3 control-label">Part number</label>
           <div class="col-md-9">
-            <input type="text" name="p_number" ng-model="add_product.part_number" class="form-control" id="p_number" autofocus>
+            <input type="text" name="p_number" ng-model="add_product.part_number" class="form-control" id="p_number" required>
           </div>
         </div>
         <div class="form-group">
           <label for="p_name" class="col-md-3 control-label">Name</label>
           <div class="col-md-9">
-            <input type="text" name="p_name" ng-model="add_product.name" class="form-control" id="p_name">
+            <input type="text" name="p_name" ng-model="add_product.name" class="form-control" id="p_name" required>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-success" type="button" ng-click="add_new_product(add_product)">Add</button>
-      <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-    </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" type="button" ng-click="add_new_product(add_product)" ng-disabled="self_add_product_form.$invalid">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+      </div>
+    </form>
   </script>
 
   <script type="text/ng-template" id="result_search_product_modal.html">

@@ -127,12 +127,19 @@
                   <thead>
                     <tr>
                       <th class="col-md-2"></th>
-                      <th class="col-md-2">Type</th>
-                      <th class="col-md-4">Description</th>
+                      <th class="col-md-2">Name</th>
+                      <th class="col-md-4">Part Number</th>
                       <th class="col-md-2">Total</th>
-                      <th class="col-md-2">Select</th>
                     </tr>
                   </thead>
+                  <tbody>
+                    <tr ng-repeat="(idx, p) in product_vendor">
+                      <td>{{$index+1}}</td>
+                      <td>{{p.Name}}</td>
+                      <td>{{p.part_number}}</td>
+                      <td>{{(p.total | number:0) || '-'}}</td>
+                    </tr>
+                  </tbody>
                   <tbody>
                   </tbody>
                 </table>
@@ -157,8 +164,8 @@
             </div> -->
           </div>
           <div class="text-center">
-            <button type="button" class="btn btn-primary btn-lg" ng-click="back_add_product()">Back</button>
-            <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button>
+            <button type="button" class="btn btn-default btn-lg" ng-click="back_add_product()"><i class="fa fa-arrow-left" aria-hidden="true"></i>   Back</button>
+            <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next  <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
