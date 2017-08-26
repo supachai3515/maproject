@@ -3,7 +3,6 @@
   app.controller("order_complete_ctrl", function($scope, $http) {
     $scope.order_info = {};
     $scope.order_detail = [];
-
     function get_order() {
             $http({
              method: 'POST',

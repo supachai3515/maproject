@@ -5,6 +5,8 @@
         selected_products = [];
     $scope.info = {};
     $scope.result_cal_product = [];
+    $scope.product_owner = [];
+    $scope.product_vendor = [];
 
     var get_info = $http({
                         method: 'GET',
@@ -27,10 +29,26 @@
           val.selected = false;
         });
         $scope.result_cal_product = values[1].data;
+
+        $scope.result_cal_product.forEach(function(v) {
+            v.selected = false;
+            if(v.is_product_owner == 1) {
+              $scope.product_owner.push(v)
+            } else {
+              $scope.product_vendor.push(v)
+            }
+        });
     });
 
-    $scope.update_product_select = function(product, val) {
-      $scope.result_cal_product.forEach(function(v) {
+    $scope.update_product_owner = function(product, val) {
+      $scope.product_owner.forEach(function(v) {
+        if(v.product_owner_id == product) {
+          v.selected = v === val;
+        }
+      });
+    }
+    $scope.update_product_vendor = function(product, val) {
+      $scope.product_vendor.forEach(function(v) {
         if(v.product_owner_id == product) {
           v.selected = v === val;
         }
@@ -43,7 +61,7 @@
     $scope.submit_products = function() {
       selected_products = [];
       is_selected = false;
-      $scope.result_cal_product.forEach(function(v) {
+      $scope.product_owner.forEach(function(v) {
         if(v.selected) {
           is_selected = true;
           selected_products.push(v);

@@ -79,19 +79,68 @@
           <div class="box-inner">
             <div class="form-horizontal" name="info_form" role="form" action="" method="post">
               <div class="form-group">
-                <label for="email" class="col-md-4 control-label">Email:</label>
-                <div class="col-md-5"><p class="form-control-static">{{info.email || '-'}}</p></div>
+                <label for="email" class="col-md-6 control-label">Email:</label>
+                <div class="col-md-6"><p class="form-control-static">{{info.email || '-'}}</p></div>
               </div>
               <div class="form-group">
-                <label for="name" class="col-md-4 control-label">Name/Company Name:</label>
-                <div class="col-md-5"><p class="form-control-static">{{info.name || '-'}}</p></div>
+                <label for="name" class="col-md-6 control-label">Name/Company Name:</label>
+                <div class="col-md-6"><p class="form-control-static">{{info.name || '-'}}</p></div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Tel:</label>
-                <div class="col-md-5"><p class="form-control-static">{{info.tel || '-'}}</p></div>
+                <label for="tel" class="col-md-6 control-label">Tel:</label>
+                <div class="col-md-6"><p class="form-control-static">{{info.tel || '-'}}</p></div>
               </div>
             </div>
-            <div class="prodiucts_list" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
+            <div class="row" style="margin-top: 80px;">
+              <div class="col-sm-6">
+                <h3 class="order-title">Produc</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="col-md-2">No.</th>
+                      <th class="col-md-2">Type</th>
+                      <th class="col-md-4">Description</th>
+                      <th class="col-md-2">Total</th>
+                      <th class="col-md-2">Select</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="(key, val) in product_owner | groupBy: 'product_owner_id'">
+                        <td class="text-center">{{$index+1}}</td>
+                        <td colspan="4">
+                          <table style="width: 100%;">
+                            <tr ng-repeat="p in val">
+                              <td class="col-md-2">{{p.type_name || '-'}}</td>
+                              <td class="col-md-4">{{p.type_description || '-'}}</td>
+                              <td class="col-md-2">{{(p.total | number:0) || '-'}}</td>
+                              <td class="col-md-2 text-center"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
+                            </tr>
+                          </table>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-sm-6">
+                <h3 class="order-title">Product Vendor</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="col-md-2"></th>
+                      <th class="col-md-2">Type</th>
+                      <th class="col-md-4">Description</th>
+                      <th class="col-md-2">Total</th>
+                      <th class="col-md-2">Select</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+            <!-- <div class="prodiucts_list" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
               <strong>product : {{$index+1}}</strong>
               <ul ng-repeat="(idx, val) in value | groupBy: 'is_product_owner'">
                   <li ng-repeat="p in val">
@@ -105,7 +154,7 @@
                     </div>
                   </li>
               </ul>
-            </div>
+            </div> -->
           </div>
           <div class="text-center">
             <button type="button" class="btn btn-primary btn-lg" ng-click="back_add_product()">Back</button>

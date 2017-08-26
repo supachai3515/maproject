@@ -18,10 +18,12 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
             headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function(response) {
           var data = response.data;
-          if(data.contract) {
-            $scope.info = data;
-            $scope.order = data;
-          }
+          $scope.info.email = data.email;
+          $scope.info.name = data.name;
+          $scope.info.tel = data.tel;
+          $scope.order.pm = data.pm;
+          $scope.order.contract = data.contract;
+          $scope.order.province = data.province;
         }, function(reason) {
           console.log(reason);
         });
@@ -62,6 +64,7 @@ get_order_detail();
       $scope.products = [];
       var item = $.extend({}, {'is_have_product': '1'}, val, {'qty': 1}, $scope.order);
       $scope.selected_products.push(item);
+      console.log('====', $scope.order);
     }
     $scope.remove_product_list = function(idx) {
       $scope.selected_products.splice(idx,1);

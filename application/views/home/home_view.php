@@ -93,7 +93,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="tel" class="col-md-4 control-label">Province<sup class="text-danger">*</sup></label>
+                <label for="province" class="col-md-4 control-label">Province<sup class="text-danger">*</sup></label>
                 <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.province.$invalid)}">
                   <select class="form-control" name="province" ng-model="order.province" required>
                     <option value="">Select</option>
@@ -198,7 +198,7 @@
           </table>
         </div>
         <div class="text-center">
-          <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next</button>
+          <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next   <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
         </div>
     </div>
 

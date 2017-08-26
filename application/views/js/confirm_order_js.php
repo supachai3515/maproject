@@ -19,6 +19,10 @@
     }
     get_order();
 
+    $scope.back_select_product = function() {
+      window.location = '<?php echo base_url('select_product');?>'
+    }
+
     $scope.submit_products = function() {
       $http({
               method: 'POST',

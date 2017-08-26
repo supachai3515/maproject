@@ -147,6 +147,7 @@
             </div>
           </div>
       <div class="text-center">
+        <button type="button" class="btn btn-primary btn-lg" ng-click="back_select_product()">Back</button>
         <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Submit</button>
       </div>
     </div>
