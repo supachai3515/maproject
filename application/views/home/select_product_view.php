@@ -108,7 +108,7 @@
                 <table class="table table-striped">
                   <tbody>
                     <tr ng-repeat="(key, val) in product_owner | groupBy: 'product_owner_id'">
-                        <td class="text-center">{{$index+1}}</td>
+                        <td class="col-md-2 text-center">{{$index+1}}</td>
                         <td colspan="4">
                           <table style="width: 100%;">
                             <tr ng-repeat="p in val">
@@ -125,7 +125,7 @@
                 <table class="table table-striped">
                   <tbody>
                     <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
-                        <td class="text-center">{{$index+1}}</td>
+                        <td class="col-md-2 text-center">{{$index+1}}</td>
                         <td colspan="4">
                           <table style="width: 100%;">
                             <tr ng-repeat="p in val">

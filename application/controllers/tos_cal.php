@@ -170,6 +170,7 @@ class Tos_cal extends BaseController {
 				$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
 				$this->session->unset_userdata('info_name','info_tel','info_email','info_province','info_pm','info_contract','product_list');
 				echo json_encode($result);
+
 				//sendmail
 	      $data['email'] = $email;// toemail
 				$data['template'] = "email/send_order";
@@ -247,19 +248,22 @@ class Tos_cal extends BaseController {
  	$pm = $this->session->userdata('info_pm');
  	$contract = $this->session->userdata('info_contract');
  	$info = array('name' => $name,
-	'tel' => $tel,
-	'email' => $email,
-	'province' => $province,
-	'pm' => $pm,
-	'contract' => $contract);
- 	echo json_encode($info);
-
+								'tel' => $tel,
+								'email' => $email,
+								'province' => $province,
+								'pm' => $pm,
+								'contract' => $contract);
+	if (($info['name'] !== false) && ($info['tel'] !== false) && ($info['email'] !== false) && ($info['province'] !== false) && ($info['pm'] !== false) && ($info['contract'] !== false)) {
+		echo json_encode($info);
+	} else {
+		json_output(400, array('status' => 400,'message' => 'empty seesion'));
+	}
  }
 
  public function get_session_order_detail()
  {
   $product_list = $this->session->userdata('product_list');
-	if(isset($product_list)){
+	if(isset($product_list) && ($product_list !== false)){
 		echo json_encode($product_list);
 	}
 	else{

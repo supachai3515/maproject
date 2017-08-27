@@ -1,5 +1,6 @@
 <script type="text/javascript">
-	var app = angular.module("mainApp", ['ui.bootstrap', 'ui.select', 'ngSanitize','angular.filter', 'angular-loading-bar', 'ngAnimate','ngTable']);
+	var inject = ['ui.bootstrap', 'ui.select', 'ngSanitize','angular.filter', 'angular-loading-bar', 'ngAnimate','ngTable'];
+	var app = angular.module('mainApp', inject);
 	app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.latencyThreshold = 100;
     cfpLoadingBarProvider.spinnerTemplate = '<div id="loading-bar-container"><div class="sk-fading-circle"><div class="sk-circle1 sk-circle"></div><div class="sk-circle2 sk-circle"></div><div class="sk-circle3 sk-circle"></div><div class="sk-circle4 sk-circle"></div><div class="sk-circle5 sk-circle"></div><div class="sk-circle6 sk-circle"></div><div class="sk-circle7 sk-circle"></div><div class="sk-circle8 sk-circle"></div><div class="sk-circle9 sk-circle"></div><div class="sk-circle10 sk-circle"></div><div class="sk-circle11 sk-circle"></div><div class="sk-circle12 sk-circle"></div></div></div>';

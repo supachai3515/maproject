@@ -24,6 +24,20 @@
     }
 
     $scope.submit_products = function() {
+      swal({
+        title: 'ยืนยันการสั่งสินค้า?',
+        text: "",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#5cb85c',
+        cancelButtonColor: '#f0ad4e',
+        confirmButtonText: 'Confirm'
+      }).then(function () {
+        confirm_submit()
+      })
+    }
+
+    function confirm_submit() {
       $http({
               method: 'POST',
               url: '<?php echo base_url('tos_cal/save_order');?>',
@@ -31,9 +45,17 @@
               data: $scope.order_detail
           }).then(function(response) {
             var data = response.data;
-            var model = data.order_id;
+            var ref_id = data.order_id.ref_id;
             var url = '<?php echo base_url('tos_cal/confirm_order');?>';
-            window.location = url+'/'+model.ref_id;
+            if(ref_id) {
+              window.location = url+'/'+ref_id;
+            } else {
+              swal(
+                'Error!',
+                'Technical error please contact the administrator',
+                'error'
+              )
+            }
           }, function(reason) {
             console.log(reason);
             swal(
