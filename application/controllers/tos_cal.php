@@ -377,4 +377,28 @@ class Tos_cal extends BaseController {
 					}
 			}
 	}
+	public function get_product_des()
+	{
+		// $myObj = '{
+		// 						"is_product_owner": "1",
+		// 					  "is_have_product": "1",
+		// 					  "product_owner_id": "3",
+		// 					  "product_vendor_id": "0"
+		// 					}';
+		// 					$info= json_decode($myObj);
+		// 					$data['orders_detail'] = $this->tos_cal_model->get_product_des($info);
+		// 					json_output(200, $data['orders_detail']);
+
+		$method = $_SERVER['REQUEST_METHOD'];
+		if ($method != 'POST') {
+				json_output(400, array('status' => 400,'message' => 'Bad request.'));
+		} else {
+				$value = json_decode(file_get_contents("php://input"));
+				if ($value) {
+						$data = $this->tos_cal_model->get_product_des($value);
+						json_output(200, $data);
+				}
+		}
+
+	}
 }

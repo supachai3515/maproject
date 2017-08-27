@@ -279,26 +279,26 @@ class Tos_cal_model extends CI_Model
 
     public function update_request_spacial_price($id)
     {
-      $order_id = $this->db->escape_str($id);
-      $sql =" UPDATE orders SET order_status_id = 2 WHERE order_status_id < 2 AND order_id = $order_id ";
-      $this->db->query($sql);
+        $order_id = $this->db->escape_str($id);
+        $sql =" UPDATE orders SET order_status_id = 2 WHERE order_status_id < 2 AND order_id = $order_id ";
+        $this->db->query($sql);
 
-      $sql =" INSERT INTO order_status_history VALUES($id,2,'Request special price',NOW()) ";
-      $this->db->query($sql);
+        $sql =" INSERT INTO order_status_history VALUES($id,2,'Request special price',NOW()) ";
+        $this->db->query($sql);
 
-      return true;
+        return true;
     }
 
     public function update_accept_special_price($id)
     {
-      $order_id = $this->db->escape_str($id);
-      $sql =" UPDATE orders SET order_status_id = 5 WHERE order_status_id < 5 AND order_id = $order_id ";
-      $this->db->query($sql);
+        $order_id = $this->db->escape_str($id);
+        $sql =" UPDATE orders SET order_status_id = 5 WHERE order_status_id < 5 AND order_id = $order_id ";
+        $this->db->query($sql);
 
-      $sql =" INSERT INTO order_status_history VALUES($id,5,'Request special price',NOW()) ";
-      $this->db->query($sql);
+        $sql =" INSERT INTO order_status_history VALUES($id,5,'Request special price',NOW()) ";
+        $this->db->query($sql);
 
-      return true;
+        return true;
     }
 
     public function get_order($order_id)
@@ -325,5 +325,24 @@ class Tos_cal_model extends CI_Model
         $query = $this->db->query($sql);
         $result = $query->result_array();
         return $result;
+    }
+
+    public function get_product_des($info)
+    {
+        if ($info->is_have_product == 1 && $info->is_product_owner == 1) {
+            $id = $info->product_owner_id;
+            $sql =" SELECT * FROM product_owner WHERE product_owner_id = $id";
+            $query = $this->db->query($sql);
+            $row = $query->row_array();
+            return $row;
+        } elseif ($info->is_have_product == 1 && $info->is_product_owner == 0) {
+            $id = $info->product_vendor_id;
+            $sql =" SELECT * FROM product_vendor WHERE product_vendor_id  = $id ";
+            $query = $this->db->query($sql);
+            $row = $query->row_array();
+            return $row;
+        } else {
+            return null;
+        }
     }
 }
