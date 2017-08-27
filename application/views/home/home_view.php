@@ -126,7 +126,7 @@
             </form>
           </div>
       <div class="box-inner">
-        <form class="form-horizontal" nrole="form" action="" method="">
+        <form class="form-horizontal" role="form" action="" method="">
           <div class="form-group">
             <label for="tel" class="col-md-4 control-label">Search Product</label>
             <div class="col-md-5">
