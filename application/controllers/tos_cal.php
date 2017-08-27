@@ -394,6 +394,7 @@ class Tos_cal extends BaseController {
 				json_output(400, array('status' => 400,'message' => 'Bad request.'));
 		} else {
 				$value = json_decode(file_get_contents("php://input"));
+				json_output(200, $value);
 				if ($value) {
 						$data = $this->tos_cal_model->get_product_des($value);
 						json_output(200, $data);
