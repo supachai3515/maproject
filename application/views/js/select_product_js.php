@@ -2,6 +2,7 @@
 <script type="text/javascript">
   app.controller("select_product_ctrl", function($scope, $http, $q) {
     var is_selected = false,
+        get_product_data = [];
         selected_products = [];
     $scope.info = {};
     $scope.result_cal_product = [];
@@ -31,14 +32,32 @@
         $scope.result_cal_product = values[1].data;
 
         $scope.result_cal_product.forEach(function(v) {
-            v.selected = false;
-            if((v.is_product_owner == 1) && (v.is_have_product == 1)) {
-              $scope.product_owner.push(v)
-            } else if((v.is_product_owner == 0) && (v.is_have_product == 1)) {
-              $scope.product_vendor.push(v)
-            }
+          v.selected = false;
+          if(v.is_have_product == 1) {
+            $scope.product_owner.push(v)
+          } else if(v.is_have_product == 0) {
+            $scope.product_vendor.push(v)
+          }
         });
     });
+
+    // function get_product_desc() {
+    //   var deferred = $q.defer();
+    //   $http({
+    //       method: 'GET',
+    //       url: '<?php echo base_url('tos_cal/get_product_des');?>',
+    //       headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+    //       data: get_product_data
+    //   }).then(function(response) {
+    //     deferred.resolve(response.data)
+    //   }, function(reason) {
+    //     deferred.reject(reason)
+    //   });
+    //   return deferred.promise;
+    // }
+    // get_product_desc().then(function(val) {
+    //   console.log("----->", val);
+    // });
 
     $scope.update_product_owner = function(product, val) {
       $scope.product_owner.forEach(function(v) {

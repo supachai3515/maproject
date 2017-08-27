@@ -110,17 +110,17 @@
                         <td colspan="4">
                           <table style="width: 100%;">
                             <tr ng-repeat="p in val">
-                              <td class="col-md-4 text-center" style="vertical-align: top;">{{p.type_name || '-'}}</td>
-                              <td class="col-md-4" style="vertical-align: top;">{{p.type_description || '-'}}</td>
-                              <td class="col-md-2 text-center" style="vertical-align: top;">{{(p.total | number:0) || '-'}}</td>
-                              <td class="col-md-2 text-center" style="vertical-align: top;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
+                              <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.type_name || '-'}}</td>
+                              <td class="col-md-4" style="vertical-align: top; padding: 5px 0;">{{p.type_description || '-'}}</td>
+                              <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;">{{(p.total | number:0) || '-'}}</td>
+                              <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
                             </tr>
                           </table>
                         </td>
                     </tr>
                   </tbody>
                 </table>
-                <table class="table table-striped">
+                <!-- <table class="table table-striped">
                   <tbody>
                     <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
                         <td colspan="4">
@@ -135,7 +135,7 @@
                         </td>
                     </tr>
                   </tbody>
-                </table>
+                </table> -->
               </div>
               <div class="col-sm-6">
                 <h3 class="order-title">Product Vendor</h3>
