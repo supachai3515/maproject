@@ -88,8 +88,8 @@
               </div>
               <div class="form-group">
                 <label for="tel" class="col-md-4 control-label">Tel. <sup class="text-danger">*</sup></label>
-                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.tel.$invalid)}">
-                  <input type="tel" name="tel" class="form-control" id="tel" ng-model="info.tel" required>
+                <div class="col-md-5" ng-class="{'has-error': (info_form.$submitted && info_form.tel.$invalid) || info_form.tel.$error.pattern}">
+                  <input type="tel" name="tel" ng-pattern="/^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{3,4})$/" class="form-control" id="tel" ng-model="info.tel" required>
                 </div>
               </div>
               <div class="form-group">
