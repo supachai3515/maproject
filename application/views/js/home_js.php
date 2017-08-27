@@ -25,7 +25,6 @@ app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $locati
           $scope.order.contract = data.contract;
           $scope.order.province = data.province;
         }, function(reason) {
-          console.log(reason);
         });
 
   }
@@ -39,7 +38,6 @@ function get_order_detail() {
         var data = response.data;
         $scope.selected_products = data;
       }, function(reason) {
-        console.log(reason);
       });
 }
 get_order_info();

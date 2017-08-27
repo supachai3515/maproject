@@ -97,8 +97,7 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th class="col-md-2">No.</th>
-                      <th class="col-md-2">Type</th>
+                      <th class="col-md-4">Type</th>
                       <th class="col-md-4">Description</th>
                       <th class="col-md-2">Total</th>
                       <th class="col-md-2">Select</th>
@@ -108,13 +107,12 @@
                 <table class="table table-striped">
                   <tbody>
                     <tr ng-repeat="(key, val) in product_owner | groupBy: 'product_owner_id'">
-                        <td class="col-md-2 text-center">{{$index+1}}</td>
                         <td colspan="4">
                           <table style="width: 100%;">
                             <tr ng-repeat="p in val">
-                              <td class="col-md-2" style="vertical-align: top;">{{p.type_name || '-'}}</td>
+                              <td class="col-md-4 text-center" style="vertical-align: top;">{{p.type_name || '-'}}</td>
                               <td class="col-md-4" style="vertical-align: top;">{{p.type_description || '-'}}</td>
-                              <td class="col-md-2" style="vertical-align: top;">{{(p.total | number:0) || '-'}}</td>
+                              <td class="col-md-2 text-center" style="vertical-align: top;">{{(p.total | number:0) || '-'}}</td>
                               <td class="col-md-2 text-center" style="vertical-align: top;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
                             </tr>
                           </table>
@@ -125,14 +123,13 @@
                 <table class="table table-striped">
                   <tbody>
                     <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
-                        <td class="col-md-2 text-center">{{$index+1}}</td>
                         <td colspan="4">
                           <table style="width: 100%;">
                             <tr ng-repeat="p in val">
-                              <td class="col-md-2" style="vertical-align: top;">{{p.type_name || '-'}}</td>
+                              <td class="col-md-4 text-center" style="vertical-align: top;">{{p.type_name || '-'}}</td>
                               <td class="col-md-4" style="vertical-align: top;">{{p.type_description || '-'}}</td>
-                              <td class="col-md-2" style="vertical-align: top;">{{(p.total | number:0) || '-'}}</td>
-                              <td class="col-md-2 text-center" style="vertical-align: top;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_vender(key, p)" ng-checked="p.selected"></td>
+                              <td class="col-md-2 text-center" style="vertical-align: top;">{{(p.total | number:0) || '-'}}</td>
+                              <td class="col-md-2 text-center" style="vertical-align: top;"><input type="radio" name="product_อำืกนพ_{{key}}" ng-click="update_product_vender(key, p)" ng-checked="p.selected"></td>
                             </tr>
                           </table>
                         </td>
@@ -145,9 +142,8 @@
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th class="col-md-2"></th>
-                      <th class="col-md-2">Name</th>
                       <th class="col-md-4">Part Number</th>
+                      <th class="col-md-4">Name</th>
                       <th class="col-md-2">Total</th>
                     </tr>
                   </thead>
