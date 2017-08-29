@@ -287,18 +287,18 @@ class Tos_cal extends BaseController {
 		$result = $this->tos_cal_model->update_request_spacial_price($order_id);
 
 		if ($result > 0) {
-
-			$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+			$resultInfo = $this->tos_cal_model->get_order($order_id);
+			$data['order_data'] = $resultInfo;
 			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
 			//pre($data['order_data']);
 			//pre($data['order_detail_data']);
 			//sendmail
-			$data['email'] = $data['order_data']->email;// toemail
+			$data['email'] = $resultInfo["email"];// toemail
 			$data['template'] = "email/request_special_price";
 			$data['subject'] = "Request special price #".$order_id;
 			$data['bcc_mail'] = $this->config->item('email_cc_group');
-			$data['name'] = $data['order_data']->name;
-			$data['tel'] = $data['order_data']->tel;
+			$data['name'] = $resultInfo["company"];
+			$data['tel'] = $resultInfo["tel"];
 
 			//sendmail
 			$sendStatus = send_emali_template($data);
@@ -321,16 +321,18 @@ class Tos_cal extends BaseController {
 
 		if ($result > 0) {
 
-			$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+			$resultInfo = $this->tos_cal_model->get_order($order_id);
+			$data['order_data'] = $resultInfo;
 			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-
+			//pre($data['order_data']);
+			//pre($data['order_detail_data']);
 			//sendmail
-			$data['email'] = $data['order_data']->email;// toemail
-			$data['template'] = "email/accept_special_price";
-			$data['subject'] = "Accept special price #".$order_id;
+			$data['email'] = $resultInfo["email"];// toemail
+			$data['template'] = "email/request_special_price";
+			$data['subject'] = "Request special price #".$order_id;
 			$data['bcc_mail'] = $this->config->item('email_cc_group');
-			$data['name'] = $data['order_data']->name;
-			$data['tel'] = $data['order_data']->tel;
+			$data['name'] = $resultInfo["company"];
+			$data['tel'] = $resultInfo["tel"];
 
 			//sendmail
 			$sendStatus = send_emali_template($data);
