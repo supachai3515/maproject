@@ -572,17 +572,18 @@ class Orders_sale extends BaseController
 
           if ($result > 0) {
 
-            $data['order_data'] = $this->orders_model->get_orders_id($order_id);
+            $resultInfo = $this->orders_model->get_orders_id($order_id);
+            $data['order_data'] = $resultInfo;
             $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
             //pre($data['order_data']);
             //pre($data['order_detail_data']);
             //sendmail
-    	      $data['email'] = $data['order_data']->email;// toemail
+    	      $data['email'] = $resultInfo["email"];// toemail
     				$data['template'] = "email/approve_special_price";
     				$data['subject'] = "Approve special price #".$order_id;
     				$data['bcc_mail'] = $this->config->item('email_cc_group');
-    				$data['name'] = $data['order_data']->name;
-    				$data['tel'] = $data['order_data']->tel;
+            $data['name'] = $resultInfo["company"];
+      			$data['tel'] = $resultInfo["tel"];
 
     				//sendmail
     				$sendStatus = send_emali_template($data);
