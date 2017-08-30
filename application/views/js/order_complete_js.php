@@ -1,38 +1,35 @@
 
 <script type="text/javascript">
-  app.controller("order_complete_ctrl", function($scope, $http) {
+  app.controller("order_complete_ctrl", function($scope, $http, $q) {
     $scope.order_info = {};
     $scope.order_detail = [];
-    function get_order() {
-            $http({
-               method: 'POST',
-               url: '<?php echo base_url('tos_cal/get_order');?>',
-               headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-               data: { order_id : order_id}
-            }).then(function(response) {
-              if(response.status = 200){
-                  $scope.order_info = response.data;
-              }
-            }, function(reason) {
-              console.log(reason);
-            });
-      }
 
-    function get_order_detail() {
-            $http({
-               method: 'POST',
-               url: '<?php echo base_url('tos_cal/get_order_detail');?>',
-               headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-               data: { order_id : order_id}
-           }).then(function(response) {
-             if(response.status = 200){
-                 $scope.order_detail = response.data;
-             }
-           }, function(reason) {
-             console.log(reason);
-           });
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var ref_id = url.searchParams.get("id");
+
+    function get_order() {
+        var deferred = $q.defer();
+        $http({
+           method: 'POST',
+           url: '<?php echo base_url('tos_cal/get_order_by_ref');?>',
+           headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+           data: { id : ref_id}
+        }).then(function(response) {
+          deferred.resolve(response.data);
+        }, function(reason) {
+          deferred.reject(reason.data);
+        });
+        return deferred.promise;
       }
-      get_order();
-      get_order_detail();
+      get_order().then(function(result){
+        swal(
+          '',
+          'การสั่งซื้อสินค้าสำเร็จ',
+          'success'
+        )
+        $scope.order_info = result.order_info;
+        $scope.order_detail = result.order_detail;
+      });
   });
 </script>

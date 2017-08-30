@@ -46,9 +46,9 @@
           }).then(function(response) {
             var data = response.data;
             var ref_id = data.order_id.ref_id;
-            var url = '<?php echo base_url('tos_cal/confirm_order');?>';
+            var url = '<?php echo base_url('/order_complete');?>';
             if(ref_id) {
-              window.location = url+'/'+ref_id;
+              window.location = url+'/?id='+ref_id;
             } else {
               swal(
                 'Error!',

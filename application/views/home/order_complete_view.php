@@ -83,67 +83,65 @@
                 <div class="form-group">
                   <label class="col-md-5 control-label">Email:</label>
                   <div class="col-md-7">
-                    <p class="form-control-static"><?php echo $order_data['email']; ?></p>
+                    <p class="form-control-static">{{order_info.email}}</p>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-5 control-label">Name/Company Name:</label>
                   <div class="col-md-7">
-                    <p class="form-control-static"><?php echo $order_data['company']; ?></p>
+                    <p class="form-control-static">{{order_info.company}}</p>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-md-5 control-label">Tel:</label>
                   <div class="col-md-7">
-                    <p class="form-control-static"><?php echo $order_data['tel']; ?></p>
+                    <p class="form-control-static">{{order_info.tel}}</p>
                   </div>
                 </div>
               </form>
             </div>
             <div class="order_box">
               <h3 class="header_order">Order Detail</h3>
-              <?php foreach ($order_detail_data as $record): ?>
-              <div class="order_detail">
+              <div class="order_detail" ng-repeat="p in order_detail">
                 <div class="order_title">
-                  <h4>Product: <span class="text-primary"><?php echo $record['product_name'] ?></span></h4>
+                  <h4>Product: <span class="text-primary">{{p.product_name}}</span></h4>
                 </div>
                 <table class="table table-striped table-order">
                   <tbody>
                     <tr>
-                      <td>Part Number:</td>
-                      <td><?php echo $record['part_number'] ?></td>
+                      <td class="col-md-5">Part Number:</td>
+                      <td class="col-md-7">{{p.part_number}}</td>
                     </tr>
                     <tr>
-                      <td>Type:</td>
-                      <td><?php echo $record['type_name'] ?></td>
+                      <td class="col-md-5">Type:</td>
+                      <td class="col-md-7">{{p.type_name}}</td>
                     </tr>
                     <tr>
-                      <td>Product Name:</td>
-                      <td><?php echo $record['product_name'] ?></td>
+                      <td class="col-md-5">Product Name:</td>
+                      <td class="col-md-7">{{p.product_name}}</td>
                     </tr>
                     <tr>
-                      <td>จังหวัด:</td>
-                      <td><?php echo $record['province_name'] ?></td>
+                      <td class="col-md-5">จังหวัด:</td>
+                      <td class="col-md-7">{{p.province_name}}</td>
                     </tr>
                     <tr>
-                      <td>LB Year QTY:</td>
-                      <td><?php echo $record['lb_year_qty'] ?></td>
+                      <td class="col-md-5">LB Year QTY:</td>
+                      <td class="col-md-7">{{p.lb_year_qty}}</td>
                     </tr>
                     <tr>
-                      <td>QTY:</td>
-                      <td><?php echo $record['qty'] ?></td>
+                      <td class="col-md-5">QTY:</td>
+                      <td class="col-md-7">{{p.qty}}</td>
                     </tr>
                     <tr>
-                      <td>PM Time QTY:</td>
-                      <td><?php echo $record['pm_time_qty'] ?></td>
+                      <td class="col-md-5">PM Time QTY:</td>
+                      <td class="col-md-7">{{p.pm_time_qty}}</td>
                     </tr>
                     <tr>
-                      <td colspan="2" class="total-num"><strong>Total:</strong> <?php echo number_format($record['total'],0) ?></td>
+                      <td colspan="2" class="total-num"><strong>Total:</strong> {{p.total}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <?php endforeach; ?>
             </div>
           </div>
         </div>
