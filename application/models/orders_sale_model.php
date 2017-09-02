@@ -494,4 +494,13 @@ class Orders_sale_model extends CI_Model
 			$this->db->query($sql);
 			return true;
     }
+    public function update_send_invioce_doc($id)
+    {
+      $sql =" UPDATE orders SET order_status_id = 6 WHERE order_status_id < 6 AND order_id = $id ";
+			$this->db->query($sql);
+
+			$sql =" INSERT INTO order_status_history VALUES($id,6,'Send invoice document',NOW()) ";
+			$this->db->query($sql);
+			return true;
+    }
 }

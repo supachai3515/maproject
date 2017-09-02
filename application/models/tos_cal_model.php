@@ -266,10 +266,10 @@ class Tos_cal_model extends CI_Model
             return  $row['order_id'];
         }
     }
-    public function get_order_status_id_by_ref($ref_id)
+    public function get_order_status_id($order_id)
     {
-        $ref_id = $this->db->escape($ref_id);
-        $sql =" SELECT order_status_id FROM  orders WHERE ref_id = $ref_id ";
+        $ref_id = $this->db->escape($order_id);
+        $sql =" SELECT order_status_id FROM  orders WHERE order_id = $order_id ";
         $query = $this->db->query($sql);
         $row = $query->row_array();
         if ($row != null) {

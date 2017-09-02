@@ -268,8 +268,8 @@ class Tos_cal extends BaseController {
 
 	public function get_order_status()
 	{
-		$ref_id = json_decode(file_get_contents("php://input"));
-		$order_status = $this->tos_cal_model->get_order_status_id_by_ref($ref_id->id);
+		$order_id = json_decode(file_get_contents("php://input"));
+		$order_status = $this->tos_cal_model->get_order_status_id($order_id->id);
 		echo json_encode((int)$order_status);
 
 	}
@@ -341,11 +341,6 @@ class Tos_cal extends BaseController {
 		}
 	}
 
-	public function send_order_document()
-	{
-		# code...
-	}
-
 	public function get_order()
 	{
 			$method = $_SERVER['REQUEST_METHOD'];
@@ -396,6 +391,24 @@ class Tos_cal extends BaseController {
 						json_output(200, $data);
 				}
 		}
+
+	}
+
+	public function invoice_doc($ref_id)
+	{
+		$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id);
+		if(isset($order_id)){
+				//set status special_price
+				$data['ref_id'] = $ref_id;
+				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+				$status = "success";
+				//setFlashData($status, "ทางเราได้รับคำขอจากท่านเรียบร้อยแล้ว กรุณารอทางเราติดต่อครับ");
+				$this->load->view('order_public/invoice_doc', $data);
+		} else {
+				$this->loadThis();
+		}
+
 
 	}
 }

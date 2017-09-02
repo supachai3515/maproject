@@ -171,8 +171,8 @@
             </div> -->
           </div>
           <div class="text-center">
-            <button type="button" class="btn btn-default btn-lg" ng-click="back_add_product()"><i class="fa fa-arrow-left" aria-hidden="true"></i>   Back</button>
-            <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">Next  <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-default btn-lg" ng-click="back_add_product()"><i class="fa fa-arrow-left" aria-hidden="true"></i>   ย้อนกลับ</button>
+            <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">ถัดไป  <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>

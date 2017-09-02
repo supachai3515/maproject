@@ -25,13 +25,14 @@
 
     $scope.submit_products = function() {
       swal({
-        title: 'ยืนยันการสั่งสินค้า?',
-        text: "",
+        title: '',
+        text: "ยืนยันการขอใบเสนอราคา",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#5cb85c',
         cancelButtonColor: '#f0ad4e',
-        confirmButtonText: 'Confirm'
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
       }).then(function () {
         confirm_submit()
       })

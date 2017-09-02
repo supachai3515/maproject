@@ -30,13 +30,13 @@
                       <a href="#"  role="tab">
                           <span ng-if="order_status > 0 && order_status <= 3" class="round-tab"><i class="fa fa-tasks" aria-hidden="true"></i></span>
                           <span ng-if="order_status == 4" class="round-tab"><i class="fa fa-exchange" aria-hidden="true"></i></span>
-                          <span ng-if="order_status == 5" class="round-tab"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
-                          <span ng-if="order_status == 6 || order_status == 7" class="round-tab"><i class="fa fa-file-text" aria-hidden="true"></i></span>
+                          <span ng-if="order_status == 5" class="round-tab"><i class="fa fa-file-text" aria-hidden="true"></i></span>
+                          <span ng-if="order_status == 6" class="round-tab"><i class="fa fa-file-text" aria-hidden="true"></i></span>
                       </a>
-                      <span ng-if="order_status > 0 && order_status <= 3">รอการยืนยันราคาพิเศษ</span>
+                      <span ng-if="order_status > 0 && order_status <= 3">รอใบเสนอราคา</span>
                       <span ng-if="order_status == 4">ยืนยันราคา</span>
-                      <span ng-if="order_status == 5">ส่งเอกสารสั่งซื้อ</span>
-                      <span ng-if="order_status == 6 || order_status == 7">ดำเนินการสั่งซื้อ</span>
+                      <span ng-if="order_status == 5">รอการออกเอกสารสั่งซื้อ</span>
+                      <span ng-if="order_status == 6">ส่งเอกสารสั่งซื้อ</span>
                   </li>
                   <li role="presentation" ng-class="{'active': order_status == 7}">
                       <a href="#" title="Complete">
@@ -122,7 +122,6 @@
                     <button type="button" class="btn btn-primary btn-lg" ng-click="submit_order()">
                       <span ng-if="order_status == 1">ขอราคาพิเศษ</span>
                       <span ng-if="order_status == 4">ยืนยันราคา</span>
-                      <span ng-if="order_status == 5">ส่งเอกสารสั่งซื้อ</span>
                     </button>
                   </p>
                 </div>

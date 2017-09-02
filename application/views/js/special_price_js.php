@@ -9,7 +9,7 @@
               method: 'POST',
               url: '<?php echo base_url('tos_cal/get_order_status');?>',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-              data: {id:ref_id}
+              data: {id:'<?php echo $order_data['order_id'] ?>'}
           }).then(function success(result) {
             var status = result.data;
             $scope.order_status = Number(status);
@@ -25,7 +25,7 @@
     get_order_status();
 
     $scope.canSubmit = function() {
-      return _.contains([1,4,5], $scope.order_status);
+      return _.contains([1,4], $scope.order_status);
     }
 
     var params = {
@@ -37,9 +37,6 @@
             break;
           case 4:
             msg = "ยืนยันราคาพิเศษ";
-            break;
-          case 5:
-            msg = "ยืนยันการส่งเอกสาร";
             break;
           default:
         }
@@ -54,9 +51,6 @@
           case 4:
             url = '<?php echo base_url('tos_cal/accept_special_price');?>';
             break;
-          case 5:
-            url = '<?php echo base_url('tos_cal/send_order_document');?>';
-            break;
           default:
         }
         return url;
@@ -68,10 +62,7 @@
             msg = 'ระบบได้รับเรื่องการขอราคาพิเศษของท่านแล้ว กรุณารอการติดต่อกลับ';
             break;
           case 4:
-            msg = 'ระบบได้รับการยืนยันราคาท่านแล้ว กรุณารอการติดต่อกลับ';
-            break;
-          case 5:
-            msg = 'ระบบได้รับเอกสารการสั่งซื้อของท่านแล้ว กรุณารอการติดต่อกลับ';
+            msg = 'ระบบได้รับการยืนยันราคาของท่านแล้ว กรุณารอการติดต่อกลับ';
             break;
           default:
         }
@@ -101,7 +92,6 @@
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: { order_id : '<?php echo $order_data['order_id'] ?>'}
           }).then(function success(result) {
-            console.log(result);
               swal(
                 '',
                 params.respond_msg(),

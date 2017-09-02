@@ -3,6 +3,7 @@
 app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
   $scope.master_init_data = {};
   $scope.owner_id = '';
+  $scope.order_status = null;
 
   var char_search = '';
 
@@ -62,6 +63,25 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
       });
       return defer.promise;
   }
+
+  function get_order_status(){
+    $http({
+            method: 'POST',
+            url: '<?php echo base_url('tos_cal/get_order_status');?>',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            data: {id: "<?php echo $orders_data['order_id'] ?>"}
+        }).then(function success(result) {
+          var status = result.data;
+          $scope.order_status = Number(status);
+        }, function(err) {
+          swal(
+            'Error!',
+            'Technical error please contact the administrator',
+            'error'
+          )
+        });
+  }
+  get_order_status();
 
   //Add Order
   $scope.add_order = function(order_info) {
@@ -472,10 +492,10 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
      });
    }
 
-   $scope.approve_spacial = function() {
+   $scope.approve_order_price_event = function() {
      swal({
        title: '',
-       text: "ยืนยันการส่งสินค้าราคาพิเศษ",
+       text: "ยืนยันการส่งใบเสนอราคา",
        type: 'warning',
        showCancelButton: true,
        confirmButtonColor: '#008CBA',
@@ -483,8 +503,67 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
        confirmButtonText: 'ยืนยัน',
        cancelButtonText: 'ยกเลิก',
      }).then(function () {
-       window.location = '<?php echo base_url().'orders_sale/send_special_price/'; ?>'+$scope.order_list.order_id;
+       approve_order_price();
      });
+   }
+   function approve_order_price() {
+     var order_id = $scope.order_list.order_id;
+     $http({
+             method: 'POST',
+             url: '<?php echo base_url('orders_sale/send_special_price');?>',
+             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+             data: {id: order_id}
+         }).then(function(response) {
+           swal(
+             '',
+             'ส่งใบเสนอราคาสำเร็จ',
+             'success'
+           )
+           get_order_status();
+         }, function(reason) {
+           swal(
+             'Error!',
+             'Technical error please contact the administrator',
+             'error'
+           )
+         });
+   }
+
+   $scope.send_document_event = function() {
+     swal({
+       title: '',
+       text: "ยืนยันการส่งเอกสารสั่งซื้อ",
+       type: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#008CBA',
+       cancelButtonColor: '#8388a1',
+       confirmButtonText: 'ยืนยัน',
+       cancelButtonText: 'ยกเลิก',
+     }).then(function () {
+       send_document();
+     });
+   }
+   function send_document() {
+     var order_id = $scope.order_list.order_id;
+     $http({
+           method: 'POST',
+           url: '<?php echo base_url('orders_sale/send_invoice_doc');?>',
+           headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+           data: {id: order_id}
+         }).then(function(response) {
+           swal(
+             '',
+             'ส่งเอกสารสั่งซื้อสำเร็จ',
+             'success'
+           )
+           get_order_status();
+         }, function(reason) {
+           swal(
+             'Error!',
+             'Technical error please contact the administrator',
+             'error'
+           )
+         });
    }
 
   <?php endif ?>

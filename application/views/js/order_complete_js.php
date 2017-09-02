@@ -23,11 +23,6 @@
         return deferred.promise;
       }
       get_order().then(function(result){
-        swal(
-          '',
-          'การสั่งซื้อสินค้าสำเร็จ',
-          'success'
-        )
         $scope.order_info = result.order_info;
         $scope.order_detail = result.order_detail;
       });

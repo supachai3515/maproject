@@ -104,6 +104,8 @@ class Orders_sale extends BaseController
             $data['orders_detail_data'] = $this->orders_model->get_orders_detail($id);
             $data['province_list'] = $this->home_model->get_province();
             $data['contract_list'] = $this->home_model->get_contract();
+
+            $data['status_list'] = $this->home_model->get_status();
             if (count($data['orders_data'])==0) {
                 redirect('error');
             }
@@ -154,9 +156,11 @@ class Orders_sale extends BaseController
                 $comment_order = $this->input->post('comment_order');
                 $is_active = $this->input->post('is_active');
                 $order_id = $this->input->post('order_id');
+                $order_status_id = $this->input->post('order_status_id');
 
                 $orders_sale_info = array('company'=>$company, 'tel'=>$tel,'email'=>$email,
                                         'is_active'=>$is_active,'comment_order'=>  $comment_order,
+                                        'order_status_id' => $order_status_id,
                                         'order_id'=>$order_id,
                                         'modified_by'=>$this->vendorId,
                                         'modified_date'=>date('Y-m-d H:i:s'));
@@ -567,7 +571,8 @@ class Orders_sale extends BaseController
       $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
       $data['access_menu'] = $this->isAccessMenu($data['menu_list'], $data['menu_id']);
       if ($data['access_menu']['is_access']&&$data['access_menu']['is_add']) {
-
+            $id = json_decode(file_get_contents("php://input"));
+            $order_id = $id->id;
             $result = $this->orders_sale_model->update_confirm_special_price($order_id);
 
           if ($result > 0) {
@@ -588,14 +593,12 @@ class Orders_sale extends BaseController
     				//sendmail
     				$sendStatus = send_emali_template($data);
     				if($sendStatus){
-    						setFlashData('success', "ส่งอีเมลยืนยันคำขอราคาพิเศษสำเร็จ");
+    						json_output(200, array('status' => 200,'message' => 'success'));
     				} else {
-    						setFlashData('error', "Email has been failed, try again.");
+    						json_output(400, array('status' => 400,'message' => 'error'));
     				}
-              $this->session->set_flashdata('success', 'Approve special price successfully');
-
           } else {
-              $this->session->set_flashdata('error', 'Approve special price failed');
+              json_output(400, array('status' => 400,'message' => 'error'));
           }
           redirect('orders_sale/edit/'.$order_id);
 
@@ -604,10 +607,46 @@ class Orders_sale extends BaseController
       }
     }
 
-    public function test_approve_special_price_mail($order_id)
+    public function send_invoice_doc($order_id)
     {
-      $data['order_data'] = $this->orders_model->get_orders_id($order_id);
-      $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
-      $this->load->view('email/approve_special_price', $data);
+      $data['global'] = $this->global;
+      $data['menu_id'] ='16';
+      $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+      $data['access_menu'] = $this->isAccessMenu($data['menu_list'], $data['menu_id']);
+      if ($data['access_menu']['is_access']&&$data['access_menu']['is_add']) {
+            $id = json_decode(file_get_contents("php://input"));
+            $order_id = $id->id;
+            $result = $this->orders_sale_model->update_send_invioce_doc($order_id);
+
+          if ($result > 0) {
+
+            $resultInfo = $this->orders_model->get_orders_id($order_id);
+            $data['order_data'] = $resultInfo;
+            $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
+            //pre($data['order_data']);
+            //pre($data['order_detail_data']);
+            //sendmail
+    	      $data['email'] = $resultInfo["email"];// toemail
+    				$data['template'] = "email/order_invoice";
+    				$data['subject'] = "Approve special price #".$order_id;
+    				$data['bcc_mail'] = $this->config->item('email_cc_group');
+            $data['name'] = $resultInfo["company"];
+      			$data['tel'] = $resultInfo["tel"];
+
+    				//sendmail
+    				$sendStatus = send_emali_template($data);
+    				if($sendStatus){
+    						json_output(200, array('status' => 200,'message' => 'success'));
+    				} else {
+    						json_output(400, array('status' => 400,'message' => 'error'));
+    				}
+          } else {
+              json_output(400, array('status' => 400,'message' => 'error'));
+          }
+          redirect('orders_sale/edit/'.$order_id);
+
+      } else {
+          $this->loadThis();
+      }
     }
 }

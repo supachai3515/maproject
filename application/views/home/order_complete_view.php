@@ -74,9 +74,8 @@
             </ul>
         </div>
       </div>
-      <div class="flex-warp">
-        <div class="flex flex-100">
-          <div class="box-inner">
+      <div class="alert alert-success text-center" role="alert"><p>ขอใบเสนอราคาสำเร็จ</p></div>
+      <div class="box-inner">
             <div class="order_box">
               <h3 class="header_order">Order Info</h3>
               <form class="form-horizontal">
@@ -137,15 +136,13 @@
                       <td class="col-md-7">{{p.pm_time_qty}}</td>
                     </tr>
                     <tr>
-                      <td colspan="2" class="total-num"><strong>Total:</strong> {{p.total}}</td>
+                      <td colspan="2" class="total-num"><strong>Total:</strong> {{p.total | number:0}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
 
     <footer class="main-footer text-center">
