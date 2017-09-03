@@ -156,16 +156,27 @@
                         <h3 class="box-title">Product Vendor</h3>
                     </div>
                     <div class="box-body">
-                      <table class="table table-striped">
-                      <thead>
+                    <table class="table table-striped">
                         <tr>
-                          <th class="col-md-4">Part Number</th>
-                          <th class="col-md-4">Name</th>
-                          <th class="col-md-2">Total</th>
+                          <th class="text-center">Part Number</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Total</th>
+                          <th class="text-center">Select</th>
                         </tr>
-                      </thead>
-                      <tbody>
-                      </tbody>
+                    </table>
+                    <table class="table table-striped">
+                        <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
+                            <td colspan="4">
+                              <table style="width: 100%;">
+                                <tr ng-repeat="p in val">
+                                  <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.part_number || '-'}}</td>
+                                  <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.name || '-'}}</td>
+                                  <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;">{{(p.total | number:0) || '-'}}</td>
+                                  <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_vender(key, p)" ng-checked="p.selected"></td>
+                                </tr>
+                              </table>
+                            </td>
+                        </tr>
                     </table>
                     </div>
                   </div>

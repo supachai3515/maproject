@@ -77,7 +77,7 @@
     $scope.back_add_product = function() {
       window.location = '<?php echo base_url();?>'
     }
-    
+
     $scope.submit_products = function() {
       selected_products = [];
       is_selected = false;

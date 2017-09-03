@@ -184,11 +184,11 @@
 }
 .step li.active span.round-tab {
     background: #fff;
-    border: 2px solid #5bc0de;
+    border: 2px solid #3c8dbc;
 
 }
 .step li.active span.round-tab i{
-    color: #5bc0de;
+    color: #3c8dbc;
 }
 
 .step .nav-tabs > li {
