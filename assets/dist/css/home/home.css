@@ -5,9 +5,12 @@
     flex: 0 0 100%;
     }
 }
+.content-wrapper, .right-side, .main-footer {
+  margin-left: 0;
+}
 .header{
   position: relative;
-  background-color: #333333;
+  background-color: #3c8dbc;
   text-align: center;
   display: inline-block;
   width: 100%;
@@ -15,21 +18,20 @@
 .header h1{
   display: inline-block;
   margin: 0;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 .navbar-right{
   position: absolute;
   right: 30px;
-  top: 15px;
+  top: 4px;©
 }
-.navbar-right li a:hover{background: #333;}
+.navbar-right li a:hover{background: none;}
 .header a{
   color: #fff;
 }
 .header a:hover{
   text-decoration: none;
 }
-.container{margin: 20px auto 100px;}
 .submit-btn{margin-top: 50px;}
 .flex-warp{
 	display: -webkit-box;
@@ -138,7 +140,6 @@
 /*Order Step*/
 .step {
     margin: 20px auto;
-    background: #fff;
 }
 
     .step .nav-tabs {

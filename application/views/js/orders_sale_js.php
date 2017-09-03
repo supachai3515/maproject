@@ -11,7 +11,9 @@ $(document).on('ready', function() {
         maxFileSize: 2000,
     });
 });
+</script>
 
+<script>
 //swal('Hello world!');
 app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
   $scope.master_init_data = {};
@@ -229,7 +231,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           $.each($sc.result_cal_product, function(idx, val) {
             val.selected = false;
           });
-          $sc.update_product_select = function(product, val) {
+          $sc.update_product_owner = function(product, val) {
             $sc.result_cal_product.forEach(function(v) {
               if(v.product_owner_id == product) {
                 v.selected = v === val;
@@ -299,7 +301,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 }).then(function success(result) {
                   swal(
                     '',
-                    'Order save successfully',
+                    'ขอใบเสนอราคาสำเร็จ',
                     'success'
                   )
                   $uib.close();
@@ -472,6 +474,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
     });
    }
 
+   //Delete product
    $scope.delete_order = function(model) {
      swal({
        title: '',
@@ -505,6 +508,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
      });
    }
 
+   //Send special price
    $scope.approve_order_price_event = function() {
      swal({
        title: '',
@@ -542,6 +546,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
          });
    }
 
+   //Send invoice
    $scope.send_document_event = function() {
      swal({
        title: '',
@@ -670,25 +675,32 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
       <div class="modal-body">
         <form role="form">
             <div class="box-body">
-              <div class="prodiucts_list" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
-                <strong>product : {{$index+1}}</strong>
-                <ul ng-repeat="(idx, val) in value | groupBy: 'is_product_owner'">
-                    <li ng-repeat="p in val">
-                      <div class="radio rodiucts_item">
-                        <label for="product_{{key}}_{{idx}}_{{$index}}"><input type="radio" name="produc_{{key}}" id="product_{{key}}_{{idx}}_{{$index}}" ng-click="update_product_select(key, p)" ng-checked="p.selected"></label>
-                        <div class="prodiucts_detail">
-                          <p><strong>Type:</strong>   {{p.type_name || '-'}}</p>
-                          <p><strong>Description:</strong>   {{p.type_description || '-'}}</p>
-                          <p><strong>จังหวัด:</strong>   {{p.province_name || '-'}}</p>
-                          <p><strong>PM Time QTY:</strong>   {{p.pm_time_qty || '-'}}</p>
-                          <p><strong>LB Year QTY:</strong>   {{p.lb_year_qty || '-'}}</p>
-                          <p><strong>Contract:</strong>   {{p.contract_qty || '-'}}</p>
-                          <p><strong>QTY:</strong>   {{p.qty || '-'}}</p>
-                          <p><strong>Total:</strong>   {{(p.total | number:0) || '-'}}</p>
-                        </div>
-                      </div>
-                    </li>
-                </ul>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="col-md-4 text-center">Type</th>
+                    <th class="col-md-4 text-center">Description</th>
+                    <th class="col-md-2 text-center">Total</th>
+                    <th class="col-md-2 text-center">Select</th>
+                  </tr>
+                </thead>
+              </table>
+              <table class="table table-striped">
+                <tbody>
+                  <tr ng-repeat="(key, val) in result_cal_product | groupBy: 'product_owner_id'">
+                      <td colspan="4">
+                        <table style="width: 100%;">
+                          <tr ng-repeat="p in val">
+                            <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.type_name || '-'}}</td>
+                            <td class="col-md-4" style="vertical-align: top; padding: 5px 0;">{{p.type_description || '-'}}</td>
+                            <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;">{{(p.total | number:0) || '-'}}</td>
+                            <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
+                          </tr>
+                        </table>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
               </div>
             </div><!-- /.box-body -->
             <div class="box-footer">

@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/ui-select/select.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/loading-template.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
   <style>
     .error {
@@ -46,37 +47,41 @@
       <a href="<?php echo base_url(); ?>"><h1>TOS</h1></a>
       <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
     </header>
-    <div class="container">
-      <div class="step">
-        <div class="step-inner">
-            <div class="connecting-line"></div>
-            <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation">
-                <a href="#" role="tab">
-                  <span class="round-tab"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                </a>
-                <span>เพิ่มสินค้า</span>
-              </li>
-              <li role="presentation" class="active">
-                  <a href="#"  role="tab">
-                      <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
-                  </a>
-                  <span>เลือกสินค้า</span>
-              </li>
-              <li role="presentation">
-                  <a href="#" title="Complete">
-                      <span class="round-tab">
-                          <i class="fa fa-check" aria-hidden="true"></i>
-                      </span>
-                  </a>
-                  <span>สำเร็จ</span>
-              </li>
-            </ul>
-        </div>
-      </div>
-      <div class="box-inner">
-            <div class="order_box">
-              <h3 class="header_order">Order Info</h3>
+    <div class="content-wrapper">
+      <section class="content">
+        <div class="container">
+          <div class="step">
+            <div class="step-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation">
+                    <a href="#" role="tab">
+                      <span class="round-tab"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    </a>
+                    <span>เพิ่มสินค้า</span>
+                  </li>
+                  <li role="presentation" class="active">
+                      <a href="#"  role="tab">
+                          <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
+                      </a>
+                      <span>เลือกสินค้า</span>
+                  </li>
+                  <li role="presentation">
+                      <a href="#" title="Complete">
+                          <span class="round-tab">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                          </span>
+                      </a>
+                      <span>สำเร็จ</span>
+                  </li>
+                </ul>
+            </div>
+          </div>
+          <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Order Info</h3>
+            </div>
+            <div class="box-body">
               <form class="form-horizontal">
                 <div class="form-group">
                   <label class="col-md-5 control-label">Email:</label>
@@ -98,58 +103,46 @@
                 </div>
               </form>
             </div>
-            <div class="order_box">
-              <h3 class="header_order">Order Detail</h3>
-              <div class="order_detail" ng-repeat="(idx, p) in order_detail track by idx">
-                <div class="order_title">
-                  <h4>Product: <span class="text-primary">{{p.product_name}}</span></h4>
-                </div>
-                <table class="table table-striped table-order">
-                  <tbody>
-                    <tr>
-                      <td class="col-md-6">Part Number:</td>
-                      <td class="col-md-6">{{p.part_number}}</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-6">Type:</td>
-                      <td class="col-md-6">{{p.type_name}}</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-6">Product Name:</td>
-                      <td class="col-md-6">{{p.product_name}}</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-6">Product Description:</td>
-                      <td class="col-md-6">{{p.product_description}}</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-6">จังหวัด:</td>
-                      <td class="col-md-6">{{p.province_name}}</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-6">LB Year QTY:</td>
-                      <td class="col-md-6">{{p.lb_year_qty}}</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-6">QTY:</td>
-                      <td class="col-md-6">{{p.qty}}</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-6">PM Time QTY:</td>
-                      <td class="col-md-6">{{p.pm_time_qty}}</td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" class="total-num"><strong>Total:</strong> {{p.total | number :0}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          </div>
+          <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Order Detail</h3>
+            </div>
+            <div class="box-body">
+              <table class="table table-striped dataTable" role="grid">
+                  <tr>
+                    <th class="text-center">Part Number</th>
+                    <th class="text-center">Type</th>
+                    <th class="text-center">Product Name</th>
+                    <th class="text-center">Product Description</th>
+                    <th class="text-center">จังหวัด</th>
+                    <th class="text-center">LB Year QTY</th>
+                    <th class="text-center">QTY</th>
+                    <th class="text-center">PM Time QTY</th>
+                    <th class="text-center">Total</th>
+                  </tr>
+                <tbody>
+                  <tr ng-repeat="(idx, p) in order_detail track by idx">
+                    <td class="text-center">{{p.part_number || '-'}}</td>
+                    <td class="text-center">{{p.type_name || '-'}}</td>
+                    <td class="text-center">{{p.product_name || '-'}}</td>
+                    <td>{{p.product_description || '-'}}</td>
+                    <td class="text-center">{{p.province_name || '-'}}</td>
+                    <td class="text-center">{{p.lb_year_qty || '-'}}</td>
+                    <td class="text-center">{{p.qty || '-'}}</td>
+                    <td class="text-center">{{p.pm_time_qty || '-'}}</td>
+                    <td class="text-center">{{p.total | number :0}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-      <div class="text-center">
-        <button type="button" class="btn btn-default btn-lg" ng-click="back_select_product()"><i class="fa fa-arrow-left" aria-hidden="true"></i>   ย้อนกลับ</button>
-        <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">ขอใบเสนอราคา</button>
-      </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-default btn-lg" ng-click="back_select_product()"><i class="fa fa-arrow-left" aria-hidden="true"></i>   ย้อนกลับ</button>
+            <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">ขอใบเสนอราคา</button>
+          </div>
+        </div>
+      </section>
     </div>
 
     <footer class="main-footer text-center">

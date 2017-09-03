@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/ui-select/select.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/loading-template.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
   <style>
     .error {
@@ -46,113 +47,131 @@
       <a href="<?php echo base_url(); ?>"><h1>TOS</h1></a>
       <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
     </header>
-    <div class="container">
-      <div class="step">
-        <div class="step-inner">
-            <div class="connecting-line"></div>
-            <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation">
-                <a href="" role="tab">
-                  <span class="round-tab"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                </a>
-                <span>เพิ่มสินค้า</span>
-              </li>
-              <li role="presentation" class="active">
-                  <a href=""  role="tab">
-                      <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
-                  </a>
-                  <span>เลือกสินค้า</span>
-              </li>
-              <li role="presentation">
-                  <a href="" title="Complete">
-                      <span class="round-tab">
-                          <i class="fa fa-check" aria-hidden="true"></i>
-                      </span>
-                  </a>
-                  <span>สำเร็จ</span>
-              </li>
-            </ul>
-        </div>
-      </div>
-      <div class="flex-warp">
-        <div class="flex flex-100">
-          <div class="box-inner">
-            <div class="form-horizontal" name="info_form" role="form" action="" method="post">
-              <div class="form-group">
-                <label for="email" class="col-md-6 control-label">Email:</label>
-                <div class="col-md-6"><p class="form-control-static">{{info.email || '-'}}</p></div>
-              </div>
-              <div class="form-group">
-                <label for="name" class="col-md-6 control-label">Name/Company Name:</label>
-                <div class="col-md-6"><p class="form-control-static">{{info.name || '-'}}</p></div>
-              </div>
-              <div class="form-group">
-                <label for="tel" class="col-md-6 control-label">Tel:</label>
-                <div class="col-md-6"><p class="form-control-static">{{info.tel || '-'}}</p></div>
+    <div class="content-wrapper">
+      <section class="content">
+        <div class="container">
+          <div class="step">
+            <div class="step-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation">
+                    <a href="" role="tab">
+                      <span class="round-tab"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    </a>
+                    <span>เพิ่มสินค้า</span>
+                  </li>
+                  <li role="presentation" class="active">
+                      <a href=""  role="tab">
+                          <span class="round-tab"><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
+                      </a>
+                      <span>เลือกสินค้า</span>
+                  </li>
+                  <li role="presentation">
+                      <a href="" title="Complete">
+                          <span class="round-tab">
+                              <i class="fa fa-check" aria-hidden="true"></i>
+                          </span>
+                      </a>
+                      <span>สำเร็จ</span>
+                  </li>
+                </ul>
+            </div>
+          </div>
+          <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Order Info</h3>
+            </div>
+            <div class="box-body">
+              <div class="form-horizontal" name="info_form" role="form" action="" method="post">
+                <div class="form-group">
+                  <label for="email" class="col-md-6 control-label">Email:</label>
+                  <div class="col-md-6"><p class="form-control-static">{{info.email || '-'}}</p></div>
+                </div>
+                <div class="form-group">
+                  <label for="name" class="col-md-6 control-label">Name/Company Name:</label>
+                  <div class="col-md-6"><p class="form-control-static">{{info.name || '-'}}</p></div>
+                </div>
+                <div class="form-group">
+                  <label for="tel" class="col-md-6 control-label">Tel:</label>
+                  <div class="col-md-6"><p class="form-control-static">{{info.tel || '-'}}</p></div>
+                </div>
               </div>
             </div>
-            <div class="row" style="margin-top: 80px;">
-              <div class="col-md-6">
-                <h3 class="order-title">Product</h3>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th class="col-md-4">Type</th>
-                      <th class="col-md-4">Description</th>
-                      <th class="col-md-2">Total</th>
-                      <th class="col-md-2">Select</th>
-                    </tr>
-                  </thead>
-                </table>
-                <table class="table table-striped">
-                  <tbody>
-                    <tr ng-repeat="(key, val) in product_owner | groupBy: 'product_owner_id'">
-                        <td colspan="4">
-                          <table style="width: 100%;">
-                            <tr ng-repeat="p in val">
-                              <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.type_name || '-'}}</td>
-                              <td class="col-md-4" style="vertical-align: top; padding: 5px 0;">{{p.type_description || '-'}}</td>
-                              <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;">{{(p.total | number:0) || '-'}}</td>
-                              <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
-                            </tr>
-                          </table>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <!-- <table class="table table-striped">
-                  <tbody>
-                    <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
-                        <td colspan="4">
-                          <table style="width: 100%;">
-                            <tr ng-repeat="p in val">
-                              <td class="col-md-4 text-center" style="vertical-align: top;">{{p.type_name || '-'}}</td>
-                              <td class="col-md-4" style="vertical-align: top;">{{p.type_description || '-'}}</td>
-                              <td class="col-md-2 text-center" style="vertical-align: top;">{{(p.total | number:0) || '-'}}</td>
-                              <td class="col-md-2 text-center" style="vertical-align: top;"><input type="radio" name="product_อำืกนพ_{{key}}" ng-click="update_product_vender(key, p)" ng-checked="p.selected"></td>
-                            </tr>
-                          </table>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table> -->
-              </div>
-              <div class="col-sm-6">
-                <h3 class="order-title">Product Vendor</h3>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th class="col-md-4">Part Number</th>
-                      <th class="col-md-4">Name</th>
-                      <th class="col-md-2">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Product</h3>
+                    </div>
+                    <div class="box-body">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th class="col-md-4">Type</th>
+                            <th class="col-md-4">Description</th>
+                            <th class="col-md-2">Total</th>
+                            <th class="col-md-2">Select</th>
+                          </tr>
+                        </thead>
+                      </table>
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr ng-repeat="(key, val) in product_owner | groupBy: 'product_owner_id'">
+                              <td colspan="4">
+                                <table style="width: 100%;">
+                                  <tr ng-repeat="p in val">
+                                    <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.type_name || '-'}}</td>
+                                    <td class="col-md-4" style="vertical-align: top; padding: 5px 0;">{{p.type_description || '-'}}</td>
+                                    <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;">{{(p.total | number:0) || '-'}}</td>
+                                    <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
+                                  </tr>
+                                </table>
+                              </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <!-- <table class="table table-striped">
+                        <tbody>
+                          <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
+                              <td colspan="4">
+                                <table style="width: 100%;">
+                                  <tr ng-repeat="p in val">
+                                    <td class="col-md-4 text-center" style="vertical-align: top;">{{p.type_name || '-'}}</td>
+                                    <td class="col-md-4" style="vertical-align: top;">{{p.type_description || '-'}}</td>
+                                    <td class="col-md-2 text-center" style="vertical-align: top;">{{(p.total | number:0) || '-'}}</td>
+                                    <td class="col-md-2 text-center" style="vertical-align: top;"><input type="radio" name="product_อำืกนพ_{{key}}" ng-click="update_product_vender(key, p)" ng-checked="p.selected"></td>
+                                  </tr>
+                                </table>
+                              </td>
+                          </tr>
+                        </tbody>
+                      </table> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Product Vendor</h3>
+                    </div>
+                    <div class="box-body">
+                      <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th class="col-md-4">Part Number</th>
+                          <th class="col-md-4">Name</th>
+                          <th class="col-md-2">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
 
             <!-- <div class="prodiucts_list" ng-repeat="(key, value) in result_cal_product | groupBy: 'product_owner_id'">
               <strong>product : {{$index+1}}</strong>
@@ -175,7 +194,7 @@
             <button type="button" class="btn btn-primary btn-lg" ng-click="submit_products()">ถัดไป  <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 
     <footer class="main-footer text-center">
