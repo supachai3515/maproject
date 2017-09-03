@@ -12,6 +12,7 @@ class Orders_sale extends BaseController
         $this->load->model('orders_sale_model');
         $this->load->model('home_model');
         $this->load->model('tos_cal_model');
+        $this->load->library('my_upload');
         $this->isLoggedIn();
     }
 
@@ -150,6 +151,32 @@ class Orders_sale extends BaseController
             if ($this->form_validation->run() == false) {
                 $this->edit($this->input->post('order_id'));
             } else {
+
+
+              $this->load->library('my_upload');
+              $dir ='./uploads/doc/'.date("Ym").'/';
+              $dir_insert ='uploads/doc/'.date("Ym").'/';
+              $file_name ='';
+
+              $this->my_upload->upload($_FILES["file_path"]);
+              if ($this->my_upload->uploaded == true) {
+                  //$this->my_upload->allowed  = array('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                  $this->my_upload->process($dir);
+
+                  if ($this->my_upload->processed == true) {
+                      $file_name  = $this->my_upload->file_dst_name;
+                      //update img
+                      $this->my_upload->clean();
+                  } else {
+                      $data['errors'] = $this->my_upload->error;
+                      echo $data['errors'];
+                  }
+              } else {
+                  $data['errors'] = $this->my_upload->error;
+              }
+
+
+                $file_path = $dir_insert.$file_name;
                 $company = $this->input->post('company');
                 $tel = $this->input->post('tel');
                 $email = $this->input->post('email');
@@ -162,6 +189,7 @@ class Orders_sale extends BaseController
                                         'is_active'=>$is_active,'comment_order'=>  $comment_order,
                                         'order_status_id' => $order_status_id,
                                         'order_id'=>$order_id,
+                                        'file_path'=>$file_path,
                                         'modified_by'=>$this->vendorId,
                                         'modified_date'=>date('Y-m-d H:i:s'));
 

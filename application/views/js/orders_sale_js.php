@@ -1,4 +1,17 @@
 <script>
+$(document).on('ready', function() {
+    $("#file_path").fileinput({
+      language: "th",
+      <?php if($orders_data['file_path']!=""){?>
+          initialPreview: [
+              '<img src="<?php echo $this->config->item('url_img').$orders_data['file_path'];?>" class="file-preview-image">'
+          ],
+        <?php } ?>
+        overwriteInitial: false,
+        maxFileSize: 2000,
+    });
+});
+
 //swal('Hello world!');
 app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
   $scope.master_init_data = {};

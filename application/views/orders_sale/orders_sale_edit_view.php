@@ -176,7 +176,7 @@
                     <h3 class="box-title">Edit Order : (<?php echo $orders_data['order_id']; ?>)</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" id="addUser" action="<?php echo base_url() ?>orders_sale/edit_save" method="post" role="form">
+                  <form role="form" action="<?php echo base_url() ?>orders_sale/edit_save" method="post" role="form" enctype="multipart/form-data">
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -227,6 +227,15 @@
                                   <textarea style="resize: none;" name="comment_order"  class="form-control" id="comment_order" rows="8" cols="80"><?php echo $orders_data['comment_order']; ?></textarea>
                               </div>
                           </div>
+                        <div class="col-md-6">
+                          <!-- File Button -->
+                          <div class="form-group">
+                              <label class="col-md-3 control-label" for="file_path">รูปตัวอย่าง</label>
+                              <div class="col-md-6">
+                                  <input id="file_path" name="file_path" class="file-loading" type="file" data-show-upload="false" data-min-file-count="1">
+                              </div>
+                          </div>
+                        </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
