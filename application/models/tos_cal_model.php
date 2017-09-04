@@ -13,7 +13,8 @@ class Tos_cal_model extends CI_Model
         $i=0;
         foreach ($product_list as $product) {
             if (ctype_digit($product->product_owner_id)) {
-                $sql =  $sql." SELECT 1 is_product_owner,
+                $sql =  $sql." SELECT $i line_number,
+                       1 is_product_owner,
 											 1 is_have_product,
 											 '' comment,
 						       		 v.product_owner_id,
@@ -82,7 +83,9 @@ class Tos_cal_model extends CI_Model
 
 						UNION
 
-						SELECT 0 is_product_owner,
+						SELECT
+                  $i line_number,
+                  0 is_product_owner,
 									 1 is_have_product,
 									 '' comment,
 						       q.product_owner_id,
@@ -120,16 +123,20 @@ class Tos_cal_model extends CI_Model
 						   WHERE pw.product_owner_id = $product->product_owner_id
 						     AND t.is_owner = 0 ) q
 						WHERE v1.province_id = $product->province ";
-            }
+
             $i++;
             if ($i < count($product_list) && $sql != "") {
                 $sql =  $sql." UNION ";
+            }
+
             }
         }
 
         foreach ($product_list as $product) {
             if (isset($product->is_have_product) && $product->is_have_product == 0) {
-                $sql =  $sql."  SELECT 0 is_product_owner,
+                $sql =  $sql."  SELECT
+                            $i line_number,
+                            0 is_product_owner,
 														0 is_have_product,
 														CONCAT('Part Number : $product->part_number',' , Name: $product->name') comment,
 														0	product_owner_id,
@@ -153,12 +160,14 @@ class Tos_cal_model extends CI_Model
 														0 AS total
 														FROM province v
 														WHERE v.province_id = $product->province ";
+
+                $i++;
+                if ($i < count($product_list) && $sql != "") {
+                    $sql =  $sql." UNION ";
+                }
             }
 
-            $i++;
-            if ($i < count($product_list) && $sql != "") {
-                $sql =  $sql." UNION ";
-            }
+
         }
         //print($sql);
         //add part_number
