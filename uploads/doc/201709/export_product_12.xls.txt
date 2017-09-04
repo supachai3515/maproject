@@ -1,0 +1,1452 @@
+
+
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+</head>
+<body>
+
+<table border="1px">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>ชื่อสินค้า</th>
+            <th>หมวดสินค้า</th>
+            <th>ยี่ห้อ</th>
+            <th>ราคา</th>
+            <th>ส่วนลด</th>
+            <th>ส่วนลด Dealer</th>
+            <th>ส่วนลด Fanshine</th>
+            <th>ใช้งาน</th>
+            <th>สต็อก</th>
+            <th>จำนวนขาย</th>
+            <th>ขอซื้อ</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+            <td>33</td>
+            <td>Battery Acer Aspire 4741 : 10.8V-4400mAh Black (CYBERBATT) แบตเตอรี่โน๊ตบุ๊ค</td>
+            <td>แบตเตอรี่ Acer</td>
+            <td>Acer</td>
+            <td>1250.0000</td>
+            <td>0.0000</td>
+            <td>890.0000</td>
+            <td>880.0000</td>
+            <td>1</td>
+            <td>42</td>
+            <td>1</td>
+            <td>40</td>
+        </tr>
+            <tr>
+            <td>449</td>
+            <td>Battery Toshiba Satellite L750 : 10.8V-4400mAh Black (CYBERBATT)</td>
+            <td>แบตเตอรี่ Toshiba</td>
+            <td>Toshiba</td>
+            <td>1250.0000</td>
+            <td>0.0000</td>
+            <td>890.0000</td>
+            <td>880.0000</td>
+            <td>1</td>
+            <td>33</td>
+            <td>1</td>
+            <td>20</td>
+        </tr>
+            <tr>
+            <td>508</td>
+            <td>Keyboard Acer eMachines D725 Black Thai </td>
+            <td>คีย์บอร์ด Acer</td>
+            <td>Acer</td>
+            <td>550.0000</td>
+            <td>0.0000</td>
+            <td>390.0000</td>
+            <td>380.0000</td>
+            <td>1</td>
+            <td>2</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+            <tr>
+            <td>534</td>
+            <td>Keyboard Acer Aspire 3810 Black Thai คีบอร์ดโน๊ตบุ๊ค</td>
+            <td>คีย์บอร์ด Acer</td>
+            <td>Acer</td>
+            <td>550.0000</td>
+            <td>0.0000</td>
+            <td>390.0000</td>
+            <td>380.0000</td>
+            <td>1</td>
+            <td>106</td>
+            <td>5</td>
+            <td>0</td>
+        </tr>
+            <tr>
+            <td>542</td>
+            <td>Keyboard Macbook Air 11 inch A1370 (Mid 2011) Black Thai </td>
+            <td>คีบอร์ด แมคบุ๊ค</td>
+            <td>Apple</td>
+            <td>1500.0000</td>
+            <td>0.0000</td>
+            <td>1200.0000</td>
+            <td>1100.0000</td>
+            <td>1</td>
+            <td>22</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+            <tr>
+            <td>832</td>
+            <td>Keyboard Lenovo Ideapad G470 Black Thai </td>
+            <td>คีย์บอร์ด Lenovo</td>
+            <td>Lenovo</td>
+            <td>550.0000</td>
+            <td>0.0000</td>
+            <td>390.0000</td>
+            <td>380.0000</td>
+            <td>1</td>
+            <td>41</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+            <tr>
+            <td>896</td>
+            <td>Keyboard Toshiba Satellite L640 Black Thai </td>
+            <td>คีย์บอร์ด Toshiba</td>
+            <td>Toshiba</td>
+            <td>500.0000</td>
+            <td>0.0000</td>
+            <td>390.0000</td>
+            <td>380.0000</td>
+            <td>1</td>
+            <td>2</td>
+            <td>1</td>
+            <td>14</td>
+        </tr>
+            <tr>
+            <td>1051</td>
+            <td>Display LED 14.0 Slim 40 pin  1366x768 จอโน๊ตบุ๊ค</td>
+            <td>Size 14.0"</td>
+            <td> All Brand</td>
+            <td>1900.0000</td>
+            <td>0.0000</td>
+            <td>1590.0000</td>
+            <td>1550.0000</td>
+            <td>1</td>
+            <td>45</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+            <tr>
+            <td>1062</td>
+            <td>Display LED 14.0 Normal 40 pin B140XW01 1366x768 จอโน๊ตบุ๊ค</td>
+            <td>Size 14.0"</td>
+            <td> All Brand</td>
+            <td>1900.0000</td>
+            <td>0.0000</td>
+            <td>1590.0000</td>
+            <td>1550.0000</td>
+            <td>1</td>
+            <td>10</td>
+            <td>2</td>
+            <td>0</td>
+        </tr>
+            <tr>
+            <td>1065</td>
+            <td>Display LED 15.6 Slim 40 pin N156BGE-LB1 1366x768 </td>
+            <td>Size 15.6"</td>
+            <td> All Brand</td>
+            <td>1900.0000</td>
+            <td>0.0000</td>
+            <td>1590.0000</td>
+            <td>1490.0000</td>
+            <td>1</td>
+            <td>47</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+            <tr>
+            <td>1133</td>
+            <td>AC Adapter Samsung 19.0V-4.74A : 90W (5.5*3.0*12mm with pin) Cyberbatt </td>
+            <td>อแดปเตอร์ Samsung</td>
+            <td>Samsung</td>
+            <td>690.0000</td>
+            <td>0.0000</td>
+            <td>300.0000</td>
+            <td>290.0000</td>
+            <td>1</td>
+            <td>43</td>
+            <td>2</td>
+            <td>20</td>
+        </tr>
+        </tbody>
+</table>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="purchase_order | รับซ่อม  Macbook iMac  iphone ipad ขายอะไหล่แท้ มือหนึ่ง และมือสอง ซ่อมด่วนรอรับได้เลย เปลี่ยนชิพการ์ดจอ ลง OSX -ซ่อมหน้าจอ LED LCD เมนบอร์ดทุกอาการ">
+  <meta name="keyword" content="cyberbatt" />
+  <meta name="author" content="">
+  <title>
+    purchase_order | รับซ่อม  Macbook iMac  iphone ipad ขายอะไหล่แท้ มือหนึ่งและมือสอง - cyberbatt  </title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/theme/datepicker/css/bootstrap-datepicker3.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/theme/datepicker/css/bootstrap-timepicker.css">
+  <link href="http://cyberbatt.com/admin888/css/fileinput.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/plugins/morris/morris.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/css/loading-bar.min.css">
+  <link rel="stylesheet" type="text/css" href="http://cyberbatt.com/admin888/assets/dist/css/sweetalert2.css">
+  <link rel="stylesheet" href="http://cyberbatt.com/admin888/assets/dist/css/AdminLTE.min.css">
+  <style>
+    .error {
+      color: red;
+      font-weight: normal;
+    }
+  </style>
+  <!-- jQuery 2.1.4 -->
+  <script src="http://cyberbatt.com/admin888/assets/js/jQuery-2.1.4.min.js"></script>
+  <script type="text/javascript">
+    var baseURL = "http://cyberbatt.com/admin888/";
+  </script>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini" ng-app="myApp" ng-controller="myCtrl">
+  <div class="wrapper">
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="http://cyberbatt.com/admin888/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>CB</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Cyberbatt</b></span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="http://cyberbatt.com/admin888/assets/dist/img/avatar.png" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Supachai</span>
+                </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="http://cyberbatt.com/admin888/assets/dist/img/avatar.png" class="img-circle" alt="User Image" />
+                  <p>
+                    Supachai                  </p>
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="text-center">
+                    <a href="http://cyberbatt.com/admin888/signout" class="btn btn-default btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="http://cyberbatt.com/admin888/assets/dist/img/avatar.png" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>Supachai</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+          <li class="header">MAIN NAVIGATION</li>
+                                                                                                      <li class="">
+                  <a href="http://cyberbatt.com/admin888/dashboard">
+                    <i class="fa fa-fw fa-dashboard"></i> <span>Dashboard</span>
+                  </a>
+                </li>
+                                                                                                                                  <li class="active treeview">
+                  <a href="http://cyberbatt.com/admin888/#">
+                    <i class="fa fa-bar-chart"></i> <span>รายงาน</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                                                                      <li class="">
+                            <a href="http://cyberbatt.com/admin888/report_order/report_order">
+                              <i class="fa fa-circle-o"></i> <span>รายงานชำระเงิน</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <li class="">
+                            <a href="http://cyberbatt.com/admin888/report_order/report_product">
+                              <i class="fa fa-circle-o"></i> <span>รายงานสินค้าอันดับขายดี</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                  <li class="">
+                            <a href="http://cyberbatt.com/admin888/report_order/report_price">
+                              <i class="fa fa-circle-o"></i> <span>รายงานยอดขายสินค้า</span>
+                            </a>
+                          </li>
+                                                                                              <li class="active">
+                            <a href="http://cyberbatt.com/admin888/report_order/report_purchase_order">
+                              <i class="fa fa-circle-o"></i> <span>ติดตามใบขอซื้อ</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                  </ul>
+                </li>
+
+                                                                                                          <li class=" treeview">
+                  <a href="http://cyberbatt.com/admin888/#">
+                    <i class="fa fa-file-text"></i> <span>ออเดอร์</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                                                                                                                                                                                                          <li class="">
+                            <a href="http://cyberbatt.com/admin888/orders">
+                              <i class="fa fa-circle-o"></i> <span>ใบสั่งซื้อ</span>
+                            </a>
+                          </li>
+                                                                                                                                          <li class="">
+                            <a href="http://cyberbatt.com/admin888/backend_order">
+                              <i class="fa fa-circle-o"></i> <span>เปิดใบสั่งซื้อ</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </ul>
+                </li>
+
+                                                                                                          <li class=" treeview">
+                  <a href="http://cyberbatt.com/admin888/#">
+                    <i class="fa fa-file-o"></i> <span>เอกสาร</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                                                                                                                                                                                                                                                                                                                                                                                          <li class="">
+                            <a href="http://cyberbatt.com/admin888/purchase_order">
+                              <i class="fa fa-circle-o"></i> <span>ใบขอซื้อ</span>
+                            </a>
+                          </li>
+                                                                                                                                          <li class="">
+                            <a href="http://cyberbatt.com/admin888/receive">
+                              <i class="fa fa-long-arrow-right"></i> <span>ใบรับเข้า</span>
+                            </a>
+                          </li>
+                                                                                              <li class="">
+                            <a href="http://cyberbatt.com/admin888/product_serial">
+                              <i class="fa fa-file-text"></i> <span>serial number</span>
+                            </a>
+                          </li>
+                                                                                              <li class="">
+                            <a href="http://cyberbatt.com/admin888/return_receive">
+                              <i class="fa fa-repeat"></i> <span>ใบรับคืน</span>
+                            </a>
+                          </li>
+                                                                                              <li class="">
+                            <a href="http://cyberbatt.com/admin888/credit_note">
+                              <i class="fa fa-credit-card-alt"></i> <span>ใบลดหนี้</span>
+                            </a>
+                          </li>
+                                                                                              <li class="">
+                            <a href="http://cyberbatt.com/admin888/delivery_return">
+                              <i class="fa fa-paper-plane"></i> <span>ใบส่งคืน</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </ul>
+                </li>
+
+                                                                                                                                                                                                                                                                                                        <li class=" treeview">
+                  <a href="http://cyberbatt.com/admin888/products">
+                    <i class="fa fa-desktop"></i> <span>สินค้า</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <li class="">
+                            <a href="http://cyberbatt.com/admin888/products">
+                              <i class="fa fa-circle-o"></i> <span>สินค้า</span>
+                            </a>
+                          </li>
+                                                                                              <li class="">
+                            <a href="http://cyberbatt.com/admin888/producttype">
+                              <i class="fa fa-circle-o"></i> <span>หมวดสินค้า</span>
+                            </a>
+                          </li>
+                                                                                              <li class="">
+                            <a href="http://cyberbatt.com/admin888/productbrand">
+                              <i class="fa fa-circle-o"></i> <span>ยี่ห้อสินค้า</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                                                                                                                                                                  </ul>
+                </li>
+
+                                                                                                                                                                                                                                                                                <li class="">
+                  <a href="http://cyberbatt.com/admin888/members">
+                    <i class="fa fa-users"></i> <span>สมาชิก dealer</span>
+                  </a>
+                </li>
+                                                                                                                                  <li class=" treeview">
+                  <a href="http://cyberbatt.com/admin888/shipping">
+                    <i class="fa fa-list-alt"></i> <span>การจัดส่ง</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                                                                                                                                                              <li class="">
+                            <a href="http://cyberbatt.com/admin888/shipping_method">
+                              <i class="fa fa-circle-o"></i> <span>วิธีการจัดส่ง</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <li class="">
+                            <a href="http://cyberbatt.com/admin888/shipping_rate">
+                              <i class="fa fa-circle-o"></i> <span>อัตราค่าจัดส่ง</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                  <li class="">
+                            <a href="http://cyberbatt.com/admin888/special_county">
+                              <i class="fa fa-circle-o"></i> <span>สถานที่พิเศษ</span>
+                            </a>
+                          </li>
+                                                                                                                                                                                                                                                                                                                                      </ul>
+                </li>
+
+                                                                                  <li class="">
+                  <a href="http://cyberbatt.com/admin888/slider">
+                    <i class="fa fa-bullhorn"></i> <span>slider</span>
+                  </a>
+                </li>
+                                                                    <li class="">
+                  <a href="http://cyberbatt.com/admin888/account">
+                    <i class="fa fa-user"></i> <span>ผู้ใช้</span>
+                  </a>
+                </li>
+                                </ul>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container-fluid box">
+        <div class="page-header">
+            <h1>รายงานจัดซื้อ
+        </div>
+        <div class="row">
+            <form action="http://cyberbatt.com/admin888/report_order/report_purchase_order/1/?method=post" method="post" class="form" role="form">
+              <fieldset>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <span id="startDate" style="display:none">2017-08-26</span>
+                      <label for="">จากวันทีใบสั่งซื้อ</label>
+                      <input type="text" class="form-control" id="dateStart" name="dateStart" placeholder="วันที่เริ่มต้นค้นหา" value="2017-08-26">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <span id="endDate"></span>
+                      <label for="">ถึงวันที่ใบสั่งซื้อ</label>
+                      <input type="text" class="form-control" id="dateEnd" name="dateEnd" placeholder="วันที่สิ้นสุดการค้นหา" value="2017-08-26">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="search">รหัส + ชื่อ + Model + รายละเอียด</label>
+                    <input id="search" name="search"  value="" type="text" class="form-control input-md">
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="select_brand">ยี่ห้อสินค้า</label>
+                    <select id="select_brand" name="select_brand" class="form-control">
+                        <option value="">ทั้งหมด</option>
+                                                                                    <option value="17">  10.2 inch</option>
+                                                                                                                <option value="18">  11.1 inch</option>
+                                                                                                                <option value="19">  11.6 inch</option>
+                                                                                                                <option value="20">  12.1 inch</option>
+                                                                                                                <option value="21">  12.5 inch</option>
+                                                                                                                <option value="22">  13.1 inch</option>
+                                                                                                                <option value="23">  13.3 inch</option>
+                                                                                                                <option value="24">  14.0 inch</option>
+                                                                                                                <option value="25">  14.1 inch</option>
+                                                                                                                <option value="26">  15.4 inch</option>
+                                                                                                                <option value="27">  15.6 inch</option>
+                                                                                                                <option value="28">  17.1 inch</option>
+                                                                                                                <option value="29">  17.3 inch</option>
+                                                                                                                <option value="30"> All Brand</option>
+                                                                                                                <option value="1">Acer</option>
+                                                                                                                <option value="12">Apple</option>
+                                                                                                                <option value="2">Asus</option>
+                                                                                                                <option value="14">CYBERBATT</option>
+                                                                                                                <option value="3">Dell</option>
+                                                                                                                <option value="16">Focus</option>
+                                                                                                                <option value="5">Fujitsu</option>
+                                                                                                                <option value="4">HP</option>
+                                                                                                                <option value="6">IBM</option>
+                                                                                                                <option value="31">Joyroom</option>
+                                                                                                                <option value="7">Lenovo</option>
+                                                                                                                <option value="15">LiverPhone</option>
+                                                                                                                <option value="8">MSI</option>
+                                                                                                                <option value="9">Samsung</option>
+                                                                                                                <option value="10">Sony</option>
+                                                                                                                <option value="11">Toshiba</option>
+                                                    
+                    </select>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="select_type">หมวดสินค้า</label>
+                    <select id="select_type" name="select_type" class="form-control">
+                        <option value="">ทั้งหมด</option>
+                                                                                    <option value="159">  อะไหล่ แมคบุ๊ค</option>
+                                                                                                                <option value="70"> อะไหล่ ไอแมค</option>
+                                                                                                                <option value="108"> อแดปเตอร์ อื่นๆ</option>
+                                                                                                                <option value="1"> แบตเตอรี่โน๊ตบุ๊ค</option>
+                                                                                                                <option value="54">Adapter Acer</option>
+                                                                                                                <option value="56">Adapter Asus</option>
+                                                                                                                <option value="57">Adapter Dell</option>
+                                                                                                                <option value="58">Adapter HP/Compaq</option>
+                                                                                                                <option value="62">Adapter Ibm</option>
+                                                                                                                <option value="59">Adapter Lenovo</option>
+                                                                                                                <option value="63">Adapter Msi</option>
+                                                                                                                <option value="64">Adapter Samsung</option>
+                                                                                                                <option value="60">Adapter Sony</option>
+                                                                                                                <option value="61">Adapter Toshiba</option>
+                                                                                                                <option value="167">ADHESIVE TAPE</option>
+                                                                                                                <option value="98">All in One</option>
+                                                                                                                <option value="33">Battery Acer</option>
+                                                                                                                <option value="34">Battery Asus</option>
+                                                                                                                <option value="35">Battery Dell</option>
+                                                                                                                <option value="36">Battery HP/Compaq</option>
+                                                                                                                <option value="40">Battery IBM</option>
+                                                                                                                <option value="37">Battery Lenovo</option>
+                                                                                                                <option value="41">Battery MSI</option>
+                                                                                                                <option value="42">Battery Samsung</option>
+                                                                                                                <option value="38">Battery Sony</option>
+                                                                                                                <option value="39">Battery Toshiba</option>
+                                                                                                                <option value="166">Harddisk</option>
+                                                                                                                <option value="154">I/O Board Macbook</option>
+                                                                                                                <option value="165">LCD iMac</option>
+                                                                                                                <option value="153">Power Supply</option>
+                                                                                                                <option value="81">Size 08.9 "</option>
+                                                                                                                <option value="82">Size 10.1 "</option>
+                                                                                                                <option value="83">Size 11.6"</option>
+                                                                                                                <option value="84">Size 12.1"</option>
+                                                                                                                <option value="85">Size 12.5"</option>
+                                                                                                                <option value="86">Size 13.1"</option>
+                                                                                                                <option value="87">Size 13.3"</option>
+                                                                                                                <option value="88">Size 13.4"</option>
+                                                                                                                <option value="89">Size 14.0"</option>
+                                                                                                                <option value="90">Size 14.1"</option>
+                                                                                                                <option value="91">Size 15.4"</option>
+                                                                                                                <option value="92">Size 15.6"</option>
+                                                                                                                <option value="93">Size 16.0"</option>
+                                                                                                                <option value="94">Size 16.4"</option>
+                                                                                                                <option value="95">Size 17.1"</option>
+                                                                                                                <option value="96">Size 17.3"</option>
+                                                                                                                <option value="97">Size 18.0"</option>
+                                                                                                                <option value="15">กล้อง</option>
+                                                                                                                <option value="116">กล้องขยาย โคมไฟ</option>
+                                                                                                                <option value="161">การ์ดไวไฟ แมคบุ๊ค</option>
+                                                                                                                <option value="66">คีบอร์ด แมคบุ๊ค</option>
+                                                                                                                <option value="2">คีบอร์ดโน๊ตบุ๊ค</option>
+                                                                                                                <option value="65">คีย์บอร์ด Acer</option>
+                                                                                                                <option value="67">คีย์บอร์ด Asus</option>
+                                                                                                                <option value="73">คีย์บอร์ด Dell</option>
+                                                                                                                <option value="74">คีย์บอร์ด HP/Compaq</option>
+                                                                                                                <option value="78">คีย์บอร์ด IBM</option>
+                                                                                                                <option value="75">คีย์บอร์ด Lenovo</option>
+                                                                                                                <option value="79">คีย์บอร์ด Msi</option>
+                                                                                                                <option value="80">คีย์บอร์ด Samsung</option>
+                                                                                                                <option value="76">คีย์บอร์ด Sony</option>
+                                                                                                                <option value="77">คีย์บอร์ด Toshiba</option>
+                                                                                                                <option value="7">จอ แมคบุ๊ค</option>
+                                                                                                                <option value="4">จอโน๊ตบุ๊ค</option>
+                                                                                                                <option value="147">ชิพการ์ดจอ ATI</option>
+                                                                                                                <option value="146">ชิพการ์ดจอ NVIDIA</option>
+                                                                                                                <option value="115">ชุดไขควง</option>
+                                                                                                                <option value="5">ดีวีดี</option>
+                                                                                                                <option value="162">ดีวีดี แมคบุ๊ค</option>
+                                                                                                                <option value="14">ทัชแพด</option>
+                                                                                                                <option value="163">บอดี้ แมคบุ๊ค</option>
+                                                                                                                <option value="13">บอดี้โน๊ตบุ๊ค</option>
+                                                                                                                <option value="17">บอร์ด</option>
+                                                                                                                <option value="132">บานพับ Acer</option>
+                                                                                                                <option value="10">บานพับโน๊ตบุ๊ค</option>
+                                                                                                                <option value="155">พัดลม แมคบุ๊ค</option>
+                                                                                                                <option value="16">พัดลมซีพียู</option>
+                                                                                                                <option value="169">ฟิล์ม</option>
+                                                                                                                <option value="114">มัลติมิเตอร์</option>
+                                                                                                                <option value="160">ยางกันลื่น แมคบุ๊ค</option>
+                                                                                                                <option value="156">ลำโพง แมคบุ๊ค</option>
+                                                                                                                <option value="8">ลำโพงโน๊ตบุ๊ค</option>
+                                                                                                                <option value="158">สายแพร LED แมคบุ๊ค</option>
+                                                                                                                <option value="11">สายแพรจอ</option>
+                                                                                                                <option value="68">อะไหล่ โน๊ตบุ๊ค </option>
+                                                                                                                <option value="170">อะไหล่ โน๊ตบุ๊คอื่นๆ</option>
+                                                                                                                <option value="72">อะไหล่ ไอแพด</option>
+                                                                                                                <option value="71">อะไหล่ ไอโฟน</option>
+                                                                                                                <option value="168">อุปกรณ์ชาร์จ</option>
+                                                                                                                <option value="100">อุปกรณ์เสริม แมคบุ๊ค</option>
+                                                                                                                <option value="101">อุปกรณ์เสริม โน๊ตบุ๊ค</option>
+                                                                                                                <option value="99">อุปกรณ์เสริม ไอแมค</option>
+                                                                                                                <option value="102">อุปกรณ์เสริม ไอโฟน ไอแพด</option>
+                                                                                                                <option value="3">อแดปเตอร์</option>
+                                                                                                                <option value="43">อแดปเตอร์ Acer</option>
+                                                                                                                <option value="45">อแดปเตอร์ Asus</option>
+                                                                                                                <option value="46">อแดปเตอร์ Dell</option>
+                                                                                                                <option value="131">อแดปเตอร์ Fujitsu</option>
+                                                                                                                <option value="47">อแดปเตอร์ HP/Compaq</option>
+                                                                                                                <option value="51">อแดปเตอร์ IBM</option>
+                                                                                                                <option value="48">อแดปเตอร์ Lenovo</option>
+                                                                                                                <option value="52">อแดปเตอร์ Msi</option>
+                                                                                                                <option value="53">อแดปเตอร์ Samsung</option>
+                                                                                                                <option value="49">อแดปเตอร์ Sony</option>
+                                                                                                                <option value="50">อแดปเตอร์ Toshiba</option>
+                                                                                                                <option value="44">อแดปเตอร์ แมคบุ๊ค</option>
+                                                                                                                <option value="18">ฮาร์ดดิส</option>
+                                                                                                                <option value="157">ฮาร์ดดิส & สายแพร</option>
+                                                                                                                <option value="106">เครื่อง แมคบุ๊ค</option>
+                                                                                                                <option value="107">เครื่อง โน๊ตบุ๊ค</option>
+                                                                                                                <option value="105">เครื่อง ไอแพด</option>
+                                                                                                                <option value="103">เครื่อง ไอแมค</option>
+                                                                                                                <option value="104">เครื่อง ไอโฟน</option>
+                                                                                                                <option value="117">เครื่องมือ อื่นๆ</option>
+                                                                                                                <option value="69">เครื่องมือช่างซ่อม</option>
+                                                                                                                <option value="112">เครื่องเปลี่ยนชิพ</option>
+                                                                                                                <option value="113">เครื่องเป่าลมร้อน</option>
+                                                                                                                <option value="12">เมนบอร์ด</option>
+                                                                                                                <option value="164">เมนบอร์ด แมคบุ๊ค</option>
+                                                                                                                <option value="126">แทร็คแพด</option>
+                                                                                                                <option value="20">แบตเตอรี่ Acer</option>
+                                                                                                                <option value="21">แบตเตอรี่ Asus</option>
+                                                                                                                <option value="22">แบตเตอรี่ Dell</option>
+                                                                                                                <option value="6">แบตเตอรี่ Fujisu</option>
+                                                                                                                <option value="23">แบตเตอรี่ HP/Compaq</option>
+                                                                                                                <option value="27">แบตเตอรี่ IBM</option>
+                                                                                                                <option value="24">แบตเตอรี่ Lenovo</option>
+                                                                                                                <option value="28">แบตเตอรี่ MSI</option>
+                                                                                                                <option value="29">แบตเตอรี่ Samsung</option>
+                                                                                                                <option value="25">แบตเตอรี่ Sony</option>
+                                                                                                                <option value="26">แบตเตอรี่ Toshiba</option>
+                                                                                                                <option value="19">แบตเตอรี่ แมคบุ๊ค</option>
+                                                                                                                <option value="9">แรม</option>
+                                                                                                                <option value="148">ไอแพด LCD</option>
+                                                                                                                <option value="151">ไอแพด กล้องหน้า</option>
+                                                                                                                <option value="152">ไอแพด กล้องหลัง</option>
+                                                                                                                <option value="124">ไอแพด จอทัช</option>
+                                                                                                                <option value="149">ไอแพด ชุดแพรชาร์จ</option>
+                                                                                                                <option value="150">ไอแพด ชุดแพรปุ่มโฮม</option>
+                                                                                                                <option value="125">ไอแพด แบตเตอรี่</option>
+                                                                                                                <option value="120">ไอโฟน กล้อง</option>
+                                                                                                                <option value="122">ไอโฟน ชุดปุ่มโฮม</option>
+                                                                                                                <option value="121">ไอโฟน ชุดสายแพร</option>
+                                                                                                                <option value="118">ไอโฟน บอดี้</option>
+                                                                                                                <option value="123">ไอโฟน มอเตอร์สั่น</option>
+                                                                                                                <option value="119">ไอโฟน ลำโพง</option>
+                                                                                                                <option value="109">ไอโฟน หน้าจอ</option>
+                                                                                                                <option value="111">ไอโฟน เมนบอร์ด</option>
+                                                                                                                <option value="110">ไอโฟน แบตเตอรี่</option>
+                                                                        </select>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="promotion">โปรโมชั่น</label>
+                    <div class="checkbox">
+                        <label for="all_promotion">
+                            <input type="checkbox" name="all_promotion" id="all_promotion" value="1"
+                                checked > ทั้งหมด
+                        </label>
+                        <label for="is_promotion">
+                            <input type="checkbox" name="is_promotion" id="is_promotion" value="1"
+                              > ลดราคา
+                        </label>
+                        <label for="is_sale">
+                            <input type="checkbox" name="is_sale" id="is_sale" value="1"
+                             > แนะนำ
+                        </label>
+                        <label for="is_hot">
+                            <input type="checkbox" name="is_hot" id="is_hot" value="1"
+                            > ได้รับความนิยม
+                        </label>
+                        <label for="isactive-0">
+                            <input type="checkbox" name="isactive" id="isactive" value="1"
+                             checked > ใช้งานสินค้า
+                        </label>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="from_stock">สินค้าคงเหลือ</label>
+                    <input id="from_stock" name="from_stock" type="number"
+                        value="0" class="form-control input-md">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="to_stock">ถึง</label>
+                    <input id="to_stock" name="to_stock" type="number"
+                    value="9999" class="form-control input-md">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="from_stock">จำนวนขาย</label>
+                    <input id="from_stock" name="from_order_qty" type="number"
+                        value="1" class="form-control input-md">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="to_stock">ถึง</label>
+                    <input id="to_stock" name="to_order_qty" type="number"
+                    value="9999" class="form-control input-md">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="from_stock">จำนวนขอซื้อ</label>
+                    <input id="from_stock" name="from_purchase_order_qty" type="number"
+                        value="0" class="form-control input-md">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="to_stock">ถึง</label>
+                    <input id="to_stock" name="to_purchase_order_qty" type="number"
+                    value="9999" class="form-control input-md">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="is_export">
+                        <input type="checkbox" name="is_export" id="is_hot" value="1"
+                        > export to excel
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                      <button type="submit" class="btn btn-primary">ค้นหา</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+            <p> *** วันที่ขาย
+              2017-08-26 - 2017-08-26 ***</p>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Stock</th>
+                    <th>จำนวนขาย</th>
+                    <th>ขอซื้อ</th>
+
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201706/thumb_Acer_Aspire_4741_2.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 33<br>
+                      <strong>Name : </strong> Battery Acer Aspire 4741 : 10.8V-4400mAh Black (CYBERBATT) แบตเตอรี่โน๊ตบุ๊ค<br>
+                      <strong>Type : </strong> แบตเตอรี่ Acer<br>
+                      <strong>brand : </strong> Acer<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="1250.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="890.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="880.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 08-06-2017 13:25</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">42 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-success">40 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201706/thumb_Battery_Toshiba_Satellite_L750_1.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 449<br>
+                      <strong>Name : </strong> Battery Toshiba Satellite L750 : 10.8V-4400mAh Black (CYBERBATT)<br>
+                      <strong>Type : </strong> แบตเตอรี่ Toshiba<br>
+                      <strong>brand : </strong> Toshiba<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="1250.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="890.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="880.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 08-06-2017 17:15</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">33 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-success">20 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201705/thumb_Keyboard_Acer_eMachines_D725_Black_Thai.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 508<br>
+                      <strong>Name : </strong> Keyboard Acer eMachines D725 Black Thai <br>
+                      <strong>Type : </strong> คีย์บอร์ด Acer<br>
+                      <strong>brand : </strong> Acer<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="550.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="390.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="380.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 09-05-2017 01:55</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-danger">2 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                                            <strong><span class="text-danger">0</span></strong>
+                                            </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201705/thumb_Keyboard_Acer_Aspire_3810_Black_Thai.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 534<br>
+                      <strong>Name : </strong> Keyboard Acer Aspire 3810 Black Thai คีบอร์ดโน๊ตบุ๊ค<br>
+                      <strong>Type : </strong> คีย์บอร์ด Acer<br>
+                      <strong>brand : </strong> Acer<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="550.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="390.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="380.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 17-08-2017 09:40</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">106 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-success">5 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                                            <strong><span class="text-danger">0</span></strong>
+                                            </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201705/thumb_Keyboard_Macbook_Air_11_inch_A1370_Mid_2011_Black_Thai.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 542<br>
+                      <strong>Name : </strong> Keyboard Macbook Air 11 inch A1370 (Mid 2011) Black Thai <br>
+                      <strong>Type : </strong> คีบอร์ด แมคบุ๊ค<br>
+                      <strong>brand : </strong> Apple<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="1500.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="1200.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="1100.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 03-06-2017 00:17</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">22 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                                            <strong><span class="text-danger">0</span></strong>
+                                            </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201705/thumb_Keyboard_Lenovo_Ideapad_G470_Black_Thai.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 832<br>
+                      <strong>Name : </strong> Keyboard Lenovo Ideapad G470 Black Thai <br>
+                      <strong>Type : </strong> คีย์บอร์ด Lenovo<br>
+                      <strong>brand : </strong> Lenovo<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="550.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="390.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="380.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 30-05-2017 11:27</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">41 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                                            <strong><span class="text-danger">0</span></strong>
+                                            </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201705/thumb_Keyboard_Toshiba_Satellite_L640_Black_Thai.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 896<br>
+                      <strong>Name : </strong> Keyboard Toshiba Satellite L640 Black Thai <br>
+                      <strong>Type : </strong> คีย์บอร์ด Toshiba<br>
+                      <strong>brand : </strong> Toshiba<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="500.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="390.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="380.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 31-05-2017 19:01</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-danger">2 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-success">14 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201706/thumb_1_38.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 1051<br>
+                      <strong>Name : </strong> Display LED 14.0 Slim 40 pin  1366x768 จอโน๊ตบุ๊ค<br>
+                      <strong>Type : </strong> Size 14.0"<br>
+                      <strong>brand : </strong>  All Brand<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="1900.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="1590.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="1550.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 27-06-2017 13:45</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">45 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                                            <strong><span class="text-danger">0</span></strong>
+                                            </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201707/thumb_1_84.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 1062<br>
+                      <strong>Name : </strong> Display LED 14.0 Normal 40 pin B140XW01 1366x768 จอโน๊ตบุ๊ค<br>
+                      <strong>Type : </strong> Size 14.0"<br>
+                      <strong>brand : </strong>  All Brand<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="1900.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="1590.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="1550.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 24-07-2017 10:02</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">10 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">2 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                                            <strong><span class="text-danger">0</span></strong>
+                                            </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201706/thumb_1_41.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 1065<br>
+                      <strong>Name : </strong> Display LED 15.6 Slim 40 pin N156BGE-LB1 1366x768 <br>
+                      <strong>Type : </strong> Size 15.6"<br>
+                      <strong>brand : </strong>  All Brand<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="1900.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="1590.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="1490.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 02-04-2017 22:31</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 27-06-2017 18:33</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">47 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">1 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                                            <strong><span class="text-danger">0</span></strong>
+                                            </td>
+                  </tr>
+                                    <tr>
+                    <td class="text-center">
+                      <img src="http://www.cyberbatt.com/uploads/201705/thumb_Cyberbatt_AC_Adapter_Samsung_19.0V-4.7A_90W_5.5_3.0_12mm_with_pin.jpg" class="img-thumbnail" alt="" width="100px">
+                    </td>
+                    <td>
+                      <strong>SKU : </strong> 1133<br>
+                      <strong>Name : </strong> AC Adapter Samsung 19.0V-4.74A : 90W (5.5*3.0*12mm with pin) Cyberbatt <br>
+                      <strong>Type : </strong> อแดปเตอร์ Samsung<br>
+                      <strong>brand : </strong> Samsung<br>
+                    </td>
+                    <td>
+
+                        <span>ราคา : </span><span class="text-success" ng-bind="690.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ลดราคา : </span><span class="text-danger" ng-bind="0.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer : </span><span class="text-info" ng-bind="300.0000 | currency:'฿':0"></span>
+                        <br/>
+                        <span>ราคา dealer fanshine : </span><span class="text-danger" ng-bind="290.0000 | currency:'฿':0"></span>
+                        <br/>
+                    </td>
+                    <td>
+                        <span><i class="fa fa-calendar-o"></i> 06-05-2017 23:37</span>
+                        <br/>
+                        <span><i class="fa fa-calendar"></i> 15-07-2017 16:53</span>
+                        <br/>
+                                                       <span><i class="fa fa-check"></i> ใช้งาน</span>
+                            <br/>
+                                            </td>
+                    <td>
+                                                    <strong><span class="text-success">43 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-danger">2 <i class="fa fa-caret-down"></i></span></strong>
+                                                                    </td>
+                    <td>
+                                                    <strong><span class="text-success">20 <i class="fa fa-caret-up"></i></span></strong>
+                                                                    </td>
+                  </tr>
+                                  </table>
+            </div><!-- /.box-body -->
+            <div class="box-footer clearfix">
+                            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+  </div>
+  <!-- /.content -->
+
+<footer class="main-footer">
+		<div class="pull-right hidden-xs">
+			<b>WISADEV</b> Admin System | Version 1.0
+		</div>
+		<strong>Copyright &copy; 2014-2017 <a href="http://cyberbatt.com/admin888/">WISADEV</a>.</strong> All rights reserved.
+</footer>
+<!-- jQuery UI 1.11.2 -->
+<!-- <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- jQuery 2.2.3 -->
+<script src="http://cyberbatt.com/admin888/assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/plugins/chartjs/Chart.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/plugins/fastclick/fastclick.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/dist/js/app.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/dist/js/demo.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/js/jquery.validate.js" type="text/javascript"></script>
+<script src="http://cyberbatt.com/admin888/assets/js/validation.js" type="text/javascript"></script>
+<script src="http://cyberbatt.com/admin888/assets/dist/js/sweetalert2.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/js/angular.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/js/ui-bootstrap-tpls-1.2.1.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/js/bootstrap-notify.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/js/loading-bar.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/datepicker/js/bootstrap-datepicker.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/datepicker/locales/bootstrap-datepicker.th.min.js"></script>
+<script src="http://cyberbatt.com/admin888/assets/datepicker/js/bootstrap-timepicker.js"></script>
+<script src="http://cyberbatt.com/admin888/js/fileinput.js" type="text/javascript"></script>
+<script src="http://cyberbatt.com/admin888/js/fileinput_locale_th.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<script type="text/javascript">
+	var app = angular.module("myApp", ['angular-loading-bar','ui.bootstrap']);
+	app.controller("myCtrl", function($scope, $http, $uibModal, $log) {
+	    $scope.firstName = "John";
+	    $scope.lastName = "Doe";
+	    $scope.stock_data
+
+	       $scope.getStock = function(product_id) {
+            $scope.product_id = product_id
+	             $http({
+	            method: 'POST',
+	            url: 'http://cyberbatt.com/admin888/products/getstock',
+	             headers: {
+	           'Content-Type': 'application/x-www-form-urlencoded'
+	         },
+
+	         data: { product_id : $scope.product_id}
+
+	        }).success(function(data) {
+	            $scope.items = data;
+	            //console.log(data);
+	       });
+
+       }
+		  $scope.animationsEnabled = true;
+
+		  $scope.open = function (product_id) {
+
+		    var modalInstance = $uibModal.open({
+		      animation: $scope.animationsEnabled,
+		      templateUrl: 'myModalContent.html',
+		      controller: 'ModalInstanceCtrl',
+		      size: "",
+		      resolve: {
+		        items: function () {
+		          return product_id;
+		        }
+		      }
+		    });
+
+		    modalInstance.result.then(function (selectedItem) {
+		      $scope.selected = selectedItem;
+		    }, function () {
+		      $log.info('Modal dismissed at: ' + new Date());
+		    });
+		  };
+
+		  $scope.toggleAnimation = function () {
+		    $scope.animationsEnabled = !$scope.animationsEnabled;
+		  };
+
+		   $scope.changeProvince = function() {
+
+		        $http({
+		            method: 'POST',
+		            url: 'http://cyberbatt.com/admin888/special_county/getProvince',
+		            headers: {
+		                'Content-Type': 'application/x-www-form-urlencoded'
+		            },
+
+		            data: {
+		                province_id: $scope.province
+		            }
+
+		        }).success(function(data) {
+		            $scope.items = data;
+		            //console.log(data);
+		        });
+		    };
+
+	});
+	// enter to tab
+	app.directive('enter',function(){
+		return function(scope,element,attrs){
+			element.bind("keydown keypress",function(event){
+				if(event.which===13){
+					event.preventDefault();
+					var fields=$(this).parents('form:eq(0),body').find('input, textarea, select');
+					var index=fields.index(this);
+					if(index> -1&&(index+1)<fields.length)
+						fields.eq(index+1).focus();
+				}
+			});
+		};
+	});
+
+	// Please note that $uibModalInstance represents a modal window (instance) dependency.
+	// It is not the same as the $uibModal service used above.
+
+	angular.module('ui.bootstrap').controller('ModalInstanceCtrl', function ($scope,$http, $uibModalInstance, items) {
+
+		$scope.product_id = items
+	             $http({
+	            method: 'POST',
+	            url: 'http://cyberbatt.com/admin888/products/getstock',
+	             headers: {
+	           'Content-Type': 'application/x-www-form-urlencoded'
+	         },
+
+	         data: { product_id : $scope.product_id}
+
+	        }).success(function(data) {
+	            $scope.items_stock = data;
+	            //console.log(data);
+	       });
+
+
+	  $scope.items = items;
+	  $scope.selected = {
+	    item: $scope.items[0]
+	  };
+
+	  $scope.ok = function () {
+	    $uibModalInstance.close($scope.selected.item);
+	  };
+
+	  $scope.cancel = function () {
+	    $uibModalInstance.dismiss('cancel');
+	  };
+
+	});
+
+
+
+</script>
+<script type="text/javascript">
+
+  /*Datepicker*/
+		var minD = $("#startDate").html();
+        var maxD = $("#endDate").html();
+		var startDateTextBox = $('#dateStart');
+		var endDateTextBox = $('#dateEnd');
+
+		startDateTextBox.datepicker({
+			format: "yyyy-mm-dd",
+			language: "th",
+			autoclose: true,
+			todayHighlight: true,
+			todayBtn: true,
+			enableOnReadonly : true,
+			changeMonth : true ,
+			changeYear : true,
+			yearRange : "c-2:c+80",
+			onClose: function(dateText, inst) {
+				if (endDateTextBox.val() != '') {
+					var testStartDate = startDateTextBox.datetimepicker('getDate');
+					var testEndDate = endDateTextBox.datetimepicker('getDate');
+					if (testStartDate > testEndDate)
+						endDateTextBox.datetimepicker('setDate', testStartDate);
+				}
+				else {
+					endDateTextBox.val(dateText);
+				}
+			},
+			onSelect: function (selectedDateTime){
+				endDateTextBox.datetimepicker('option', 'minDate', startDateTextBox.datetimepicker('getDate') );
+			}
+		});
+		endDateTextBox.datepicker({
+			format: "yyyy-mm-dd",
+			language: "th",
+			autoclose: true,
+			todayHighlight: true,
+			todayBtn: true,
+			enableOnReadonly : true,
+			changeMonth : true ,
+			changeYear : true,
+			yearRange : "c-2:c+80",
+			onClose: function(dateText, inst) {
+				if (startDateTextBox.val() != '') {
+					var testStartDate = startDateTextBox.datetimepicker('getDate');
+					var testEndDate = endDateTextBox.datetimepicker('getDate');
+					if (testStartDate > testEndDate)
+						startDateTextBox.datetimepicker('setDate', testEndDate);
+				}
+				else {
+					startDateTextBox.val(dateText);
+				}
+			},
+			onSelect: function (selectedDateTime){
+				startDateTextBox.datetimepicker('option', 'maxDate', endDateTextBox.datetimepicker('getDate') );
+			}
+		});
+</script>
+</body>
+</html>

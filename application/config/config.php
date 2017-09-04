@@ -26,14 +26,14 @@ $config['short_sitename'] = "TOS";
 $config['sitename'] = "TOS MA Project";
 $config['tagline'] = "TOS MA Project";
 $config['author'] = "TOS";
-$config['url_img'] = "http://demo.wisadev.com/";
-$config['no_url_img'] = "http://demo.wisadev.com/uploads/no_image.jpg";
+$config['url_img'] = "http://192.168.10.19/";
+$config['no_url_img'] = "http://192.168.10.19/uploads/no_image.jpg";
 
 $config['email_owner'] = "supachai@wisadev.com";
 $config['email_name'] = "supachai";
 $config['email_noreply'] = "system@wisadev.com";
 $config['pass_mail_noreply'] = "system";
-$config['weburl'] = "http://demo.wisadev.com/";
+$config['weburl'] = "http://192.168.10.19/";
 
 $config['email_cc_group'] = "supachai.wi@gmail.com";
 

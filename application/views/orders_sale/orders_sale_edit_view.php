@@ -230,7 +230,7 @@
                         <div class="col-md-6">
                           <!-- File Button -->
                           <div class="form-group">
-                              <label class="col-md-3 control-label" for="file_path">รูปตัวอย่าง</label>
+                              <label class="col-md-3 control-label" for="file_path">เอกสาร</label>
                               <div class="col-md-6">
                                   <input id="file_path" name="file_path" class="file-loading" type="file" data-show-upload="false" data-min-file-count="1">
                               </div>

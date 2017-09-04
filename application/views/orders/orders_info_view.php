@@ -27,6 +27,9 @@
                 <div class="box-header with-border">
                   <i class="fa fa-file-text-o"></i>
                   <h3 class="box-title">สถานะ <?php echo $orders_data['status_name']; ?></h3>
+                  <?php if (isset($orders_data['file_path']) && $orders_data['file_path'] !=''): ?>
+                    <strong>Load document : </strong><a type="button"  target="_blank" href="<?php echo $this->config->item('url_img').$orders_data['file_path'];?>" class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></a>
+                  <?php endif; ?>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
