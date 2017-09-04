@@ -166,7 +166,7 @@
                                         <h3 class="box-title">Product add manually</h3>
                                     </div>
                                     <div class="box-body">
-                                        <div ng-repeat="(key, val) in product_vendor | groupBy: 'line_number'">
+                                        <div ng-repeat="(key, val) in product_manual | groupBy: 'line_number'">
                                             <div class="" ng-repeat="p in val">
                                                 <div class="box box-default box-solid">
                                                     <div class="box-body">
@@ -181,7 +181,7 @@
                                                                 <tr>
                                                                     <td class="text-center" style="vertical-align: top; padding: 5px 0;">{{p.comment || '-'}}</td>
                                                                     <td class="text-center" style="vertical-align: top; padding: 5px 0;">
-                                                                        <input type="radio" name="product_owner_{{key}}" ng-click="update_product_vender(key, p)" ng-checked="p.selected">
+                                                                        <input type="radio" name="product_manual_{{key}}" ng-click="update_product_manual(key, p)" ng-checked="p.selected">
                                                                     </td>
                                                                 </tr>
                                                             </tbody>

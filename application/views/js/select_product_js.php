@@ -7,7 +7,7 @@
     $scope.info = {};
     $scope.result_cal_product = [];
     $scope.product_owner = [];
-    $scope.product_vendor = [];
+    $scope.product_manual = [];
 
     var get_info = $http({
                         method: 'GET',
@@ -36,7 +36,7 @@
           if(v.is_have_product == 1) {
             $scope.product_owner.push(v)
           } else if(v.is_have_product == 0) {
-            $scope.product_vendor.push(v)
+            $scope.product_manual.push(v)
           }
         });
     });
@@ -59,16 +59,16 @@
     //   console.log("----->", val);
     // });
 
-    $scope.update_product_owner = function(product, val) {
+    $scope.update_product_owner = function(key, val) {
       $scope.product_owner.forEach(function(v) {
-        if(v.product_owner_id == product) {
+        if(v.line_number == key) {
           v.selected = v === val;
         }
       });
     }
-    $scope.update_product_vender = function(product, val) {
-      $scope.product_vendor.forEach(function(v) {
-        if(v.product_owner_id == product) {
+    $scope.update_product_manual = function(key, val) {
+      $scope.product_manual.forEach(function(v) {
+        if(v.line_number == key) {
           v.selected = v === val;
         }
       });
@@ -87,7 +87,7 @@
           selected_products.push(v);
         }
       });
-      $scope.product_vendor.forEach(function(v) {
+      $scope.product_manual.forEach(function(v) {
         if(v.selected) {
           is_selected = true;
           selected_products.push(v);
