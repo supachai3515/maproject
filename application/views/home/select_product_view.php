@@ -99,38 +99,41 @@
             </div>
             <div class="box-body">
               <div class="row">
-                <div class="col-md-6">
-                  <div class="box box-default">
+                <div class="col-md-12">
+                  <div class="box box-primary  box-solid">
                     <div class="box-header with-border">
                         <h3 class="box-title">Product</h3>
                     </div>
                     <div class="box-body">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th class="col-md-4">Type</th>
-                            <th class="col-md-4">Description</th>
-                            <th class="col-md-2">Total</th>
-                            <th class="col-md-2">Select</th>
-                          </tr>
-                        </thead>
-                      </table>
-                      <table class="table table-striped">
-                        <tbody>
-                          <tr ng-repeat="(key, val) in product_owner | groupBy: 'product_owner_id'">
-                              <td colspan="4">
-                                <table style="width: 100%;">
-                                  <tr ng-repeat="p in val">
-                                    <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.type_name || '-'}}</td>
-                                    <td class="col-md-4" style="vertical-align: top; padding: 5px 0;">{{p.type_description || '-'}}</td>
-                                    <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;">{{(p.total | number:0) || '-'}}</td>
-                                    <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
+                      <div ng-repeat="(key, val) in product_owner | groupBy: 'product_owner_id'">
+
+                        <div class="box box-default box-solid">
+                            <div class="box-body">
+                              <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>part_number</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                    <th>Total</th>
+                                    <th>Select</th>
                                   </tr>
-                                </table>
-                              </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="p in val">
+                                    <td class="text-center">{{p.part_number || '-'}}</td>
+                                    <td class="text-center">{{p.type_name || '-'}}</td>
+                                    <td class="">{{p.type_description || '-'}}</td>
+                                    <td class="text-right">{{(p.total | number:0) || '-'}}</td>
+                                    <td class="text-center"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected"></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- /.box-body -->
+                          </div>
+
+                      </div>
                       <!-- <table class="table table-striped">
                         <tbody>
                           <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
@@ -150,28 +153,24 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="box box-default">
+                <div class="col-sm-12">
+                  <div class="box box-default  box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Product Vendor</h3>
+                        <h3 class="box-title">Product add manually</h3>
                     </div>
                     <div class="box-body">
                     <table class="table table-striped">
                         <tr>
-                          <th class="text-center">Part Number</th>
-                          <th class="text-center">Name</th>
-                          <th class="text-center">Total</th>
+                          <th class="text-center">Comment</th>
                           <th class="text-center">Select</th>
                         </tr>
                     </table>
                     <table class="table table-striped">
                         <tr ng-repeat="(key, val) in product_vendor | groupBy: 'product_owner_id'">
-                            <td colspan="4">
+                            <td>
                               <table style="width: 100%;">
                                 <tr ng-repeat="p in val">
-                                  <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.part_number || '-'}}</td>
-                                  <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.name || '-'}}</td>
-                                  <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;">{{(p.total | number:0) || '-'}}</td>
+                                  <td class="col-md-4 text-center" style="vertical-align: top; padding: 5px 0;">{{p.comment || '-'}}</td>
                                   <td class="col-md-2 text-center" style="vertical-align: top; padding: 5px 0;"><input type="radio" name="product_owner_{{key}}" ng-click="update_product_vender(key, p)" ng-checked="p.selected"></td>
                                 </tr>
                               </table>

@@ -149,6 +149,7 @@ get_order_detail();
           }).success(function() {
             window.location = '<?php echo base_url('/select_product');?>';
           }).error(function (error){
+            console.log(error);
             swal(
               'Error!',
               'Technical error please contact the administrator',

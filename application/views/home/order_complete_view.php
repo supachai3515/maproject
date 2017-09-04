@@ -116,6 +116,7 @@
                     <th class="text-center">Type</th>
                     <th class="text-center">Product Name</th>
                     <th class="text-center">Product Description</th>
+                    <th class="text-center">Comment</th>
                     <th class="text-center">จังหวัด</th>
                     <th class="text-center">LB Year QTY</th>
                     <th class="text-center">QTY</th>
@@ -127,6 +128,7 @@
                     <td class="text-center">{{p.type_name || '-'}}</td>
                     <td class="text-center">{{p.product_name || '-'}}</td>
                     <td>{{p.product_description || '-'}}</td>
+                    <td class="text-center">{{p.comment || '-'}}</td>
                     <td class="text-center">{{p.province_name || '-'}}</td>
                     <td class="text-center">{{p.lb_year_qty || '-'}}</td>
                     <td class="text-center">{{p.qty || '-'}}</td>

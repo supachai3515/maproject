@@ -128,14 +128,10 @@ class Tos_cal_model extends CI_Model
         }
 
         foreach ($product_list as $product) {
-            if (isset($product->is_have_product) && $product->is_have_product == "0") {
-                if ($sql != "") {
-                    $sql =  $sql." UNION ";
-                }
-
+            if (isset($product->is_have_product) && $product->is_have_product == 0) {
                 $sql =  $sql."  SELECT 0 is_product_owner,
 														0 is_have_product,
-														CONCAT('Name: $product->name',' , part_number: $product->part_number') comment,
+														CONCAT('Part Number : $product->part_number',' , Name: $product->name') comment,
 														0	product_owner_id,
 														0 product_vendor_id,
 														'' type_name,
@@ -165,6 +161,28 @@ class Tos_cal_model extends CI_Model
             }
         }
         //print($sql);
+        //add part_number
+        $sql ="
+        SELECT
+              CASE
+              WHEN m.is_product_owner = 1 THEN IFNULL(w.part_number,'')
+              WHEN m.is_product_owner = 0 THEN IFNULL(v.part_number,'')
+              ELSE ''
+              END as  part_number,
+
+              CASE
+              WHEN m.is_product_owner = 1 THEN IFNULL(w.description,'')
+              WHEN m.is_product_owner = 0 THEN IFNULL(v.description,'')
+              ELSE ''
+              END as  description,
+
+               m.*
+              FROM product_owner w RIGHT JOIN (
+                ".$sql."
+
+                ) m ON m.product_owner_id = w.product_owner_id AND m.is_product_owner = 1
+              LEFT JOIN product_vendor v ON v.product_vendor_id = m.product_vendor_id AND m.is_product_owner = 0
+        ";
 
         $query = $this->db->query($sql);
         $result = $query->result();
