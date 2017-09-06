@@ -411,4 +411,22 @@ class Tos_cal extends BaseController {
 
 
 	}
+
+	// public function test_mail($ref_id)
+	// {
+	// 	$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id);
+	// 	if(isset($order_id)){
+	// 			//set status special_price
+	// 			$data['ref_id'] = $ref_id;
+	// 			$data['order_data'] = $this->tos_cal_model->get_order($order_id);
+	// 			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
+	// 			$status = "success";
+	// 			//setFlashData($status, "ทางเราได้รับคำขอจากท่านเรียบร้อยแล้ว กรุณารอทางเราติดต่อครับ");
+	// 			$this->load->view('email/accept_special_price', $data);
+	// 	} else {
+	// 			$this->loadThis();
+	// 	}
+	//
+	//
+	// }
 }

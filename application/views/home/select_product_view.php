@@ -118,7 +118,7 @@
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th>part_number</th>
+                                                                <th>Part Number</th>
                                                                 <th>Type</th>
                                                                 <th>Description</th>
                                                                 <th>Total</th>
@@ -130,7 +130,7 @@
                                                                 <td class="text-center">{{p.part_number || '-'}}</td>
                                                                 <td class="text-center">{{p.type_name || '-'}}</td>
                                                                 <td class="">{{p.type_description || '-'}}</td>
-                                                                <td class="text-right">{{(p.total | number:0) || '-'}}</td>
+                                                                <td class="text-center">{{(p.total | number:0) || '-'}}</td>
                                                                 <td class="text-center">
                                                                     <input type="radio" name="product_owner_{{key}}" ng-click="update_product_owner(key, p)" ng-checked="p.selected">
                                                                 </td>
