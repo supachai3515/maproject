@@ -149,6 +149,19 @@ class Initdata_model extends CI_Model {
 
 	    return $unicode;
 	}
+
+	public function get_sele_user($user_id = '')
+	{
+
+		$user_id = $this->db->escape_str($user_id);
+		if(!empty($user_id))
+		{
+			$sql ="SELECT * FROM tbl_users WHERE roleId IN(4,5) AND userId = $user_id";
+			$query = $this->db->query($sql);
+			$row = $query->row_array();
+			return  $row['name'];
+		}
+	}
 }
 
 /* End of file initdata */

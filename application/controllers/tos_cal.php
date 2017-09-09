@@ -165,34 +165,37 @@ class Tos_cal extends BaseController {
 				$result = array('status' => 'error', 'data'=> '');
 				echo json_encode($result);
 			}else {
+				$userId = $this->session->userdata ( 'userId' );
+				if (isset($userId)) {
+					$is_sale_user = $this->initdata_model->get_sele_user($userId);
+				}
+
 				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
 				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
 				$result = array('status' => 'success' ,'order_id'=> $data['order_data']);
 				$this->session->unset_userdata('info_name','info_tel','info_email','info_province','info_pm','info_contract','product_list');
 				echo json_encode($result);
 
-				//sendmail
-	      $data['email'] = $email;// toemail
-				$data['template'] = "email/send_order";
-				$data['subject'] = "Tos Order";
-				$data['bcc_mail'] = "system@gmail.com";
-				$data['name'] = $name;
-				$data['tel'] = $tel;
-				//$this->load->view('email/send_order', $data);
+				if(empty($is_sale_user))
+				{
+					//sendmail
+		      $data['email'] = $email;// toemail
+					$data['template'] = "email/send_order";
+					$data['subject'] = "Tos Order";
+					$data['bcc_mail'] = "system@gmail.com";
+					$data['name'] = $name;
+					$data['tel'] = $tel;
+					//$this->load->view('email/send_order', $data);
 
 
-				//sendmail
-				$sendStatus = send_emali_template($data);
-				if($sendStatus){
-						$status = "send";
-						setFlashData($status, "ทางเราได้ส่งใบเสนอราคาไปที่ Email เรียบร้อยแล้ว กรุณาตรวจสอบ Email");
-				} else {
-						$status = "notsend";
-						setFlashData($status, "Email has been failed, try again.");
+					//sendmail
+					$sendStatus = send_emali_template($data);
+					if($sendStatus){
+					} else {
+							json_output(400, array('status' => 400,'message' => 'error'));
+					}
 				}
-
 			}
-
 		}
 		else{
 			$result = array('status' => 'error', 'data'=> '');

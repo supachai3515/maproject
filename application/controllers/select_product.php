@@ -19,6 +19,11 @@ class Select_product extends BaseController {
               								'author' => $this->config->item('author'),
               								'keyword' =>  'Product');
 
+			$userId = $this->session->userdata ( 'userId' );
+			if (isset($userId)) {
+				$data['sale_user'] = $this->initdata_model->get_sele_user($userId);
+			}
+
   		$this->load->view('home/select_product_view', $data);
 	}
 

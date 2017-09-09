@@ -43,10 +43,21 @@
 </head>
 
 <body ng-app="mainApp" ng-controller="confirm_order_ctrl">
-    <header class="header">
-      <a href="<?php echo base_url(); ?>"><h1>TOS</h1></a>
-      <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
-    </header>
+  <header class="header">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="<?php echo base_url(); ?>">TOS</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <p class="navbar-text navbar-right"><?php echo $sale_user;?>&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url('login'); ?>">Backend <i class="fa fa-arrow-right" aria-hidden="true"></i></a></p>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
     <div class="content-wrapper">
       <section class="content">
         <div class="container">

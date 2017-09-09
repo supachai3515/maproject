@@ -19,6 +19,11 @@ class Order_complete extends BaseController {
               								'author' => $this->config->item('author'),
               								'keyword' =>  'Order');
 
+			$userId = $this->session->userdata ( 'userId' );
+			if (isset($userId)) {
+				$data['sale_user'] = $this->initdata_model->get_sele_user($userId);
+			}
+
   		$this->load->view('home/order_complete_view', $data);
 	}
 

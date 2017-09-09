@@ -21,6 +21,11 @@ class Home extends BaseController {
       $data['province_list'] = $this->home_model->get_province();
       $data['contract_list'] = $this->home_model->get_contract();
 
+			$userId= $this->session->userdata ( 'userId' );
+			if (isset($userId)) {
+				$data['sale_user'] = $this->initdata_model->get_sele_user($userId);
+			}
+
   		$this->load->view('home/home_view', $data);
 	}
 	public function get_products()
