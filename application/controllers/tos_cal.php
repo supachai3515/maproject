@@ -189,7 +189,7 @@ class Tos_cal extends BaseController {
 
 
 					//sendmail
-					$sendStatus = send_emali_template($data);
+					$sendStatus = send_emali_template_gmail($data);
 					if($sendStatus){
 					} else {
 							json_output(400, array('status' => 400,'message' => 'error'));
@@ -298,7 +298,7 @@ class Tos_cal extends BaseController {
 			$data['tel'] = $resultInfo["tel"];
 
 			//sendmail
-			$sendStatus = send_emali_template($data);
+			$sendStatus = send_emali_template_gmail($data);
 			if($sendStatus){
 					json_output(200, array('status' => 200,'message' => 'success'));
 			} else {
@@ -332,7 +332,7 @@ class Tos_cal extends BaseController {
 			$data['tel'] = $resultInfo["tel"];
 
 			//sendmail
-			$sendStatus = send_emali_template($data);
+			$sendStatus = send_emali_template_gmail($data);
 			if($sendStatus){
 					json_output(200, array('status' => 200,'message' => 'success'));
 			} else {

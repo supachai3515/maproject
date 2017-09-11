@@ -169,6 +169,36 @@ if(!function_exists('send_emali_template'))
     }
 }
 
+if(!function_exists('send_emali_template_gmail'))
+{
+    function send_emali_template_gmail($detail)
+    {
+        $data["data"] = $detail;
+        $CI = &get_instance();
+
+        //sendmail
+        $email_config = array(
+          'protocol'  => 'smtp',
+          'smtp_host' => 'ssl://smtp.googlemail.com',
+          'smtp_port' => '465',
+          'smtp_user' => GMAIL_SMTP_USER,
+          'smtp_pass' => GMAIL_SMTP_PASS,
+          'mailtype'  => 'html',
+          'starttls'  => true,
+          'newline'   => "\r\n"
+        );
+
+        $CI->load->library('email', $email_config);
+        $CI->email->from(GMAIL_EMAIL_FROM, GMAIL_FROM_NAME);
+        $CI->email->bcc($detail["bcc_mail"]);
+        $CI->email->to($detail["email"]);
+        $CI->email->subject($detail["subject"]);
+        $CI->email->message($CI->load->view($detail["template"], $detail, TRUE));
+        $status = $CI->email->send();
+        return $status;
+    }
+}
+
 
 if(!function_exists('setFlashData'))
 {

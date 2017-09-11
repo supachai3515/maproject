@@ -619,7 +619,7 @@ class Orders_sale extends BaseController
       			$data['tel'] = $resultInfo["tel"];
 
     				//sendmail
-    				$sendStatus = send_emali_template($data);
+    				$sendStatus = send_emali_template_gmail($data);
     				if($sendStatus){
     						json_output(200, array('status' => 200,'message' => 'success'));
     				} else {
@@ -662,7 +662,7 @@ class Orders_sale extends BaseController
       			$data['tel'] = $resultInfo["tel"];
 
     				//sendmail
-    				$sendStatus = send_emali_template($data);
+    				$sendStatus = send_emali_template_gmail($data);
     				if($sendStatus){
     						json_output(200, array('status' => 200,'message' => 'success'));
     				} else {

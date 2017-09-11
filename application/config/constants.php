@@ -59,5 +59,12 @@ define('SMTP_USER',                             'supachai@wisadev.com');		// you
 define('SMTP_PASS',                             'supachai');	// your smtp password
 define('MAIL_PATH',                             '/usr/sbin/sendmail');
 
+
+define('GMAIL_SMTP_USER',                             'ma-online@turnonsolution.co.th');		// your smtp user
+define('GMAIL_SMTP_PASS',                             'MaOnline2560!!@_1');	// your smtp password
+define('GMAIL_EMAIL_FROM',                            'ma-online@turnonsolution.co.th');		// e.g. email@example.com
+define('GMAIL_FROM_NAME',                             'ma-online turnonsolution');	// Your system name
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

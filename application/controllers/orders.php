@@ -163,11 +163,11 @@ class Orders extends BaseController {
                   $this->load->model('user_model');
                   $data['order_data'] = $this->orders_model->get_orders_id($order_id);
                   $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
-                  $data['user_data_assign_to'] = $this->orders_model->get_user_info($assign_to);
-                  $data['user_data_assign'] = $this->orders_model->get_user_info($this->vendorId);
+                  $user_data_assign_to = $data['user_data_assign_to'] = $this->orders_model->get_user_info($assign_to);
+                  $user_data_assign = $data['user_data_assign'] = $this->orders_model->get_user_info($this->vendorId);
 
           				//sendmail
-          	      $data['email'] = $data['user_data_assign_to']->email.",".$data['user_data_assign']->email; //To Email
+          	      $data['email'] = $user_data_assign_to.",".$user_data_assign; //To Email
           				$data['template'] = "email/assign_order";
           				$data['subject'] = "Assign order #".$order_id;
           				$data['bcc_mail'] = $this->config->item('email_cc_group');
@@ -175,7 +175,7 @@ class Orders extends BaseController {
           				$data['tel'] = "";
 
           				//sendmail
-          				$sendStatus = send_emali_template($data);
+          				$sendStatus = send_emali_template_gmail($data);
           				if($sendStatus){
           						$status = "send";
           						setFlashData('success', 'orders Assign Update and Send email successfully');
