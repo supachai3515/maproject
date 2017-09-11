@@ -54,7 +54,13 @@
 						                        <p style="display: inline-block;font-size: 18px;margin: 0;line-height: 1;">Order Info</p>
 						                    </div>
 						                    <div style="border-top-left-radius: 0;border-top-right-radius: 0;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;padding: 10px;">
-				                            <div style="overflow: hidden;">
+																	<div style="overflow: hidden;">
+																			<p style="margin-bottom: 0;text-align: right;width: 41.66666667%;float: left;margin-right: 10px;font-weight: bold;">Order ID:</p>
+																			<div style="float: left;">
+																					<p style="padding-bottom: 7px;margin-bottom: 0;">#<?php echo $order_data['order_id']; ?></p>
+																			</div>
+																	</div>
+																	<div style="overflow: hidden;">
 				                                <p style="margin-bottom: 0;text-align: right;width: 41.66666667%;float: left;margin-right: 10px;font-weight: bold;">Email:</p>
 				                                <div style="float: left;">
 				                                    <p style="padding-bottom: 7px;margin-bottom: 0;"><?php echo $order_data['email']; ?></p>

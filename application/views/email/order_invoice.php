@@ -53,6 +53,10 @@
 															<table style="width: 100%;">
 																<tbody>
 																	<tr>
+																		<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Order ID:</td>
+																		<td style="width: 50%;">#<?php echo $order_data['order_id']; ?></td>
+																	</tr>
+																	<tr>
 																		<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;">Email:</td>
 																		<td style="width: 50%;"><?php echo $order_data['email']; ?></td>
 																	</tr>

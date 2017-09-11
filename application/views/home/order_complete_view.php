@@ -96,6 +96,12 @@
             <div class="box-body">
               <form class="form-horizontal">
                 <div class="form-group">
+                  <label class="col-md-5 control-label">Order ID:</label>
+                  <div class="col-md-7">
+                    <p class="form-control-static">#{{order_info.order_id || '-'}}</p>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-md-5 control-label">Email:</label>
                   <div class="col-md-7">
                     <p class="form-control-static">{{order_info.email || '-'}}</p>
