@@ -229,7 +229,7 @@
     </div>
     <footer class="main-footer text-center">
         <div class="pull-right hidden-xs">
-            <b>WISADEV</b> | Version 1.0
+            <b>TOS</b> | Version 1.0
         </div>
         <strong>Copyright &copy; 2017-2018 <a href="<?php echo base_url(); ?>"><?php echo $this->config->item('sitename'); ?></a>.</strong> All rights reserved.
     </footer>

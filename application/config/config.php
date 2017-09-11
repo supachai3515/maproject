@@ -23,20 +23,15 @@ $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER
 
 //Config by user
 $config['short_sitename'] = "TOS";
-$config['sitename'] = "TOS MA Project";
-$config['tagline'] = "TOS MA Project";
+$config['sitename'] = "TOS MA Online";
+$config['tagline'] = "TOS MA Online";
 $config['author'] = "TOS";
 $config['url_img'] = "http://192.168.10.19/";
 $config['no_url_img'] = "http://192.168.10.19/uploads/no_image.jpg";
 
-$config['email_owner'] = "supachai@wisadev.com";
-$config['email_name'] = "supachai";
-$config['email_noreply'] = "system@wisadev.com";
-$config['pass_mail_noreply'] = "system";
 $config['weburl'] = "http://192.168.10.19/";
-
 $config['email_cc_group'] = "supachai.wi@gmail.com";
-
+//$config['email_cc_group'] = "_ma-online_@turnonsolution.co.th";
 //information
 $config['pre_page'] = "10";
 

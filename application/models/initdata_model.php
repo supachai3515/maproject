@@ -159,7 +159,11 @@ class Initdata_model extends CI_Model {
 			$sql ="SELECT * FROM tbl_users WHERE roleId IN(4,5) AND userId = $user_id";
 			$query = $this->db->query($sql);
 			$row = $query->row_array();
-			return  $row['name'];
+			if(isset($row['name'])){
+				return  $row['name'];
+			}
+			else{null;}
+
 		}
 	}
 }
