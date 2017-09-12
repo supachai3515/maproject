@@ -101,7 +101,7 @@
                         <strong>PM :</strong>&nbsp;&nbsp;<span ng-bind="row.pm_time_qty | number"></span><br>
                         <strong>LB :</strong>&nbsp;&nbsp;<span ng-bind="row.lb_year_qty | number"></span><br>
                         <strong>QTY :</strong>&nbsp;&nbsp;<span ng-bind="row.qty | number"></span><br>
-                        <strong>Toral :</strong>&nbsp;&nbsp;<span ng-bind="row.total | number:2"></span><br>
+                        <strong>Total :</strong>&nbsp;&nbsp;<span ng-bind="row.total | number:2"></span><br>
                       </td>
                   </td>
                   <td class="text-right">
