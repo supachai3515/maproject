@@ -13,9 +13,7 @@
             $scope.order_info = data.info;
             $scope.order_detail = data.detail;
           }, function(reason) {
-            console.log(reason);
           });
-
     }
     get_order();
 

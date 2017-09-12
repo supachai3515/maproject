@@ -164,7 +164,7 @@ class Tos_cal extends BaseController {
 			if($order_id == "0"){
 				$result = array('status' => 'error', 'data'=> '');
 				echo json_encode($result);
-			}else {
+			} else {
 				$userId = $this->session->userdata ( 'userId' );
 				if (isset($userId)) {
 					$is_sale_user = $this->initdata_model->get_sele_user($userId);
