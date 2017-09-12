@@ -291,7 +291,15 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           var province_discount =  $scope.master_init_data.discount_province;
           var tos_discount =  $scope.master_init_data.discount_tos;
 
-          $sc.submit_new_order = function(val) {
+          $sc.submit_new_order = function(form, val) {
+            if(form.$invalid) {
+              swal(
+                '',
+                'กรุณากรอกข้อมูลให้ถูกต้อง',
+                'warning'
+              )
+              return;
+            }
             val.order_id = $scope.owner_id;
             $http({
                     method: 'POST',
@@ -301,16 +309,15 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 }).then(function success(result) {
                   swal(
                     '',
-                    'ขอใบเสนอราคาสำเร็จ',
+                    'เพิ่ม Order สำเร็จ',
                     'success'
                   )
                   $uib.close();
                   $scope.initget_order_detail();
                 }, function error(reason) {
-                  console.log(reason);
                   swal(
                     '',
-                    'Order save failed',
+                    'เพิ่ม Order ล้มเหลว',
                     'error'
                   )
                 });
@@ -392,10 +399,18 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           var tos_discount =  $scope.master_init_data.discount_tos;
 
           $sc.save_edit = function (form, model) {
+              if(form.$invalid) {
+                swal(
+                  '',
+                  'โปรดกรอกข้อมูลให้ถูกต้อง',
+                  'warning'
+                )
+                return;
+              }
               edit_func(model).then(function(data) {
                 swal(
                   '',
-                  'Update Order successfully',
+                  'แก้ไขสำเร็จ',
                   'success'
                 )
                 $scope.initget_order_detail();
@@ -590,7 +605,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
 </script>
 <?php if (isset($orders_detail_data)): ?>
 
-  <script type="text/ng-template" id="add_order_view.html">
+<script type="text/ng-template" id="add_order_view.html">
       <div class="modal-header">
         <h4>Add Order</h4>
       </div>
@@ -668,7 +683,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
       </div>
   </script>
 
-  <script type="text/ng-template" id="choose_order_view.html">
+<script type="text/ng-template" id="choose_order_view.html">
       <div class="modal-header">
         <h4>Choose Order</h4>
       </div>
@@ -713,7 +728,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
       </div>
   </script>
 
-  <script type="text/ng-template" id="edit_choosed_order_view.html">
+<script type="text/ng-template" id="edit_choosed_order_view.html">
     <div class="modal-header">
       <h4>Edit (<span ng-bind="order_choosed_detail.type_name"></span>)</h4>
       <p><span ng-bind="order_choosed_detail.type_description"></span></p>
@@ -784,7 +799,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                   </div>
               </div>
               <div class="row">
-                <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.$submitted && edit_choosed_order_form.pm_time.$error.required}">
+                <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.pm_time.$error.required}">
                     <div class="form-group">
                       <label for="name">PM Time Value</label>
                       <input type="text"
@@ -793,7 +808,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                         ng-model="order_choosed_detail.pm_time_value" required>
                     </div>
                 </div>
-                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.$submitted && edit_choosed_order_form.lb_year.$error.required}">
+                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.lb_year.$error.required}">
                       <div class="form-group">
                         <label for="name">LB Year Value</label>
                         <input type="text"
@@ -826,13 +841,13 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                           class="form-control required"
                           string-to-number
                           ng-model="order_choosed_detail.qty"
-                          ng-min="1" required>
+                          min="1" required>
                       </div>
                   </div>
               </div>
           </div><!-- /.box-body -->
           <div class="box-footer">
-              <input type="submit" class="btn btn-primary" value="Submit" ng-click="submit_new_order(order_choosed_detail)">
+              <input type="submit" class="btn btn-primary" value="Submit" ng-click="submit_new_order(edit_choosed_order_form, order_choosed_detail)">
           </div>
       </form>
     </div>
@@ -940,7 +955,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 </div>
             </div>
             <div class="row">
-              <div class="col-md-6" ng-class="{'has-error': edit_order_form.$submitted && edit_order_form.pm_time.$error.required}">
+              <div class="col-md-6" ng-class="{'has-error': edit_order_form.pm_time.$error.required}">
                   <div class="form-group">
                     <label for="name">PM Time Value</label>
                     <input type="text"
@@ -949,7 +964,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                       ng-model="order_detail.pm_time_value" required>
                   </div>
               </div>
-                <div class="col-md-6" ng-class="{'has-error': edit_order_form.$submitted && edit_order_form.lb_year.$error.required}">
+                <div class="col-md-6" ng-class="{'has-error': edit_order_form.lb_year.$error.required}">
                     <div class="form-group">
                       <label for="name">LB Year Value</label>
                       <input type="text"
@@ -979,7 +994,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                           class="form-control required"
                           string-to-number
                           ng-model="order_detail.qty"
-                          ng-min="1" required>
+                          min="1" required>
                     </div>
                 </div>
             </div>
