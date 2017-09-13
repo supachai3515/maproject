@@ -202,17 +202,35 @@ class Tos_cal_model extends CI_Model
     //list owner cal
     }
 
-    public function save_order($data_info, $product_list)
+    public function save_order($data_info, $product_list, $user_id = '')
     {
+        $user_id = $this->db->escape_str($user_id);
+        $order_status = '1';
         $order_id = 0;
         $total_cal = 0;
         $total_qty = 0;
         $ref_order_id = md5("wisadev".date("YmdHis")."tos");
 
+        $assign_by = null;
+        $assign_to = null;
+        $assign_by_date = null;
+        $assign_to_date = null;
+
         foreach ($product_list as $row) {
             $total_cal  = $total_cal  + $row->total;
             $total_qty  = $total_qty  + $row->qty;
         }
+
+        if(!empty($user_id)) {
+          $order_status = '2';
+          $assign_by = $user_id;
+          $assign_to = $user_id;
+          $assign_by_date = date("Y-m-d H:i:s");
+          $assign_to_date = date("Y-m-d H:i:s");
+        }
+
+
+
         // transection
         $this->db->trans_begin();
         date_default_timezone_set("Asia/Bangkok");
@@ -223,12 +241,16 @@ class Tos_cal_model extends CI_Model
                 'address' =>'',
                 'tel' => $data_info['tel'],
                 'email' =>$data_info['email'],
-                'order_status_id' => '1',
+                'order_status_id' => $order_status,
                 'qty' => $total_qty ,
                 'total' => $total_cal,
                 'is_active' => '1',
                 'create_date' =>date("Y-m-d H:i:s"),
                 'create_by' => '1',
+                'assign_by' => $assign_by,
+                'assign_to' => $assign_to,
+                'assign_by_date' => $assign_by_date,
+                'assign_to_date' => $assign_to_date,
                 'modified_date' => date("Y-m-d H:i:s"),
                 'modified_by' =>'1'
             );

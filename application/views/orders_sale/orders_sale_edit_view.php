@@ -105,8 +105,8 @@
                       </td>
                   </td>
                   <td class="text-right">
-                    <a ng-if="row.is_have_product == 1" class="btn btn-sm btn-warning"  ng-click="edit_order(row)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a class="btn btn-sm btn-danger"  ng-click="delete_order(row)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <a ng-if="row.is_have_product == 1" class="btn btn-xs btn-warning"  ng-click="edit_order(row)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="btn btn-xs btn-danger"  ng-click="delete_order(row)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                   </td>
                 </tr>
               </table>

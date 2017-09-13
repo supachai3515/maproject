@@ -157,15 +157,15 @@ class Tos_cal extends BaseController {
 			$tel = $this->session->userdata('info_tel');
 			$email = $this->session->userdata('info_email');
 			$data_info = array('name' => $name,'tel' => $tel,'email' => $email );
+			$userId = $this->session->userdata ( 'userId' );
 			//$product_list = json_decode($myObj);
 			$product_list = json_decode(file_get_contents("php://input"));
 
-			$order_id = $this->tos_cal_model->save_order($data_info ,$product_list);
+			$order_id = $this->tos_cal_model->save_order($data_info ,$product_list, $userId);
 			if($order_id == "0"){
 				$result = array('status' => 'error', 'data'=> '');
 				echo json_encode($result);
 			} else {
-				$userId = $this->session->userdata ( 'userId' );
 				if (isset($userId)) {
 					$is_sale_user = $this->initdata_model->get_sele_user($userId);
 				}
