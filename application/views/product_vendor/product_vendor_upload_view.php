@@ -22,7 +22,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Upload Product vendor </h3>
-                    <a type="button" class="btn btn-info" href="<?php echo base_url() ?>uploads/excel/201707/product_Vendor.xlsx"><i class="ion ion-ios-cloud-download-outline"></i> Template</a>
+                    <a type="button" class="btn btn-info" href="<?php echo base_url() ?>uploads/excel/201707/product_vendor_template.xlsx"><i class="ion ion-ios-cloud-download-outline"></i> Template</a>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" id="addUser" action="<?php echo base_url() ?>product_vendor/upload_save" method="post" role="form" enctype="multipart/form-data">
