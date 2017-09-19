@@ -142,7 +142,7 @@ class Orders_sale_model extends CI_Model
 												SELECT
 													($data_info->pm_time_value * $data_info->pm_time_qty) +
 													($data_info->lb_year_value * $data_info->lb_year_qty) +
-													($data_info->full_price * (100 - $data_info->discount_sla_type_value) / 100) AS total
+													($data_info->dealer_price * (100 - $data_info->discount_sla_type_value) / 100) AS total
 											) v
 										WHERE pv.province_id = $data_info->province_id
 										";
