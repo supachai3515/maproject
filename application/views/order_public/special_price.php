@@ -16,9 +16,15 @@
        </head>
        <body ng-app="mainApp" ng-controller="special_price_ctrl">
        <header class="header">
-         <a href="<?php echo base_url(); ?>"><h1>TOS</h1></a>
-         <ul class="nav navbar-nav navbar-right"><li><a href="<?php echo base_url('login'); ?>">Login</a></li></ul>
-       </header>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="<?php echo base_url(); ?>">TOS</a>
+            </div>
+          </div><!-- /.container-fluid -->
+        </nav>
+      </header>
        <div class="content-wrapper">
          <section class="content">
            <div class="container">

@@ -25,7 +25,8 @@
     get_order_status();
 
     $scope.canSubmit = function() {
-      return _.contains([1,4], $scope.order_status);
+      var status = [1,4];
+      return status.includes($scope.order_status);
     }
 
     var params = {

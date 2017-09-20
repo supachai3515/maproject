@@ -292,7 +292,7 @@ class Tos_cal extends BaseController {
 			//sendmail
 			$data['email'] = $resultInfo["email"];// toemail
 			$data['template'] = "email/request_special_price";
-			$data['subject'] = "Request special price #".$order_id;
+			$data['subject'] = "Request Special Price #".$order_id;
 			$data['bcc_mail'] = $this->config->item('email_cc_group');
 			$data['name'] = $resultInfo["company"];
 			$data['tel'] = $resultInfo["tel"];
@@ -325,8 +325,8 @@ class Tos_cal extends BaseController {
 			//pre($data['order_detail_data']);
 			//sendmail
 			$data['email'] = $resultInfo["email"];// toemail
-			$data['template'] = "email/request_special_price";
-			$data['subject'] = "Request special price #".$order_id;
+			$data['template'] = "email/accept_special_price";
+			$data['subject'] = "Accept Special Price #".$order_id;
 			$data['bcc_mail'] = $this->config->item('email_cc_group');
 			$data['name'] = $resultInfo["company"];
 			$data['tel'] = $resultInfo["tel"];
