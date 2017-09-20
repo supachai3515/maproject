@@ -361,10 +361,25 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
           }
 
           $sc.get_sla_type_min = function(val) {
-              return _.findWhere(tos_discount, {name: val}).min || false;
+              var discount_min = '';
+              for (var i = 0; i < tos_discount.length; i++) {
+                if(tos_discount[i].name == val) {
+                  discount_min = tos_discount[i].min;
+                  break;
+                }
+              }
+              return discount_min;
           }
           $sc.get_sla_type_max = function(val) {
-            return _.findWhere(tos_discount, {name: val}).max || false;
+            var discount_max = '';
+            for (var i = 0; i < tos_discount.length; i++) {
+              if(tos_discount[i].name == val) {
+                discount_max = tos_discount[i].max;
+                break;
+              }
+              
+            }
+            return discount_max;
           }
 
           $sc.cancel = function () {
@@ -479,10 +494,29 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
             }
           }
           $sc.get_sla_type_min = function(val) {
-              return _.findWhere(tos_discount, {name: val}).min || false;
+            if(val) {
+              var discount_min = '';
+              for (var i = 0; i < tos_discount.length; i++) {
+                if(tos_discount[i].name == val) {
+                  discount_min = tos_discount[i].min;
+                  break;
+                }
+                
+              }
+              return discount_min;
+            }
           }
           $sc.get_sla_type_max = function(val) {
-            return _.findWhere(tos_discount, {name: val}).max || false;
+            if(val) {
+              var discount_max = '';
+              for (var i = 0; i < tos_discount.length; i++) {
+                if(tos_discount[i].name == val) {
+                  discount_max = tos_discount[i].max;
+                  break;
+                }
+              }
+              return discount_max;
+            }
           }
 
         }]
