@@ -952,8 +952,8 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
     <h4>Edit (<span ng-bind="order_detail.part_number"></span>) <small><span ng-bind="order_detail.product_name"></span></small></h4>
     <p><strong ng-bind="order_detail.type_name"></strong> <span ng-bind="order_detail.type_description"></span></p>
   </div>
+  <form role="form" name="edit_order_form"  ng-submit="save_edit(edit_order_form, order_detail)">
   <div class="modal-body">
-    <form role="form" name="edit_order_form"  ng-submit="save_edit(edit_order_form, order_detail)">
         <div class="box-body">
             <div class="row">
                 <div class="col-md-4" ng-class="{'has-error':  edit_order_form.discount_sla.$invalid}">
@@ -1070,12 +1070,12 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 </div>
             </div>
         </div><!-- /.box-body -->
-    </form>
   </div>
   <div class="modal-footer">
     <input type="submit" class="btn btn-primary" value="Submit" />
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
   </div>
+  </form>
 </script>
 
 <?php endif ?>
