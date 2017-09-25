@@ -9,6 +9,7 @@ class Tos_cal extends BaseController {
     $this->load->model('initdata_model');
     $this->load->model('tos_cal_model');
 		$this->load->model('orders_model');
+		session_start();
 	}
 
 	public function index()
