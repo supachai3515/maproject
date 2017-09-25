@@ -3,8 +3,9 @@
 
 app.controller("home_ctrl", function($scope, $http, $uibModal, $log, $q, $location) {
   var char_search = '';
-  $scope.pm_list = ["1","2","3","4","5"];
+  $scope.pm_list = ["0","1","2","3","4","5"];
   $scope.info_form = {};
+  $scope.product_form = {};
   $scope.info = {};
   $scope.order = {};
   $scope.products = [];
@@ -118,11 +119,12 @@ get_order_detail();
 
     $scope.submit_products = function() {
       var form = $scope.info_form;
+      var product_form = $scope.product_form;
       var info_model = $scope.info;
 
       form.$submitted = true;
 
-      if(form.$invalid) {
+      if(form.$invalid || product_form.qty_form.$invalid) {
         swal(
           '',
           'กรอกข้อมูลไม่ครบ หรือ กรอกข้อมูลไม่สมบูรณ์',

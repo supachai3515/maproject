@@ -177,53 +177,67 @@
             </div>
             <div class="box-body">
               <p class="text-right"><button type="button" ng-class="{disabled: info_form.$invalid}" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th class="col-md-2">Part number</th>
-                    <th class="col-md-2">Name</th>
-                    <th class="col-md-2">Medel</th>
-                    <th class="col-md-1">QTY</th>
-                    <th class="col-md-2">Province</th>
-                    <th class="col-md-1">PM</th>
-                    <th class="col-md-1">Contract</th>
-                    <th class="col-md-1">Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr ng-repeat="(idx, p) in selected_products track by idx">
-                    <td class="text-center">{{p.part_number || '-'}}</td>
-                    <td>{{p.name || '-'}}</td>
-                    <td class="text-center">{{p.model || '-'}}</td>
-                    <td>
-                      <input type="number" class="form-control text-center"  name="selected_model_{{idx}}" ng-model="selected_products[idx].qty" min="1">
-                    </td>
-                    <td>
-                      <select class="form-control" name="selected_province_{{idx}}" ng-model="selected_products[idx].province">
-                        <?php foreach ($province_list as $record): ?>
-                          <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-control" name="selected_pm_{{idx}}" ng-model="selected_products[idx].pm">
-                        <option ng-repeat="pm in pm_list">{{pm}}</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-control" name="selected_contract_{{idx}}" ng-model="selected_products[idx].contract">
-                        <?php foreach ($contract_list as $record): ?>
-                          <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
-                        <?php endforeach; ?>
-                      </select>
-                    </td>
-                    <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list(idx)"></i></td>
-                  </tr>
-                  <tr ng-if="!selected_products.length">
-                    <td colspan="8" class="text-center">-</td>
-                  </tr>
-                </tbody>
-              </table>
+              <form name="product_form" novalidate>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="col-md-2">Part number</th>
+                      <th class="col-md-2">Name</th>
+                      <th class="col-md-2">Medel</th>
+                      <th class="col-md-1">QTY</th>
+                      <th class="col-md-2">Province</th>
+                      <th class="col-md-1">PM</th>
+                      <th class="col-md-1">Contract</th>
+                      <th class="col-md-1">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="(idx, p) in selected_products track by idx">
+                      <td class="text-center">{{p.part_number || '-'}}</td>
+                      <td>{{p.name || '-'}}</td>
+                      <td class="text-center">{{p.model || '-'}}</td>
+                      <td>
+                        <ng-form name="qty_form">
+                          <div ng-class="{ 'has-error' : qty_form.product_qty.$invalid }">
+                            <input type="number" 
+                              class="form-control text-center"  
+                              name="product_qty" 
+                              ng-model="selected_products[idx].qty" 
+                              ng-pattern="/^(0?[1-9]|[1-9][0-9])$/"
+                              min="1"
+                              max="99"
+                              title="1-99"
+                              required>
+                          </div>
+                        </ng-form>
+                      </td>
+                      <td>
+                        <select class="form-control" name="selected_province_{{idx}}" ng-model="selected_products[idx].province">
+                          <?php foreach ($province_list as $record): ?>
+                            <option value="<?php echo $record->province_id ?>"><?php echo $record->province_name ?></option>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control" name="selected_pm_{{idx}}" ng-model="selected_products[idx].pm">
+                          <option ng-repeat="pm in pm_list">{{pm}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-control" name="selected_contract_{{idx}}" ng-model="selected_products[idx].contract">
+                          <?php foreach ($contract_list as $record): ?>
+                            <option value="<?php echo $record->discount_of_contract_id ?>"><?php echo $record->number ?> ปี</option>
+                          <?php endforeach; ?>
+                        </select>
+                      </td>
+                      <td class="text-center"><i class="fa fa-minus-circle text-danger del-icon" aria-hidden="true" ng-click="remove_product_list(idx)"></i></td>
+                    </tr>
+                    <tr ng-if="!selected_products.length">
+                      <td colspan="8" class="text-center">-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
             </div>
           </div>
           <div class="text-center">
