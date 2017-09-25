@@ -8,6 +8,7 @@ class Select_product extends BaseController {
 		//call model inti
     $this->load->model('initdata_model');
 		$this->load->model('select_product_model');
+		session_start();
 	}
 
 	public function index()
