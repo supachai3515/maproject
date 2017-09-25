@@ -28,13 +28,12 @@ class Confirm_order extends BaseController {
 
 public function set_confirm_order_session () {
   $data_info = json_decode(file_get_contents("php://input"));
-  $session_info = array('info_selct_prodct'=> $data_info );
-   $this->session->set_userdata($session_info);
-   echo json_encode($this->session->userdata('info_selct_prodct'));
+  $this->session->set_userdata('info_select_product', $data_info );
+  echo json_encode($data_info);
  }
 
  public function get_confirm_order_session () {
-  $data = $this->session->userdata('info_selct_prodct');
+  $data = $this->session->userdata('info_select_product');
   echo json_encode($data);
  }
 
