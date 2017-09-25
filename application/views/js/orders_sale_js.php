@@ -107,7 +107,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
         backdrop  : 'static',
         controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
           $sc.selected_products = {};
-          $sc.pm_val = ["1","2","3","4","5"];
+          $sc.pm_val = ["0","1","2","3","4","5"];
 
           $sc.input_search = function(val) {
             char_search = val;
