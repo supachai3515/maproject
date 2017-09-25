@@ -6,8 +6,9 @@ class Order_complete extends BaseController {
 	public function __construct(){
 		parent::__construct();
 		//call model inti
-    $this->load->model('initdata_model');
-    $this->load->model('order_complete_model');
+	    $this->load->model('initdata_model');
+	    $this->load->model('order_complete_model');
+	    session_start();
 	}
 
 	public function index()
