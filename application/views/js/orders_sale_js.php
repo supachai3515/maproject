@@ -193,6 +193,15 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
               )
               return;
             }
+            if($sc.add_product_form.$invalid) {
+              swal(
+                '',
+                'กรอกข้อมูลไม่สมบูรณ์',
+                'warning'
+              )
+              return;
+            }
+            
             $http({
                 method: 'POST',
                 url: '<?php echo base_url('orders_sale/get_search_product_cal');?>',
@@ -285,7 +294,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
         backdrop  : 'static',
         controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
           $sc.order_choosed_detail = model;
-          $sc.pm_val = ["1","2","3","4","5"];
+          $sc.pm_val = ["0","1","2","3","4","5"];
           var qty_discount =  $scope.master_init_data.discount_qty;
           var contract_discount =  $scope.master_init_data.discount_contract;
           var province_discount =  $scope.master_init_data.discount_province;
@@ -406,7 +415,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
         templateUrl: 'edit_order_view.html',
         size: 'lg',
         controller: ['$scope', '$uibModalInstance', '$q', function($sc, $uib, $q) {
-          $sc.pm_val = ["1","2","3","4","5"];
+          $sc.pm_val = ["0","1","2","3","4","5"];
           $sc.order_detail = row_data;
           var qty_discount =  $scope.master_init_data.discount_qty;
           var contract_discount =  $scope.master_init_data.discount_contract;
@@ -657,7 +666,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
             </button>
           </span>
         </div>
-        <form role="form">
+        <form name="add_product_form" role="form">
             <div class="box-body">
               <table class="table table-striped">
                 <thead>
@@ -678,7 +687,19 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                     <td>{{selected_products.name || '-'}}</td>
                     <td class="text-center">{{selected_products.model || '-'}}</td>
                     <td>
-                      <input type="number" class="form-control text-center"  name="model_qty" ng-model="selected_products.qty" min="1">
+                      <div ng-class="{'has-error': add_product_form.model_qty.$invalid}">
+                        <input type="number" 
+                          class="form-control text-center"  
+                          name="model_qty" 
+                          ng-model="selected_products.qty" 
+                          ng-pattern="/^(0?[1-9]|[1-9][0-9])$/"
+                          data-toggle="tooltip" 
+                          data-placement="left" 
+                          title="กรอกได้เฉพาะตัวเลข 1-99"
+                          min="1"
+                          max="99"
+                          required>
+                      </div>
                     </td>
                     <td>
                       <select class="form-control" name="model_province" ng-model="selected_products.province">
@@ -707,12 +728,10 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 </tbody>
               </table>
             </div><!-- /.box-body -->
-            <div class="box-footer">
-                <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_choose_product()">
-            </div>
         </form>
       </div>
       <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_choose_product()">
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
       </div>
   </script>
@@ -752,12 +771,10 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
               </table>
               </div>
             </div><!-- /.box-body -->
-            <div class="box-footer">
-                <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_edit_order()">
-            </div>
         </form>
       </div>
       <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Next" ng-click="next_to_edit_order()">
         <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
       </div>
   </script>
@@ -771,7 +788,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
       <form role="form" name="edit_choosed_order_form">
           <div class="box-body">
               <div class="row">
-                  <div class="col-md-4" ng-class="{'has-error': (edit_choosed_order_form.discount_sla.$error.min || edit_choosed_order_form.discount_sla.$error.max) || (edit_choosed_order_form.$submitted && edit_choosed_order_form.discount_sla.$error.required)}">
+                  <div class="col-md-4" ng-class="{'has-error': edit_choosed_order_form.discount_sla.$invalid}">
                       <div class="form-group">
                           <label for="name">Discount SLA Type Value</label>
                           <input type="number"
@@ -780,6 +797,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                             ng-model="order_choosed_detail.discount_sla_type_value"
                             ng-min="get_sla_type_min(order_choosed_detail.type_name)"
                             ng-max="get_sla_type_max(order_choosed_detail.type_name)"
+                            ng-pattern="/^\d+$/"
                             data-toggle="tooltip"
                             data-placement="right"
                             title="{{get_sla_type_min(order_choosed_detail.type_name)+' - '+get_sla_type_max(order_choosed_detail.type_name)}}"
@@ -833,22 +851,28 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                   </div>
               </div>
               <div class="row">
-                <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.pm_time.$error.required}">
+                <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.pm_time.$invalid}">
                     <div class="form-group">
                       <label for="name">PM Time Value</label>
                       <input type="text"
                         name="pm_time"
                         class="form-control"
-                        ng-model="order_choosed_detail.pm_time_value" required>
+                        ng-model="order_choosed_detail.pm_time_value"
+                        ng-pattern="/^\d+$/" 
+                      data-toggle="tooltip" data-placement="left" title="กรอกได้เฉพาะตัวเลข" 
+                      required>
                     </div>
                 </div>
-                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.lb_year.$error.required}">
+                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.lb_year.$invalid}">
                       <div class="form-group">
                         <label for="name">LB Year Value</label>
                         <input type="text"
                           name="lb_year"
                           class="form-control"
-                          ng-model="order_choosed_detail.lb_year_value" required>
+                          ng-model="order_choosed_detail.lb_year_value"
+                          ng-pattern="/^\d+$/"
+                          data-toggle="tooltip" data-placement="left" title="กรอกได้เฉพาะตัวเลข" 
+                          required>
                       </div>
                   </div>
                 </div>
@@ -866,7 +890,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                         </select>
                       </div>
                   </div>
-                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.qty.$error.min || (edit_choosed_order_form.$submitted && edit_choosed_order_form.qty.$error.required)}">
+                  <div class="col-md-6" ng-class="{'has-error': edit_choosed_order_form.qty.$invalid}">
                       <div class="form-group">
                           <label for="name">QTY</label>
                           <input type="number"
@@ -875,17 +899,19 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                           class="form-control required"
                           string-to-number
                           ng-model="order_choosed_detail.qty"
-                          min="1" required>
+                          ng-pattern="/^(0?[1-9]|[1-9][0-9])$/"
+                          min="1"
+                          max="99"
+                          data-toggle="tooltip" data-placement="left" title="กรอกได้เฉพาะตัวเลข 1-99"
+                          required>
                       </div>
                   </div>
               </div>
           </div><!-- /.box-body -->
-          <div class="box-footer">
-              <input type="submit" class="btn btn-primary" value="Submit" ng-click="submit_new_order(edit_choosed_order_form, order_choosed_detail)">
-          </div>
       </form>
     </div>
     <div class="modal-footer">
+      <input type="submit" class="btn btn-primary" value="Submit" ng-click="submit_new_order(edit_choosed_order_form, order_choosed_detail)">
       <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
     </div>
   </script>
@@ -930,7 +956,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
     <form role="form" name="edit_order_form"  ng-submit="save_edit(edit_order_form, order_detail)">
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4" ng-class="{'has-error': (edit_order_form.discount_sla.$error.min || edit_order_form.discount_sla.$error.max) || (edit_order_form.$submitted && edit_order_form.discount_sla.$error.required)}">
+                <div class="col-md-4" ng-class="{'has-error':  edit_order_form.discount_sla.$invalid}">
                     <div class="form-group">
                         <label for="name">Discount SLA Type Value</label>
                         <input type="number"
@@ -939,6 +965,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                           ng-model="order_detail.discount_sla_type_value"
                           ng-min="get_sla_type_min(order_detail.type_name)"
                           ng-max="get_sla_type_max(order_detail.type_name)"
+                          ng-pattern="/^\d+$/"
                           data-toggle="tooltip"
                           data-placement="right"
                           title="{{get_sla_type_min(order_detail.type_name)+' - '+get_sla_type_max(order_detail.type_name)}}"
@@ -989,22 +1016,28 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                 </div>
             </div>
             <div class="row">
-              <div class="col-md-6" ng-class="{'has-error': edit_order_form.pm_time.$error.required}">
+              <div class="col-md-6" ng-class="{'has-error': edit_order_form.pm_time.$invalid}">
                   <div class="form-group">
                     <label for="name">PM Time Value</label>
                     <input type="text"
                       name="pm_time"
                       class="form-control"
-                      ng-model="order_detail.pm_time_value" required>
+                      ng-model="order_detail.pm_time_value"
+                      ng-pattern="/^\d+$/" 
+                      data-toggle="tooltip" data-placement="left" title="กรอกได้เฉพาะตัวเลข"
+                      required>
                   </div>
               </div>
-                <div class="col-md-6" ng-class="{'has-error': edit_order_form.lb_year.$error.required}">
+                <div class="col-md-6" ng-class="{'has-error': edit_order_form.lb_year.$invalid}">
                     <div class="form-group">
                       <label for="name">LB Year Value</label>
                       <input type="text"
                         name='lb_year'
                         class="form-control"
-                        ng-model="order_detail.lb_year_value" required>
+                        ng-model="order_detail.lb_year_value" 
+                        ng-pattern="/^\d+$/"
+                        data-toggle="tooltip" data-placement="left" title="กรอกได้เฉพาะตัวเลข"
+                        required>
                     </div>
                 </div>
               </div>
@@ -1020,7 +1053,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                       </select>
                     </div>
                 </div>
-                <div class="col-md-6" ng-class="{'has-error': edit_order_form.qty.$error.min || (edit_order_form.$submitted && edit_order_form.qty.$error.required)}">
+                <div class="col-md-6" ng-class="{'has-error': edit_order_form.qty.$invalid}">
                     <div class="form-group">
                         <label for="name">QTY</label>
                         <input type="number"
@@ -1028,17 +1061,19 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
                           class="form-control required"
                           string-to-number
                           ng-model="order_detail.qty"
-                          min="1" required>
+                          ng-pattern="/^(0?[1-9]|[1-9][0-9])$/"
+                          min="1"
+                          max="99"
+                          data-toggle="tooltip" data-placement="left" title="กรอกได้เฉพาะตัวเลข 1-99"
+                          required>
                     </div>
                 </div>
             </div>
         </div><!-- /.box-body -->
-        <div class="box-footer">
-            <input type="submit" class="btn btn-primary" value="Submit" />
-        </div>
     </form>
   </div>
   <div class="modal-footer">
+    <input type="submit" class="btn btn-primary" value="Submit" />
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
   </div>
 </script>

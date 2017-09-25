@@ -8,6 +8,7 @@ class Home extends BaseController {
 		//call model inti
     $this->load->model('initdata_model');
     $this->load->model('home_model');
+    	session_start();
 	}
 
 	public function index()
