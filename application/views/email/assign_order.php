@@ -30,6 +30,7 @@
 																<div style="font-size:15px;display:inline-block;width:100%;margin:0;vertical-align:top"></div>
 															</dl>
 														</cite>
+														<p><a href="<?php echo base_url(); ?>orders_sale/edit/<?php echo $order_data['order_id']; ?>" target="_blank">คลิกที่นี้</a> เพื่อไปยังหน้า Order</p>
 													</td>
 												</tr>
 											</tbody>

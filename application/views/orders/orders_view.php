@@ -89,12 +89,12 @@
                       </td>
                       <td class="text-center">
                         <?php if (isset($record->assign_to_name)): ?>
-                          <a class="btn btn-sm btn-success" href="<?php echo base_url().'orders/assign/'.$record->order_id; ?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                          <a class="btn btn-xs btn-success" href="<?php echo base_url().'orders/assign/'.$record->order_id; ?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
                         <?php else: ?>
-                          <a class="btn btn-sm btn-default" href="<?php echo base_url().'orders/assign/'.$record->order_id; ?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                          <a class="btn btn-xs btn-default" href="<?php echo base_url().'orders/assign/'.$record->order_id; ?>"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
                         <?php endif; ?>
 
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'orders/view/'.$record->order_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                          <a class="btn btn-xs btn-info" href="<?php echo base_url().'orders/view/'.$record->order_id; ?>"><i class="fa fa-eye" aria-hidden="true"></i></a>
                       </td>
                     </tr>
                     <?php endforeach; ?>

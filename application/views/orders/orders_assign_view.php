@@ -3,13 +3,13 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Assign Sale
+      Assign to Sale
       <small></small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="<?php echo base_url('orders'); ?>"> Orders</a></li>
-      <li class="active">Assign Sale</li>
+      <li class="active">Assign to Sale</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -21,7 +21,7 @@
 
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Assign Sale</h3>
+                    <h3 class="box-title">Assign to Sale</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
@@ -31,7 +31,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="role">User Sale</label>
+                                    <label for="role">Sale User</label>
                                     <input type="hidden" value="<?php echo $orders_data['order_id']; ?>" name="order_id" id="order_id" />
                                     <select class="form-control" id="user" name="user">
                                         <option value="0">Select User</option>
