@@ -272,7 +272,6 @@
   <script src="<?php echo base_url(); ?>assets/plugins/angular-filter/angular-filter-0.5.16.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/plugins/angular-loading-bar/loading-bar.js"></script>
   <script src="<?php echo base_url(); ?>assets/dist/js/ng-table.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/plugins/underscorejs/underscore-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- page script -->
   <?php $this->load->view("js/main_app"); ?>

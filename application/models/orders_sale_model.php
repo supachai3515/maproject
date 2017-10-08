@@ -503,4 +503,14 @@ class Orders_sale_model extends CI_Model
 			$this->db->query($sql);
 			return true;
     }
+
+    public function update_confirm_document($id)
+    {
+      $sql =" UPDATE orders SET order_status_id = 8 WHERE order_status_id < 8 AND order_id = $id ";
+            $this->db->query($sql);
+
+            $sql =" INSERT INTO order_status_history VALUES($id,7,'Approve document',NOW()) ";
+            $this->db->query($sql);
+            return true;
+    }
 }

@@ -4,7 +4,7 @@
          <meta charset="utf-8">
          <meta http-equiv="X-UA-Compatible" content="IE=edge">
          <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title>Order</title>
+         <title>Order document</title>
 
          <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,9 +12,10 @@
          <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/sweetalert2.css">
          <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/loading-template.css">
          <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/fileinput.css">
          <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/home/home.css">
        </head>
-       <body ng-app="mainApp" ng-controller="special_price_ctrl">
+       <body ng-app="mainApp" ng-controller="upload_doc_ctrl">
        <header class="header">
         <nav class="navbar navbar-default">
           <div class="container-fluid">
@@ -28,38 +29,6 @@
        <div class="content-wrapper">
          <section class="content">
            <div class="container">
-            <div class="step">
-               <div class="step-inner">
-                   <div class="connecting-line"></div>
-                   <ul class="nav nav-tabs" role="tablist">
-                     <li role="presentation" ng-class="{'active': order_status > 0}">
-                       <a href="#" role="tab">
-                         <span class="round-tab"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></i></span>
-                       </a>
-                       <span>ขอราคาพิเศษ</span>
-                     </li>
-                     <li role="presentation" ng-class="{'active': (order_status > 1) && (order_status <= 8)}">
-                         <a href="#"  role="tab">
-                             <span ng-if="order_status > 0 && order_status <= 3" class="round-tab"><i class="fa fa-tasks" aria-hidden="true"></i></span>
-                             <span ng-if="order_status == 4" class="round-tab"><i class="fa fa-exchange" aria-hidden="true"></i></span>
-                             <span ng-if="order_status == 5" class="round-tab"><i class="fa fa-file-text" aria-hidden="true"></i></span>
-                             <span ng-if="order_status == 6 || order_status == 7" class="round-tab"><i class="fa fa-file-text" aria-hidden="true"></i></span>
-                         </a>
-                         <span ng-if="order_status > 0 && order_status <= 3">รอใบเสนอราคา</span>
-                         <span ng-if="order_status == 4">ยืนยันราคา</span>
-                         <span ng-if="order_status == 5">รอการออกเอกสารสั่งซื้อ</span>
-                         <span ng-if="order_status == 6 || order_status == 7">ส่งเอกสารสั่งซื้อ</span>
-                     </li>
-                     <li role="presentation" ng-class="{'active': order_status == 8}">
-                         <a href="#" title="Complete">
-                             <span class="round-tab"><i class="fa fa-check" aria-hidden="true"></i></span>
-                         </a>
-                         <span>สำเร็จ</span>
-                     </li>
-                   </ul>
-               </div>
-             </div>
-
             <div class="box box-primary">
                <div class="box-header with-border">
                    <h3 class="box-title">Order Info</h3>
@@ -124,11 +93,37 @@
                 </table>
               </div>
             </div>
-            <p class="text-center" ng-if="canSubmit()">
-              <button type="button" class="btn btn-primary btn-lg" ng-click="submit_order()">
-                <span ng-if="order_status == 1">ขอราคาพิเศษ</span>
-                <span ng-if="order_status == 4">ยืนยันราคา</span>
-              </button>
+            <div ng-if="order_status == 7" class="alert alert-success text-center" role="alert"><p>อัพโหลดเอกสารสำเร็จ โปรดรอการยืนยัน</p></div>
+            <div ng-if="order_status < 6" class="alert alert-warning text-center" role="alert"><p>Order ของท่านยังไม่ถึงขั้นตอนการอัพโหลดเอกสาร</p></div>
+
+
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                  <h3 class="box-title">Upload Document</h3>
+              </div>
+
+              <div class="box-body">
+                <form name="upload_document_form" class="form-horizontal" action="<?php echo base_url() ?>upload_document/upload_doct" method="post" role="form" enctype="multipart/form-data">
+                   <div class="form-group">
+                     <label class="col-md-5 control-label" for="file_path" >Document 1</label>
+                     <div class="col-md-5">
+                       <input id="file_path" name="file_path" class="file-loading" type="file" data-show-upload="false" data-min-file-count="1">
+                       <input type="hidden" value="<?php echo $order_data['order_id']; ?>" name="order_id" id="order_id">
+                       <input type="hidden" value="<?php echo $order_data['ref_id']; ?>" name="ref_id" id="ref_id">
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <label class="col-md-5 control-label" for="file_path_2" >Document 2</label>
+                     <div class="col-md-5">
+                       <input id="file_path_2" name="file_path_2" class="file-loading" type="file" data-show-upload="false" data-min-file-count="1">
+                     </div>
+                   </div>
+                  <input id="btn_upload" type="submit" value="อัพโหลดเอกสาร" style="display: none;">
+                </form>
+              </div>
+            </div>
+            <p class="text-center">
+              <button ng-if="order_status == 6 || order_status == 7" type="button" class="btn btn-primary btn-lg" ng-click="upload_document()">อัพโหลดเอกสาร</button>
             </p>
          </div>
         </section>
@@ -154,9 +149,11 @@
         <script src="<?php echo base_url(); ?>assets/plugins/angular-filter/angular-filter-0.5.16.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/angular-loading-bar/loading-bar.js"></script>
         <script src="<?php echo base_url(); ?>assets/dist/js/ng-table.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/fileinput.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/fileinput_locale_th.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
         <!-- page script -->
         <?php $this->load->view("js/main_app"); ?>
-        <?php $this->load->view("js/special_price_js"); ?>
+        <?php $this->load->view("js/upload_doc_js"); ?>
        </body>
 </html>

@@ -27,6 +27,7 @@
 																<div style="font-size:15px;display:inline-block;width:100%;margin:0;vertical-align:top"></div>
 															</dl>
 														</cite>
+														<p>เอกสารของท่านได้รับการยืนยันแล้ว</p>
 													</td>
 												</tr>
 											</tbody>
@@ -171,10 +172,9 @@
 																			</div>
 																		</div>
 																	<?php endforeach; ?>
-																	<p>ดาวน์โหลดเอกสารสั่งซื้อ<a href="<?php echo base_url(); ?>tos_cal/invoice_doc/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a></p>
-																	<p>หากท่านต้องการอัพโหลดเอกสาร<a href="<?php echo base_url(); ?>tos_cal/upload_document/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a></p>
 						                    </div>
 														</div>
+
 													</td>
 												</tr>
 											</tbody>

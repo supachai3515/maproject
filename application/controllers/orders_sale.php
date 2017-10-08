@@ -656,7 +656,7 @@ class Orders_sale extends BaseController
             //sendmail
     	      $data['email'] = $resultInfo["email"];// toemail
     				$data['template'] = "email/order_invoice";
-    				$data['subject'] = "Approve special price #".$order_id;
+    				$data['subject'] = "Send invioce #".$order_id;
     				$data['bcc_mail'] = $this->config->item('email_cc_group');
             $data['name'] = $resultInfo["company"];
       			$data['tel'] = $resultInfo["tel"];
@@ -677,4 +677,48 @@ class Orders_sale extends BaseController
           $this->loadThis();
       }
     }
+
+    public function approve_document($order_id)
+    {
+      $data['global'] = $this->global;
+      $data['menu_id'] ='16';
+      $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+      $data['access_menu'] = $this->isAccessMenu($data['menu_list'], $data['menu_id']);
+      if ($data['access_menu']['is_access']&&$data['access_menu']['is_add']) {
+            $id = json_decode(file_get_contents("php://input"));
+            $order_id = $id->id;
+            $result = $this->orders_sale_model->update_confirm_document($order_id);
+
+          if ($result > 0) {
+
+            $resultInfo = $this->orders_model->get_orders_id($order_id);
+            $data['order_data'] = $resultInfo;
+            $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
+            //pre($data['order_data']);
+            //pre($data['order_detail_data']);
+            //sendmail
+            $data['email'] = $resultInfo["email"];// toemail
+            $data['template'] = "email/approve_document";
+            $data['subject'] = "Approve document #".$order_id;
+            $data['bcc_mail'] = $this->config->item('email_cc_group');
+            $data['name'] = $resultInfo["company"];
+            $data['tel'] = $resultInfo["tel"];
+
+                    //sendmail
+                    $sendStatus = send_emali_template_gmail($data);
+                    if($sendStatus){
+                            json_output(200, array('status' => 200,'message' => 'success'));
+                    } else {
+                            json_output(400, array('status' => 400,'message' => 'error'));
+                    }
+          } else {
+              json_output(400, array('status' => 400,'message' => 'error'));
+          }
+          redirect('orders_sale/edit/'.$order_id);
+
+      } else {
+          $this->loadThis();
+      }
+    }
+
 }

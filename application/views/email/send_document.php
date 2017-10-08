@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Order Tos</title>
+		<title>TOS Order</title>
 	</head>
 	<body>
 		<div>
@@ -47,13 +47,14 @@
 										<table style="margin:0%;width:100%;border-spacing:0;table-layout:fixed" cellpadding="0" cellspacing="0">
 											<tbody>
 												<tr>
-													<td style="font-size:15px;color:#555;line-height:24px">
+													<td style="font-size:15px;color:#555;">
 
 														<div style="border-top:3px solid #3c8dbc;position: relative;border-radius: 3px;background: #ffffff;margin-bottom: 20px;width: 100%;">
 						                    <div style="color: #444;display: block;padding: 10px;position: relative;border-bottom: 1px solid #f4f4f4;">
 						                        <p style="display: inline-block;font-size: 18px;margin: 0;line-height: 1;">Order Info</p>
 						                    </div>
 						                    <div style="border-top-left-radius: 0;border-top-right-radius: 0;border-bottom-right-radius: 3px;border-bottom-left-radius: 3px;padding: 10px;">
+
 																	<div style="overflow: hidden;">
 																			<p style="margin-bottom: 0;text-align: right;width: 41.66666667%;float: left;margin-right: 10px;font-weight: bold;">Order ID:</p>
 																			<div style="float: left;">
@@ -61,6 +62,7 @@
 																			</div>
 																	</div>
 																	<div style="overflow: hidden;">
+
 				                                <p style="margin-bottom: 0;text-align: right;width: 41.66666667%;float: left;margin-right: 10px;font-weight: bold;">Email:</p>
 				                                <div style="float: left;">
 				                                    <p style="padding-bottom: 7px;margin-bottom: 0;"><?php echo $order_data['email']; ?></p>
@@ -171,10 +173,10 @@
 																			</div>
 																		</div>
 																	<?php endforeach; ?>
-																	<p>ดาวน์โหลดเอกสารสั่งซื้อ<a href="<?php echo base_url(); ?>tos_cal/invoice_doc/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a></p>
-																	<p>หากท่านต้องการอัพโหลดเอกสาร<a href="<?php echo base_url(); ?>tos_cal/upload_document/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a></p>
+																	<p>ท่านได้ส่งเอกสารสำเร็จแล้ว โปรดรอการยืนยันเอกสาร</p>
 						                    </div>
 														</div>
+
 													</td>
 												</tr>
 											</tbody>

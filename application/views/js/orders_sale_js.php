@@ -595,6 +595,8 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
              'success'
            )
            get_order_status();
+           $scope.initget_order();
+    $scope.initget_order_detail();
          }, function(reason) {
            swal(
              'Error!',
@@ -633,6 +635,47 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
              'success'
            )
            get_order_status();
+           $scope.initget_order();
+          $scope.initget_order_detail();
+         }, function(reason) {
+           swal(
+             'Error!',
+             'Technical error please contact the administrator',
+             'error'
+           )
+         });
+   }
+
+   $scope.confirm_doc = function() {
+    swal({
+       title: '',
+       text: "ยืนยันการตรวจสอบเอกสาร",
+       type: 'warning',
+       showCancelButton: true,
+       confirmButtonColor: '#008CBA',
+       cancelButtonColor: '#8388a1',
+       confirmButtonText: 'ยืนยัน',
+       cancelButtonText: 'ยกเลิก',
+     }).then(function () {
+       send_confirm_doc();
+     });
+   }
+   function send_confirm_doc() {
+     var order_id = $scope.order_list.order_id;
+     $http({
+           method: 'POST',
+           url: '<?php echo base_url('orders_sale/approve_document');?>',
+           headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+           data: {id: order_id}
+         }).then(function(response) {
+           swal(
+             '',
+             'ยืนยันเอกสารสำเร็จ',
+             'success'
+           )
+           get_order_status();
+           $scope.initget_order();
+            $scope.initget_order_detail();
          }, function(reason) {
            swal(
              'Error!',

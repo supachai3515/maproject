@@ -18,7 +18,7 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-              <h3 class="box-title"><?php echo $orders_data['company'] ?> (<?php echo $orders_data['order_id'] ?>)</h3>
+              <h3 class="box-title"><?php echo $orders_data['company'] ?> (Order <?php echo $orders_data['order_id'] ?>)</h3>
           </div><!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
@@ -58,7 +58,7 @@
       <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><?php echo $orders_data['company'] ?> (<?php echo $orders_data['order_id'] ?>)</h3>
+                <h3 class="box-title"><?php echo $orders_data['company'] ?> (Order <?php echo $orders_data['order_id'] ?>)</h3>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <div class="col-xs-12 text-right">
@@ -165,6 +165,25 @@
               -->
             </div><!-- /.box-body -->
           </div><!-- /.box -->
+
+          <div class="box" ng-if="order_status >= 7">
+          <div class="box-header">
+              <h3 class="box-title">Document (Order <?php echo $orders_data['order_id'] ?>)</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+            <div class="form-group row">
+               <label class="col-md-5 control-label text-right">Document 1 :</label>
+               <div class="col-md-5"><a class="btn btn-info" href="<?php echo $this->config->item('url_img').$orders_data['file_path'];?>" role="button">View File</a></div>
+             </div>
+             <div class="form-group row">
+               <label class="col-md-5 control-label text-right">Document 2 :</label>
+               <div class="col-md-5"><a class="btn btn-info" href="<?php echo $this->config->item('url_img').$orders_data['file_path_2'];?>" role="button">View File</a></div>
+             </div>
+          </div><!-- /.box-body -->
+          <div class="box-footer">
+            <p ng-if="order_status == 7" id="approve_special_price_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="confirm_doc()" href="#"></i>ยืนยันเอกสาร</a></p>
+          </div>
+        </div><!-- /.box -->
         </div>
     </div>
     <div class="row">
@@ -173,7 +192,7 @@
           <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit Order : (<?php echo $orders_data['order_id']; ?>)</h3>
+                    <h3 class="box-title">Edit Order : (Order <?php echo $orders_data['order_id']; ?>)</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                   <form role="form" action="<?php echo base_url() ?>orders_sale/edit_save" method="post" role="form" enctype="multipart/form-data">
