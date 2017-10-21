@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>ใบแจ้งชำระเงิน เลขที่ใบสั่งซื้อ <?php echo $order_data['id']." ".$order_data["name"];?> </title>
+		<title>ใบเสนอราคา</title>
 
 		<!-- Bootstrap CSS -->
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -22,60 +22,102 @@
 		<div class="row">
     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     		<img src="<?php echo base_url('theme');?>/img/logo/logo.png" style="width: 200px"/>
-    		<h4><?php echo $this->config->item('short_sitename')?></h4>.... <br>....<br>
+    		<h2>บริษัท เทิร์นออน โซลูชั่น จำกัด</h2>
+    		<h4>TURN ON SOLUTION CO., LTD. </h4>
     	</div>
     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
         <h2>เลขที่ใบสั่งซื้อ #<?php echo  $order_data['order_id'];?> </h2>
-        <strong>วันที่ออก <?php echo $order_data['order_date']?></strong><br/>กรุณาชำระเงินภายใน 3 วัน
+        <strong>วันที่ออก <?php echo $order_data['order_date']?></strong>
     	</div>
 		</div>
 		<div class="row" style="padding-top:10px;">
     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    		<div class="panel panel-default height">
-          <div class="panel-heading">ที่อยู่</div>
-          <div class="panel-body">
-              <strong>ชื่อ: </strong><?php echo $order_data["company"];?><br>
-              <strong>ที่อยู่: </strong><?php echo $order_data["address"];?><br>
-              <strong>เบอร์ติดต่อ: </strong><?php echo $order_data["tel"];?><br>
-              <strong>อีเมล์: </strong><?php echo $order_data["email"];?>
-          </div>
-        </div>
+			<p>Level 29, The Offices at Centralworld 999/9 Rama I Road, Pathumwan Bangkok 10330 Thailand<br>Telephone: 02-576-0385-6, Fax 02-576-0387<br>Website : www.turnonsolution.co.th , info@turnonsolution.co.th<br>เลขประจำตัวผู้เสียภาษีอากร :  0105558094400</p>
     	</div>
 		</div>
 
     <!-- <?php pre($order_detail_data); ?> -->
+    	<div class="panel panel-primary" style="margin-top:30px;">
+	    	<div class="panel-heading">
+			    <h3 class="panel-title text-center">QUOTATION / ใบเสนอราคา</h3>
+			</div>
+			<div class="panel-body">
+			    <div class="row">
+			    	<div class="col-md-6"><strong>Name:</strong>  <?php echo $order_data["company"];?></div>
+			    	<div class="col-md-6"><strong>Quotation No.</strong></div>
+			    </div>
+			    <div class="row">
+			    	<div class="col-md-6"><strong>Company:</strong>  <?php echo $order_data["company"];?></div>
+			    	<div class="col-md-6"><strong>Date :</strong></div>
+			    </div>
+			    <div class="row">
+			    	<div class="col-md-6"><strong>Address:</strong>  <?php echo $order_data["address"];?></div>
+			    	<div class="col-md-6"><strong>Tel :</strong>  <?php echo $order_data["tel"];?></div>
+			    </div>
+			    <div class="row">
+			    	<div class="col-md-6"><strong>E-mail:</strong>  <?php echo $order_data["email"];?></div>
+			    	<div class="col-md-6"><strong>Fax :</strong></div>
+			    </div>
+			    <div class="row">
+			    	<div class="col-md-6"><strong>Page:</strong></div>
+			    </div>
+			</div>
+    	</div>
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="panel panel-default">
+	            	<div class="panel-heading"><h3 class="panel-title">Subject :</h3></div>
 	                <div class="panel-body">
 	                    <div class="table-responsive">
 	                        <table class="table table-condensed">
 	                            <thead>
 	                                <tr>
-	                                    <td class="product-id col-md-3"><strong>Part Number</strong></td>
-	                                    <td class="text-center col-md-3"><strong>Description</strong></td>
-	                                    <td class="text-center col-md-1"><strong>Type</strong></td>
-                                      <td class="text-center col-md-1"><strong>LB Year QTY</strong></td>
-                                      <td class="text-center col-md-1"><strong>จังหวัด</strong></td>
-                                      <td class="text-center col-md-1"><strong>QTY</strong></td>
-                                      <td class="text-center col-md-1"><strong>PM Time QTY</strong></td>
-	                                    <td class="text-right col-md-1"><strong>ราคารวม</strong></td>
+	                                <th class="text-center">No.</th>
+	                                  <th class="text-center"><strong>Part Number</strong></th>
+	                                  <th class="text-center"><strong>Description</strong></th>
+	                                  <th class="text-center"><strong>MA-TYPE</strong></th>
+                                      <th class="text-center"><strong>Unit</strong></td>
+                                      <th class="text-center"><strong>Unit Price</strong></th>
+                                      <th class="text-center"><strong>Amount</strong></th>
+                                      <th class="text-center"><strong>PM Time QTY</strong></th>
+	                                    <th class="text-right"><strong>Cost Total</strong></th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
 	                            <?php foreach ($order_detail_data as $value): ?>
 	                            	 <tr>
-                										<td><?php echo $value['part_number'] ?></td>
+	                            	 	<td class="text-center"><?php echo $value['line_number'] ?></td>
+                										<td class="text-center"><?php echo $value['part_number'] ?></td>
 
                 										<td><?php echo $value['product_description'] ?></td>
                 										<td class="text-center"><?php echo $value['type_name'] ?></td>
                                     <td class="text-center"><?php echo $value['lb_year_qty'] ?></td>
-                                    <td class="text-center"><?php echo $value['province_name'] ?></td>
+                                    <td class="text-center"></td>
                                     <td class="text-center"><?php echo $value['qty'] ?></td>
                                     <td class="text-center"><?php echo $value['pm_time_qty'] ?></td>
                 										<td class="text-center"><?php echo number_format($value["total"], 2)?></td>
 									               </tr>
 	                            <?php endforeach ?>
+	                            <tr>
+	                            	<td class="text-right" colspan="7"><strong>SUB TOTAL :</strong></td>
+	                            	<td class="text-left" colspan="2">140000</td>
+	                            </tr>
+	                            <tr>
+	                            	<td class="text-right" colspan="7"><strong>DISCOUNT :</strong></td>
+	                            	<td class="text-left" colspan="2">140000</td>
+	                            </tr>
+	                            <tr>
+	                            	<td class="text-right" colspan="7"><strong>VAT 7 % :</strong></td>
+	                            	<td class="text-left" colspan="2">140000</td>
+	                            </tr>
+	                            <tr>
+	                            	<td class="text-right" colspan="7"><strong>TOTAL :</strong></td>
+	                            	<td class="text-left" colspan="2">140000</td>
+	                            </tr>
+	                            <tr>
+	                            	<td class="text-right" colspan="2"><strong>จำนวนเงิน ( BAHT ) : 	</strong></td>
+	                            	<td class="text-center" colspan="7">หนึ่งแสนสี่หมื่นเก้าพันแปดร้อยบาทถ้วน	</td>
+	                            </tr>
 	                            </tbody>
 	                        </table>
 	                    </div>
@@ -87,9 +129,42 @@
 	    <div class="row">
 	    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	    		<div class="panel panel-default">
-	    		 <div class="panel-heading">การชำระเงิน</div>
+	    		 <div class="panel-heading text-center">Terms and Conditions</div>
 	    		<div class="panel-body">
-	    		   <?php echo $this->config->item('payment_transfer') ?>
+	    		  	<table class="table table-condensed">
+	    		  		<thead>
+	                        <tr>
+	                          <th class="text-center"><strong>Price Validity</strong></th>
+	                          <th class="text-center"><strong>Payment Term</strong></th>
+	                          <th class="text-center"><strong>Delivery Date</strong></th>
+	                          <th class="text-center"><strong>Type</strong></td>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    	<tr>
+	                    		<td class="text-center"></td>
+	                    		<td class="text-center"></td>
+	                    		<td class="text-center"></td>
+	                    		<td class="text-center"></td>
+	                    	</tr>
+	                    </tbody>
+					</table>
+					<table class="table table-condensed">
+	    		  		<thead>
+	                        <tr>
+	                          <th class="text-center"><strong>Approve by</strong></th>
+	                          <th class="text-center"><strong>Purchase approved in accordance with this quotation</strong><br>(อนุมัติสั่งซื้อตามใบเสนอราคานี้)	</th>
+	                          <th class="text-center"><strong>Best Regards,</strong></th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                    	<tr>
+	                    		<td class="text-center"></td>
+	                    		<td class="text-center"></td>
+	                    		<td class="text-center"></td>
+	                    	</tr>
+	                    </tbody>
+					</table>
 	    		</div>
 	    	</div>
 
