@@ -20,15 +20,14 @@
 	<div style="padding-top:30px;"></div>
 	<div class="container fix-container" ng-init="orderSenmailInit()">
 		<div class="row">
-    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-    		<img src="<?php echo base_url('theme');?>/img/logo/logo.png" style="width: 200px"/>
-    		<h2>บริษัท เทิร์นออน โซลูชั่น จำกัด</h2>
-    		<h4>TURN ON SOLUTION CO., LTD. </h4>
-    	</div>
-    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-        <h2>เลขที่ใบสั่งซื้อ #<?php echo  $order_data['order_id'];?> </h2>
-        <strong>วันที่ออก <?php echo $order_data['order_date']?></strong>
-    	</div>
+	    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+	    		<img src="<?php echo base_url('theme');?>/img/logo/logo.png" style="width: 200px"/>
+	    		<h2>บริษัท เทิร์นออน โซลูชั่น จำกัด</h2>
+	    		<h4>TURN ON SOLUTION CO., LTD. </h4>
+	    	</div>
+	    	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+	    		<p style="float: right;" class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><img src="<?php echo base_url(); ?>assets/images/LOGO_TOS.png" class="img-thumbnail"></p>
+	    	</div>
 		</div>
 		<div class="row" style="padding-top:10px;">
     	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
