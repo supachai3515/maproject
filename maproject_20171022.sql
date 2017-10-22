@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-10-22 14:42:36
+Date: 2017-10-22 18:11:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `ci_sessions` (
 -- ----------------------------
 -- Records of ci_sessions
 -- ----------------------------
-INSERT INTO `ci_sessions` VALUES ('31aac4c375c27cd024d833f7e86aa3dd', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', '1508657767', 'a:6:{s:6:\"userId\";s:1:\"2\";s:4:\"role\";s:1:\"4\";s:13:\"menu_group_id\";s:1:\"5\";s:8:\"roleText\";s:4:\"Sale\";s:4:\"name\";s:17:\"Supachai Wisachai\";s:10:\"isLoggedIn\";b:1;}');
+INSERT INTO `ci_sessions` VALUES ('f91e293f886663ff8f066a67cd48e473', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36', '1508664536', 'a:6:{s:6:\"userId\";s:1:\"2\";s:4:\"role\";s:1:\"4\";s:13:\"menu_group_id\";s:1:\"5\";s:8:\"roleText\";s:4:\"Sale\";s:4:\"name\";s:17:\"Supachai Wisachai\";s:10:\"isLoggedIn\";b:1;}');
 
 -- ----------------------------
 -- Table structure for discount_of_contract
@@ -41,7 +41,7 @@ DROP TABLE IF EXISTS `discount_of_contract`;
 CREATE TABLE `discount_of_contract` (
   `discount_of_contract_id` int(11) NOT NULL AUTO_INCREMENT,
   `number` int(11) NOT NULL,
-  `discount` decimal(10,0) NOT NULL,
+  `discount` decimal(10,4) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `create_date` datetime NOT NULL,
@@ -54,11 +54,11 @@ CREATE TABLE `discount_of_contract` (
 -- ----------------------------
 -- Records of discount_of_contract
 -- ----------------------------
-INSERT INTO `discount_of_contract` VALUES ('1', '1', '0', 'บริการ 1 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:10', '1');
-INSERT INTO `discount_of_contract` VALUES ('2', '2', '1', 'บริการ 2 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:26', '1');
-INSERT INTO `discount_of_contract` VALUES ('3', '3', '2', 'บริการ 3 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:48', '1');
-INSERT INTO `discount_of_contract` VALUES ('4', '4', '3', 'บริการ 4 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:56', '1');
-INSERT INTO `discount_of_contract` VALUES ('5', '5', '4', 'บริการ 5 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:22:04', '1');
+INSERT INTO `discount_of_contract` VALUES ('1', '1', '0.0000', 'บริการ 1 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:10', '1');
+INSERT INTO `discount_of_contract` VALUES ('2', '2', '1.0000', 'บริการ 2 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:26', '1');
+INSERT INTO `discount_of_contract` VALUES ('3', '3', '2.0000', 'บริการ 3 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:48', '1');
+INSERT INTO `discount_of_contract` VALUES ('4', '4', '3.0000', 'บริการ 4 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:21:56', '1');
+INSERT INTO `discount_of_contract` VALUES ('5', '5', '4.0000', 'บริการ 5 ปี', '1', '2017-06-22 00:00:00', '1', '2017-06-25 00:22:04', '1');
 
 -- ----------------------------
 -- Table structure for discount_of_qty
@@ -809,6 +809,79 @@ INSERT INTO `province` VALUES ('74', '94', 'ปัตตานี   ', '0', '0',
 INSERT INTO `province` VALUES ('75', '95', 'ยะลา   ', '0', '0', '6', '1', '2017-06-18 17:38:20', '1', '2017-06-18 21:11:37', '1');
 INSERT INTO `province` VALUES ('76', '96', 'นราธิวาส   ', '0', '0', '6', '1', '2017-06-18 17:38:20', '1', '2017-06-18 21:11:37', '1');
 INSERT INTO `province` VALUES ('77', '97', 'บึงกาฬ', '0', '0', '3', '1', '2017-06-18 17:38:20', '1', '2017-06-18 21:11:37', '1');
+
+-- ----------------------------
+-- Table structure for quotation
+-- ----------------------------
+DROP TABLE IF EXISTS `quotation`;
+CREATE TABLE `quotation` (
+  `quotation_id` int(11) NOT NULL AUTO_INCREMENT,
+  `quotation_doc_no` int(11) NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `create_date` datetime NOT NULL,
+  `create_by` int(11) NOT NULL,
+  `modified_date` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  `ct_company` varchar(128) NOT NULL,
+  `ct_address` varchar(512) NOT NULL,
+  `ct_tel` varchar(16) NOT NULL,
+  `ct_email` varchar(128) NOT NULL,
+  `ow_company_name_th` varchar(128) DEFAULT NULL,
+  `ow_company_name_en` varchar(128) DEFAULT NULL,
+  `ow_address` varchar(255) DEFAULT NULL,
+  `ow_logo` varchar(128) DEFAULT NULL,
+  `ow_contact_desc` varchar(255) DEFAULT NULL,
+  `ow_tax` varchar(20) DEFAULT NULL,
+  `ow_desc` varchar(255) DEFAULT NULL,
+  `ct_fax` varchar(255) DEFAULT NULL,
+  `quotation_page` varchar(16) DEFAULT NULL,
+  `quotation_subject` varchar(128) NOT NULL,
+  `sub_total` decimal(11,4) DEFAULT NULL,
+  `total` decimal(11,4) DEFAULT NULL,
+  `discount` decimal(10,4) NOT NULL,
+  `vat` decimal(10,4) DEFAULT NULL,
+  `total_text` varchar(128) NOT NULL,
+  `price_validity` varchar(255) DEFAULT NULL,
+  `payment_term` varchar(255) NOT NULL,
+  `delivery_date` datetime DEFAULT NULL,
+  `terms_type` varchar(255) DEFAULT NULL,
+  `sale_manager_name` varchar(128) DEFAULT NULL,
+  `sale_manager_signature` varchar(128) DEFAULT NULL,
+  `sale_name` varchar(128) DEFAULT NULL,
+  `sale_position` varchar(128) DEFAULT NULL,
+  `sale_email` varchar(128) DEFAULT NULL,
+  `sale_tel` varchar(16) DEFAULT NULL,
+  PRIMARY KEY (`quotation_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of quotation
+-- ----------------------------
+INSERT INTO `quotation` VALUES ('1', '0', '1', '0000-00-00 00:00:00', '0', null, null, '', '', '', '', null, null, null, null, null, null, null, null, null, '', null, null, '0.0000', null, '', null, '', null, null, null, null, null, null, null, null);
+
+-- ----------------------------
+-- Table structure for quotation_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `quotation_detail`;
+CREATE TABLE `quotation_detail` (
+  `quotation_id` int(11) NOT NULL AUTO_INCREMENT,
+  `line_number` int(11) NOT NULL,
+  `part_number` varchar(64) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `price` int(10) DEFAULT NULL,
+  `qty` int(3) DEFAULT NULL,
+  `total` decimal(11,4) DEFAULT NULL,
+  `line_no` int(11) DEFAULT NULL,
+  `cost_total` decimal(11,4) DEFAULT NULL,
+  `is_delete` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`quotation_id`,`line_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of quotation_detail
+-- ----------------------------
+INSERT INTO `quotation_detail` VALUES ('1', '0', '', null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for tbl_reset_password

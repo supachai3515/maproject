@@ -83,20 +83,44 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>
+																<?php $i = 1; ?>
 	                            <?php foreach ($order_detail_data as $value): ?>
 	                            	 <tr>
-	                            	 	<td class="text-center"><?php echo $value['line_number'] ?></td>
+	                            	 	<td class="text-center"><?php echo $i ?></td>
                 										<td class="text-center"><?php echo $value['part_number'] ?></td>
 
                 										<td><?php echo $value['product_description'] ?></td>
                 										<td class="text-center"><?php echo $value['type_name'] ?></td>
-                                    <td class="text-center"><?php echo $value['lb_year_qty'] ?></td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"><?php echo $value['qty'] ?></td>
-                                    <td class="text-center"><?php echo $value['pm_time_qty'] ?></td>
-                										<td class="text-center"><?php echo number_format($value["total"], 2)?></td>
+																		<td class="text-center"><?php echo $value['qty'] ?></td>
+                										<td class="text-center"><?php echo number_format($value["total"]-$value['pm_time_value']-$value['lb_year_value'], 2)?></td>
 									               </tr>
+																 <?php $i++; ?>
 	                            <?php endforeach ?>
+															<?php foreach ($order_detail_data as $value): ?>
+																<tr>
+																	<td class="text-center"><?php echo $i ?></td>
+																	<td class="text-center"><?php echo $value['part_number'] ?></td>
+																	<td class="text-center">LB DES</td>
+																	<td class="text-center">LB</td>
+																	 <td class="text-center"><?php echo $value['lb_year_qty'] ?></td>
+																	 <td class="text-center"><?php echo  $value['lb_year_value'] ?></td>
+																	 <?php $i++; ?>
+																</tr>
+
+															<?php endforeach; ?>
+															<?php foreach ($order_detail_data as $value): ?>
+																<tr>
+																	<td class="text-center"><?php echo $i ?></td>
+																	<td class="text-center"><?php echo $value['part_number'] ?></td>
+																	<td class="text-center">PM DES</td>
+																	<td class="text-center">PM</td>
+																	 <td class="text-center"><?php echo $value['pm_time_qty'] ?></td>
+																	 <td class="text-center"><?php echo  $value['pm_time_value'] ?></td>
+																	 <?php $i++; ?>
+																</tr>
+
+															<?php endforeach; ?>
+
 	                            <tr>
 	                            	<td class="text-right" colspan="7"><strong>SUB TOTAL :</strong></td>
 	                            	<td class="text-left" colspan="2">140000</td>
