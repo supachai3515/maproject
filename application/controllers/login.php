@@ -92,6 +92,16 @@ class Login extends CI_Controller
     }
 
     /**
+  	 * This function is used to logged out user from system
+  	 */
+  	function logout() {
+  		$this->session->sess_destroy ();
+
+  		redirect ( 'login' );
+  	}
+
+
+    /**
      * This function used to load forgot password view
      */
     public function forgotPassword()
