@@ -2,13 +2,10 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>
-      quotation
-      <small>quotation</small>
-    </h1>
+    <h1>Quotation</h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">quotation</li>
+      <li class="active">Quotation</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -17,7 +14,7 @@
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                  <h3 class="box-title">quotation List</h3>
+                  <h3 class="box-title">Quotation List</h3>
                   <div class="box-tools">
                       <form action="<?php echo base_url() ?>quotation" method="POST" id="searchList">
                           <div class="input-group">
@@ -32,9 +29,9 @@
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
-                      <th>quotation_doc_no</th>
+                      <th>Quotation No.</th>
                       <th>รหัส</th>
-                      <th>order อ้างอิง</th>
+                      <th>Order อ้างอิง</th>
                       <th>วันที่สร้าง</th>
                       <th>วันที่แก้ไข</th>
                       <th>สถานะ</th>

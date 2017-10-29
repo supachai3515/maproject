@@ -123,8 +123,9 @@ get_order_detail();
       var info_model = $scope.info;
 
       form.$submitted = true;
+      product_form.$submitted = true;
 
-      if(form.$invalid || product_form.qty_form.$invalid) {
+      if(form.$invalid) {
         swal(
           '',
           'กรอกข้อมูลไม่ครบ หรือ กรอกข้อมูลไม่สมบูรณ์',
@@ -141,6 +142,17 @@ get_order_detail();
         )
         return false;
       }
+
+      if(product_form.qty_form.$invalid) {
+        swal(
+          '',
+          'กรอกข้อมูลไม่ครบ หรือ กรอกข้อมูลไม่สมบูรณ์',
+          'warning'
+        )
+        return false;
+      }
+
+
 
       var model = $.extend({}, info_model, $scope.order, {'product_list': $scope.selected_products});
       $http({

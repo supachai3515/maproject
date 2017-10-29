@@ -2,10 +2,7 @@
 <div class="content-wrapper" ng-controller="order_sale_ctrl">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>
-      Edit Order
-      <small></small>
-    </h1>
+    <h1>Edit Order<small>#<?php echo $orders_data['order_id'] ?></small></h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="<?php echo base_url('orders_sale'); ?>"> Orders sale</a></li>
@@ -18,7 +15,7 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-              <h3 class="box-title"><?php echo $orders_data['company'] ?> (Order <?php echo $orders_data['order_id'] ?>)</h3>
+              <h3 class="box-title">Order Info</h3>
           </div><!-- /.box-header -->
           <div class="box-body table-responsive no-padding">
             <table class="table table-hover">
@@ -58,7 +55,7 @@
       <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-                <h3 class="box-title"><?php echo $orders_data['company'] ?> (Order <?php echo $orders_data['order_id'] ?>)</h3>
+                <h3 class="box-title">Order Detail</h3>
             </div><!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <div class="col-xs-12 text-right">
@@ -80,7 +77,7 @@
                     <span ng-bind="row.line_number"></span>
                   </td>
                     <td>
-                      <strong>Part number :</strong>&nbsp;&nbsp;<span ng-bind="row.part_number"></span><br>
+                      <strong>Part Number :</strong>&nbsp;&nbsp;<span ng-bind="row.part_number"></span><br>
                       <strong>Description :</strong>&nbsp;&nbsp;<span ng-bind="row.product_description"></span><br>
                       <strong>Comment :</strong>&nbsp;&nbsp;<span ng-bind="row.comment || '-'"></span><br>
                     </td>
@@ -119,50 +116,6 @@
                 });
                 </script>
               </div>
-              <!--
-              <table class="table table-hover">
-                <tr>
-                  <th>ลำดับ</th>
-                  <th>part number</th>
-                  <th>product name</th>
-                  <th>Description</th>
-                  <th>comment</th>
-                  <th>type name</th>
-                  <th>type description</th>
-                  <th>full price</th>
-                  <th>dealer price</th>
-                  <th>discount sla</th>
-                  <th>discount contract</th>
-                  <th>discount qty</th>
-                  <th>province</th>
-                  <th>pm</th>
-                  <th>lb</th>
-                  <th>qty</th>
-                  <th>total</th>
-                </tr>
-                <?php foreach ($orders_detail_data as $row): ?>
-                <tr>
-                  <td><?php echo $row['line_number']; ?></td>
-                  <td><?php echo $row['part_number']; ?></td>
-                  <td><?php echo $row['product_name']; ?></td>
-                  <td><?php echo $row['product_description']; ?></td>
-                  <td><?php echo $row['comment']; ?></td>
-                  <td><?php echo $row['type_name']; ?></td>
-                  <td><?php echo $row['type_description']; ?></td>
-                  <td><?php echo number_format($row['full_price'],0); ?></td>
-                  <td><?php echo number_format($row['dealer_price'],0); ?></td>
-                  <td><?php echo number_format($row['discount_sla_type_value'],0); ?>%</td>
-                  <td><?php echo number_format($row['discount_of_contract_value'],0); ?>%</td>
-                  <td><?php echo number_format($row['discount_of_qty_value'],0); ?>%</td>
-                  <td><?php echo $row['province_name']; ?></td>
-                  <td><?php echo $row['pm_time_qty']; ?></td>
-                  <td><?php echo $row['lb_year_qty']; ?></td>
-                  <td><?php echo $row['qty']; ?></td>
-                  <td><?php echo number_format($row['total'],2); ?></td>
-                </tr>
-                <?php endforeach; ?>
-              </table>
-              -->
             </div><!-- /.box-body -->
           </div><!-- /.box -->
 
@@ -184,7 +137,195 @@
             <p ng-if="order_status == 7" id="approve_special_price_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="confirm_doc()" href="#"></i>ยืนยันเอกสาร</a></p>
           </div>
         </div><!-- /.box -->
-        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-header">
+              <h3 class="box-title">Quotation</h3>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+            <form action="" method="post" role="form">
+              <div ng-repeat="(key, order) in orders_detail">
+                <div class="row">
+                  <div class="col-md-1 text-center">
+                    <label>#</label>
+                  </div>
+                  <div class="col-md-2 text-center">
+                    <label>Part Number</label>
+                  </div>
+                  <div class="col-md-2 text-center">
+                      <label>Description</label>
+                  </div>
+                  <div class="col-md-1 text-center">
+                        <label>MA-Type</label>
+                  </div>
+                  <div class="col-md-1 text-center">
+                        <label>Unit</label>
+                  </div>
+                  <div class="col-md-1 text-center">
+                        <label>Unit Price</label>
+                  </div>
+                  <div class="col-md-2 text-center">
+                        <label>Amount</label>
+                  </div>
+                  <div class="col-md-2 text-center">
+                        <label>Cost Total</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-1 text-center">
+                    <span ng-bind="order.line_number"></span>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_part_number_{{key}}" name="qt_part_number_{{key}}" ng-model="order.part_number" maxlength="64" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_description_{{key}}" name="qt_description_{{key}}" ng-model="order.product_description" maxlength="255" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_ma_type_{{key}}" name="qt_ma_type_{{key}}" ng-model="order.type_name" maxlength="255" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_unit_{{key}}" name="qt_unit_{{key}}" ng-model="order.qty" maxlength="3" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_unit_price_{{key}}" name="qt_unit_price_{{key}}" ng-model="order.full_price" maxlength="11" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" ng-init="order.amount = order.full_price*order.qty">
+                        <input type="text" class="form-control required" id="qt_amount_{{key}}" name="qt_amount_{{key}}" ng-model="order.amount" maxlength="11" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_total_{{key}}" name="qt_total_{{key}}" ng-model="order.total" maxlength="128" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1 text-center"></div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_pm_part_number_{{key}}" name="qt_pm_part_number_{{key}}" ng-model="order.part_number" maxlength="64" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_pm_description_{{key}}" name="qt_pm_description_{{key}}" ng-model="order.product_description" maxlength="255" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group text-center">
+                        <span>PM</span>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_pm_unit_{{key}}" name="qt_pm_unit_{{key}}" ng-model="order.pm_time_qty" maxlength="3" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_pm_unit_price_{{key}}" name="qt_pm_unit_price_{{key}}" ng-model="order.pm_time_value" maxlength="11" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" ng-init="order.pm_amount = order.pm_time_value*order.pm_time_qty">
+                        <input type="text" class="form-control required" id="qt_pm_amount_{{key}}" name="qt_pm_amount_{{key}}" ng-model="order.pm_amount" maxlength="11" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" ng-init="order.pm_total = order.pm_time_value*order.pm_time_qty">
+                        <input type="text" class="form-control required" id="qt_pm_total_{{key}}" name="qt_pm_total_{{key}}" ng-model="order.pm_total" maxlength="128" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-1 text-center"></div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_lb_part_number_{{key}}" name="qt_lb_part_number_{{key}}" ng-model="order.part_number" maxlength="64" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_lb_description_{{key}}" name="qt_description_{{key}}" ng-model="order.product_description" maxlength="255" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group text-center">
+                        <span>LB</span>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_lb_year_qty_{{key}}" name="qt_lb_year_qty_{{key}}" ng-model="order.lb_year_qty" maxlength="3" required>
+                    </div>
+                  </div>
+                  <div class="col-md-1">
+                    <div class="form-group">
+                        <input type="text" class="form-control required" id="qt_lb_year_value_{{key}}" name="qt_lb_year_value_{{key}}" ng-model="order.lb_year_value" maxlength="11" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" ng-init="order.lb_amount = order.lb_year_value*order.lb_year_qty">
+                        <input type="text" class="form-control required" id="qt_lb_amount_{{key}}" name="qt_lb_amount_{{key}}" ng-model="order.lb_amount" maxlength="11" required>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group" ng-init="order.lb_total = order.lb_year_value*order.lb_year_qty">
+                        <input type="text" class="form-control required" id="qt_lb_total_{{key}}" name="qt_lb_total_{{key}}" ng-model="order.lb_total" maxlength="128" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div><!-- /.box-body -->
+          <div class="box-footer form-horizontal">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputEmail3" class="col-md-3 control-label">SUB TOTAL :</label>
+                <div class="col-md-9">
+                  <p class="form-control-static">{{subTotalOrder() | number : '2'}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-md-3 control-label">DISCOUNT :</label>
+                <div class="col-md-9">
+                  <p class="form-control-static">-</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-md-3 control-label">VAT 7 % :</label>
+                <div class="col-md-9">
+                  <p class="form-control-static">{{subTotalVat()}}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail3" class="col-md-3 control-label">TOTAL :</label>
+                <div class="col-md-9">
+                  <p class="form-control-static">{{orderTotal()}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <p class="text-center"><input type="button" class="btn btn-primary" value="ออกใบเสนอราคา"></p>
+            </div>
+          </div>
+        </div><!-- /.box -->
+      </div>
     </div>
     <div class="row">
         <!-- left column -->
@@ -192,7 +333,7 @@
           <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit Order : (Order <?php echo $orders_data['order_id']; ?>)</h3>
+                    <h3 class="box-title">Edit Order</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                   <form role="form" action="<?php echo base_url() ?>orders_sale/edit_save" method="post" role="form" enctype="multipart/form-data">

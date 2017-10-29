@@ -183,7 +183,7 @@
                     <tr>
                       <th class="col-md-2">Part number</th>
                       <th class="col-md-2">Name</th>
-                      <th class="col-md-2">Medel</th>
+                      <th class="col-md-2">Model</th>
                       <th class="col-md-1">QTY</th>
                       <th class="col-md-2">Province</th>
                       <th class="col-md-1">PM</th>

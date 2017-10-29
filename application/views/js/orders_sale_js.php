@@ -260,7 +260,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
             if(!is_selected) {
               swal(
                 '',
-                'โปรดเลือกสินค้าอย่างน้อย 1 อย่าง',
+                'คุณยังไม่ได้เลือกสินค้า',
                 'warning'
               )
               return false;
@@ -683,6 +683,23 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
              'error'
            )
          });
+   }
+
+   $scope.subTotalOrder = function() {
+    var subTotal = '';
+    $.each($scope.orders_detail, function(idx, val) {
+      subTotal += (val.total+val.pm_total+val.lb_total)
+    });
+    
+    return subTotal;
+   }
+   $scope.subTotalVat = function() {
+    var vat = (7*$scope.subTotalOrder())/100;
+    return vat;
+   }
+   $scope.orderTotal = function() {
+    var total = Number($scope.subTotalOrder())+$scope.subTotalVat();
+    return total;
    }
 
   <?php endif ?>
