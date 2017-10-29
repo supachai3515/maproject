@@ -127,6 +127,18 @@ class User_model extends CI_Model
         return $query->result();
     }
 
+    public function getUser_Info($userId)
+    {
+        $this->db->select('userId, name, email, mobile, roleId, menu_group_id');
+        $this->db->from('tbl_users');
+        $this->db->where('isDeleted', 0);
+        $this->db->where('userId', $userId);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
+
+
 
     /**
      * This function is used to update the user information
