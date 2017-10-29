@@ -39,20 +39,11 @@ class Quotation extends BaseController {
 
       $data['content'] = 'Quotation/Quotation_view';
       //if script file
-<<<<<<< HEAD
       //$data['script_file'] = 'js/quotation_js';
-=======
-      //$data['script_file'] = 'js/Quotation_js';
->>>>>>> c7f484b5f14f69fab63d63da174e14c7ec219c8b
       $data['header'] = array('title' => 'Quotation | '.$this->config->item('sitename'),
                               'description' =>  'Quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
                               'keyword' => 'Quotation');
-<<<<<<< HEAD
-
-
-=======
->>>>>>> c7f484b5f14f69fab63d63da174e14c7ec219c8b
       $this->load->view('template/layout_main', $data);
 
     }
