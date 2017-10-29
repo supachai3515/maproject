@@ -82,6 +82,7 @@ class Quotation_model extends CI_Model
 
 			$this->db->trans_complete();
 			pre($data['orders_data']);
+			pre($data['orders_detail_data']);
 
     }
 
