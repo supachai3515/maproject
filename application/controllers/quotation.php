@@ -71,17 +71,21 @@ class Quotation extends BaseController {
         }
       }
 
-       $result = $this->quotation_model->add_gen($order_id);
+        $quotation_id = $this->quotation_model->add_gen($order_id,$this->vendorId);
+        if(isset($quotation_id)){
+          $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($quotation_id);
+          $data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($quotation_id);
 
+        }
 
-        // $data['content'] = 'product_brand/product_brand_add_view';
-        // //if script file
-        // //$data['script_file'] = 'js/product_brand_js';
-        // $data['header'] = array('title' => 'Add Quotation | '.$this->config->item('sitename'),
-        //                       'description' =>  'Add Quotation | '.$this->config->item('tagline'),
-        //                       'author' => $this->config->item('author'),
-        //                       'keyword' => 'Quotation');
-        // $this->load->view('template/layout_main', $data);
+        $data['content'] = 'quotation/quotation_esit_view';
+        //if script file
+        //$data['script_file'] = 'js/product_brand_js';
+        $data['header'] = array('title' => 'Add Quotation | '.$this->config->item('sitename'),
+                              'description' =>  'Add Quotation | '.$this->config->item('tagline'),
+                              'author' => $this->config->item('author'),
+                              'keyword' => 'Quotation');
+        $this->load->view('template/layout_main', $data);
     }
     else {
       // access denied
