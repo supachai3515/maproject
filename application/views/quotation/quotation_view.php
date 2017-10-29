@@ -32,10 +32,16 @@
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
-                      <th>quotation_doc_no</th>
-                      <th>รหัส</th>
-                      <th>order อ้างอิง</th>
+                      <th>quotation no.</th>
+                      <th>order ref.</th>
+                      <th>company</th>
+                      <th>address</th>
                       <th>วันที่สร้าง</th>
+                      <th>sub_total</th>
+                      <th>discount</th>
+                      <th>vat</th>
+                      <th>total</th>
+
                       <th>วันที่แก้ไข</th>
                       <th>สถานะ</th>
                       <th class="text-center">Actions</th>
@@ -43,9 +49,14 @@
                     <?php foreach ($quotation_list as $record): ?>
                     <tr>
                       <td><?php echo $record->quotation_doc_no ?></td>
-                      <td><?php echo $record->quotation_id ?></td>
-                      <td><?php echo $record->order_id ?></td>
+                      <td>#<?php echo $record->order_id ?></td>
+                      <td><?php echo $record->ct_company ?></td>
+                      <td><?php echo $record->ct_address ?></td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->create_date));?></span></td>
+                      <td><?php echo number_format($record->sub_total, 2) ?></td>
+                      <td><?php echo number_format($record->discount, 2) ?></td>
+                      <td><?php echo number_format($record->vat, 2) ?></td>
+                      <td><?php echo number_format($record->total, 2) ?></td>
                       <td><span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($record->modified_date));?></span></td>
                       <td>
                           <?php if ($record->is_active=="1"): ?>

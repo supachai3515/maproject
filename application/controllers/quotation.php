@@ -78,7 +78,7 @@ class Quotation extends BaseController {
 
         }
 
-        $data['content'] = 'quotation/quotation_esit_view';
+        $data['content'] = 'quotation/quotation_edit_view';
         //if script file
         //$data['script_file'] = 'js/product_brand_js';
         $data['header'] = array('title' => 'Add Quotation | '.$this->config->item('sitename'),

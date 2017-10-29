@@ -19,9 +19,14 @@ class Quotation_model extends CI_Model
         $searchText = $this->db->escape_like_str($searchText);
         $sql =" SELECT COUNT(m.quotation_id) as connt_id FROM  quotation m WHERE 1=1 ";
         if (!empty($searchText)) {
-            $sql = $sql." AND (m.quotation_id  LIKE '%".$searchText."%'
-														OR  m.name  LIKE '%".$searchText."%'
-														OR  m.description  LIKE '%".$searchText."%')";
+          $sql = $sql." AND (m.quotation_id  LIKE '%".$searchText."%'
+                        OR  m.order_id  LIKE '%".$searchText."%'
+                        OR  IFNULL(m.ct_company,'')  LIKE '%".$searchText."%'
+                        OR  IFNULL(m.ct_address,'')  LIKE '%".$searchText."%'
+                        OR  IFNULL(m.ct_tel,'')  LIKE '%".$searchText."%'
+                        OR  IFNULL(m.ct_email,'')  LIKE '%".$searchText."%'
+                        OR  IFNULL(m.quotation_doc_no,'')  LIKE '%".$searchText."%'
+                        OR  m.quotation_id  LIKE '%".$searchText."%')";
         }
         $query = $this->db->query($sql);
         $row = $query->row_array();
@@ -39,9 +44,15 @@ class Quotation_model extends CI_Model
 						LEFT JOIN tbl_users u2 ON u2.userId = m.modified_by WHERE 1=1 ";
         if (!empty($searchText)) {
             $sql = $sql." AND (m.quotation_id  LIKE '%".$searchText."%'
-													OR  m.name  LIKE '%".$searchText."%'
-													OR  m.description  LIKE '%".$searchText."%')";
+													OR  m.order_id  LIKE '%".$searchText."%'
+                          OR  IFNULL(m.ct_company,'')  LIKE '%".$searchText."%'
+                          OR  IFNULL(m.ct_address,'')  LIKE '%".$searchText."%'
+                          OR  IFNULL(m.ct_tel,'')  LIKE '%".$searchText."%'
+                          OR  IFNULL(m.ct_email,'')  LIKE '%".$searchText."%'
+                          OR  IFNULL(m.quotation_doc_no,'')  LIKE '%".$searchText."%'
+													OR  m.quotation_id  LIKE '%".$searchText."%')";
         }
+        $sql = $sql." ORDER BY m.create_date DESC";
         $sql = $sql." LIMIT ".$page.",".$segment." ";
         $query = $this->db->query($sql);
         $result = $query->result();
