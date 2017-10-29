@@ -29,22 +29,18 @@
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
-<<<<<<< HEAD
                       <th>Quotation No.</th>
                       <th>รหัส</th>
                       <th>Order อ้างอิง</th>
-=======
                       <th>quotation no.</th>
                       <th>order ref.</th>
                       <th>company</th>
                       <th>address</th>
->>>>>>> c7f484b5f14f69fab63d63da174e14c7ec219c8b
                       <th>วันที่สร้าง</th>
                       <th>sub_total</th>
                       <th>discount</th>
                       <th>vat</th>
                       <th>total</th>
-
                       <th>วันที่แก้ไข</th>
                       <th>สถานะ</th>
                       <th class="text-center">Actions</th>
