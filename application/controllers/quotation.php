@@ -44,8 +44,44 @@ class Quotation extends BaseController {
                               'description' =>  'quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
                               'keyword' => 'quotation');
+
+
       $this->load->view('template/layout_main', $data);
 
+    }
+    else {
+      // access denied
+       $this->loadThis();
+    }
+  }
+
+  function add($order_id)
+  {
+    $data['global'] = $this->global;
+    $data['menu_id'] ='13';
+    $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
+    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
+    {
+
+      if($order_id != 0)
+      {
+        if (!ctype_digit($order_id)) {
+          redirect('error');
+        }
+      }
+
+       $result = $this->quotation_model->add_gen($order_id);
+
+
+        // $data['content'] = 'product_brand/product_brand_add_view';
+        // //if script file
+        // //$data['script_file'] = 'js/product_brand_js';
+        // $data['header'] = array('title' => 'Add Quotation | '.$this->config->item('sitename'),
+        //                       'description' =>  'Add Quotation | '.$this->config->item('tagline'),
+        //                       'author' => $this->config->item('author'),
+        //                       'keyword' => 'Quotation');
+        // $this->load->view('template/layout_main', $data);
     }
     else {
       // access denied
