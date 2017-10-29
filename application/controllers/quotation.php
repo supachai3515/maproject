@@ -8,7 +8,7 @@ class Quotation extends BaseController {
   {
     parent::__construct();
     $this->load->model('initdata_model');
-		$this->load->model('Quotation_model');
+		$this->load->model('quotation_model');
     $this->isLoggedIn();
   }
 
@@ -32,20 +32,60 @@ class Quotation extends BaseController {
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
 
-      $count = $this->Quotation_model->get_Quotation_count($searchText);
-      $data['links_pagination'] = $this->pagination_compress( "Quotation/index", $count, $this->config->item('pre_page') );
-      $data['Quotation_list'] = $this->Quotation_model->get_Quotation($searchText, $page, $this->config->item('pre_page'));
+      $count = $this->quotation_model->get_quotation_count($searchText);
+      $data['links_pagination'] = $this->pagination_compress( "quotation/index", $count, $this->config->item('pre_page') );
+      $data['quotation_list'] = $this->quotation_model->get_quotation($searchText, $page, $this->config->item('pre_page'));
 
 
-      $data['content'] = 'Quotation/Quotation_view';
+      $data['content'] = 'quotation/quotation_view';
       //if script file
       //$data['script_file'] = 'js/quotation_js';
-      $data['header'] = array('title' => 'Quotation | '.$this->config->item('sitename'),
-                              'description' =>  'Quotation | '.$this->config->item('tagline'),
+      $data['header'] = array('title' => 'quotation | '.$this->config->item('sitename'),
+                              'description' =>  'quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
-                              'keyword' => 'Quotation');
+                              'keyword' => 'quotation');
+
+
       $this->load->view('template/layout_main', $data);
 
+    }
+    else {
+      // access denied
+       $this->loadThis();
+    }
+  }
+
+  function add($order_id)
+  {
+    $data['global'] = $this->global;
+    $data['menu_id'] ='18';
+    $data['menu_list'] = $this->initdata_model->get_menu($data['global']['menu_group_id']);
+    $data['access_menu'] = $this->isAccessMenu($data['menu_list'],$data['menu_id']);
+    if($data['access_menu']['is_access']&&$data['access_menu']['is_add'])
+    {
+
+      if($order_id != 0)
+      {
+        if (!ctype_digit($order_id)) {
+          redirect('error');
+        }
+      }
+
+        $quotation_id = $this->quotation_model->add_gen($order_id,$this->vendorId);
+        if(isset($quotation_id)){
+          $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($quotation_id);
+          $data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($quotation_id);
+
+        }
+
+        $data['content'] = 'quotation/quotation_edit_view';
+        //if script file
+        //$data['script_file'] = 'js/product_brand_js';
+        $data['header'] = array('title' => 'Add Quotation | '.$this->config->item('sitename'),
+                              'description' =>  'Add Quotation | '.$this->config->item('tagline'),
+                              'author' => $this->config->item('author'),
+                              'keyword' => 'Quotation');
+        $this->load->view('template/layout_main', $data);
     }
     else {
       // access denied
@@ -64,7 +104,7 @@ class Quotation extends BaseController {
 
         if($id == NULL)
         {
-            redirect('Quotation');
+            redirect('quotation');
         }
         else {
           if (!ctype_digit($id)) {
@@ -72,18 +112,18 @@ class Quotation extends BaseController {
           }
         }
 
-        $data['Quotation_data'] = $this->Quotation_model->get_Quotation_id($id);
-        if(count($data['Quotation_data'])==0){
+        $data['quotation_data'] = $this->quotation_model->get_quotation_id($id);
+        if(count($data['quotation_data'])==0){
             redirect('error');
         }
-        //$data['Quotation_detail'] = $this->Quotation_model->get_Quotation_detail($id);
-        $data['content'] = 'Quotation/Quotation_info_view';
+        //$data['quotation_detail'] = $this->quotation_model->get_quotation_detail($id);
+        $data['content'] = 'quotation/quotation_info_view';
         //if script file
         //$data['script_file'] = 'js/menugroup_js';
-        $data['header'] = array('title' => 'Quotation | '.$this->config->item('sitename'),
-                              'description' =>  'Quotation | '.$this->config->item('tagline'),
+        $data['header'] = array('title' => 'quotation | '.$this->config->item('sitename'),
+                              'description' =>  'quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
-                              'keyword' => 'Quotation');
+                              'keyword' => 'quotation');
         $this->load->view('template/layout_main', $data);
     }
     else {
@@ -103,7 +143,7 @@ class Quotation extends BaseController {
 
       if($id == NULL)
       {
-          redirect('Quotation');
+          redirect('quotation');
       }
       else {
         if (!ctype_digit($id)) {
@@ -111,18 +151,18 @@ class Quotation extends BaseController {
         }
       }
 
-        $data['Quotation_data'] = $this->Quotation_model->get_Quotation_id($id);
+        $data['quotation_data'] = $this->quotation_model->get_quotation_id($id);
 
-        if(count($data['Quotation_data'])==0){
+        if(count($data['quotation_data'])==0){
             redirect('error');
         }
-        $data['content'] = 'Quotation/Quotation_edit_view';
+        $data['content'] = 'quotation/quotation_edit_view';
         //if script file
-        //$data['script_file'] = 'js/Quotation_js';
-        $data['header'] = array('title' => 'Quotation | '.$this->config->item('sitename'),
-                              'description' =>  'Quotation | '.$this->config->item('tagline'),
+        //$data['script_file'] = 'js/quotation_js';
+        $data['header'] = array('title' => 'quotation | '.$this->config->item('sitename'),
+                              'description' =>  'quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
-                              'keyword' => 'Quotation');
+                              'keyword' => 'quotation');
         $this->load->view('template/layout_main', $data);
     }
     else {
@@ -153,24 +193,24 @@ class Quotation extends BaseController {
               $costLB = $this->input->post('costLB');
               $costPM = $this->input->post('costPM');
               $is_active = $this->input->post('is_active');
-              $Quotation_id = $this->input->post('Quotation_id');
+              $quotation_id = $this->input->post('quotation_id');
 
-              $Quotation_info = array('lb_year'=>$costLB, 'pm_time'=>$costPM, 'is_active'=>$is_active,
-                                      'Quotation_id'=>$Quotation_id,
+              $quotation_info = array('lb_year'=>$costLB, 'pm_time'=>$costPM, 'is_active'=>$is_active,
+                                      'quotation_id'=>$quotation_id,
                                       'modified_by'=>$this->vendorId,
                                       'modified_date'=>date('Y-m-d H:i:s'));
 
-              $result = $this->Quotation_model->update_Quotation($Quotation_info,$Quotation_id);
+              $result = $this->quotation_model->update_quotation($quotation_info,$quotation_id);
 
               if($result > 0)
               {
-                  $this->session->set_flashdata('success', 'Update Quotation successfully');
+                  $this->session->set_flashdata('success', 'Update quotation successfully');
               }
               else
               {
-                  $this->session->set_flashdata('error', 'Update Quotation failed');
+                  $this->session->set_flashdata('error', 'Update quotation failed');
               }
-              redirect('Quotation/edit/'.$Quotation_id);
+              redirect('quotation/edit/'.$quotation_id);
           }
       }
       else {

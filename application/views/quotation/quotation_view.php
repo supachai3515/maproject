@@ -30,9 +30,6 @@
                 <table class="table table-hover">
                     <tr>
                       <th>Quotation No.</th>
-                      <th>รหัส</th>
-                      <th>Order อ้างอิง</th>
-                      <th>quotation no.</th>
                       <th>order ref.</th>
                       <th>company</th>
                       <th>address</th>
