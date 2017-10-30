@@ -167,20 +167,20 @@ class Quotation extends BaseController {
   }
 
   function edit_save(){
-    $data = json_decode(file_get_contents("php://input"));
-     $quotation_data = $data->quotation_data;
-     $quotation_detail_data = $data->quotation_detail_data;
-     
-    if(isset($data)){
-        //update in model
+    $data_re = json_decode(file_get_contents("php://input"));
+     $quotation_data = $data_re->quotation_data;
+     $quotation_detail_data = $data_re->quotation_detail_data;
 
+    if(isset($data_re)){
+      //update in model
+      $quotation_id =  $this->quotation_model->save_edit($quotation_data,$quotation_detail_data,false,$this->vendorId);
+      //new qo
+      //$quotation_id =   $this->quotation_model->save_edit($quotation_data,$quotation_detail_data,true,$this->vendorId);
 
-
-       // get data 
-       // $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($id);
-        //$data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($id);
-
-        json_output(200, $quotation_data);
+       //get data
+       $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($quotation_id);
+       $data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($quotation_id);
+        json_output(200, $data);
     } else {
         json_output(400, array('status' => 400,'message' => 'Technical Error'));
     }
