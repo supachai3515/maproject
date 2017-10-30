@@ -13,6 +13,7 @@ class Orders_sale extends BaseController
         $this->load->model('home_model');
         $this->load->model('tos_cal_model');
         $this->load->library('my_upload');
+        $this->load->model('quotation_model');
         $this->isLoggedIn();
     }
 
@@ -105,6 +106,8 @@ class Orders_sale extends BaseController
             $data['orders_detail_data'] = $this->orders_model->get_orders_detail($id);
             $data['province_list'] = $this->home_model->get_province();
             $data['contract_list'] = $this->home_model->get_contract();
+
+            $data['max_qo'] = $this->quotation_model->get_max_quotation($id);
 
             $data['status_list'] = $this->home_model->get_status();
             if (count($data['orders_data'])==0) {

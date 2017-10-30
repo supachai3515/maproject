@@ -73,19 +73,13 @@ class Quotation extends BaseController {
 
         $quotation_id = $this->quotation_model->add_gen($order_id,$this->vendorId);
         if(isset($quotation_id)){
-          $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($quotation_id);
-          $data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($quotation_id);
-
+          //$data['quotation_data'] = $this->quotation_model->get_quotation_by_id($quotation_id);
+          //$data['quotation_d)etail_data'] = $this->quotation_model->get_quotation_datail_id($quotation_id);
+          redirect('quotation/edit/'.$quotation_id);
         }
-
-        $data['content'] = 'quotation/quotation_edit_view';
-        //if script file
-        //$data['script_file'] = 'js/product_brand_js';
-        $data['header'] = array('title' => 'Add Quotation | '.$this->config->item('sitename'),
-                              'description' =>  'Add Quotation | '.$this->config->item('tagline'),
-                              'author' => $this->config->item('author'),
-                              'keyword' => 'Quotation');
-        $this->load->view('template/layout_main', $data);
+        else{
+          $this->loadThis();
+        }
     }
     else {
       // access denied
@@ -151,14 +145,15 @@ class Quotation extends BaseController {
         }
       }
 
-        $data['quotation_data'] = $this->quotation_model->get_quotation_id($id);
+        $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($id);
+        $data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($id);
 
         if(count($data['quotation_data'])==0){
             redirect('error');
         }
         $data['content'] = 'quotation/quotation_edit_view';
         //if script file
-        //$data['script_file'] = 'js/quotation_js';
+        $data['script_file'] = 'js/quotation_js';
         $data['header'] = array('title' => 'quotation | '.$this->config->item('sitename'),
                               'description' =>  'quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
@@ -171,7 +166,27 @@ class Quotation extends BaseController {
     }
   }
 
-  function edit_save()
+  function edit_save(){
+    $data = json_decode(file_get_contents("php://input"));
+     $quotation_data = $data->quotation_data;
+     $quotation_detail_data = $data->quotation_detail_data;
+     
+    if(isset($data)){
+        //update in model
+
+
+
+       // get data 
+       // $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($id);
+        //$data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($id);
+
+        json_output(200, $quotation_data);
+    } else {
+        json_output(400, array('status' => 400,'message' => 'Technical Error'));
+    }
+  }
+
+  function edit_save_old()
   {
     $data['global'] = $this->global;
     $data['menu_id'] ='18';
