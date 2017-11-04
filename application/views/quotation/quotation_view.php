@@ -30,14 +30,14 @@
                 <table class="table table-hover">
                     <tr>
                       <th>Quotation No.</th>
-                      <th>order ref.</th>
-                      <th>company</th>
-                      <th>address</th>
+                      <th>Order Ref.</th>
+                      <th>Company</th>
+                      <th>Address</th>
                       <th>วันที่สร้าง</th>
-                      <th>sub_total</th>
-                      <th>discount</th>
-                      <th>vat</th>
-                      <th>total</th>
+                      <th>Sub Total</th>
+                      <th>Discount</th>
+                      <th>VAT</th>
+                      <th>Total</th>
                       <th>วันที่แก้ไข</th>
                       <th>สถานะ</th>
                       <th class="text-center">Actions</th>

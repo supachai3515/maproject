@@ -328,7 +328,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="sale_signature">Sale Signature</label>
-                        <input type="text" class="form-control" id="sale_signature" name="sale_signature" ng-model="quotation_data.terms_type" maxlength="128" required>
+                        <input type="text" class="form-control" id="sale_signature" name="sale_signature" ng-model="quotation_data.sale_signature" maxlength="128" required>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ class Quotation extends BaseController {
     parent::__construct();
     $this->load->model('initdata_model');
 		$this->load->model('quotation_model');
+    $this->load->library('my_upload');
     $this->isLoggedIn();
   }
 
@@ -106,7 +107,8 @@ class Quotation extends BaseController {
           }
         }
 
-        $data['quotation_data'] = $this->quotation_model->get_quotation_id($id);
+        $data['quotation_data'] = $this->quotation_model->get_quotation_by_id($id);
+        $data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($id);
         if(count($data['quotation_data'])==0){
             redirect('error');
         }
@@ -114,10 +116,10 @@ class Quotation extends BaseController {
         $data['content'] = 'quotation/quotation_info_view';
         //if script file
         //$data['script_file'] = 'js/menugroup_js';
-        $data['header'] = array('title' => 'quotation | '.$this->config->item('sitename'),
-                              'description' =>  'quotation | '.$this->config->item('tagline'),
+        $data['header'] = array('title' => 'Quotation | '.$this->config->item('sitename'),
+                              'description' =>  'Quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
-                              'keyword' => 'quotation');
+                              'keyword' => 'Quotation');
         $this->load->view('template/layout_main', $data);
     }
     else {
@@ -154,10 +156,10 @@ class Quotation extends BaseController {
         $data['content'] = 'quotation/quotation_edit_view';
         //if script file
         $data['script_file'] = 'js/quotation_js';
-        $data['header'] = array('title' => 'quotation | '.$this->config->item('sitename'),
-                              'description' =>  'quotation | '.$this->config->item('tagline'),
+        $data['header'] = array('title' => 'Quotation | '.$this->config->item('sitename'),
+                              'description' =>  'Quotation | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
-                              'keyword' => 'quotation');
+                              'keyword' => 'Quotation');
         $this->load->view('template/layout_main', $data);
     }
     else {
@@ -170,10 +172,11 @@ class Quotation extends BaseController {
     $data_re = json_decode(file_get_contents("php://input"));
      $quotation_data = $data_re->quotation_data;
      $quotation_detail_data = $data_re->quotation_detail_data;
+     $edit_type = $data_re->edit_type;
 
     if(isset($data_re)){
       //update in model
-      $quotation_id =  $this->quotation_model->save_edit($quotation_data,$quotation_detail_data,false,$this->vendorId);
+      $quotation_id =  $this->quotation_model->save_edit($quotation_data,$quotation_detail_data,$edit_type,$this->vendorId);
       //new qo
       //$quotation_id =   $this->quotation_model->save_edit($quotation_data,$quotation_detail_data,true,$this->vendorId);
 
@@ -232,5 +235,10 @@ class Quotation extends BaseController {
            $this->loadThis();
       }
   }
+
+  function upload_file()
+    {
+      
+    }
 
 }
