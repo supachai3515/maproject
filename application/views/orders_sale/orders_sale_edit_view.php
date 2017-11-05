@@ -108,8 +108,8 @@
                 </tr>
               </table>
               <div class="box-footer">
-                <p ng-if="order_status == 3" id="approve_special_price_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="approve_order_price_event()" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</a></p>
-                <p ng-if="order_status == 5" id="send_document_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="send_document_event()" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งเอกสารสั่งซื้อ</a></p>
+                <p ng-if="order_status == 3" id="approve_special_price_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="approve_order_price_event()" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งราคาพิเศษ</a></p>
+                <p ng-if="order_status == 5" id="send_document_btn" class="text-right" style="margin-top: 30px;"><a class="btn btn-sm btn-info" ng-click="send_document_event()" href="#"><i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;&nbsp;ส่งใบเสนอราคา</a></p>
                 <script type="text/javascript">
                 $('#approve_special_price_btn').click(function(e) {
                   e.preventDefault();
@@ -138,7 +138,7 @@
           </div>
         </div><!-- /.box -->
       </div>
-      <div class="col-xs-12">
+      <div class="col-xs-12" ng-if="order_status >= 5">
         <div class="box">
           <div class="box-header">
               <h3 class="box-title">Quotation</h3>

@@ -8,6 +8,7 @@ class Tos_cal extends BaseController {
 		//call model inti
     $this->load->model('initdata_model');
     $this->load->model('tos_cal_model');
+    $this->load->model('quotation_model');
 		$this->load->model('orders_model');
 		session_start();
 	}
@@ -416,17 +417,13 @@ class Tos_cal extends BaseController {
 
 	}
 
-	public function invoice_doc($ref_id)
+	public function quotation_doc($order_id)
 	{
-		$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id);
 		if(isset($order_id)){
-				//set status special_price
-				$data['ref_id'] = $ref_id;
-				$data['order_data'] = $this->tos_cal_model->get_order($order_id);
-				$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-				$status = "success";
-				//setFlashData($status, "ทางเราได้รับคำขอจากท่านเรียบร้อยแล้ว กรุณารอทางเราติดต่อครับ");
-				$this->load->view('order_public/invoice_doc', $data);
+				$max_qo = $this->quotation_model->get_max_quotation($order_id);
+				$data['quotation_data'] = $this->quotation_model->get_quotation_by_id($max_qo);
+        		$data['quotation_detail_data'] = $this->quotation_model->get_quotation_datail_id($max_qo);
+				$this->load->view('order_public/quotation_doc', $data);
 		} else {
 				$this->loadThis();
 		}

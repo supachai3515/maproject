@@ -64,7 +64,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name">Logo</label>
-                        <input type="text" class="form-control" id="ow_logo" name="ow_logo" ng-model="quotation_data.ow_logo" required>
+                        <p><img src="<?php echo base_url(); ?>{{quotation_data.ow_logo}}" alt="" style="width: 100%; border: 1px solid #d2d6de; padding: 5px;"></p>
+                        <input id="ow_logo" name="ow_logo" type="file">
                     </div>
                 </div>
             </div>
@@ -307,15 +308,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="sale_manager_signature">Sale Manager Signature</label>
-                        <input type="text" class="form-control" id="sale_manager_signature" name="sale_manager_signature" ng-model="quotation_data.sale_manager_signature" maxlength="128" required>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="sale_name">Sale Name</label>
+                      <label for="sale_name">Sale Name</label>
                         <input type="text" class="form-control" id="sale_name" name="sale_name" ng-model="quotation_data.sale_name" maxlength="128" required>
                     </div>
                 </div>
@@ -323,12 +316,6 @@
                     <div class="form-group">
                         <label for="sale_position">Sale Position</label>
                         <input type="text" class="form-control" id="sale_position" name="sale_position" ng-model="quotation_data.sale_position" maxlength="128" required>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="sale_signature">Sale Signature</label>
-                        <input type="text" class="form-control" id="sale_signature" name="sale_signature" ng-model="quotation_data.sale_signature" maxlength="128" required>
                     </div>
                 </div>
             </div>
@@ -343,6 +330,24 @@
                     <div class="form-group">
                         <label for="sale_tel">Sale Tel</label>
                         <input type="text" class="form-control" id="sale_tel" name=" sale_tel" ng-model="quotation_data.sale_tel" maxlength="11" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="sale_manager_signature">Sale Manager Signature</label>
+                        <!-- <input type="text" class="form-control" id="sale_manager_signature" name="sale_manager_signature" ng-model="quotation_data.sale_manager_signature" maxlength="128" required> -->
+                        <p><img src="<?php echo base_url(); ?>{{quotation_data.sale_manager_signature}}" alt="" style="width: 100%; border: 1px solid #d2d6de; padding: 5px;"></p>
+                        <input id="sale_manager_signature" name="sale_manager_signature" type="file">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="sale_signature">Sale Signature</label>
+                        <!-- <input type="text" class="form-control" id="sale_signature" name="sale_signature" ng-model="quotation_data.sale_signature" maxlength="128" required> -->
+                        <p><img src="<?php echo base_url(); ?>{{quotation_data.sale_signature}}" alt="" style="width: 100%; border: 1px solid #d2d6de; padding: 5px;"></p>
+                        <input id="sale_signature" name="sale_signature" type="file">
                     </div>
                 </div>
             </div>

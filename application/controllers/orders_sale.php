@@ -638,7 +638,7 @@ class Orders_sale extends BaseController
       }
     }
 
-    public function send_invoice_doc($order_id)
+    public function send_quotation_doc($order_id)
     {
       $data['global'] = $this->global;
       $data['menu_id'] ='16';

@@ -1,22 +1,66 @@
 
-<script type="text/javascript">
-  // $(document).on("ready", function() {
-  //   var $el1 = $("#ow_logo");
-  //   $el1.fileinput({
-  //     uploadUrl: '<?php echo base_url('quotation/upload_file');?>',
-  //     uploadAsync: false,
-  //     showUpload: false, // hide upload button
-  //     showRemove: false, // hide remove button
-  //     minFileCount: 1
-  //   }).on("filebatchselected", function(event, files) {
-  //     $el1.fileinput("upload");
-  //   });
-  // });
 
+<script type="text/javascript">
   app.controller("quotation_ctrl", function($scope, $http) {
     $scope.quotation_data = <?php echo json_encode($quotation_data);?>;
     $scope.quotation_detail_data = <?php echo json_encode($quotation_detail_data);?>;
-    var edit_type = false;
+    var logo_path = '',
+        sale_manager_sign_path = '',
+        sale_sign_path = '',
+        edit_type = false;
+
+    $(document).on("ready", function() {
+
+    $("#ow_logo").fileinput({
+        showPreview: false,
+        uploadUrl: "<?php echo base_url('quotation/upload_file');?>",
+        uploadAsync: true,
+        minFileCount: 1,
+        maxFileCount: 1,
+        uploadExtraData: {
+            quotation_id: <?php echo $quotation_data['quotation_id'];?>
+        }
+    }).on('filesorted', function(e, params) {
+        console.log('file sorted', e, params);
+    }).on('fileuploaded', function(e, params) {
+        console.log('file uploaded', e, params);
+        logo_path = params.response['ow_logo'];
+    });
+
+    $("#sale_manager_signature").fileinput({
+        showPreview: false,
+        uploadUrl: "<?php echo base_url('quotation/upload_file');?>",
+        uploadAsync: true,
+        minFileCount: 1,
+        maxFileCount: 1,
+        uploadExtraData: {
+            quotation_id: <?php echo $quotation_data['quotation_id'];?>
+        }
+    }).on('filesorted', function(e, params) {
+        console.log('file sorted', e, params);
+    }).on('fileuploaded', function(e, params) {
+        console.log('file uploaded', e, params);
+        sale_manager_sign_path = params.response['sale_manager_signature'];
+    });
+
+    $("#sale_signature").fileinput({
+        showPreview: false,
+        uploadUrl: "<?php echo base_url('quotation/upload_file');?>",
+        uploadAsync: true,
+        minFileCount: 1,
+        maxFileCount: 1,
+        uploadExtraData: {
+            quotation_id: <?php echo $quotation_data['quotation_id'];?>
+        }
+    }).on('filesorted', function(e, params) {
+        console.log('file sorted', e, params);
+    }).on('fileuploaded', function(e, params) {
+        console.log('file uploaded', e, params);
+        sale_sign_path = params.response['sale_signature'];
+    });
+
+
+  });
 
     $scope.save_quotation = function() {
 
@@ -41,7 +85,17 @@
     }
 
     function confirm_submit() {
+      if(logo_path) {
+        $scope.quotation_data.ow_logo = logo_path;
+      }
+      if(sale_manager_sign_path) {
+        $scope.quotation_data.sale_manager_signature = sale_manager_sign_path;
+      }
+      if(sale_sign_path) {
+        $scope.quotation_data.sale_signature = sale_sign_path;
+      }
       var data = $.extend({}, {'quotation_data':$scope.quotation_data}, {'quotation_detail_data':$scope.quotation_detail_data}, {'edit_type': edit_type})
+
         $http({
                 method: 'POST',
                 url: '<?php echo base_url('quotation/edit_save');?>',
@@ -68,4 +122,8 @@
             });
       }
     });
+
+
+
+
 </script>

@@ -1,16 +1,23 @@
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>View Quotation</h1>
-    <ol class="breadcrumb">
-      <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('quotation'); ?>"> Quotation</a></li>
-      <li class="active">View Quotation</li>
-    </ol>
-  </section>
-  <!-- Main content -->
-  <section class="content">
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Quotation</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body ng-app="myApp" ng-controller="mainCtrl">
+	<section class="content">
     <div class="container" style="background-color: #fff; padding-top: 15px; padding-bottom: 15px;">
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -180,5 +187,96 @@
     </div>
   </div>
   </section>
-  <!-- /.content -->
-</div>
+
+<style>
+
+.height {
+
+}
+
+.icon {
+    font-size: 47px;
+    color: #5CB85C;
+}
+
+.iconbig {
+    font-size: 77px;
+    color: #5CB85C;
+}
+
+.table > tbody > tr > .emptyrow {
+    border-top: none;
+}
+
+.table > thead > tr > .emptyrow {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .highrow {
+    border-top: 3px solid;
+}
+.table-condensed>tbody>tr>td{
+	padding: 2px;
+}
+.fix-container{
+	/*width: 878px;*/
+  width: 80%;
+}
+.lineover{
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  /* Fallback for non-webkit */
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product-id{
+	width: 150px;
+}
+.sumprice{
+	width: 150px;
+}
+.sumpricepernum{
+	width: 90px;
+}
+  @media print {
+      a[href]:after {
+        content: "" !important;
+      }
+    }
+</style>
+
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+		<script type="text/javascript">
+			var app = angular.module('myApp', []);
+			app.controller('mainCtrl', function($scope, $http) {
+
+				$scope.orderSenmailInit = function() {
+
+				    <?php if (isset($_GET["Sendmail"]) && $order_data["is_sendmail"]== 0) {
+    ?>
+			            $http({
+			            method: 'GET',
+			            url: '<?php echo base_url()."/inc/order_sendmail.php?order=".$_GET["Sendmail"]; ?>',
+			            headers: {
+			            'Content-Type': 'application/x-www-form-urlencoded'
+			            },
+
+			            }).success(function(data) {
+			            console.log(data);
+			            });
+		            <?php
+} ?>
+
+		       	}
+
+			});
+
+		</script>
+</body>
+</html>

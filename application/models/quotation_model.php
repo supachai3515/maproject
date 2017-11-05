@@ -131,7 +131,7 @@ class Quotation_model extends CI_Model
                     "ow_company_name_th" => "บริษัท เทิร์นออน โซลูชั่น จำกัด",
                     "ow_company_name_en" => "TURN ON SOLUTION CO., LTD. ",
                     "ow_address" => "Level 29, The Offices at Centralworld 999/9 Rama I Road, Pathumwan Bangkok 10330 Thailand",
-                    "ow_logo" => "upload/quotation/qo_logo.png",
+                    "ow_logo" => "uploads/quotation/qo_logo.png",
                     "ow_contact_desc" => "Telephone 02-576-0385-6, Fax 02-576-0387",
                     "ow_tax" => "0105558094400",
                     "ow_desc" => "Website : www.turnonsolution.co.th , info@turnonsolution.co.th",
@@ -148,9 +148,10 @@ class Quotation_model extends CI_Model
                     "delivery_date" =>"",
                     "terms_type" => "",
                     "sale_manager_name" => $userInfo['name'],
-                    "sale_manager_signature" => "upload/quotation/sale_manager_signature.png",
+                    "sale_manager_signature" => "uploads/quotation/default-thumbnail.jpg",
                     "sale_name" => $userInfo['name'],
                     "sale_position" => "",
+                    "sale_signature" => "uploads/quotation/default-thumbnail.jpg",
                     "sale_email" => $userInfo['email'],
                     "sale_tel"  => $userInfo['mobile']
                                             );
@@ -299,6 +300,7 @@ class Quotation_model extends CI_Model
                 "sale_manager_signature" => $quotation_data->sale_manager_signature,
                 "sale_name" => $userInfo['name'],
                 "sale_position" => "",
+                "sale_signature" => $quotation_data->sale_signature,
                 "sale_email" => $userInfo['email'],
                 "sale_tel"  => $userInfo['mobile']
                                         );
@@ -354,6 +356,8 @@ class Quotation_model extends CI_Model
         $result = $query->result_array();
         return $result;
     }
+
+
 
     public function update_quotation($quotation_info, $id)
     {

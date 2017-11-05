@@ -625,7 +625,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
      var order_id = $scope.order_list.order_id;
      $http({
            method: 'POST',
-           url: '<?php echo base_url('orders_sale/send_invoice_doc');?>',
+           url: '<?php echo base_url('orders_sale/send_quotation_doc');?>',
            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
            data: {id: order_id}
          }).then(function(response) {

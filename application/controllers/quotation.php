@@ -236,8 +236,99 @@ class Quotation extends BaseController {
       }
   }
 
-  function upload_file()
+    function upload_file()
     {
+      $dir ='./uploads/quotation/'.date("Ym").'/';
+      $dir_insert ='uploads/quotation/'.date("Ym").'/';
+      $ow_logo_path ='';
+      $sale_manager_sig_path ='';
+      $sale_sig_path ='';
+      $isErr = false;
+      $errorStr = "";
+      $file_path = [];
+
+      if(isset($_FILES["ow_logo"]))
+      {
+        $this->my_upload->upload($_FILES["ow_logo"]);
+        if ($this->my_upload->uploaded == true) {
+            $this->my_upload->process($dir);
+
+            if ($this->my_upload->processed == true) {
+                $ow_logo_path  = $this->my_upload->file_dst_name;
+                //update img
+                $this->my_upload->clean();
+            } else {
+                $data['errors'] = $this->my_upload->error;
+                //echo $data['errors'];
+                $isErr = true;
+                $errorStr= $data['errors'];
+            }
+        } else {
+            $data['errors'] = $this->my_upload->error;
+            $isErr = true;
+            $errorStr= $data['errors'];
+        }
+        $file_path['ow_logo'] = $dir_insert.$ow_logo_path;
+      }
+
+      if(isset($_FILES["sale_manager_signature"]))
+      {
+        $this->my_upload->upload($_FILES["sale_manager_signature"]);
+        if ($this->my_upload->uploaded == true) {
+            $this->my_upload->process($dir);
+
+            if ($this->my_upload->processed == true) {
+                $sale_manager_sig_path  = $this->my_upload->file_dst_name;
+                //update img
+                $this->my_upload->clean();
+            } else {
+                $data['errors'] = $this->my_upload->error;
+                //echo $data['errors'];
+                $isErr = true;
+                $errorStr= $data['errors'];
+            }
+        } else {
+            $data['errors'] = $this->my_upload->error;
+            $isErr = true;
+            $errorStr= $data['errors'];
+        }
+        $file_path['sale_manager_signature'] = $dir_insert.$sale_manager_sig_path;
+      }
+
+      if(isset($_FILES["sale_signature"]))
+      {
+        $this->my_upload->upload($_FILES["sale_signature"]);
+        if ($this->my_upload->uploaded == true) {
+            $this->my_upload->process($dir);
+
+            if ($this->my_upload->processed == true) {
+                $sale_sig_path  = $this->my_upload->file_dst_name;
+                //update img
+                $this->my_upload->clean();
+            } else {
+                $data['errors'] = $this->my_upload->error;
+                //echo $data['errors'];
+                $isErr = true;
+                $errorStr= $data['errors'];
+            }
+        } else {
+            $data['errors'] = $this->my_upload->error;
+            $isErr = true;
+            $errorStr= $data['errors'];
+        }
+        $file_path['sale_signature'] = $dir_insert.$sale_sig_path;
+      }
+
+       if(!$isErr){
+        json_output(200, $file_path );
+
+       }
+       else{
+         json_output(400, array('status' => 400,'message' => $errorStr));
+       }
+
+      // $userid = empty($_POST['qo_id']) ? '' : $_POST['qo_id'];
+      // echo json_encode($file_path); 
       
     }
 
