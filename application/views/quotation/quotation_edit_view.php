@@ -93,7 +93,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name">Quotation No.</label>
-                        <input type="text" class="form-control" id="quotation_no" name="quotation_no" ng-model="quotation_data.quotation_doc_no" maxlength="11" required>
+                        <input type="text" class="form-control" id="quotation_no" name="quotation_no" ng-model="quotation_data.quotation_doc_no" maxlength="11" readonly>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -223,7 +223,7 @@
                     </div>
                     <div class="col-md-2">
                       <div class="form-group">
-                          <input type="text" class="form-control required" id="qt_amount_{{key}}" name="qt_amount_{{key}}" ng-model="value.total" maxlength="11" required>
+                          <input type="text" class="form-control required" id="qt_amount_{{key}}" name="qt_amount_{{key}}" ng-model="value.total" maxlength="11" ng-change="cal_quotation(value.total)" required>
                       </div>
                     </div>
                     <div class="col-md-2">
@@ -353,7 +353,7 @@
             </div>
           </div><!-- /.box-body -->
           <div class="box-footer text-center">
-            <input type="button" class="btn btn-primary btn-lg" value="Save" ng-click="save_quotation()">
+            <button type="button" class="btn btn-primary btn-lg" ng-click="save_quotation()"><i class="fa fa-floppy-o" aria-hidden="true"></i>  Save</button>
           </div><!-- /.box-footer -->
       </div><!-- /.box -->
       </div>
