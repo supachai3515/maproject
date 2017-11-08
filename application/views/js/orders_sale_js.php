@@ -570,7 +570,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
    $scope.approve_order_price_event = function() {
      swal({
        title: '',
-       text: "ยืนยันการส่งใบเสนอราคา",
+       text: "ยืนยันการส่งราคาพิเศษ",
        type: 'warning',
        showCancelButton: true,
        confirmButtonColor: '#008CBA',
@@ -591,7 +591,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
          }).then(function(response) {
            swal(
              '',
-             'ส่งใบเสนอราคาสำเร็จ',
+             'ส่งราคาพิเศษ',
              'success'
            )
            get_order_status();
