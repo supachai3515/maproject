@@ -631,7 +631,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
          }).then(function(response) {
            swal(
              '',
-             'ส่งส่งใบเสนอราคาสำเร็จ',
+             'ส่งใบเสนอราคาสำเร็จ',
              'success'
            )
            get_order_status();

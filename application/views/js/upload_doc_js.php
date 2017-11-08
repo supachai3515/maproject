@@ -24,15 +24,6 @@
 	        overwriteInitial: false,
 	        maxFileSize: 2000,
 	    });
-$("#file_path_55").fileinput({
-	    	showPreview: false,
-	    	showRemove: false,
-	      language: "en",
-	        overwriteInitial: false,
-	        maxFileSize: 2000,
-	    });
-
-	});
 </script>
 
 <script type="text/javascript">

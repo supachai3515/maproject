@@ -126,11 +126,11 @@
           <div class="box-body">
             <div class="form-group row">
                <label class="col-md-5 control-label text-right">Document 1 :</label>
-               <div class="col-md-5"><a class="btn btn-info" href="<?php echo $this->config->item('url_img').$orders_data['file_path'];?>" role="button">View File</a></div>
+               <div class="col-md-5"><a class="btn btn-info" href="<?php echo $this->config->item('url_img').$orders_data['file_path'];?>" role="button" target="_blank">View File</a></div>
              </div>
              <div class="form-group row">
                <label class="col-md-5 control-label text-right">Document 2 :</label>
-               <div class="col-md-5"><a class="btn btn-info" href="<?php echo $this->config->item('url_img').$orders_data['file_path_2'];?>" role="button">View File</a></div>
+               <div class="col-md-5"><a class="btn btn-info" href="<?php echo $this->config->item('url_img').$orders_data['file_path_2'];?>" role="button" target="_blank">View File</a></div>
              </div>
           </div><!-- /.box-body -->
           <div class="box-footer">
