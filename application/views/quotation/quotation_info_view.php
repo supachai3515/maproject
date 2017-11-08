@@ -83,32 +83,32 @@
                             <td class="text-center"><?php echo $value['name']; ?></td>
                             <td class="text-center"><?php echo $value['qty']; ?></td>
                             <td class="text-center"><?php echo $value['price']; ?></td>
-                            <td class="text-center"><?php echo $value['total']; ?></td>
-                            <td class="text-center"><?php echo $value['cost_total']; ?></td>
+                            <td class="text-center"><?php echo number_format($value['total'],2) ?></td>
+                            <td class="text-center"><?php echo number_format($value['cost_total'],2) ?></td>
                          </tr>
                       <?php endforeach ?>
 
                       <tr>
-                        <td class="text-right" colspan="7"><strong>SUB TOTAL :</strong></td>
-                        <td class="text-left" colspan="2"><?php echo $quotation_data['sub_total']; ?></td>
+                        <td class="text-right" colspan="7"><strong>SUB TOTAL :</strong></td>number_format($model['total'],0)
+                        <td class="text-left" colspan="2"><?php echo number_format($quotation_data['sub_total'],2) ?></td>
                       </tr>
                       <tr>
                         <td class="text-right" colspan="7"><strong>DISCOUNT :</strong></td>
-                        <td class="text-left" colspan="2"><?php echo $quotation_data['discount']; ?></td>
+                        <td class="text-left" colspan="2"><?php echo number_format($quotation_data['discount'],2) ?></td>
                       </tr>
                       <tr>
                         <td class="text-right" colspan="7"><strong>VAT 7 % :</strong></td>
-                        <td class="text-left" colspan="2"><?php echo $quotation_data['vat']; ?></td>
+                        <td class="text-left" colspan="2"><?php echo number_format($quotation_data['vat'],2) ?></td>
                       </tr>
                       <tr>
                         <td class="text-right" colspan="7"><strong>TOTAL :</strong></td>
-                        <td class="text-left" colspan="2"><?php echo $quotation_data['total']; ?></td>
+                        <td class="text-left" colspan="2"><?php echo number_format($quotation_data['total'],2) ?></td>
                       </tr>
                       </tbody>
                   </table>
                 </div>
                 <div class="panel-footer">
-                  <p><strong>จำนวนเงิน ( BAHT ) :   </strong>-</p>
+                  <p><strong>จำนวนเงิน ( BAHT ) :   <?php echo num2wordsThai(number_format($quotation_data['total'],2)); ?></strong></p>
                 </div>
               </div>
           </div>
