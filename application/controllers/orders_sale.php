@@ -659,10 +659,10 @@ class Orders_sale extends BaseController
             //sendmail
     	      $data['email'] = $resultInfo["email"];// toemail
     				$data['template'] = "email/order_invoice";
-    				$data['subject'] = "Send invioce #".$order_id;
+    				$data['subject'] = "Send Quotation #".$order_id;
     				$data['bcc_mail'] = $this->config->item('email_cc_group');
-            $data['name'] = $resultInfo["company"];
-      			$data['tel'] = $resultInfo["tel"];
+                    $data['name'] = $resultInfo["company"];
+      			   $data['tel'] = $resultInfo["tel"];
 
     				//sendmail
     				$sendStatus = send_emali_template_gmail($data);

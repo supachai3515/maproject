@@ -610,7 +610,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
    $scope.send_document_event = function() {
      swal({
        title: '',
-       text: "ยืนยันการส่งเอกสารสั่งซื้อ",
+       text: "ยืนยันการส่งใบเสนอราคา",
        type: 'warning',
        showCancelButton: true,
        confirmButtonColor: '#008CBA',
@@ -631,7 +631,7 @@ app.controller("order_sale_ctrl", function($scope, $http, $uibModal, $log, $q) {
          }).then(function(response) {
            swal(
              '',
-             'ส่งเอกสารสั่งซื้อสำเร็จ',
+             'ส่งส่งใบเสนอราคาสำเร็จ',
              'success'
            )
            get_order_status();
