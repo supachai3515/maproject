@@ -24,6 +24,7 @@
 	        overwriteInitial: false,
 	        maxFileSize: 2000,
 	    });
+	 });
 </script>
 
 <script type="text/javascript">
