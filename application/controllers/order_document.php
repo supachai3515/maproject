@@ -76,6 +76,8 @@ class Order_document extends BaseController {
     	$value = json_decode(file_get_contents("php://input"));
     	$order_document_id = $this->order_document_model->save_order_document($value);
         if(isset($order_document_id)){
+          $data['order_document_detail'] = $this->order_document_model->get_order_doc_detail($order_document_id);
+          
           //sendmail
           $data['email'] = "";// toemail
           $data['template'] = "email/order_document";

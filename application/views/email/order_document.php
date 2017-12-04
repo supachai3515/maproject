@@ -57,13 +57,13 @@
 																		<table style="width: 100%;">
 																			<tbody>
 																				<tr>
-																					<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">Order Desciption:</td>
+																					<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">Desciption:</td>
 																					<td style="width: 50%;">
 																						<?php echo $order_document_detail['order_description']; ?>
 																					</td>
 																				</tr>
 																				<tr>
-																					<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">Order Document:</td>
+																					<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">Document:</td>
 																					<td style="width: 50%;">
 																						<a href="<?php echo base_url($order_document_detail['document_path']); ?>" target="_blank">Link</a>
 																					</td>
