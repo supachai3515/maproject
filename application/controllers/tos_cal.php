@@ -181,7 +181,7 @@ class Tos_cal extends BaseController {
 				if(empty($is_sale_user))
 				{
 					//sendmail
-		      $data['email'] = $email;// toemail
+		      		$data['email'] = $email;// toemail
 					$data['template'] = "email/send_order";
 					$data['subject'] = "You request a quotation from (TOS) - Order  #".$order_id;
 					$data['bcc_mail'] = $this->config->item('email_cc_group');

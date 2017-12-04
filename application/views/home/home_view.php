@@ -61,6 +61,9 @@
     <div class="content-wrapper">
       <section class="content">
         <div class="container">
+          <div class="row text-right">
+            <a class="btn btn-lg btn-info" href="<?php echo base_url().'order_document' ?>" role="button"><i class="fa fa-file-text" aria-hidden="true"></i> อัพโหลดเอกสาร</a>
+          </div>
           <div class="step">
             <div class="step-inner">
                 <div class="connecting-line"></div>

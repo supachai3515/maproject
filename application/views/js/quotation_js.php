@@ -20,6 +20,8 @@
         uploadExtraData: {
             quotation_id: <?php echo $quotation_data['quotation_id'];?>
         }
+    }).on("filebatchselected", function(event, files) {
+        $("#ow_logo").fileinput("upload");
     }).on('filesorted', function(e, params) {
         console.log('file sorted', e, params);
     }).on('fileuploaded', function(e, params) {
@@ -36,6 +38,8 @@
         uploadExtraData: {
             quotation_id: <?php echo $quotation_data['quotation_id'];?>
         }
+    }).on("filebatchselected", function(event, files) {
+        $("#sale_manager_signature").fileinput("upload");
     }).on('filesorted', function(e, params) {
         console.log('file sorted', e, params);
     }).on('fileuploaded', function(e, params) {
@@ -52,6 +56,8 @@
         uploadExtraData: {
             quotation_id: <?php echo $quotation_data['quotation_id'];?>
         }
+    }).on("filebatchselected", function(event, files) {
+        $("#sale_signature").fileinput("upload");
     }).on('filesorted', function(e, params) {
         console.log('file sorted', e, params);
     }).on('fileuploaded', function(e, params) {

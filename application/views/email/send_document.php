@@ -162,7 +162,7 @@
 																							<td style="width: 50%;"><?php echo $model['qty']; ?></td>
 																						</tr>
 																						<tr>
-																							<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">PM Time QTY:</td>
+																							<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">PM/Year:</td>
 																							<td style="width: 50%;"><?php echo $model['pm_time_qty']; ?></td>
 																						</tr>
 																						<tr>
