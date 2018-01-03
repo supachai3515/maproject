@@ -18,7 +18,7 @@
 												<tbody>
 													<tr>
 														<td style="padding:17px 3.358% 15px">
-															<cite style="text-align:center;display:block;font-style:normal">
+															<div style="text-align:center;display:block;font-style:normal">
 															<span style="font-size:1px;min-height:0;color:#fff;width:0;display:block">Just one more step.</span>
 															<dl style="list-style-type:none;padding:0;overflow:hidden;margin:0">
 																<dt style="font-size:15px;display:inline-block;width:100%;margin:0;padding:0 0 12px 0;vertical-align:top;padding-bottom:0!important">
@@ -26,7 +26,7 @@
 																</dt>
 																<div style="font-size:15px;display:inline-block;width:100%;margin:0;vertical-align:top"></div>
 															</dl>
-															</cite>
+															</div>
 														</td>
 													</tr>
 												</tbody>
@@ -57,10 +57,8 @@
 																		<table style="width: 100%;">
 																			<tbody>
 																				<tr>
-																					<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">Desciption:</td>
-																					<td style="width: 50%;">
-																						<?php echo $order_document_detail['order_description']; ?>
-																					</td>
+																					<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">Contact Detail:</td>
+																					<td style="width: 50%;"><?php echo $order_document_detail['order_description']; ?></td>
 																				</tr>
 																				<tr>
 																					<td style="font-weight: bold; width: 50%; text-align: right; padding-right: 5px;width: 30%;">Document:</td>

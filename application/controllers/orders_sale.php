@@ -611,23 +611,36 @@ class Orders_sale extends BaseController
             $resultInfo = $this->orders_model->get_orders_id($order_id);
             $data['order_data'] = $resultInfo;
             $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
-            //pre($data['order_data']);
-            //pre($data['order_detail_data']);
-            //sendmail
-    	      $data['email'] = $resultInfo["email"];// toemail
-    				$data['template'] = "email/approve_special_price";
-    				$data['subject'] = "Approve special price #".$order_id;
-    				$data['bcc_mail'] = $this->config->item('email_cc_group');
-            $data['name'] = $resultInfo["company"];
-      			$data['tel'] = $resultInfo["tel"];
+            $sale_id = $resultInfo["assign_to"];
 
-    				//sendmail
-    				$sendStatus = send_emali_template_gmail($data);
-    				if($sendStatus){
-    						json_output(200, array('status' => 200,'message' => 'success'));
-    				} else {
-    						json_output(400, array('status' => 400,'message' => 'error'));
-    				}
+            $sale_detail = $this->orders_model->get_user_info($sale_id);
+
+            $sale_email = $sale_detail['email'];
+            $sale_name = $sale_detail['name'];
+            $sale_mobile = $sale_detail['mobile'];
+
+            $sale_info = array('name' => $sale_name,
+                            'tel' => $sale_mobile,
+                            'email' => $sale_email);
+
+            //get sale email
+            $data['sale_detail'] = $sale_info;
+
+            //sendmail
+            $data['email'] = $resultInfo["email"].",".$sale_email;// toemail
+            $data['template'] = "email/approve_special_price";
+            $data['subject'] = "Approve special price #".$order_id;
+            $data['bcc_mail'] = $this->config->item('email_cc_group');
+            $data['name'] = $resultInfo["company"];
+      		$data['tel'] = $resultInfo["tel"];
+
+			//sendmail
+			$sendStatus = send_emali_template_gmail($data);
+			if($sendStatus){
+					json_output(200, array('status' => 200,'message' => 'success'));
+			} else {
+					json_output(400, array('status' => 400,'message' => 'error'));
+			}
           } else {
               json_output(400, array('status' => 400,'message' => 'error'));
           }
@@ -654,23 +667,36 @@ class Orders_sale extends BaseController
             $resultInfo = $this->orders_model->get_orders_id($order_id);
             $data['order_data'] = $resultInfo;
             $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
-            //pre($data['order_data']);
-            //pre($data['order_detail_data']);
-            //sendmail
-    	      $data['email'] = $resultInfo["email"];// toemail
-    				$data['template'] = "email/order_invoice";
-    				$data['subject'] = "Send Quotation #".$order_id;
-    				$data['bcc_mail'] = $this->config->item('email_cc_group');
-                    $data['name'] = $resultInfo["company"];
-      			   $data['tel'] = $resultInfo["tel"];
+            $sale_id = $resultInfo["assign_to"];
 
-    				//sendmail
-    				$sendStatus = send_emali_template_gmail($data);
-    				if($sendStatus){
-    						json_output(200, array('status' => 200,'message' => 'success'));
-    				} else {
-    						json_output(400, array('status' => 400,'message' => 'error'));
-    				}
+            $sale_detail = $this->orders_model->get_user_info($sale_id);
+
+            $sale_email = $sale_detail['email'];
+            $sale_name = $sale_detail['name'];
+            $sale_mobile = $sale_detail['mobile'];
+
+            $sale_info = array('name' => $sale_name,
+                            'tel' => $sale_mobile,
+                            'email' => $sale_email);
+
+            //get sale email
+            $data['sale_detail'] = $sale_info;
+
+            //sendmail
+            $data['email'] = $resultInfo["email"].",".$sale_email;// toemail
+			$data['template'] = "email/order_invoice";
+			$data['subject'] = "Send Quotation #".$order_id;
+			$data['bcc_mail'] = $this->config->item('email_cc_group');
+            $data['name'] = $resultInfo["company"];
+			   $data['tel'] = $resultInfo["tel"];
+
+			//sendmail
+			$sendStatus = send_emali_template_gmail($data);
+			if($sendStatus){
+					json_output(200, array('status' => 200,'message' => 'success'));
+			} else {
+					json_output(400, array('status' => 400,'message' => 'error'));
+			}
           } else {
               json_output(400, array('status' => 400,'message' => 'error'));
           }
@@ -697,10 +723,23 @@ class Orders_sale extends BaseController
             $resultInfo = $this->orders_model->get_orders_id($order_id);
             $data['order_data'] = $resultInfo;
             $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
-            //pre($data['order_data']);
-            //pre($data['order_detail_data']);
+            $sale_id = $resultInfo["assign_to"];
+
+            $sale_detail = $this->orders_model->get_user_info($sale_id);
+
+            $sale_email = $sale_detail['email'];
+            $sale_name = $sale_detail['name'];
+            $sale_mobile = $sale_detail['mobile'];
+
+            $sale_info = array('name' => $sale_name,
+                            'tel' => $sale_mobile,
+                            'email' => $sale_email);
+
+            //get sale email
+            $data['sale_detail'] = $sale_info;
+
             //sendmail
-            $data['email'] = $resultInfo["email"];// toemail
+            $data['email'] = $resultInfo["email"].",".$sale_email;// toemail
             $data['template'] = "email/approve_document";
             $data['subject'] = "Approve document #".$order_id;
             $data['bcc_mail'] = $this->config->item('email_cc_group');
@@ -723,5 +762,4 @@ class Orders_sale extends BaseController
           $this->loadThis();
       }
     }
-
 }

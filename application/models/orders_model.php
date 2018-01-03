@@ -36,10 +36,11 @@ class orders_model extends CI_Model {
 		$page = $this->db->escape_str($page);
 		$segment = $this->db->escape_str($segment);
 
-		$sql ="SELECT r.* , u1.name create_by_name , u2.name  modified_by_name ,
-		 			u3.name  assign_by_name,
-		  		u4.name  assign_to_name,
-					os.`name` status_name
+		$sql ="SELECT r.* , u1.name create_by_name , 
+							u2.name  modified_by_name ,
+		 					u3.name  assign_by_name,
+		  					u4.name  assign_to_name,
+							os.`name` status_name
 						FROM  orders  r
 						LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by
@@ -63,10 +64,11 @@ class orders_model extends CI_Model {
   public function get_orders_id($order_id)
 	{
 		$order_id = $this->db->escape_str($order_id);
-		$sql =" SELECT r.* , u1.name create_by_name , u2.name  modified_by_name ,
-		 			u3.name  assign_by_name,
-		  		u4.name  assign_to_name,
-					os.`name` status_name
+		$sql =" SELECT r.* , u1.name create_by_name, 
+							u2.name  modified_by_name,
+		 					u3.name  assign_by_name,
+		  					u4.name  assign_to_name,
+							os.`name` status_name
 						FROM  orders  r
 						LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
 						LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by

@@ -209,6 +209,16 @@ if(!function_exists('setFlashData'))
         }
 }
 
+if(!function_exists('stripPrice'))
+{
+    function stripPrice($num)
+        {
+            $num = number_format($num, 2);
+           $value = preg_replace('~\.0+$~','',$num);
+           return $value;
+        }
+}
+
 if(!function_exists('num2wordsThai'))
 {
     function num2wordsThai($num)
@@ -220,7 +230,7 @@ if(!function_exists('num2wordsThai'))
         $lenNumber=strlen($num);   
         $lenNumber2=$lenNumber-1;   
         $kaGroup=array("","สิบ","ร้อย","พัน","หมื่น","แสน","ล้าน","สิบ","ร้อย","พัน","หมื่น","แสน","ล้าน");   
-        $kaDigit=array("","หนึ่ง","สอง","สาม","สี่","ห้า","หก","เจ็ต","แปด","เก้า");   
+        $kaDigit=array("","หนึ่ง","สอง","สาม","สี่","ห้า","หก","เจ็ด","แปด","เก้า");   
         $kaDigitDecimal=array("ศูนย์","หนึ่ง","สอง","สาม","สี่","ห้า","หก","เจ็ด","แปด","เก้า");   
         $ii=0;   
         for($i=$lenNumber2;$i>=0;$i--)

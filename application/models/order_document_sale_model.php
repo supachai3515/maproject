@@ -2,7 +2,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Order_document_model extends CI_Model
+class Order_document_sale_model extends CI_Model
 {
     public function __construct()
     {
@@ -26,22 +26,22 @@ class Order_document_model extends CI_Model
         return  $row['connt_id'];
     }
 
-    public function get_order_doc($searchText = '', $page, $segment)
+    public function get_order_doc($searchText = '', $page, $segment, $assign_to)
     {
         $searchText = $this->db->escape_like_str($searchText);
         $page = $this->db->escape_str($page);
         $segment = $this->db->escape_str($segment);
 
-        $sql ="SELECT r.* , u1.name create_by_name , 
-                            u2.name modified_by_name ,
-                            u3.name assign_by_name,
-                            u4.name assign_to_name
+        $sql ="SELECT r.* , u1.name create_by_name, 
+                            u2.name  modified_by_name,
+                            u3.name  assign_by_name,
+                            u4.name  assign_to_name
                         FROM  order_document  r
                         LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
                         LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by
                         LEFT JOIN tbl_users u3 ON u3.userId = r.assign_by
                         LEFT JOIN tbl_users u4 ON u4.userId = r.assign_to
-                        WHERE 1=1 ";
+                        WHERE 1=1 AND r.assign_to = '".$assign_to."' ";
 
         if (!empty($searchText)) {
             $sql = $sql." AND (m.order_document_id  LIKE '%".$searchText."%'
@@ -57,16 +57,8 @@ class Order_document_model extends CI_Model
      public function get_order_doc_detail($id)
     {
         $id = $this->db->escape($id);
-        $sql =" SELECT r.* , u1.name create_by_name, 
-                            u2.name  modified_by_name,
-                            u3.name  assign_by_name,
-                            u4.name  assign_to_name
-                        FROM  order_document  r
-                        LEFT JOIN tbl_users u1 ON u1.userId = r.create_by
-                        LEFT JOIN tbl_users u2 ON u2.userId = r.modified_by
-                        LEFT JOIN tbl_users u3 ON u3.userId = r.assign_by
-                        LEFT JOIN tbl_users u4 ON u4.userId = r.assign_to
-                        WHERE r.order_document_id  =  ".$id."";
+
+        $sql ="SELECT * FROM order_document WHERE order_document_id = $id";
         $query = $this->db->query($sql);
         $row = $query->row_array();
         return $row;
@@ -74,24 +66,14 @@ class Order_document_model extends CI_Model
 
     public function save_order_document($orders_data)
     {
-        $assign_by = null;
-        $assign_to = null;
-        $assign_by_date = null;
-        $assign_to_date = null;
-        
         $this->db->trans_start();
         $data = array(
-            'order_description'=>$orders_data->descripttion,
             'document_path' =>$orders_data->order_doc_path,
             'is_active' => '1',
             'create_date' =>date("Y-m-d H:i:s"),
             'create_by' =>'1',
             'modified_date' =>date("Y-m-d H:i:s"),
-            'modified_by' =>'1',
-            'assign_by' => $assign_by,
-            'assign_to' => $assign_to,
-            'assign_by_date' => $assign_by_date,
-            'assign_to_date' => $assign_to_date,
+            'modified_by' =>'1'
         );
         $this->db->insert('order_document', $data);
         $order_document_id = $this->db->insert_id();
@@ -111,15 +93,5 @@ class Order_document_model extends CI_Model
         $this->db->where('order_document_id', $orders_data->order_doc_id);
         $this->db->update('order_document', $data);
         return true;
-    }
-    public function assign_order_document($orders_doc,$orders_doc_id)
-    {
-        $this->db->where('order_document_id', $orders_doc_id);
-        $this->db->update('order_document', $orders_doc);
-
-        $sql =" INSERT INTO order_status_history VALUES(0,$orders_doc_id,0,'Assaign order document to sale',NOW()) ";
-        $this->db->query($sql);
-
-        return TRUE;
     }
 }

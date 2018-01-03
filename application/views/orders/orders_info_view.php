@@ -3,13 +3,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      View info orders
-      <small>กลุ่มเมนูผู้ใช้</small>
+      View order info
     </h1>
     <ol class="breadcrumb">
-      <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="<?php echo base_url('orders'); ?>"> orders</a></li>
-      <li class="active">View orders</li>
+      <li class="active">View order info</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -20,7 +19,7 @@
           <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">  View info orders : (<?php echo $orders_data['status_name']; ?>)</h3>
+                    <h3 class="box-title">  View order info : (<?php echo $orders_data['status_name']; ?>)</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
               <div class="box box-solid">

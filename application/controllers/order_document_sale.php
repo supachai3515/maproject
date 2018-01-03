@@ -2,13 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/BaseController.php';
 
-class Order_document_internal extends BaseController {
+class Order_document_sale extends BaseController {
 
   public function __construct()
   {
     parent::__construct();
     $this->load->model('initdata_model');
-    $this->load->model('order_document_model');
+    $this->load->model('order_document_sale_model');
     $this->load->library('my_upload');
     $this->isLoggedIn();
   }
@@ -33,12 +33,12 @@ class Order_document_internal extends BaseController {
       $searchText = $this->input->post('searchText');
       $data['searchText'] = $searchText;
 
-      $count = $this->order_document_model->get_order_doc_count($searchText);
+      $count = $this->order_document_sale_model->get_order_doc_count($searchText);
       $data['links_pagination'] = $this->pagination_compress( "order_document_internal/index", $count, $this->config->item('pre_page') );
-      $data['order_doc_list'] = $this->order_document_model->get_order_doc($searchText, $page, $this->config->item('pre_page'));
+      $data['order_doc_list'] = $this->order_document_sale_model->get_order_doc($searchText, $page, $this->config->item('pre_page'), $this->vendorId);
 
 
-      $data['content'] = 'order_document/order_document_view';
+      $data['content'] = 'order_document_sale/order_document_view';
       //if script file
       //$data['script_file'] = 'js/order_document_internal_js';
       $data['header'] = array('title' => 'Order Document | '.$this->config->item('sitename'),
@@ -75,12 +75,12 @@ class Order_document_internal extends BaseController {
           }
         }
 
-      $data['order_document_detail'] = $this->order_document_model->get_order_doc_detail($id);
+      $data['order_document_detail'] = $this->order_document_sale_model->get_order_doc_detail($id);
 
 
-      $data['content'] = 'order_document/order_document_edit_view';
+      $data['content'] = 'order_document_sale/order_document_edit_view';
       //if script file
-      $data['script_file'] = 'js/order_document_internal_edit_js';
+      $data['script_file'] = 'js/order_document_sale_edit_js';
       $data['header'] = array('title' => 'Order Document | '.$this->config->item('sitename'),
                               'description' =>  'Order Document | '.$this->config->item('tagline'),
                               'author' => $this->config->item('author'),
@@ -141,7 +141,7 @@ class Order_document_internal extends BaseController {
     public function save_order()
     {
       $value = json_decode(file_get_contents("php://input"));
-      $result = $this->order_document_model->update_order_document($value,$this->vendorId);
+      $result = $this->order_document_sale_model->update_order_document($value,$this->vendorId);
         if($result > 0){
           json_output(200, array('status' => 200,'message' => 'success'));
         }

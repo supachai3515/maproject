@@ -4,7 +4,7 @@
   <section class="content-header">
     <h1>Edit Quotation</h1>
     <ol class="breadcrumb">
-      <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="<?php echo base_url('quotation'); ?>"> Quotation</a></li>
       <li class="active">Edit Quotation</li>
     </ol>
@@ -87,7 +87,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="cust_name" name="cust_name" ng-model="quotation_data.ct_email" maxlength="128" required>
+                        <input type="text" class="form-control" id="cust_name" name="cust_name" ng-model="quotation_data.ct_name" maxlength="128" required>
                     </div>
                 </div>
                 <div class="col-md-4">

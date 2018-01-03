@@ -69,7 +69,7 @@
             </div>
             <div class="box-body">
                   <div class="form-group">
-                    <label for="email" class="col-md-4 control-label">Description<sup class="text-danger">*</sup></label>
+                    <label for="descripttion" class="col-md-4 control-label">Contact Detail<sup class="text-danger">*</sup></label>
                     <div class="col-md-5">
                       <textarea name="descripttion" rows="8" class="form-control" id="descripttion"  ng-model="order.descripttion" style="resize: none;" required></textarea>
                     </div>

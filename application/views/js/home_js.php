@@ -77,7 +77,8 @@ get_order_detail();
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: {search: char_search}
           }).success(function(data) {
-            $uibModal.open({
+            if(data.length == 0) {
+              $uibModal.open({
                 templateUrl: 'result_search_product_modal.html',
                 controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
                   $sc.result_products = data;
@@ -98,7 +99,10 @@ get_order_detail();
                       $uib.dismiss('cancel');
                   }
                 }]
-            });
+              });
+            } else {
+              $scope.add_product();
+            }
           });
     }
     $scope.add_product = function() {

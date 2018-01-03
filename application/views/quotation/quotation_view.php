@@ -4,7 +4,7 @@
   <section class="content-header">
     <h1>Quotation</h1>
     <ol class="breadcrumb">
-      <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
       <li class="active">Quotation</li>
     </ol>
   </section>

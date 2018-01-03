@@ -73,10 +73,23 @@ class Upload_document extends BaseController
             $resultInfo = $this->tos_cal_model->get_order($order_id);
             $data['order_data'] = $resultInfo;
             $data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-            //pre($data['order_data']);
-            //pre($data['order_detail_data']);
+            $sale_id = $resultInfo["assign_to"];
+
+            $sale_detail = $this->orders_model->get_user_info($sale_id);
+
+            $sale_email = $sale_detail['email'];
+            $sale_name = $sale_detail['name'];
+            $sale_mobile = $sale_detail['mobile'];
+
+            $sale_info = array('name' => $sale_name,
+                            'tel' => $sale_mobile,
+                            'email' => $sale_email);
+
+            //get sale email
+            $data['sale_detail'] = $sale_info;
+
             //sendmail
-            $data['email'] = $resultInfo["email"];// toemail
+            $data['email'] = $resultInfo["email"].",".$sale_email;// toemail
             $data['template'] = "email/send_document";
             $data['subject'] = "Send document #".$order_id;
             $data['bcc_mail'] = $this->config->item('email_cc_group');

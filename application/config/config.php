@@ -26,7 +26,9 @@ $config['short_sitename'] = "TOS";
 $config['sitename'] = "TOS MA Online";
 $config['tagline'] = "TOS MA Online";
 $config['author'] = "TOS";
-$config['url_img'] = "http://192.168.10.19/";
+//$config['url_img'] = "http://192.168.10.19/";
+$config['url_img'] = "http://demo.wisadev.com/maproject/";
+//$config['url_img'] = "http://localhost/";
 $config['no_url_img'] = "http://192.168.10.19/uploads/no_image.jpg";
 
 $config['weburl'] = "http://192.168.10.19/";

@@ -61,9 +61,6 @@
     <div class="content-wrapper">
       <section class="content">
         <div class="container">
-          <div class="row text-right">
-            <a class="btn btn-lg btn-info" href="<?php echo base_url().'order_document' ?>" role="button"><i class="fa fa-file-text" aria-hidden="true"></i> อัพโหลดเอกสาร</a>
-          </div>
           <div class="step">
             <div class="step-inner">
                 <div class="connecting-line"></div>
@@ -179,7 +176,9 @@
                 <h3 class="box-title">Product List</h3>
             </div>
             <div class="box-body">
-              <p class="text-right"><button type="button" ng-class="{disabled: info_form.$invalid}" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button></p>
+              <p class="text-right">
+                <button type="button" ng-class="{disabled: info_form.$invalid}" class="btn btn-info" ng-click="add_product()"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;เพิ่มสินค้า</button>
+                <a class="btn btn-info" href="<?php echo base_url().'order_document' ?>" role="button" style="margin-left: 5px;"><i class="fa fa-file-text" aria-hidden="true"></i> แนบไฟล์อุปกรณ์ กรณีสินค้าเยอะ</a></p>
               <form name="product_form" novalidate>
                 <table class="table table-striped">
                   <thead>

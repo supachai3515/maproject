@@ -4,8 +4,8 @@
   <section class="content-header">
     <h1>Order Document</h1>
     <ol class="breadcrumb">
-      <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="<?php echo base_url('order_document_internal'); ?>"> Order Document List</a></li>
+      <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url('order_document_sale'); ?>"> Order Document List</a></li>
       <li class="active">Edit Order Document</li>
     </ol>
   </section>
@@ -20,7 +20,7 @@
               <div class="box-body">
                 <div class="col-lg-12 col-md-12">
                   <div class="form-group row">
-                    <label for="email" class="col-md-4 control-label text-right">Description<sup class="text-danger">*</sup></label>
+                    <label for="descripttion" class="col-md-4 control-label text-right">Contact Detail<sup class="text-danger">*</sup></label>
                     <div class="col-md-5">
                       <textarea name="descripttion" rows="8" class="form-control" id="descripttion"  ng-model="order.descripttion" style="resize: none;" required></textarea>
                     </div>

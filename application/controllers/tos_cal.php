@@ -341,10 +341,23 @@ class Tos_cal extends BaseController {
 			$resultInfo = $this->tos_cal_model->get_order($order_id);
 			$data['order_data'] = $resultInfo;
 			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-			//pre($data['order_data']);
-			//pre($data['order_detail_data']);
-			//sendmail
-			$data['email'] = $resultInfo["email"];// toemail
+			$sale_id = $resultInfo["assign_to"];
+
+            $sale_detail = $this->orders_model->get_user_info($sale_id);
+
+            $sale_email = $sale_detail['email'];
+            $sale_name = $sale_detail['name'];
+            $sale_mobile = $sale_detail['mobile'];
+
+            $sale_info = array('name' => $sale_name,
+                            'tel' => $sale_mobile,
+                            'email' => $sale_email);
+
+            //get sale email
+            $data['sale_detail'] = $sale_info;
+
+            //sendmail
+            $data['email'] = $resultInfo["email"].",".$sale_email;// toemail
 			$data['template'] = "email/accept_special_price";
 			$data['subject'] = "Accept Special Price #".$order_id;
 			$data['bcc_mail'] = $this->config->item('email_cc_group');
@@ -431,21 +444,25 @@ class Tos_cal extends BaseController {
 
 	}
 
-	// public function test_mail($ref_id)
-	// {
-	// 	$order_id = $this->tos_cal_model->get_order_id_by_ref($ref_id);
-	// 	if(isset($order_id)){
-	// 			//set status special_price
-	// 			$data['ref_id'] = $ref_id;
-	// 			$data['order_data'] = $this->tos_cal_model->get_order($order_id);
-	// 			$data['order_detail_data'] = $this->tos_cal_model->get_order_detail($order_id);
-	// 			$status = "success";
-	// 			//setFlashData($status, "ทางเราได้รับคำขอจากท่านเรียบร้อยแล้ว กรุณารอทางเราติดต่อครับ");
-	// 			$this->load->view('email/accept_special_price', $data);
-	// 	} else {
-	// 			$this->loadThis();
-	// 	}
-	//
-	//
-	// }
+	// public function testmail($order_id){
+ //        $resultInfo = $this->orders_model->get_orders_id($order_id);
+ //        $data['order_data'] = $resultInfo;
+ //        $data['order_detail_data'] = $this->orders_model->get_orders_detail($order_id);
+ //        $sale_id = $resultInfo["assign_to"];
+
+ //        $sale_detail = $this->orders_model->get_user_info($sale_id);
+
+ //        $sale_email = $sale_detail['email'];
+ //        $sale_name = $sale_detail['name'];
+ //        $sale_mobile = $sale_detail['mobile'];
+
+	//  	$sale_info = array('name' => $sale_name,
+	// 					'tel' => $sale_mobile,
+	// 					'email' => $sale_email);
+
+ //        //get sale email
+ //       	$data['sale_detail'] = $sale_info;
+
+ //        $this->load->view('email/approve_special_price', $data);
+ //    }
 }

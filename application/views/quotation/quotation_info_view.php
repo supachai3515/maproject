@@ -4,7 +4,7 @@
   <section class="content-header">
     <h1>View Quotation</h1>
     <ol class="breadcrumb">
-      <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="<?php echo base_url('quotation'); ?>"> Quotation</a></li>
       <li class="active">View Quotation</li>
     </ol>
@@ -125,7 +125,7 @@
                   <td class="text-center"><?php echo number_format($quotation_data['vat'],2) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="3" style="background-color: #f5f5f5;"><p class="text-center"><?php echo num2wordsThai(number_format($quotation_data['total'],2)); ?></p></td>
+                  <td colspan="3" style="background-color: #f5f5f5;"><p class="text-center"><?php echo num2wordsThai(stripPrice($quotation_data['total'])); ?></p></td>
                   <td style="border: none;"></td>
                   <td class="text-right text-bold" style="
     background-color: #f5f5f5;"><strong>TOTAL :</strong></td>
