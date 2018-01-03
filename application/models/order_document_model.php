@@ -117,9 +117,6 @@ class Order_document_model extends CI_Model
         $this->db->where('order_document_id', $orders_doc_id);
         $this->db->update('order_document', $orders_doc);
 
-        $sql =" INSERT INTO order_status_history VALUES(0,$orders_doc_id,0,'Assaign order document to sale',NOW()) ";
-        $this->db->query($sql);
-
         return TRUE;
     }
 }
