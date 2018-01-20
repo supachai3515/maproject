@@ -69,17 +69,18 @@
   });
 
     $scope.cal_quotation = function(val) {
-      var price = Number(val);
-      var reg = /^\d+$/;
-      if(val && reg.test(price)) {
-        var subtotal = 0;
-        for (var i = 0; i <= $scope.quotation_detail_data.length - 1; i++) {
-          subtotal += Number($scope.quotation_detail_data[i].total);
-        }
-        $scope.quotation_data.sub_total = String(subtotal.toFixed(4));
-        $scope.quotation_data.vat = String((subtotal*0.07).toFixed(4));
-        $scope.quotation_data.total = String((subtotal+(subtotal*0.07)).toFixed(4));
-      }
+      return;
+      // var price = Number(val);
+      // var reg = /^\d+$/;
+      // if(val && reg.test(price)) {
+      //   var subtotal = 0;
+      //   for (var i = 0; i <= $scope.quotation_detail_data.length - 1; i++) {
+      //     subtotal += Number($scope.quotation_detail_data[i].total);
+      //   }
+      //   $scope.quotation_data.sub_total = String(subtotal.toFixed(4));
+      //   $scope.quotation_data.vat = String((subtotal*0.07).toFixed(4));
+      //   $scope.quotation_data.total = String((subtotal+(subtotal*0.07)).toFixed(4));
+      // }
     }
 
     $scope.save_quotation = function() {
