@@ -77,7 +77,7 @@ get_order_detail();
               headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
               data: {search: char_search}
           }).success(function(data) {
-            if(data.length == 0) {
+            if(data.length > 0) {
               $uibModal.open({
                 templateUrl: 'result_search_product_modal.html',
                 controller: ['$scope', '$uibModalInstance', function($sc, $uib) {
