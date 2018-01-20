@@ -277,7 +277,9 @@ if(!function_exists('num2wordsThai'))
             for($i=0;$i<strlen($num_decimal[1]);$i++){
                 $returnNumWord.=$kaDigitDecimal[substr($num_decimal[1],$i,1)];  
             }
-        }       
+        } else {
+            $returnNumWord.="บาทถ้วน";  
+        }
         return $returnNumWord;   
     }   
 }
