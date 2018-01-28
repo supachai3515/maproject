@@ -57,6 +57,8 @@ get_order_detail();
             $scope.products = data;
           });
 
+    } else if(val && val.length < 3) {
+      $scope.products = [];
     }
   }
     $scope.add_product_list = function(val) {
