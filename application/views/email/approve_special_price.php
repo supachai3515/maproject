@@ -197,7 +197,7 @@
 																	</div>
 																</div>
 																<?php endforeach; ?>
-																<p>ระบบได้ทำการปรับราคาสินค้า ตามที่ท่านได้ขอราคาพิเศษมาแล้ว <a href="<?php echo base_url(); ?>tos_cal/special_price/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a> เพื่อไปยังหน้าสินค้า</p>
+																<p>ระบบได้ทำการปรับราคาสินค้า ตามที่ท่านได้ขอราคาพิเศษมาแล้ว <a href="<?php echo base_url(); ?>tos_cal/special_price/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a> เพื่อยืนยันการสั่งซื้อ</p>
 															</div>
 														</div>
 													</td>

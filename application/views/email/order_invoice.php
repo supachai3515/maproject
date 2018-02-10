@@ -197,8 +197,8 @@
 																	</div>
 																</div>
 																<?php endforeach; ?>
-																<p>ดาวน์โหลดเอกสารสั่งซื้อ<a href="<?php echo base_url(); ?>tos_cal/quotation_doc/<?php echo $order_data['order_id']; ?>" target="_blank">คลิกที่นี้</a></p>
-																<p>หากท่านต้องการอัพโหลดเอกสาร<a href="<?php echo base_url(); ?>tos_cal/upload_document/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a></p>
+																<p>ดาวน์โหลดใบเสนอราคา<a href="<?php echo base_url(); ?>tos_cal/quotation_doc/<?php echo $order_data['order_id']; ?>" target="_blank">คลิกที่นี้</a></p>
+																<p>กรุณาแนบ ใบเสนอราคาที่ลงนามแล้วหรือ PO เพื่อยืนยันการสั่งซื้อ<a href="<?php echo base_url(); ?>tos_cal/upload_document/<?php echo $order_data['ref_id']; ?>" target="_blank">คลิกที่นี้</a></p>
 															</div>
 														</div>
 													</td>
